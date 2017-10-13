@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23927467478457324}
   - component: {fileID: 114338045485360798}
   m_Layer: 0
-  m_Name: w
+  m_Name: FakeAttackBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
