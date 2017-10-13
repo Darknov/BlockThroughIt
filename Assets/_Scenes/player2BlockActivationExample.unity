@@ -138,9 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557efaaa7ad8e094dab72150b57ca859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpLength: 1
-  isBlockInMovement: 0
-  moveDirection: {x: 1, y: 0, z: 0}
 --- !u!23 &404573354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -236,7 +233,8 @@ MonoBehaviour:
   southBlock: {fileID: 974628505}
   eastBlock: {fileID: 977116056}
   westBlock: {fileID: 404573353}
-  blocksSpeed: 3
+  blocksSpeed: 0.3
+  jumpLength: 1
 --- !u!4 &520120078
 Transform:
   m_ObjectHideFlags: 0
@@ -451,9 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557efaaa7ad8e094dab72150b57ca859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpLength: 1
-  isBlockInMovement: 0
-  moveDirection: {x: 0, y: 1, z: 0}
 --- !u!23 &974628506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -548,9 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557efaaa7ad8e094dab72150b57ca859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpLength: 1
-  isBlockInMovement: 0
-  moveDirection: {x: -1, y: 0, z: 0}
 --- !u!23 &977116057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -710,9 +702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557efaaa7ad8e094dab72150b57ca859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpLength: 1
-  isBlockInMovement: 0
-  moveDirection: {x: 0, y: -1, z: 0}
 --- !u!23 &1530732903
 MeshRenderer:
   m_ObjectHideFlags: 0
