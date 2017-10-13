@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBlock : MonoBehaviour {
+public class AttackBlockController : MonoBehaviour {
 
     private float jumpLength;
     private bool isBlockInMovement = false;

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBlocksController : MonoBehaviour {
+public class Player2Controller : MonoBehaviour {
 
-	public AttackBlock northBlock, southBlock, eastBlock, westBlock;
+	public AttackBlockController northBlock, southBlock, eastBlock, westBlock;
     public float blocksSpeed;
     public float jumpLength;
 
