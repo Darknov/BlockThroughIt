@@ -2,16 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player2Controller : MonoBehaviour {
 
 	public AttackBlockController northBlock, southBlock, eastBlock, westBlock;
     public float blocksSpeed;
     public float jumpLength;
+    public float cooldownTime;
 
-	void Start () {
+    public Slider cooldownSlider;
+
+    private float cooldownTimeCounter;
+
+
+    void Start () {
 		if(northBlock == null || southBlock == null || eastBlock == null || westBlock == null)
-            throw new NullReferenceException("You must assign all blocks to AttackBlocksController.");
+            throw new NullReferenceException("You must assign all blocks to " +this.GetType().Name);
         
         if(blocksSpeed == 0)
             throw new ArgumentException("blocksSpeed cannot be 0");
@@ -19,7 +27,10 @@ public class Player2Controller : MonoBehaviour {
         if (jumpLength == 0)
             throw new ArgumentException("jumpLength cannot be 0");
 
-        // Setting movespeed doesn't work properly
+        if (cooldownSlider == null)
+            throw new NullReferenceException("You must assign a slider to " + this.GetType().Name);
+
+		cooldownTimeCounter = cooldownTime;
 
         northBlock.MoveSpeed = blocksSpeed;
         southBlock.MoveSpeed = blocksSpeed;
@@ -41,14 +52,35 @@ public class Player2Controller : MonoBehaviour {
         eastBlock.Initialize();
         westBlock.Initialize();
 
+		cooldownSlider.minValue = 0;
+		cooldownSlider.maxValue = cooldownTime;
 
     }
 	
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.W)) northBlock.Activate();
-		if (Input.GetKeyDown(KeyCode.S)) southBlock.Activate();
-		if (Input.GetKeyDown(KeyCode.A)) westBlock.Activate();
-        if (Input.GetKeyDown(KeyCode.D)) eastBlock.Activate();
-	}
+
+		bool canFire = cooldownTimeCounter > cooldownTime;
+
+        if(canFire)
+        {
+            if (Input.GetKeyDown(KeyCode.W)) ActivateBlockAndResetCooldown(northBlock);
+            else if (Input.GetKeyDown(KeyCode.S)) ActivateBlockAndResetCooldown(southBlock);
+            else if (Input.GetKeyDown(KeyCode.A)) ActivateBlockAndResetCooldown(westBlock);
+            else if (Input.GetKeyDown(KeyCode.D)) ActivateBlockAndResetCooldown(eastBlock);
+        }
+        else
+        {
+            cooldownTimeCounter += Time.deltaTime;
+        }
+
+		cooldownSlider.value = cooldownTimeCounter;
+
+    }
+
+    void ActivateBlockAndResetCooldown(AttackBlockController block)
+    {
+        block.Activate();
+        cooldownTimeCounter = 0;
+    }
 
 }
