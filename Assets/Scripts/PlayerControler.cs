@@ -3,14 +3,14 @@ using System.Collections;
 
 public class PlayerControler : MonoBehaviour {
 	
-	public CharacterController characterControler;
+	public CharacterController characterController;
 
 	public float predkoscPoruszania = 3.0f;
 	public float wysokoscSkoku = 6.0f;
 	private float aktualnaWysokoscSkoku = 0f;
 
 	void Start () {
-		characterControler = GetComponent<CharacterController>();
+		characterController = GetComponent<CharacterController>();
 	}
 
 	void Update() {
@@ -18,22 +18,22 @@ public class PlayerControler : MonoBehaviour {
 	}
 
 	private void klawiatura(){
-		float rochPrzodTyl = Input.GetAxis("Vertical") * predkoscPoruszania;
-		float rochLewoPrawo = Input.GetAxis("Horizontal") * predkoscPoruszania;
+		float ruchPrzodTyl = Input.GetAxis("Vertical") * predkoscPoruszania;
+		float ruchLewoPrawo = Input.GetAxis("Horizontal") * predkoscPoruszania;
 
-		if(characterControler.isGrounded && Input.GetButton("Jump")){
+		if(characterController.isGrounded && Input.GetButton("Jump")){
 			aktualnaWysokoscSkoku = wysokoscSkoku;
-		} else if (!characterControler.isGrounded ){
+		} else if (!characterController.isGrounded ){
 			aktualnaWysokoscSkoku += Physics.gravity.y * Time.deltaTime;
 		}
 
 		Debug.Log (Physics.gravity.y);
 
-		Vector3 ruch = new Vector3(rochLewoPrawo, aktualnaWysokoscSkoku, rochPrzodTyl);
+		Vector3 ruch = new Vector3(ruchLewoPrawo, aktualnaWysokoscSkoku, ruchPrzodTyl);
 
 		ruch = transform.rotation * ruch;
 
-		characterControler.Move(ruch * Time.deltaTime);
+		characterController.Move(ruch * Time.deltaTime);
 	}
 
 }
