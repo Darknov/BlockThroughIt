@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlatformCreator : MonoBehaviour
 {
-
     public GameObject block;
+    public GameObject player1;
 
     public int numberOfBlocksInRow;
     public int numberOfInstatiatedBlocks;
 
+    bool isPlayer1Initialized = false;
+
     void Start()
     {
 		float widthOfAGap = 0;
+        block.GetComponent<Rigidbody>().isKinematic = true;
 
         if(numberOfInstatiatedBlocks > (numberOfBlocksInRow*numberOfBlocksInRow -1))
         {
@@ -31,6 +34,12 @@ public class PlatformCreator : MonoBehaviour
 
 					Vector3 vector = new Vector3(startPosition.x + i + widthOfAGap * i, startPosition.y, startPosition.z + j + widthOfAGap * j);
                     Instantiate(block, vector, Quaternion.identity);
+
+                    if (!isPlayer1Initialized)
+                    {
+                        Instantiate(player1, new Vector3(vector.x, vector.y + 3f, vector.z), Quaternion.identity);
+                        isPlayer1Initialized = true;
+                    }
                 }
             }
         }
