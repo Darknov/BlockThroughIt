@@ -7,13 +7,20 @@ public class PlatformCreator : MonoBehaviour
 
     public GameObject block;
 
-    public int numberOfBlocksInRow;
+
+    
     public int numberOfInstatiatedBlocks;
+    public float widthOfAGap;
+    public PlatformBoard platformBoard;
+
+    private int numberOfBlocksInRow;
+    
 
     // Use this for initialization
     void Start()
     {
-        float widthOfAGap = 0.2F;
+        numberOfBlocksInRow = platformBoard.rowLength;
+
 
         if(numberOfInstatiatedBlocks > (numberOfBlocksInRow*numberOfBlocksInRow -1))
         {
@@ -29,8 +36,9 @@ public class PlatformCreator : MonoBehaviour
             {
                 if (isBlockOnPosition[i, j])
                 {
-                    Vector3 vector = new Vector3(this.transform.position.x + i + widthOfAGap * i, this.transform.position.y, this.transform.position.z + j + widthOfAGap * j);
-                    Instantiate(block, vector, Quaternion.identity);
+                    //Vector3 vector = new Vector3(this.transform.position.x + i + widthOfAGap * i, this.transform.position.y, this.transform.position.z + j + widthOfAGap * j);
+                    //Instantiate(block, vector, Quaternion.identity);
+                    this.platformBoard.addBlock(i, j);
                 }
             }
         }
