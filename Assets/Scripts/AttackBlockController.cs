@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackBlockController : MonoBehaviour {
 
     private float jumpLength;
-    private bool isBlockInMovement = false;
+    public bool isBlockInMovement;
     private Vector3 moveDirection;
 
     private float moveSpeed;
@@ -33,10 +33,12 @@ public class AttackBlockController : MonoBehaviour {
         }
     }
 
-
+	void Start() {
+		this.isBlockInMovement = false;
+	}
 	
 	void Update () {
-
+		
         if (!isBlockInMovement) return;
 
         currentTime += Time.deltaTime * moveSpeed;
@@ -50,10 +52,13 @@ public class AttackBlockController : MonoBehaviour {
     }
 
 
-    public void Activate()
+	public void SetActivationState(bool state)
     {
-        isBlockInMovement = true;
+        isBlockInMovement = state;
+
+		Debug.Log (Time.time.ToString () + ": setting activation state to " + state);
     }
+		
 
     public void Initialize()
     {
@@ -63,5 +68,24 @@ public class AttackBlockController : MonoBehaviour {
 
         jumpTime = (1 / moveSpeed)*Time.deltaTime;
         currentTime = jumpTime;
+
+		BoxCollider[] colliders = this.gameObject.GetComponentsInChildren<BoxCollider> ();
+
+		foreach (var item in colliders) {
+
+			Vector3 offset = moveDirection;
+			offset.Scale (new Vector3 (0.5f, 0.5f, 0.5f));
+			item.center = offset;
+		}
     }
+
+	void OnTriggerEnter(Collider other) {
+
+
+		if (other.tag == "platform") {
+			SetActivationState (false);
+		}
+
+	}
+
 }

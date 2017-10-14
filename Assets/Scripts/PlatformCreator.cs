@@ -10,15 +10,13 @@ public class PlatformCreator : MonoBehaviour
     public int numberOfBlocksInRow;
     public int numberOfInstatiatedBlocks;
 
-    // Use this for initialization
     void Start()
     {
-        float widthOfAGap = 0.2F;
+		float widthOfAGap = 0;
 
         if(numberOfInstatiatedBlocks > (numberOfBlocksInRow*numberOfBlocksInRow -1))
         {
             numberOfInstatiatedBlocks = numberOfBlocksInRow * numberOfBlocksInRow;
-            Debug.Log(numberOfInstatiatedBlocks);
         }
 
         bool[,] isBlockOnPosition = getRandomizedIsBlockOnPositionArray();
@@ -29,18 +27,17 @@ public class PlatformCreator : MonoBehaviour
             {
                 if (isBlockOnPosition[i, j])
                 {
-                    Vector3 vector = new Vector3(this.transform.position.x + i + widthOfAGap * i, this.transform.position.y, this.transform.position.z + j + widthOfAGap * j);
+					Vector3 startPosition = new Vector3(this.transform.position.x - numberOfBlocksInRow/2, this.transform.position.y, this.transform.position.z - numberOfBlocksInRow/2);
+
+					Vector3 vector = new Vector3(startPosition.x + i + widthOfAGap * i, startPosition.y, startPosition.z + j + widthOfAGap * j);
                     Instantiate(block, vector, Quaternion.identity);
                 }
             }
         }
 
 
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -57,7 +54,6 @@ public class PlatformCreator : MonoBehaviour
         int i = 0;
         do
         {
-            Debug.Log(currentIsBlock);
             isBlockOnPosition[(int)currentIsBlock.x, (int)currentIsBlock.y] = true;
             
             currentIsBlock = findFreeBlock(isBlockOnPosition);

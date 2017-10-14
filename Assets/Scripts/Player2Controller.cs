@@ -9,12 +9,12 @@ public class Player2Controller : MonoBehaviour {
 
 	public AttackBlockController northBlock, southBlock, eastBlock, westBlock;
     public float blocksSpeed;
-    public float jumpLength;
     public float cooldownTime;
 
     public Slider cooldownSlider;
 
     private float cooldownTimeCounter;
+	private float jumpLength;
 
 
     void Start () {
@@ -24,13 +24,15 @@ public class Player2Controller : MonoBehaviour {
         if(blocksSpeed == 0)
             throw new ArgumentException("blocksSpeed cannot be 0");
 
-        if (jumpLength == 0)
-            throw new ArgumentException("jumpLength cannot be 0");
-
         if (cooldownSlider == null)
             throw new NullReferenceException("You must assign a slider to " + this.GetType().Name);
 
 		cooldownTimeCounter = cooldownTime;
+
+		jumpLength = 1;
+
+		if (jumpLength == 0)
+			throw new ArgumentException("jumpLength cannot be 0");
 
         northBlock.MoveSpeed = blocksSpeed;
         southBlock.MoveSpeed = blocksSpeed;
@@ -79,7 +81,7 @@ public class Player2Controller : MonoBehaviour {
 
     void ActivateBlockAndResetCooldown(AttackBlockController block)
     {
-        block.Activate();
+        block.SetActivationState(true);
         cooldownTimeCounter = 0;
     }
 
