@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class PlatformCreator : MonoBehaviour
 {
-
-    public GameObject block;
-
-
-    
+   
     public int numberOfInstatiatedBlocks;
-    public float widthOfAGap;
     public PlatformBoard platformBoard;
 
     private int numberOfBlocksInRow;
