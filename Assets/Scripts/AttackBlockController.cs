@@ -72,10 +72,12 @@ public class AttackBlockController : MonoBehaviour {
 		BoxCollider[] colliders = this.gameObject.GetComponentsInChildren<BoxCollider> ();
 
 		foreach (var item in colliders) {
-
-			Vector3 offset = moveDirection;
-			offset.Scale (new Vector3 (0.5f, 0.5f, 0.5f));
-			item.center = offset;
+			if (item.isTrigger) {
+				
+				Vector3 offset = moveDirection;
+				offset.Scale (new Vector3 (0.5f, 0.5f, 0.5f));
+				item.center = offset;
+			}
 		}
     }
 
