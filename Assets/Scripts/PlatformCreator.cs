@@ -38,7 +38,7 @@ public class PlatformCreator : MonoBehaviour
 
                     this.platformBoard.addBlock(i, j);
 
-                    Vector3 vector = new Vector3(0,0,0);
+                    Vector3 vector = Vector3.zero;
 
                     if (!isPlayer1Initialized)
                     {
