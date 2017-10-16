@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class PlatformCreator : MonoBehaviour
 {
-   
+
+    public GameObject player1;
     public int numberOfInstatiatedBlocks;
     public PlatformBoard platformBoard;
 
     private int numberOfBlocksInRow;
     
 
-    // Use this for initialization
+    bool isPlayer1Initialized = false;
+
     void Start()
     {
+
         numberOfBlocksInRow = platformBoard.rowLength - 1;
 
+		float widthOfAGap = 0;
+        block.GetComponent<Rigidbody>().isKinematic = true;
 
         if(numberOfInstatiatedBlocks > (numberOfBlocksInRow*numberOfBlocksInRow -1))
         {
             numberOfInstatiatedBlocks = numberOfBlocksInRow * numberOfBlocksInRow;
-            Debug.Log(numberOfInstatiatedBlocks);
         }
 
         bool[,] isBlockOnPosition = getRandomizedIsBlockOnPositionArray();
@@ -31,19 +35,26 @@ public class PlatformCreator : MonoBehaviour
             {
                 if (isBlockOnPosition[i, j])
                 {
-                    //Vector3 vector = new Vector3(this.transform.position.x + i + widthOfAGap * i, this.transform.position.y, this.transform.position.z + j + widthOfAGap * j);
-                    //Instantiate(block, vector, Quaternion.identity);
+
                     this.platformBoard.addBlock(i, j);
+
+					           Vector3 startPosition = new Vector3(this.transform.position.x - numberOfBlocksInRow/2, this.transform.position.y, this.transform.position.z - numberOfBlocksInRow/2);
+
+					          Vector3 vector = new Vector3(startPosition.x + i + widthOfAGap * i, startPosition.y, startPosition.z + j + widthOfAGap * j);
+                    Instantiate(block, vector, Quaternion.identity);
+
+                    if (!isPlayer1Initialized)
+                    {
+                        Instantiate(player1, new Vector3(vector.x, vector.y + 3f, vector.z), Quaternion.identity);
+                        isPlayer1Initialized = true;
+                    }
                 }
             }
         }
 
 
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -60,7 +71,6 @@ public class PlatformCreator : MonoBehaviour
         int i = 0;
         do
         {
-            Debug.Log(currentIsBlock);
             isBlockOnPosition[(int)currentIsBlock.x, (int)currentIsBlock.y] = true;
             
             currentIsBlock = findFreeBlock(isBlockOnPosition);
