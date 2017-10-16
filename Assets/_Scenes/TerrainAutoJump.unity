@@ -275,37 +275,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4276309197671436, guid: 435db643a89835b4b9616347bcba31db, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276309197671436, guid: 435db643a89835b4b9616347bcba31db, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4276309197671436, guid: 435db643a89835b4b9616347bcba31db, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 65562274767179094, guid: 435db643a89835b4b9616347bcba31db,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65562274767179094, guid: 435db643a89835b4b9616347bcba31db,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1597305207548506, guid: 435db643a89835b4b9616347bcba31db, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65562274767179094, guid: 435db643a89835b4b9616347bcba31db,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 435db643a89835b4b9616347bcba31db, type: 2}
   m_IsPrefabParent: 0
@@ -596,8 +565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  predkoscPoruszania: 5
-  wysokoscSkoku: 10
+  predkoscPoruszania: 10
+  wysokoscSkoku: 6
   aktualnaWysokoscSkoku: 0
 --- !u!54 &1061464132
 Rigidbody:
