@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class PlatformCreator : MonoBehaviour
 {
-    public GameObject block;
-    public GameObject player1;
 
-    public int numberOfBlocksInRow;
+    public GameObject player1;
     public int numberOfInstatiatedBlocks;
+    public PlatformBoard platformBoard;
+
+    private int numberOfBlocksInRow;
+    
 
     bool isPlayer1Initialized = false;
 
     void Start()
     {
+
+        numberOfBlocksInRow = platformBoard.rowLength - 1;
+
 		float widthOfAGap = 0;
         block.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -30,9 +35,12 @@ public class PlatformCreator : MonoBehaviour
             {
                 if (isBlockOnPosition[i, j])
                 {
-					Vector3 startPosition = new Vector3(this.transform.position.x - numberOfBlocksInRow/2, this.transform.position.y, this.transform.position.z - numberOfBlocksInRow/2);
 
-					Vector3 vector = new Vector3(startPosition.x + i + widthOfAGap * i, startPosition.y, startPosition.z + j + widthOfAGap * j);
+                    this.platformBoard.addBlock(i, j);
+
+					           Vector3 startPosition = new Vector3(this.transform.position.x - numberOfBlocksInRow/2, this.transform.position.y, this.transform.position.z - numberOfBlocksInRow/2);
+
+					          Vector3 vector = new Vector3(startPosition.x + i + widthOfAGap * i, startPosition.y, startPosition.z + j + widthOfAGap * j);
                     Instantiate(block, vector, Quaternion.identity);
 
                     if (!isPlayer1Initialized)
