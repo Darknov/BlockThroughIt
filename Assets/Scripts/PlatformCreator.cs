@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformCreator : MonoBehaviour
 {
-
+    public GameObject block;
     public GameObject player1;
     public int numberOfInstatiatedBlocks;
     public PlatformBoard platformBoard;
@@ -24,7 +24,7 @@ public class PlatformCreator : MonoBehaviour
 
         if(numberOfInstatiatedBlocks > (numberOfBlocksInRow*numberOfBlocksInRow -1))
         {
-            numberOfInstatiatedBlocks = numberOfBlocksInRow * numberOfBlocksInRow;
+            numberOfInstatiatedBlocks = numberOfBlocksInRow * numberOfBlocksInRow - 1;
         }
 
         bool[,] isBlockOnPosition = getRandomizedIsBlockOnPositionArray();
@@ -38,10 +38,7 @@ public class PlatformCreator : MonoBehaviour
 
                     this.platformBoard.addBlock(i, j);
 
-					           Vector3 startPosition = new Vector3(this.transform.position.x - numberOfBlocksInRow/2, this.transform.position.y, this.transform.position.z - numberOfBlocksInRow/2);
-
-					          Vector3 vector = new Vector3(startPosition.x + i + widthOfAGap * i, startPosition.y, startPosition.z + j + widthOfAGap * j);
-                    Instantiate(block, vector, Quaternion.identity);
+                    Vector3 vector = new Vector3(0,0,0);
 
                     if (!isPlayer1Initialized)
                     {
