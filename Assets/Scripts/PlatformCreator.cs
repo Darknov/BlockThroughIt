@@ -14,7 +14,7 @@ public class PlatformCreator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        numberOfBlocksInRow = platformBoard.rowLength;
+        numberOfBlocksInRow = platformBoard.rowLength - 1;
 
 
         if(numberOfInstatiatedBlocks > (numberOfBlocksInRow*numberOfBlocksInRow -1))

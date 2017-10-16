@@ -11,11 +11,17 @@ public class PlatformBoard : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        this.blocks = new GameObject[rowLength, rowLength];
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Awake()
+    {
+        this.blocks = new GameObject[rowLength, rowLength];
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
