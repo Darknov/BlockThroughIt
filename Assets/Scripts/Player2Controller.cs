@@ -44,10 +44,10 @@ public class Player2Controller : MonoBehaviour {
         eastBlock.JumpLength = jumpLength;
         westBlock.JumpLength = jumpLength;
 
-        northBlock.MoveDirection = Vector3.back;
-        southBlock.MoveDirection = Vector3.forward;
-        eastBlock.MoveDirection = Vector3.left;
-        westBlock.MoveDirection = Vector3.right;
+        northBlock.MoveDirection = Vector3.forward;
+		southBlock.MoveDirection = Vector3.back;
+		eastBlock.MoveDirection = Vector3.right;
+        westBlock.MoveDirection = Vector3.left;
 
         northBlock.Initialize();
         southBlock.Initialize();
