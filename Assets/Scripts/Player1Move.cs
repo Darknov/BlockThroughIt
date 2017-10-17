@@ -5,8 +5,7 @@ using UnityEngine;
 public class Player1Move : MonoBehaviour
 {
     public float velocity;
-    public float jumpHeight = 6.0f;
-    private float actualHeight = 0f;
+    public float jumpHeight;
 
 
     void Update()
@@ -22,6 +21,18 @@ public class Player1Move : MonoBehaviour
         float verticalAxisJoystick = Input.GetAxis("VerticalJoy");
         bool isGrounded = false;
         RaycastHit hit;
+        Rigidbody rigidbody = transform.GetComponent<Rigidbody>();
+        Vector3 movement = Vector3.zero;
+
+        if(this.velocity == 0.0f)
+        {
+            this.velocity = 0.025f;
+        }
+
+        if (this.jumpHeight == 0.0f)
+        {
+            this.jumpHeight = 3.0f;
+        }
 
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, 0.8f))
         {
@@ -32,9 +43,6 @@ public class Player1Move : MonoBehaviour
             isGrounded = false;
         }
 
-        Rigidbody rigidbody = transform.GetComponent<Rigidbody>();
-        Vector3 movement = Vector3.zero;
-
         if ((int)horizontalAxisJoystick != 0 || (int)verticalAxisJoystick != 0)
         {
             movement = new Vector3(this.velocity * horizontalAxisJoystick, 0f, this.velocity * verticalAxisJoystick);
@@ -42,12 +50,7 @@ public class Player1Move : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            rigidbody.AddForce(transform.up * 3.0f, ForceMode.Impulse);
-        }
-
-        if (this.velocity == 0.0f)
-        {
-            this.velocity = 0.025f;
+            rigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
         }
 
         movement = new Vector3(horizontalAxis * velocity, 0f, verticalAxis * velocity);
@@ -56,16 +59,6 @@ public class Player1Move : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(movement.x, 0f, movement.z)), 0.15F);
         }
-
-        //rigidbody.MovePosition(Vector3.Lerp(rigidbody.position, rigidbody.position + movement, 0.5f));
         transform.Translate(movement * Time.deltaTime * 60, Space.World);
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "platform")
-    //    {
-    //        actualHeight = 0f;
-    //    }
-    //}
 }
