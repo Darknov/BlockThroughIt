@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1597305207548506, guid: 435db643a89835b4b9616347bcba31db, type: 2}
-  rowLength: 6
+  rowLength: 5
   widthOfAGap: 0
 --- !u!4 &428745803
 Transform:
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   block: {fileID: 1567708458023712, guid: 7e2d95f61072f4b479c5c8a703f149c3, type: 2}
   player1: {fileID: 1912045030905994, guid: 6a7a80feb9c33ed45a4a63c52be9e0be, type: 2}
-  numberOfInstatiatedBlocks: 15
+  numberOfInstatiatedBlocks: 25
   platformBoard: {fileID: 428745802}
 --- !u!1 &879663390 stripped
 GameObject:

@@ -82,12 +82,28 @@ public class AttackBlockController : MonoBehaviour {
     }
 
 	void OnTriggerEnter(Collider other) {
-
-
 		if (other.tag == "platform") {
 			SetActivationState (false);
+			BecomePartOfPlatform ();
+		}
+	}
+
+	void BecomePartOfPlatform() {
+		this.gameObject.tag = "platform"; 
+
+		var children = this.gameObject.GetComponentsInChildren<Transform> ();
+
+		foreach (var child in children) {
+			child.tag = "platform";
 		}
 
+		BoxCollider[] colliders = this.gameObject.GetComponentsInChildren<BoxCollider> ();
+
+		foreach (var item in colliders) {
+			if (item.isTrigger) {
+				Destroy (item);
+			}
+		}
 	}
 
 }
