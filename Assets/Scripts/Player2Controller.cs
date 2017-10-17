@@ -13,6 +13,8 @@ public class Player2Controller : MonoBehaviour {
 
     public Slider cooldownSlider;
 
+	private AttackBlockController activeBlock;
+
     private float cooldownTimeCounter;
 	private float jumpLength;
 
@@ -61,14 +63,14 @@ public class Player2Controller : MonoBehaviour {
 	
 	void Update () {
 
-		bool canFire = cooldownTimeCounter > cooldownTime;
+		bool canFire = activeBlock == null && cooldownTimeCounter <= cooldownTime;
 
         if(canFire)
         {
 			if (Input.GetKeyDown(KeyCode.Alpha1)) ActivateBlockAndResetCooldown(northBlock);
-            else if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateBlockAndResetCooldown(southBlock);
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateBlockAndResetCooldown(westBlock);
-            else if (Input.GetKeyDown(KeyCode.Alpha4)) ActivateBlockAndResetCooldown(eastBlock);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateBlockAndResetCooldown(southBlock);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateBlockAndResetCooldown(westBlock);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) ActivateBlockAndResetCooldown(eastBlock);
         }
         else
         {
@@ -82,7 +84,30 @@ public class Player2Controller : MonoBehaviour {
     void ActivateBlockAndResetCooldown(AttackBlockController block)
     {
         block.SetActivationState(true);
+
+		this.activeBlock = block;
+        SetAttackBlockColor(Color.red, activeBlock);
+        block.PlatformHit += OnActiveBlockPlatformHit;
+
         cooldownTimeCounter = 0;
+    }
+
+    void OnActiveBlockPlatformHit(object source, EventArgs args)
+    {
+        SetAttackBlockColor(Color.white, activeBlock);
+        this.activeBlock = null;
+    }
+
+    void SetAttackBlockColor(Color color, AttackBlockController activeBlock)
+    {
+        var childrenMaterials = activeBlock.gameObject.GetComponentsInChildren<Renderer>();
+
+        if (activeBlock == null) return;
+
+        foreach (var item in childrenMaterials)
+        {
+            item.material.color = color;
+        }
     }
 
 }

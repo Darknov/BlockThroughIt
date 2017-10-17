@@ -14,6 +14,18 @@ public class AttackBlockController : MonoBehaviour {
     private float jumpTime;
     private float currentTime;
 
+	public delegate void PlatformHitEventHandler(object obj, EventArgs args);
+
+	public PlatformHitEventHandler PlatformHit;
+
+	public virtual void OnPlatformHit() {
+
+		if (PlatformHit != null) {
+			PlatformHit (this, EventArgs.Empty);
+		}
+
+	}
+
     public float JumpLength
     {
         set
@@ -58,8 +70,6 @@ public class AttackBlockController : MonoBehaviour {
 			return;
 
         isBlockInMovement = state;
-
-		Debug.Log (Time.time.ToString () + ": setting activation state to " + state);
 
 		wasBlockUsed = true;
     }
@@ -109,6 +119,9 @@ public class AttackBlockController : MonoBehaviour {
 				Destroy (item);
 			}
 		}
+
+		OnPlatformHit ();
 	}
+		
 
 }
