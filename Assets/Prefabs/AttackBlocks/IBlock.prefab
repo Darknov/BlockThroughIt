@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23110094814804878}
   - component: {fileID: 65993540233418560}
   - component: {fileID: 65109772678733392}
+  - component: {fileID: 135048944090738418}
   - component: {fileID: 54506689886467750}
   m_Layer: 0
   m_Name: Block-White (1)
@@ -43,7 +44,7 @@ GameObject:
   - component: {fileID: 54250841562174886}
   m_Layer: 0
   m_Name: IBlock
-  m_TagString: block
+  m_TagString: platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 23196801495372428}
   - component: {fileID: 65499797997678748}
   - component: {fileID: 65859381957247996}
+  - component: {fileID: 135714659243032528}
   - component: {fileID: 54777588878488088}
   m_Layer: 0
   m_Name: Block-White
@@ -80,6 +82,7 @@ GameObject:
   - component: {fileID: 23406989313194908}
   - component: {fileID: 65293538968456034}
   - component: {fileID: 65563114181598096}
+  - component: {fileID: 135069122771270176}
   - component: {fileID: 54279129728235100}
   m_Layer: 0
   m_Name: Block-White (2)
@@ -410,3 +413,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wasBlockUsed: 0
+--- !u!135 &135048944090738418
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055812842931612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135069122771270176
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944331220236418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135714659243032528
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749532750201560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

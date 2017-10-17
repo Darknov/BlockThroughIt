@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23417204434721068}
   - component: {fileID: 65259147596227828}
   - component: {fileID: 65155741116694624}
+  - component: {fileID: 135205568742991060}
   - component: {fileID: 54116807648266774}
   m_Layer: 0
   m_Name: Block-White
@@ -43,7 +44,7 @@ GameObject:
   - component: {fileID: 54471015859783924}
   m_Layer: 0
   m_Name: -Block
-  m_TagString: block
+  m_TagString: platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 23347499934575082}
   - component: {fileID: 65506225618590680}
   - component: {fileID: 65692967955384920}
+  - component: {fileID: 135358592984875234}
   - component: {fileID: 54422227380197096}
   m_Layer: 0
   m_Name: Block-White (1)
@@ -296,3 +298,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wasBlockUsed: 0
+--- !u!135 &135205568742991060
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740230317747408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135358592984875234
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795685400512578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
