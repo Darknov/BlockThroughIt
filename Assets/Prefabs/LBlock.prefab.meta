@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 49f498b5354a29c4db38b1339ef115ab
 timeCreated: 1507989199
+=======
+guid: a6ed74ee03bb34f40ad12f98c38f2a64
+timeCreated: 1508152471
+>>>>>>> PrefabsJumpingMoving
 licenseType: Free
 NativeFormatImporter:
   mainObjectFileID: 100100000
