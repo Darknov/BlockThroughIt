@@ -110,12 +110,12 @@ public class AttackBlockController : MonoBehaviour {
 		OnPlatformHit ();
 	}
 
-    public void MoveLeft()
+    public void GoToYourLeft()
     {
         gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.left;
     }
 
-    public void MoveRight()
+    public void GoToYourRight()
     {
         gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
 
