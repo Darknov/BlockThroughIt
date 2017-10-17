@@ -63,18 +63,18 @@ public class Player2Controller : MonoBehaviour {
 	
 	void Update () {
 
-		bool canFire = activeBlock == null && cooldownTimeCounter <= cooldownTime;
+        bool canFire = activeBlock == null;// && cooldownTimeCounter <= cooldownTime;
 
         if(canFire)
         {
 			if (Input.GetKeyDown(KeyCode.Alpha1)) ActivateBlockAndResetCooldown(northBlock);
-            if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateBlockAndResetCooldown(southBlock);
-            if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateBlockAndResetCooldown(westBlock);
-            if (Input.GetKeyDown(KeyCode.Alpha4)) ActivateBlockAndResetCooldown(eastBlock);
+            else if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateBlockAndResetCooldown(southBlock);
+            else if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateBlockAndResetCooldown(westBlock);
+            else if (Input.GetKeyDown(KeyCode.Alpha4)) ActivateBlockAndResetCooldown(eastBlock);
         }
         else
         {
-            cooldownTimeCounter += Time.deltaTime;
+           // cooldownTimeCounter += Time.deltaTime;
         }
 
 		cooldownSlider.value = cooldownTimeCounter;
@@ -94,6 +94,8 @@ public class Player2Controller : MonoBehaviour {
 
     void OnActiveBlockPlatformHit(object source, EventArgs args)
     {
+        if (activeBlock == null) return;
+
         SetAttackBlockColor(Color.white, activeBlock);
         this.activeBlock = null;
     }
@@ -102,7 +104,6 @@ public class Player2Controller : MonoBehaviour {
     {
         var childrenMaterials = activeBlock.gameObject.GetComponentsInChildren<Renderer>();
 
-        if (activeBlock == null) return;
 
         foreach (var item in childrenMaterials)
         {
