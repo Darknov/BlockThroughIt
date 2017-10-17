@@ -1,8 +1,14 @@
 fileFormatVersion: 2
-guid: 97353d134c7ea4d4ca91783f51519017
+<<<<<<< HEAD
+guid: 052e1818575bd6f42a57c89037539fc2
 timeCreated: 1507965318
+=======
+guid: 97353d134c7ea4d4ca91783f51519017
+timeCreated: 1508152959
+>>>>>>> PrefabsJumpingMoving
 licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
