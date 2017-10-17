@@ -44,10 +44,10 @@ public class Player2Controller : MonoBehaviour {
         eastBlock.JumpLength = jumpLength;
         westBlock.JumpLength = jumpLength;
 
-        northBlock.MoveDirection = Vector3.forward;
-		southBlock.MoveDirection = Vector3.back;
-		eastBlock.MoveDirection = Vector3.right;
-        westBlock.MoveDirection = Vector3.left;
+        northBlock.MoveDirection = Vector3.back;
+		southBlock.MoveDirection = Vector3.forward;
+		eastBlock.MoveDirection = Vector3.left;
+        westBlock.MoveDirection = Vector3.right;
 
         northBlock.Initialize();
         southBlock.Initialize();
@@ -65,10 +65,10 @@ public class Player2Controller : MonoBehaviour {
 
         if(canFire)
         {
-            if (Input.GetKeyDown(KeyCode.W)) ActivateBlockAndResetCooldown(northBlock);
-            else if (Input.GetKeyDown(KeyCode.S)) ActivateBlockAndResetCooldown(southBlock);
-            else if (Input.GetKeyDown(KeyCode.A)) ActivateBlockAndResetCooldown(westBlock);
-            else if (Input.GetKeyDown(KeyCode.D)) ActivateBlockAndResetCooldown(eastBlock);
+			if (Input.GetKeyDown(KeyCode.Alpha1)) ActivateBlockAndResetCooldown(northBlock);
+            else if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateBlockAndResetCooldown(southBlock);
+            else if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateBlockAndResetCooldown(westBlock);
+            else if (Input.GetKeyDown(KeyCode.Alpha4)) ActivateBlockAndResetCooldown(eastBlock);
         }
         else
         {
