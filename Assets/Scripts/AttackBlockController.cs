@@ -6,8 +6,9 @@ using UnityEngine;
 public class AttackBlockController : MonoBehaviour {
 
     private float jumpLength;
-    public bool isBlockInMovement;
+    private bool isBlockInMovement;
     private Vector3 moveDirection;
+	public bool wasBlockUsed = false;
 
     private float moveSpeed;
     private float jumpTime;
@@ -38,7 +39,6 @@ public class AttackBlockController : MonoBehaviour {
 	}
 	
 	void Update () {
-		
         if (!isBlockInMovement) return;
 
         currentTime += Time.deltaTime * moveSpeed;
@@ -54,9 +54,14 @@ public class AttackBlockController : MonoBehaviour {
 
 	public void SetActivationState(bool state)
     {
+		if (state && wasBlockUsed)
+			return;
+
         isBlockInMovement = state;
 
 		Debug.Log (Time.time.ToString () + ": setting activation state to " + state);
+
+		wasBlockUsed = true;
     }
 		
 
