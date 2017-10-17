@@ -15,15 +15,12 @@ public class AttackBlockController : MonoBehaviour {
     private float currentTime;
 
 	public delegate void PlatformHitEventHandler(object obj, EventArgs args);
-
 	public PlatformHitEventHandler PlatformHit;
 
 	public virtual void OnPlatformHit() {
-
 		if (PlatformHit != null) {
 			PlatformHit (this, EventArgs.Empty);
 		}
-
 	}
 
     public float JumpLength
@@ -84,16 +81,6 @@ public class AttackBlockController : MonoBehaviour {
         jumpTime = (1 / moveSpeed)*Time.deltaTime;
         currentTime = jumpTime;
 
-		BoxCollider[] colliders = this.gameObject.GetComponentsInChildren<BoxCollider> ();
-
-		foreach (var item in colliders) {
-			if (item.isTrigger) {
-				
-				Vector3 offset = moveDirection;
-				offset.Scale (new Vector3 (0.5f, 0.5f, 0.5f));
-				item.center = offset;
-			}
-		}
     }
 
 	void OnTriggerEnter(Collider other) {
@@ -112,7 +99,7 @@ public class AttackBlockController : MonoBehaviour {
 			child.tag = "platform";
 		}
 
-		BoxCollider[] colliders = this.gameObject.GetComponentsInChildren<BoxCollider> ();
+		Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider> ();
 
 		foreach (var item in colliders) {
 			if (item.isTrigger) {
@@ -122,6 +109,17 @@ public class AttackBlockController : MonoBehaviour {
 
 		OnPlatformHit ();
 	}
-		
+
+    public void MoveLeft()
+    {
+        gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.left;
+    }
+
+    public void MoveRight()
+    {
+        gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
+
+    }
+
 
 }

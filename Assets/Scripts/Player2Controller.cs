@@ -79,6 +79,14 @@ public class Player2Controller : MonoBehaviour {
 
 		cooldownSlider.value = cooldownTimeCounter;
 
+        bool canTurn = !canFire;
+
+        if(canTurn)
+        {
+            if (Input.GetKeyDown(KeyCode.J)) activeBlock.MoveLeft();
+            else if (Input.GetKeyDown(KeyCode.L)) activeBlock.MoveRight();
+        }
+
     }
 
     void ActivateBlockAndResetCooldown(AttackBlockController block)
@@ -103,7 +111,6 @@ public class Player2Controller : MonoBehaviour {
     void SetAttackBlockColor(Color color, AttackBlockController activeBlock)
     {
         var childrenMaterials = activeBlock.gameObject.GetComponentsInChildren<Renderer>();
-
 
         foreach (var item in childrenMaterials)
         {
