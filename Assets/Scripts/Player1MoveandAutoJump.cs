@@ -21,17 +21,17 @@ public class Player1MoveandAutoJump : MonoBehaviour
 
         Vector3 movement = Vector3.zero;
 
-        if ((int)horizontalAxisJoystick != 0 || (int)verticalAxisJoystick != 0)
-        {
-            movement = new Vector3(this.velocity * horizontalAxisJoystick, 0f, this.velocity * verticalAxisJoystick);
-        }
-
         if (this.velocity == 0.0f)
         {
             this.velocity = 0.025f;
         }
 
         movement = new Vector3(horizontalAxis * velocity, 0f, verticalAxis * velocity);
+
+        if (movement.Equals(Vector3.zero))
+        {
+            movement = new Vector3(this.velocity * horizontalAxisJoystick, 0f, this.velocity * verticalAxisJoystick);
+        }
 
         if (!movement.Equals(Vector3.zero))
         {
