@@ -46,6 +46,7 @@ public class Player1MoveandAutoJump : MonoBehaviour
         Rigidbody rigidbody = transform.GetComponent<Rigidbody>();
         if (col.gameObject.tag == "platform")
         {
+            Debug.Log("Jump");
             rigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
         }
     }
