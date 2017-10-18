@@ -67,10 +67,10 @@ public class Player2Controller : MonoBehaviour {
 
         if(canFire)
         {
-			if (Input.GetKeyDown(KeyCode.Alpha1)) ActivateBlockAndResetCooldown(northBlock);
-            else if (Input.GetKeyDown(KeyCode.Alpha2)) ActivateBlockAndResetCooldown(southBlock);
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) ActivateBlockAndResetCooldown(westBlock);
-            else if (Input.GetKeyDown(KeyCode.Alpha4)) ActivateBlockAndResetCooldown(eastBlock);
+			if (Input.GetKeyDown(KeyCode.I)) ActivateBlockAndResetCooldown(northBlock);
+            else if (Input.GetKeyDown(KeyCode.K)) ActivateBlockAndResetCooldown(southBlock);
+            else if (Input.GetKeyDown(KeyCode.J)) ActivateBlockAndResetCooldown(westBlock);
+            else if (Input.GetKeyDown(KeyCode.L)) ActivateBlockAndResetCooldown(eastBlock);
         }
         else
         {
@@ -79,6 +79,27 @@ public class Player2Controller : MonoBehaviour {
 
 		cooldownSlider.value = cooldownTimeCounter;
 
+        bool canTurn = !canFire;
+
+        if(canTurn)
+        {
+            if(isVertical(activeBlock))
+            {
+                if (Input.GetKeyDown(KeyCode.J)) activeBlock.GoToYourLeft();
+                else if (Input.GetKeyDown(KeyCode.L)) activeBlock.GoToYourRight();
+            } else
+            {
+                if (Input.GetKeyDown(KeyCode.I)) activeBlock.GoToYourLeft();
+                else if (Input.GetKeyDown(KeyCode.K)) activeBlock.GoToYourRight();
+            }
+
+        }
+
+    }
+
+    bool isVertical(AttackBlockController attackBlock)
+    {
+        return attackBlock == northBlock || attackBlock == southBlock;
     }
 
     void ActivateBlockAndResetCooldown(AttackBlockController block)
@@ -103,7 +124,6 @@ public class Player2Controller : MonoBehaviour {
     void SetAttackBlockColor(Color color, AttackBlockController activeBlock)
     {
         var childrenMaterials = activeBlock.gameObject.GetComponentsInChildren<Renderer>();
-
 
         foreach (var item in childrenMaterials)
         {
