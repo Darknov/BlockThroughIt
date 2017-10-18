@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 136070875937363492}
   - component: {fileID: 23223071200951316}
   - component: {fileID: 54423990944471992}
-  - component: {fileID: 114708928013192210}
+  - component: {fileID: 114418056213133756}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -85,6 +85,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -100,6 +101,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -117,6 +119,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -132,6 +135,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -169,7 +173,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &114708928013192210
+--- !u!114 &114418056213133756
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -177,10 +181,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1912045030905994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4a76680a249a348ad8a704b58a017d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b45b1ae636cb5743abd73dbc3483168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.1
+  velocity: 0
+  jumpHeight: 2
 --- !u!135 &135919073802795664
 SphereCollider:
   m_ObjectHideFlags: 1
