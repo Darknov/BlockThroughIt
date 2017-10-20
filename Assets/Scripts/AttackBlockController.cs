@@ -121,5 +121,10 @@ public class AttackBlockController : MonoBehaviour {
 
     }
 
+    public void TurnNinetyDegrees()
+    {
+        gameObject.transform.Rotate(0, 90, 0);
+    }
+
 
 }

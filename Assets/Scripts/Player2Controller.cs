@@ -93,6 +93,11 @@ public class Player2Controller : MonoBehaviour {
                 else if (Input.GetKeyDown(KeyCode.K)) activeBlock.GoToYourRight();
             }
 
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                activeBlock.TurnNinetyDegrees();
+            }
+
         }
 
     }
