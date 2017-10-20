@@ -18,6 +18,11 @@ public class Player2Controller : MonoBehaviour {
     private float cooldownTimeCounter;
 	private float jumpLength;
 
+    private float horizontalAxisPlayer2;
+    private float verticalAxisPlayer2;
+    private bool isAxisHorizontalInUse;
+    private bool isAxisVerticalInUse;
+
 
     void Start () {
 		if(northBlock == null || southBlock == null || eastBlock == null || westBlock == null)
@@ -35,6 +40,7 @@ public class Player2Controller : MonoBehaviour {
 
 		if (jumpLength == 0)
 			throw new ArgumentException("jumpLength cannot be 0");
+
 
         northBlock.MoveSpeed = blocksSpeed;
         southBlock.MoveSpeed = blocksSpeed;
@@ -59,18 +65,26 @@ public class Player2Controller : MonoBehaviour {
 		cooldownSlider.minValue = 0;
 		cooldownSlider.maxValue = cooldownTime;
 
+        isAxisHorizontalInUse = false;
+        isAxisVerticalInUse = false;
+
     }
 	
 	void Update () {
+        
+        horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
+        verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
 
         bool canFire = activeBlock == null;// && cooldownTimeCounter <= cooldownTime;
 
+       
+
         if(canFire)
         {
-			if (Input.GetKeyDown(KeyCode.I)) ActivateBlockAndResetCooldown(northBlock);
-            else if (Input.GetKeyDown(KeyCode.K)) ActivateBlockAndResetCooldown(southBlock);
-            else if (Input.GetKeyDown(KeyCode.J)) ActivateBlockAndResetCooldown(westBlock);
-            else if (Input.GetKeyDown(KeyCode.L)) ActivateBlockAndResetCooldown(eastBlock);
+			if (verticalAxisPlayer2 == -1) ActivateBlockAndResetCooldown(northBlock);
+            else if (verticalAxisPlayer2 == 1) ActivateBlockAndResetCooldown(southBlock);
+            else if (horizontalAxisPlayer2 == -1) ActivateBlockAndResetCooldown(westBlock);
+            else if (horizontalAxisPlayer2 == 1) ActivateBlockAndResetCooldown(eastBlock);
         }
         else
         {
@@ -85,15 +99,51 @@ public class Player2Controller : MonoBehaviour {
         {
             if(isVertical(activeBlock))
             {
-                if (Input.GetKeyDown(KeyCode.J)) activeBlock.GoToYourLeft();
-                else if (Input.GetKeyDown(KeyCode.L)) activeBlock.GoToYourRight();
+                if (isAxisHorizontalInUse == false)
+                {
+                    if (horizontalAxisPlayer2 == -1)
+                    {
+                        activeBlock.GoToYourLeft();
+                        isAxisHorizontalInUse = true;
+                    }
+                    else if (horizontalAxisPlayer2 == 1)
+                    {
+                        activeBlock.GoToYourRight();
+                        isAxisHorizontalInUse = true;
+                    }
+                }
             } else
             {
-                if (Input.GetKeyDown(KeyCode.I)) activeBlock.GoToYourLeft();
-                else if (Input.GetKeyDown(KeyCode.K)) activeBlock.GoToYourRight();
+                if (isAxisVerticalInUse == false)
+                {
+                    if (verticalAxisPlayer2 == 1)
+                    {
+                        if (activeBlock == westBlock)
+                            activeBlock.GoToYourRight();
+                        else
+                            activeBlock.GoToYourLeft();
+
+                        isAxisVerticalInUse = true;
+                    }
+                    else if (verticalAxisPlayer2 == -1)
+                    {
+                        if (activeBlock == westBlock)
+                            activeBlock.GoToYourLeft();
+                        else
+                            activeBlock.GoToYourRight();
+
+                        isAxisVerticalInUse = true;
+                    }
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftControl))
+            if (horizontalAxisPlayer2 == 0)
+                isAxisHorizontalInUse = false;
+
+            if (verticalAxisPlayer2 == 0)
+                isAxisVerticalInUse = false;
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick2Button5))
             {
                 activeBlock.TurnNinetyDegrees();
             }
