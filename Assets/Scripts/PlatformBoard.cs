@@ -108,6 +108,7 @@ public class PlatformBoard : MonoBehaviour {
             {
                 for (int j = 0; j < rowLength; j++)
                 {
+                    this.blocks[i, j].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[j, i], 3);
                     Debug.Log("DESTROYED: " + j + ", " + j);
                 }
