@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBlockController : MonoBehaviour {
+public class AttackBlock : MonoBehaviour {
 
     private float jumpLength;
     private bool isBlockInMovement;
-    private Vector3 moveDirection;
 	public bool wasBlockUsed = false;
 
     private float moveSpeed;
@@ -37,11 +36,7 @@ public class AttackBlockController : MonoBehaviour {
         }
     }
 
-    public Vector3 MoveDirection { set
-        {
-            this.moveDirection = value;
-        }
-    }
+    public Vector3 MoveDirection { set; get; }
 
 	void Start() {
 		this.isBlockInMovement = false;
@@ -54,7 +49,7 @@ public class AttackBlockController : MonoBehaviour {
 
         if (currentTime >= jumpTime)
         {
-            gameObject.transform.position += moveDirection;
+            gameObject.transform.position += MoveDirection;
             currentTime = 0;
         }
 
@@ -67,20 +62,18 @@ public class AttackBlockController : MonoBehaviour {
 			return;
 
         isBlockInMovement = state;
-
 		wasBlockUsed = true;
     }
 		
 
     public void Initialize()
     {
-        if (moveDirection == null || moveDirection == Vector3.zero) throw new NullReferenceException("You must assign direction to " + this.name);
+        if (MoveDirection == null || MoveDirection == Vector3.zero) throw new NullReferenceException("You must assign direction to " + this.name);
 
         if (moveSpeed == 0) throw new ArgumentException("moveSpeed of " + this.name + "cannot be 0");
 
         jumpTime = (1 / moveSpeed)*Time.deltaTime;
         currentTime = jumpTime;
-
     }
 
 	void OnTriggerEnter(Collider other) {
@@ -118,7 +111,6 @@ public class AttackBlockController : MonoBehaviour {
     public void GoToYourRight()
     {
         gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
-
     }
 
     public void TurnNinetyDegrees()
