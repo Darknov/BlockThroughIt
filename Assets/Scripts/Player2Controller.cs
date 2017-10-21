@@ -15,7 +15,13 @@ public class Player2Controller : MonoBehaviour {
     public Transform northSpawn, southSpawn, eastSpawn, westSpawn;
 
     private AttackBlock northBlock, southBlock, eastBlock, westBlock;
+    public PlatformBoard platformBoard;
 
+
+    private float horizontalAxisPlayer2;
+    private float verticalAxisPlayer2;
+    private bool isAxisHorizontalInUse;
+    private bool isAxisVerticalInUse;
 
     void Start () {
 
@@ -26,30 +32,39 @@ public class Player2Controller : MonoBehaviour {
             throw new ArgumentException("blocksSpeed cannot be 0");
 
         CreateInitialAttackBlocks();
+
+        isAxisHorizontalInUse = false;
+        isAxisVerticalInUse = false;
     }
 
 	void Update () {
+
+        horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
+        verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
+
+        Debug.Log("Horizonal: " + horizontalAxisPlayer2);
+        Debug.Log("Vertical:" + verticalAxisPlayer2);
 
         bool canFire = activeBlock == null;// && cooldownTimeCounter <= cooldownTime;
 
         if (canFire)
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (verticalAxisPlayer2 == -1)
             {
                 ActivateBlock(northBlock);
                 northBlock = null;
             }
-            else if (Input.GetKeyDown(KeyCode.K))
+            else if (verticalAxisPlayer2 == 1)
             {
                 ActivateBlock(southBlock);
                 southBlock = null;
             }
-            else if (Input.GetKeyDown(KeyCode.J))
+            else if (horizontalAxisPlayer2 == -1)
             {
                 ActivateBlock(westBlock);
                 westBlock = null;
             }
-            else if (Input.GetKeyDown(KeyCode.L))
+            else if (horizontalAxisPlayer2 == 1)
             {
                 ActivateBlock(eastBlock);
                 eastBlock = null;
@@ -62,16 +77,50 @@ public class Player2Controller : MonoBehaviour {
         {
             if (IsVertical(activeBlock))
             {
-                if (Input.GetKeyDown(KeyCode.J)) activeBlock.GoToYourLeft();
-                else if (Input.GetKeyDown(KeyCode.L)) activeBlock.GoToYourRight();
+                if (isAxisHorizontalInUse == false)
+                {
+                    Debug.Log("GO LEFT");
+                    activeBlock.GoToYourLeft();
+                    isAxisHorizontalInUse = true;
+                }
+                else if(horizontalAxisPlayer2 == 1)
+                {
+                    activeBlock.GoToYourRight();
+                    isAxisHorizontalInUse = true;
+                }
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.I)) activeBlock.GoToYourLeft();
-                else if (Input.GetKeyDown(KeyCode.K)) activeBlock.GoToYourRight();
+                if (isAxisVerticalInUse == false)
+                {
+                    if (verticalAxisPlayer2 == 1)
+                    {
+                        if (activeBlock == westBlock)
+                            activeBlock.GoToYourRight();
+                        else
+                            activeBlock.GoToYourLeft();
+
+                        isAxisVerticalInUse = true;
+                    }
+                    else if (verticalAxisPlayer2 == -1)
+                    {
+                        if (activeBlock == westBlock)
+                            activeBlock.GoToYourLeft();
+                        else
+                            activeBlock.GoToYourRight();
+
+                        isAxisVerticalInUse = true;
+                    }
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftControl))
+            if (horizontalAxisPlayer2 == 0)
+                isAxisHorizontalInUse = false;
+
+            if (verticalAxisPlayer2 == 0)
+                isAxisVerticalInUse = false;
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick2Button5))
             {
                 activeBlock.TurnNinetyDegrees();
             }
@@ -84,7 +133,6 @@ public class Player2Controller : MonoBehaviour {
     {
         if (northBlock == null || southBlock == null) return true;
         else return false;
-        //else returnValue = attackBlock == northBlock || attackBlock == southBlock;
     }
 
     void ActivateBlock(AttackBlock block)
@@ -100,6 +148,7 @@ public class Player2Controller : MonoBehaviour {
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.white, activeBlock);
+        platformBoard.addBlock(activeBlock);
 
         if(activeBlock.MoveDirection.Equals(Vector3.back)) northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.forward) southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
