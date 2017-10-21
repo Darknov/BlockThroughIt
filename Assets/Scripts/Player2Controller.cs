@@ -7,143 +7,71 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour {
 
-	public AttackBlockController northBlock, southBlock, eastBlock, westBlock;
     public float blocksSpeed;
-    public float cooldownTime;
+	private float jumpLength = 1;
 
-    public Slider cooldownSlider;
+    public RandomAttackBlockGenerator randomBlockGenerator;
+    private AttackBlock activeBlock;
+    public Transform northSpawn, southSpawn, eastSpawn, westSpawn;
 
-	private AttackBlockController activeBlock;
-
-    private float cooldownTimeCounter;
-	private float jumpLength;
-
-    private float horizontalAxisPlayer2;
-    private float verticalAxisPlayer2;
-    private bool isAxisHorizontalInUse;
-    private bool isAxisVerticalInUse;
+    private AttackBlock northBlock, southBlock, eastBlock, westBlock;
 
 
     void Start () {
-		if(northBlock == null || southBlock == null || eastBlock == null || westBlock == null)
-            throw new NullReferenceException("You must assign all blocks to " +this.GetType().Name);
-        
-        if(blocksSpeed == 0)
+
+        if (northSpawn == null || southSpawn == null || eastSpawn == null || null == westSpawn)
+            throw new NullReferenceException("You must assign all spawn points to " + this.GetType().Name);
+
+        if (blocksSpeed == 0)
             throw new ArgumentException("blocksSpeed cannot be 0");
 
-        if (cooldownSlider == null)
-            throw new NullReferenceException("You must assign a slider to " + this.GetType().Name);
-
-		cooldownTimeCounter = cooldownTime;
-
-		jumpLength = 1;
-
-		if (jumpLength == 0)
-			throw new ArgumentException("jumpLength cannot be 0");
-
-
-        northBlock.MoveSpeed = blocksSpeed;
-        southBlock.MoveSpeed = blocksSpeed;
-        eastBlock.MoveSpeed = blocksSpeed;
-        westBlock.MoveSpeed = blocksSpeed;
-
-        northBlock.JumpLength = jumpLength;
-        southBlock.JumpLength = jumpLength;
-        eastBlock.JumpLength = jumpLength;
-        westBlock.JumpLength = jumpLength;
-
-        northBlock.MoveDirection = Vector3.back;
-		southBlock.MoveDirection = Vector3.forward;
-		eastBlock.MoveDirection = Vector3.left;
-        westBlock.MoveDirection = Vector3.right;
-
-        northBlock.Initialize();
-        southBlock.Initialize();
-        eastBlock.Initialize();
-        westBlock.Initialize();
-
-		cooldownSlider.minValue = 0;
-		cooldownSlider.maxValue = cooldownTime;
-
-        isAxisHorizontalInUse = false;
-        isAxisVerticalInUse = false;
-
+        CreateInitialAttackBlocks();
     }
-	
+
 	void Update () {
-        
-        horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
-        verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
 
         bool canFire = activeBlock == null;// && cooldownTimeCounter <= cooldownTime;
 
-       
-
-        if(canFire)
+        if (canFire)
         {
-			if (verticalAxisPlayer2 == -1) ActivateBlockAndResetCooldown(northBlock);
-            else if (verticalAxisPlayer2 == 1) ActivateBlockAndResetCooldown(southBlock);
-            else if (horizontalAxisPlayer2 == -1) ActivateBlockAndResetCooldown(westBlock);
-            else if (horizontalAxisPlayer2 == 1) ActivateBlockAndResetCooldown(eastBlock);
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                ActivateBlock(northBlock);
+                northBlock = null;
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                ActivateBlock(southBlock);
+                southBlock = null;
+            }
+            else if (Input.GetKeyDown(KeyCode.J))
+            {
+                ActivateBlock(westBlock);
+                westBlock = null;
+            }
+            else if (Input.GetKeyDown(KeyCode.L))
+            {
+                ActivateBlock(eastBlock);
+                eastBlock = null;
+            }
         }
-        else
-        {
-           // cooldownTimeCounter += Time.deltaTime;
-        }
-
-		cooldownSlider.value = cooldownTimeCounter;
 
         bool canTurn = !canFire;
 
-        if(canTurn)
+        if (canTurn)
         {
-            if(isVertical(activeBlock))
+            if (IsVertical(activeBlock))
             {
-                if (isAxisHorizontalInUse == false)
-                {
-                    if (horizontalAxisPlayer2 == -1)
-                    {
-                        activeBlock.GoToYourLeft();
-                        isAxisHorizontalInUse = true;
-                    }
-                    else if (horizontalAxisPlayer2 == 1)
-                    {
-                        activeBlock.GoToYourRight();
-                        isAxisHorizontalInUse = true;
-                    }
-                }
-            } else
+                if (Input.GetKeyDown(KeyCode.J)) activeBlock.GoToYourLeft();
+                else if (Input.GetKeyDown(KeyCode.L)) activeBlock.GoToYourRight();
+            }
+            else
             {
-                if (isAxisVerticalInUse == false)
-                {
-                    if (verticalAxisPlayer2 == 1)
-                    {
-                        if (activeBlock == westBlock)
-                            activeBlock.GoToYourRight();
-                        else
-                            activeBlock.GoToYourLeft();
-
-                        isAxisVerticalInUse = true;
-                    }
-                    else if (verticalAxisPlayer2 == -1)
-                    {
-                        if (activeBlock == westBlock)
-                            activeBlock.GoToYourLeft();
-                        else
-                            activeBlock.GoToYourRight();
-
-                        isAxisVerticalInUse = true;
-                    }
-                }
+                if (Input.GetKeyDown(KeyCode.I)) activeBlock.GoToYourLeft();
+                else if (Input.GetKeyDown(KeyCode.K)) activeBlock.GoToYourRight();
             }
 
-            if (horizontalAxisPlayer2 == 0)
-                isAxisHorizontalInUse = false;
-
-            if (verticalAxisPlayer2 == 0)
-                isAxisVerticalInUse = false;
-
-            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick2Button5))
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 activeBlock.TurnNinetyDegrees();
             }
@@ -152,31 +80,38 @@ public class Player2Controller : MonoBehaviour {
 
     }
 
-    bool isVertical(AttackBlockController attackBlock)
+    bool IsVertical(AttackBlock attackBlock)
     {
-        return attackBlock == northBlock || attackBlock == southBlock;
+        if (northBlock == null || southBlock == null) return true;
+        else return false;
+        //else returnValue = attackBlock == northBlock || attackBlock == southBlock;
     }
 
-    void ActivateBlockAndResetCooldown(AttackBlockController block)
+    void ActivateBlock(AttackBlock block)
     {
         block.SetActivationState(true);
-
 		this.activeBlock = block;
+
         SetAttackBlockColor(Color.red, activeBlock);
         block.PlatformHit += OnActiveBlockPlatformHit;
-
-        cooldownTimeCounter = 0;
     }
 
     void OnActiveBlockPlatformHit(object source, EventArgs args)
     {
         if (activeBlock == null) return;
-
         SetAttackBlockColor(Color.white, activeBlock);
+
+        if(activeBlock.MoveDirection.Equals(Vector3.back)) northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+        else if (activeBlock.MoveDirection == Vector3.forward) southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+        else if (activeBlock.MoveDirection == Vector3.left) eastBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+        else if (activeBlock.MoveDirection == Vector3.right) westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+
+        this.activeBlock.transform.parent = null;
         this.activeBlock = null;
+
     }
 
-    void SetAttackBlockColor(Color color, AttackBlockController activeBlock)
+    void SetAttackBlockColor(Color color, AttackBlock activeBlock)
     {
         var childrenMaterials = activeBlock.gameObject.GetComponentsInChildren<Renderer>();
 
@@ -186,4 +121,11 @@ public class Player2Controller : MonoBehaviour {
         }
     }
 
+    void CreateInitialAttackBlocks()
+    {
+        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
+        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
+        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+    }
 }
