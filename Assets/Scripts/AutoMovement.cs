@@ -5,14 +5,19 @@ using UnityEngine;
 public class AutoMovement : MonoBehaviour
 {
     public float velocity;
-    public float jumpHeight;
+    private float jumpHeight = 1f;
     private float targetX = 0f;
     private float targetZ = 0f;
     private Vector3 TargetPosition = Vector3.zero;
 
-    void FixedUpdate()
+    void Update()
     {
         Move();
+    }
+
+    void FixedUpdate()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, TargetPosition, velocity * Time.deltaTime);
     }
 
     void Move()
@@ -45,8 +50,6 @@ public class AutoMovement : MonoBehaviour
             targetZ -= 1f;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, -1f)), 1f);
         }
-
-        transform.position = Vector3.MoveTowards(transform.position, TargetPosition, velocity * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider col)
