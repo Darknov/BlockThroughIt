@@ -15,6 +15,7 @@ public class Player2Controller : MonoBehaviour {
     public Transform northSpawn, southSpawn, eastSpawn, westSpawn;
 
     private AttackBlock northBlock, southBlock, eastBlock, westBlock;
+    public PlatformBoard platformBoard;
 
 
     void Start () {
@@ -100,6 +101,7 @@ public class Player2Controller : MonoBehaviour {
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.white, activeBlock);
+        platformBoard.addBlock(activeBlock);
 
         if(activeBlock.MoveDirection.Equals(Vector3.back)) northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.forward) southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
