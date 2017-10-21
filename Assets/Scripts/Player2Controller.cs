@@ -79,14 +79,17 @@ public class Player2Controller : MonoBehaviour {
             {
                 if (isAxisHorizontalInUse == false)
                 {
-                    Debug.Log("GO LEFT");
-                    activeBlock.GoToYourLeft();
-                    isAxisHorizontalInUse = true;
-                }
-                else if(horizontalAxisPlayer2 == 1)
-                {
-                    activeBlock.GoToYourRight();
-                    isAxisHorizontalInUse = true;
+                    if (horizontalAxisPlayer2 == -1)
+                    {
+                        Debug.Log("GO LEFT");
+                        activeBlock.GoToYourLeft();
+                        isAxisHorizontalInUse = true;
+                    }          
+                    else if (horizontalAxisPlayer2 == 1)
+                    {
+                        activeBlock.GoToYourRight();
+                        isAxisHorizontalInUse = true;
+                    }
                 }
             }
             else
