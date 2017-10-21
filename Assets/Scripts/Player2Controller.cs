@@ -96,7 +96,7 @@ public class Player2Controller : MonoBehaviour {
             {
                 if (isAxisVerticalInUse == false)
                 {
-                    if (verticalAxisPlayer2 == 1)
+                    if (verticalAxisPlayer2 == -1)
                     {
                         if (activeBlock == westBlock)
                             activeBlock.GoToYourRight();
@@ -105,7 +105,7 @@ public class Player2Controller : MonoBehaviour {
 
                         isAxisVerticalInUse = true;
                     }
-                    else if (verticalAxisPlayer2 == -1)
+                    else if (verticalAxisPlayer2 == 1)
                     {
                         if (activeBlock == westBlock)
                             activeBlock.GoToYourLeft();
