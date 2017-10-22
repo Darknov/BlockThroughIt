@@ -12,6 +12,12 @@ public class AutoMovement : MonoBehaviour
 
     private bool onAir = true;
 
+    private float horizontalAxis;
+    private float vertivalAxis;
+    private bool isHorizontalAxisInUse = false;
+    private bool isVerticalAxisInUse = false;
+
+
     void Update()
     {
         Move();
@@ -25,34 +31,53 @@ public class AutoMovement : MonoBehaviour
     void Move()
     {
         if (onAir) return;
-        
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+
+        horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
+        vertivalAxis = Input.GetAxisRaw("VerticalJoy");
+
+        if (isHorizontalAxisInUse == false)
         {
-            TargetPosition = new Vector3(targetX + 1f, jumpHeight, targetZ);
-            targetX += 1f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(1f, 0f, 0f)), 1f);
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1)
+            {
+                TargetPosition = new Vector3(targetX + 1f, jumpHeight, targetZ);
+                targetX += 1f;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(1f, 0f, 0f)), 1f);
+                isHorizontalAxisInUse = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1)
+            {
+                TargetPosition = new Vector3(targetX - 1f, jumpHeight, targetZ);
+                targetX -= 1f;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-1f, 0f, 0f)), 1f);
+                isHorizontalAxisInUse = true;
+
+            }
+        }
+        if (isVerticalAxisInUse == false)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1)
+            {
+                TargetPosition = new Vector3(targetX, jumpHeight, targetZ + 1f);
+                targetZ += 1f;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, 1f)), 1f);
+                isVerticalAxisInUse = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1)
+            {
+                TargetPosition = new Vector3(targetX, jumpHeight, targetZ - 1f);
+                targetZ -= 1f;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, -1f)), 1f);
+                isVerticalAxisInUse = true;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            TargetPosition = new Vector3(targetX - 1f, jumpHeight, targetZ);
-            targetX -= 1f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-1f, 0f, 0f)), 1f);
-        }
+        if (horizontalAxis == 0)
+            isHorizontalAxisInUse = false;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-        {
-            TargetPosition = new Vector3(targetX, jumpHeight, targetZ + 1f);
-            targetZ += 1f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, 1f)), 1f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-        {
-            TargetPosition = new Vector3(targetX, jumpHeight, targetZ - 1f);
-            targetZ -= 1f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, -1f)), 1f);
-        }
+        if (vertivalAxis == 0)
+            isVerticalAxisInUse = false;
     }
 
     void OnTriggerEnter(Collider col)
