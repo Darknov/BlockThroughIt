@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Player2Controller : MonoBehaviour {
+public class Player2Controller : MonoBehaviour
+{
 
     public float blocksSpeed;
-	private float jumpLength = 1;
+    private float jumpLength = 1;
 
     public RandomAttackBlockGenerator randomBlockGenerator;
     private AttackBlock activeBlock;
@@ -23,7 +24,8 @@ public class Player2Controller : MonoBehaviour {
     private bool isAxisHorizontalInUse;
     private bool isAxisVerticalInUse;
 
-    void Start () {
+    void Start()
+    {
 
         if (northSpawn == null || southSpawn == null || eastSpawn == null || null == westSpawn)
             throw new NullReferenceException("You must assign all spawn points to " + this.GetType().Name);
@@ -37,7 +39,8 @@ public class Player2Controller : MonoBehaviour {
         isAxisVerticalInUse = false;
     }
 
-	void Update () {
+    void Update()
+    {
 
         horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
         verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
@@ -84,7 +87,7 @@ public class Player2Controller : MonoBehaviour {
                         Debug.Log("GO LEFT");
                         activeBlock.GoToYourLeft();
                         isAxisHorizontalInUse = true;
-                    }          
+                    }
                     else if (horizontalAxisPlayer2 == 1)
                     {
                         activeBlock.GoToYourRight();
@@ -141,10 +144,11 @@ public class Player2Controller : MonoBehaviour {
     void ActivateBlock(AttackBlock block)
     {
         block.SetActivationState(true);
-		this.activeBlock = block;
+        this.activeBlock = block;
 
         SetAttackBlockColor(Color.red, activeBlock);
         block.PlatformHit += OnActiveBlockPlatformHit;
+        block.DestroyAttackBlock += RespawnEmptyBlocks;
     }
 
     void OnActiveBlockPlatformHit(object source, EventArgs args)
@@ -153,14 +157,24 @@ public class Player2Controller : MonoBehaviour {
         SetAttackBlockColor(Color.white, activeBlock);
         platformBoard.addBlock(activeBlock);
 
-        if(activeBlock.MoveDirection.Equals(Vector3.back)) northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+        RespawnEmptyBlocks(source, args);
+
+    }
+
+    void RespawnEmptyBlocks(object source, EventArgs args)
+    {
+        if (activeBlock == null) return;
+
+        if (activeBlock.MoveDirection.Equals(Vector3.back))
+        {
+            northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+        }
         else if (activeBlock.MoveDirection == Vector3.forward) southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.left) eastBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.right) westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
 
         this.activeBlock.transform.parent = null;
         this.activeBlock = null;
-
     }
 
     void SetAttackBlockColor(Color color, AttackBlock activeBlock)

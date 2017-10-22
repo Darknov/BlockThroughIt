@@ -16,11 +16,23 @@ public class AttackBlock : MonoBehaviour {
 	public delegate void PlatformHitEventHandler(object obj, EventArgs args);
 	public PlatformHitEventHandler PlatformHit;
 
+    public delegate void AttackBlockDestroyEventHandler(object obj, EventArgs args);
+    public AttackBlockDestroyEventHandler DestroyAttackBlock;
+
 	public virtual void OnPlatformHit() {
 		if (PlatformHit != null) {
 			PlatformHit (this, EventArgs.Empty);
 		}
 	}
+
+    public virtual void OnAttackBlockDestroy()
+    {
+        if (DestroyAttackBlock != null)
+        {
+            DestroyAttackBlock(this, EventArgs.Empty);
+        }
+
+    }
 
     public float JumpLength
     {

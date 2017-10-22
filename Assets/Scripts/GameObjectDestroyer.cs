@@ -6,6 +6,15 @@ public class GameObjectDestroyer : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider)
     {
-        Destroy(collider.gameObject);
+        if(collider.gameObject.GetComponentInParent<AttackBlock>() != null)
+        {
+            collider.GetComponentInParent<AttackBlock>().OnAttackBlockDestroy();
+            Destroy(collider.transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(collider.gameObject);
+        }
+
     }
 }
