@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RandomAttackBlockGenerator : MonoBehaviour {
 
-    public List<GameObject> possiblePlatforms = new List<GameObject>();
+    public List<GameObject> possibleBlocks = new List<GameObject>();
     private System.Random lotto = new System.Random();
 
     public AttackBlock createRandomBlock(Transform parent, float blockSpeed, float jumpLength, Vector3 moveDirection)
     {
-        int randomIndex = lotto.Next(0, possiblePlatforms.Count-1);
-        AttackBlock atkBlock = Instantiate(possiblePlatforms[randomIndex], parent).GetComponent<AttackBlock>();
+        int randomIndex = lotto.Next(0, possibleBlocks.Count-1);
+        AttackBlock atkBlock = Instantiate(possibleBlocks[randomIndex], parent).GetComponent<AttackBlock>();
 
         atkBlock.MoveSpeed = blockSpeed;
         atkBlock.JumpLength = jumpLength;

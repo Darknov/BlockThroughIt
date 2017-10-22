@@ -10,6 +10,8 @@ public class AutoMovement : MonoBehaviour
     private float targetZ = 0f;
     private Vector3 TargetPosition = Vector3.zero;
 
+    private bool onAir = true;
+
     void Update()
     {
         Move();
@@ -22,7 +24,8 @@ public class AutoMovement : MonoBehaviour
 
     void Move()
     {
-
+        if (onAir) return;
+        
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             TargetPosition = new Vector3(targetX + 1f, jumpHeight, targetZ);
@@ -57,6 +60,15 @@ public class AutoMovement : MonoBehaviour
         if (col.gameObject.tag == "platform")
         {
             TargetPosition.y = 0f;
+            onAir = false;
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "platform")
+        {
+            onAir = true;
         }
     }
 }
