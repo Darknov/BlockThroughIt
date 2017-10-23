@@ -52,6 +52,7 @@ public class AttackBlock : MonoBehaviour {
 
 	void Start() {
 		this.isBlockInMovement = false;
+        AdaptTriggers();
 	}
 	
 	void Update () {
@@ -66,6 +67,30 @@ public class AttackBlock : MonoBehaviour {
         }
 
     }
+
+    public void AdaptTriggers()
+    {
+        List<BoxCollider> childrenTriggers = new List<BoxCollider>();
+
+        foreach (var item in gameObject.GetComponentsInChildren<BoxCollider>())
+        {
+            if (item.isTrigger) childrenTriggers.Add(item);
+        }
+
+
+        foreach (var item in childrenTriggers)
+        {
+            item.size = new Vector3(0.3f, 0.3f, 0.3f);
+            item.center = Quaternion.Inverse(this.gameObject.transform.rotation) * (MoveDirection * 0.5f);
+        }
+
+
+
+
+    }
+
+
+
 
 
 	public void SetActivationState(bool state)
@@ -125,9 +150,10 @@ public class AttackBlock : MonoBehaviour {
         gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
     }
 
-    public void TurnNinetyDegrees()
+    public void TurnNinetyDegreesAndUpdateTriggers()
     {
         gameObject.transform.Rotate(0, 90, 0);
+        AdaptTriggers();
     }
 
 

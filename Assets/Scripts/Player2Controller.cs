@@ -128,7 +128,7 @@ public class Player2Controller : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick2Button5))
             {
-                activeBlock.TurnNinetyDegrees();
+                activeBlock.TurnNinetyDegreesAndUpdateTriggers();
             }
 
         }
