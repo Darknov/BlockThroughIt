@@ -8,7 +8,7 @@ public class PlatformCreator : MonoBehaviour
     public GameObject player1;
     public int numberOfInstatiatedBlocks;
     public PlatformBoard platformBoard;
-
+    public bool generatePlatform = true;
     private int numberOfBlocksInRow;
     
 
@@ -27,7 +27,16 @@ public class PlatformCreator : MonoBehaviour
             numberOfInstatiatedBlocks = numberOfBlocksInRow * numberOfBlocksInRow - 1;
         }
 
-        bool[,] isBlockOnPosition = getRandomizedIsBlockOnPositionArray();
+        bool[,] isBlockOnPosition;
+
+        if (generatePlatform)
+        {
+            isBlockOnPosition = getRandomizedIsBlockOnPositionArray();
+        }
+        else
+        {
+            isBlockOnPosition = getStaticIsBlockOnPositionArray();
+        }
 
         for (int i = 0; i < numberOfBlocksInRow; i++)
         {
@@ -163,6 +172,82 @@ public class PlatformCreator : MonoBehaviour
         }
 
         return currentIsBlock;
+    }
+
+    bool[,] getStaticIsBlockOnPositionArray()
+    {
+        bool[,] isBlockOnPosition = new bool[this.numberOfBlocksInRow, this.numberOfBlocksInRow];
+
+        char[] blocks0 ={ ' ', 'B', ' ', ' ',' ',
+                          ' ', 'B', ' ', 'B',' ',
+                          ' ', 'B', 'B', 'B','B',
+                          ' ', 'B', 'B', 'B',' ',
+                          ' ', ' ', ' ', 'B',' '};
+
+        char[] blocks1 ={ ' ', 'B', ' ', ' ',' ',
+                          ' ', 'B', 'B', ' ',' ',
+                          ' ', 'B', ' ', 'B','B',
+                          ' ', 'B', 'B', 'B',' ',
+                          ' ', ' ', ' ', ' ',' '};
+
+        char[] blocks2 ={ ' ', 'B', ' ', ' ',' ',
+                          ' ', 'B', ' ', 'B',' ',
+                          ' ', 'B', 'B', 'B','B',
+                          ' ', 'B', 'B', 'B',' ',
+                          ' ', ' ', ' ', 'B',' '};
+
+        char[] blocks3 ={ ' ', 'B', ' ', ' ',' ',
+                          'B', 'B', ' ', 'B','B',
+                          ' ', 'B', 'B', 'B','B',
+                          ' ', 'B', ' ', 'B',' ',
+                          'B', ' ', ' ', 'B',' '};
+
+        char[] blocks4 ={ ' ', 'B', 'B', ' ','B',
+                          'B', 'B', ' ', 'B',' ',
+                          ' ', 'B', 'B', 'B','B',
+                          ' ', 'B', 'B', 'B',' ',
+                          'B', ' ', ' ', 'B',' '};
+
+        char[] blocks5 ={ 'B', 'B', ' ', ' ',' ',
+                          'B', 'B', ' ', 'B',' ',
+                          ' ', 'B', 'B', 'B','B',
+                          ' ', 'B', 'B', 'B',' ',
+                          ' ', ' ', ' ', 'B','B'};
+
+
+        List<char[]> blocksList = new List<char[]>();
+        blocksList.Add(blocks0);
+        blocksList.Add(blocks1);
+        blocksList.Add(blocks2);
+        blocksList.Add(blocks3);
+        blocksList.Add(blocks4);
+        blocksList.Add(blocks5);
+
+        char[] winnerBlock = blocksList[Random.Range(0, blocksList.Count)];
+
+        for (int i = 0; i < numberOfBlocksInRow; i++)
+        {
+            for (int j = 0; j < numberOfBlocksInRow; j++)
+            {
+                if(i >= 5 || j >= 5)
+                {
+                    isBlockOnPosition[i, j] = false;
+                }
+                else
+                {
+                    if(winnerBlock[i*5 + j] == 'B')
+                    {
+                        isBlockOnPosition[i, j] = true;
+                    }
+                    else
+                    {
+                        isBlockOnPosition[i, j] = false;
+                    }
+                }
+            }
+        }
+
+        return isBlockOnPosition;
     }
 
 }
