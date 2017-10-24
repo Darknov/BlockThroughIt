@@ -41,6 +41,9 @@ public class AutoMovement : MonoBehaviour
     void Move()
     {
 
+        horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
+        vertivalAxis = Input.GetAxisRaw("VerticalJoy");
+
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1) lastKey = MoveKey.Right;
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1) lastKey = MoveKey.Left;
         else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1) lastKey = MoveKey.Up;
@@ -55,8 +58,7 @@ public class AutoMovement : MonoBehaviour
 
         if (onAir) return;
 
-        horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
-        vertivalAxis = Input.GetAxisRaw("VerticalJoy");
+        
 
         if (isHorizontalAxisInUse == false)
         {
