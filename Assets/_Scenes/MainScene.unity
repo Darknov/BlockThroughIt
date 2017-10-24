@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   possibleBlocks: []
 =======
   possibleBlocks:
@@ -145,6 +146,8 @@ MonoBehaviour:
   - {fileID: 1711427812975896, guid: bb16ae1a09eb3d24b92b8c7c4819b8c4, type: 2}
   - {fileID: 1784321847395940, guid: 4a8298034f2b99548aa1998ed75ee5dd, type: 2}
 >>>>>>> parent of c23e5e7... MainScene
+=======
+>>>>>>> parent of bfa351e... MainScene
 =======
 >>>>>>> parent of bfa351e... MainScene
 --- !u!4 &61888703 stripped
