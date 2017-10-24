@@ -5,23 +5,27 @@ using UnityEngine;
 public class AutoMovement : MonoBehaviour
 {
     public float velocity;
+    public float jumpTime;
     private float jumpHeight = 1f;
     private float targetX;
     private float targetZ;
     private Vector3 TargetPosition;
 
     private bool onAir = true;
-
+    private float timeCounter;
     private float horizontalAxis;
     private float vertivalAxis;
     private bool isHorizontalAxisInUse = false;
     private bool isVerticalAxisInUse = false;
+
+    private MoveKey lastKey = MoveKey.None;
 
     void Start()
     {
         TargetPosition = transform.position;
 		targetX = transform.position.x;
 		targetZ = transform.position.z;
+        timeCounter = jumpTime;
     }
 
     void Update()
@@ -36,6 +40,19 @@ public class AutoMovement : MonoBehaviour
 
     void Move()
     {
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1) lastKey = MoveKey.Right;
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1) lastKey = MoveKey.Left;
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1) lastKey = MoveKey.Up;
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1) lastKey = MoveKey.Down;
+
+
+        if (timeCounter > 0)
+        {
+            timeCounter -= Time.deltaTime ;
+            return;
+        }
+
         if (onAir) return;
 
         horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
@@ -43,7 +60,7 @@ public class AutoMovement : MonoBehaviour
 
         if (isHorizontalAxisInUse == false)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1)
+            if (lastKey == MoveKey.Right)
             {
                 TargetPosition = new Vector3(targetX + 1f, jumpHeight, targetZ);
                 targetX += 1f;
@@ -51,18 +68,17 @@ public class AutoMovement : MonoBehaviour
                 isHorizontalAxisInUse = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1)
+            if (lastKey == MoveKey.Left)
             {
                 TargetPosition = new Vector3(targetX - 1f, jumpHeight, targetZ);
                 targetX -= 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-1f, 0f, 0f)), 1f);
                 isHorizontalAxisInUse = true;
-
             }
         }
         if (isVerticalAxisInUse == false)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1)
+            if (lastKey == MoveKey.Up)
             {
                 TargetPosition = new Vector3(targetX, jumpHeight, targetZ + 1f);
                 targetZ += 1f;
@@ -70,7 +86,7 @@ public class AutoMovement : MonoBehaviour
                 isVerticalAxisInUse = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1)
+            if (lastKey == MoveKey.Down)
             {
                 TargetPosition = new Vector3(targetX, jumpHeight, targetZ - 1f);
                 targetZ -= 1f;
@@ -84,6 +100,8 @@ public class AutoMovement : MonoBehaviour
 
         if (vertivalAxis == 0)
             isVerticalAxisInUse = false;
+
+        timeCounter = jumpTime;
     }
 
     void OnTriggerEnter(Collider col)
@@ -101,5 +119,14 @@ public class AutoMovement : MonoBehaviour
         {
             onAir = true;
         }
+    }
+
+    public enum MoveKey
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+        None
     }
 }
