@@ -8,7 +8,7 @@ public class AutoMovement : MonoBehaviour
     private float jumpHeight = 1f;
     private float targetX = 0f;
     private float targetZ = 0f;
-    private Vector3 TargetPosition = Vector3.zero;
+    private Vector3 TargetPosition;
 
     private bool onAir = true;
 
@@ -17,6 +17,10 @@ public class AutoMovement : MonoBehaviour
     private bool isHorizontalAxisInUse = false;
     private bool isVerticalAxisInUse = false;
 
+    void Start()
+    {
+        TargetPosition = transform.position;
+    }
 
     void Update()
     {
