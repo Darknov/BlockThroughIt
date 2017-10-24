@@ -1,30 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour {
 
-	float timeRemaining = 60;
+	Text text;
 
-	// Use this for initialization
 	void Start () {
-
+		text = GetComponent<Text>();
 	}
 
-	// Update is called once per frame
 	void Update () {
-		timeRemaining -= Time.deltaTime;
-	}
-
-	void OnGUI()
-	{
-		if (timeRemaining > 0)
-		{
-			GUI.Label(new Rect(100, 100, 200, 100), "Time Remaining : " + (int)timeRemaining);
-		}
-		else
-		{
-			GUI.Label(new Rect(100, 100, 200, 100), "Time's Up");
-		}
+		text.text = "Time Ramaining: " + (int)GameOver.timeRemaining;
 	}
 }
