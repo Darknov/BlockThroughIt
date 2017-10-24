@@ -67,7 +67,7 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX + 1f, jumpHeight, targetZ);
                 targetX += 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(1f, 0f, 0f)), 1f);
-                isHorizontalAxisInUse = true;
+                //isHorizontalAxisInUse = true;
             }
 
             if (lastKey == MoveKey.Left)
@@ -75,7 +75,7 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX - 1f, jumpHeight, targetZ);
                 targetX -= 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-1f, 0f, 0f)), 1f);
-                isHorizontalAxisInUse = true;
+                //isHorizontalAxisInUse = true;
             }
         }
         if (isVerticalAxisInUse == false)
@@ -85,7 +85,7 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX, jumpHeight, targetZ + 1f);
                 targetZ += 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, 1f)), 1f);
-                isVerticalAxisInUse = true;
+                //isVerticalAxisInUse = true;
             }
 
             if (lastKey == MoveKey.Down)
@@ -93,7 +93,7 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX, jumpHeight, targetZ - 1f);
                 targetZ -= 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, -1f)), 1f);
-                isVerticalAxisInUse = true;
+                //isVerticalAxisInUse = true;
             }
         }
 
