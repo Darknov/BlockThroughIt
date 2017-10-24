@@ -9,6 +9,7 @@ public class PlatformBoard : MonoBehaviour {
     public int rowLength;
     public float widthOfAGap = 0.0f;
     public GameObject[,] blocks;
+    public float delayOnDeletingBlock = 3f;
 
     private float transposeBy;
 
@@ -98,7 +99,7 @@ public class PlatformBoard : MonoBehaviour {
                 for(int j = 0; j < rowLength; j++)
                 {
                     this.blocks[i, j].gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                    Destroy(this.blocks[i, j], 3);
+                    Destroy(this.blocks[i, j], delayOnDeletingBlock);
                     Debug.Log("DESTROYED: " + i + ", " + j);
                 }
             }
@@ -115,7 +116,7 @@ public class PlatformBoard : MonoBehaviour {
                 for (int j = 0; j < rowLength; j++)
                 {
                     this.blocks[j, i].gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                    Destroy(this.blocks[j, i], 3);
+                    Destroy(this.blocks[j, i], delayOnDeletingBlock);
                     Debug.Log("DESTROYED: " + j + ", " + j);
                 }
             }

@@ -515,6 +515,7 @@ MonoBehaviour:
   block: {fileID: 1597305207548506, guid: 560c7070019a02e47a35a578a7825894, type: 2}
   rowLength: 9
   widthOfAGap: 0
+  delayOnDeletingBlock: 1
 --- !u!4 &428745803
 Transform:
   m_ObjectHideFlags: 0
@@ -721,8 +722,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   block: {fileID: 1597305207548506, guid: 560c7070019a02e47a35a578a7825894, type: 2}
   player1: {fileID: 1912045030905994, guid: 6a7a80feb9c33ed45a4a63c52be9e0be, type: 2}
-  numberOfInstatiatedBlocks: 10
+  numberOfInstatiatedBlocks: 30
   platformBoard: {fileID: 428745802}
+  generatePlatform: 1
 --- !u!1 &888043254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1244,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2027225617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 222, y: 163, z: 0}
+  m_LocalPosition: {x: 605, y: 286.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 611512554}
