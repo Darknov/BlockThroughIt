@@ -47,11 +47,11 @@ public class PlatformCreator : MonoBehaviour
 
                     this.platformBoard.addBlock(i, j);
 
-                    Vector3 vector = Vector3.zero;
+                    Vector3 vector = new Vector3(platformBoard.transform.position.x, 0, platformBoard.transform.position.z);
 
                     if (!isPlayer1Initialized)
                     {
-                        Instantiate(player1, new Vector3(vector.x, vector.y + 3f, vector.z), Quaternion.identity);
+                        Instantiate(player1, new Vector3(vector.x + i, vector.y + 3f, vector.z + j), Quaternion.identity);
                         isPlayer1Initialized = true;
                     }
                 }
