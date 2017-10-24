@@ -128,17 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b983e075ba0649c42b939558cfc89d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  possibleBlocks: []
-=======
-=======
->>>>>>> parent of c23e5e7... MainScene
-=======
->>>>>>> parent of c23e5e7... MainScene
   possibleBlocks:
   - {fileID: 1878510748790744, guid: ed2a272c894b3b24fa4c96c216e73cfd, type: 2}
   - {fileID: 1471454406613516, guid: 97353d134c7ea4d4ca91783f51519017, type: 2}
@@ -151,17 +140,6 @@ MonoBehaviour:
   - {fileID: 1495795576940742, guid: f86bde8877a5c034091db51a3d37acc0, type: 2}
   - {fileID: 1711427812975896, guid: bb16ae1a09eb3d24b92b8c7c4819b8c4, type: 2}
   - {fileID: 1784321847395940, guid: 4a8298034f2b99548aa1998ed75ee5dd, type: 2}
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c23e5e7... MainScene
-=======
->>>>>>> parent of bfa351e... MainScene
-=======
->>>>>>> parent of bfa351e... MainScene
-=======
->>>>>>> parent of c23e5e7... MainScene
-=======
->>>>>>> parent of c23e5e7... MainScene
 --- !u!4 &61888703 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4032867364847534, guid: b1e69fe7e410edf4b929affefe1e5db3,
