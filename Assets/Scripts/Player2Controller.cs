@@ -52,22 +52,22 @@ public class Player2Controller : MonoBehaviour
 
         if (canFire)
         {
-            if (verticalAxisPlayer2 == -1)
+            if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 ActivateBlock(northBlock);
                 northBlock = null;
             }
-            else if (verticalAxisPlayer2 == 1)
+            else if (Input.GetKeyDown("joystick 2 button 2"))
             {
                 ActivateBlock(southBlock);
                 southBlock = null;
             }
-            else if (horizontalAxisPlayer2 == -1)
+            else if (Input.GetKeyDown("joystick 2 button 3"))
             {
                 ActivateBlock(westBlock);
                 westBlock = null;
             }
-            else if (horizontalAxisPlayer2 == 1)
+            else if (Input.GetKeyDown("joystick 2 button 1"))
             {
                 ActivateBlock(eastBlock);
                 eastBlock = null;
