@@ -90,7 +90,7 @@ public class AutoMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "platform")
         {
-            TargetPosition.y = 0f;
+            TargetPosition.y = 0.5f;
             onAir = false;
         }
     }
