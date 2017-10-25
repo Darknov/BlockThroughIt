@@ -459,7 +459,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time Ramaining: ?'
+  m_Text: 'Time Remaining: ?'
 --- !u!222 &275462074
 CanvasRenderer:
   m_ObjectHideFlags: 0
