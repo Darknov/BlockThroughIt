@@ -6,6 +6,7 @@ public class AutoMovement : MonoBehaviour
 {
     public float velocity;
     public float jumpTime;
+	public CountDown countDown;
     private float jumpHeight = 1f;
     private float targetX;
     private float targetZ;
@@ -26,6 +27,8 @@ public class AutoMovement : MonoBehaviour
 		targetX = transform.position.x;
 		targetZ = transform.position.z;
         timeCounter = jumpTime;
+
+		countDown = FindObjectOfType<CountDown> ();
     }
 
     void Update()
@@ -48,6 +51,9 @@ public class AutoMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1) lastKey = MoveKey.Left;
         else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1) lastKey = MoveKey.Up;
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1) lastKey = MoveKey.Down;
+
+		if (lastKey != MoveKey.None)
+			this.countDown.started = true;
 
 
         if (timeCounter > 0)
