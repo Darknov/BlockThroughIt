@@ -48,6 +48,10 @@ public class AttackBlock : MonoBehaviour {
         }
     }
 
+	public void ChangeSpeed(float speed) {
+		this.moveSpeed = speed;
+	}
+
     public Vector3 MoveDirection { set; get; }
 
 	void Start() {

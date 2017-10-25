@@ -268,6 +268,11 @@ Prefab:
       propertyPath: platformBoard
       value: 
       objectReference: {fileID: 428745802}
+    - target: {fileID: 114341392300158800, guid: b1e69fe7e410edf4b929affefe1e5db3,
+        type: 2}
+      propertyPath: boostSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1e69fe7e410edf4b929affefe1e5db3, type: 2}
   m_IsPrefabParent: 0
@@ -385,7 +390,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275462069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -202.5, y: 161, z: 0}
+  m_LocalPosition: {x: -49.5, y: 161, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2027225621}
@@ -407,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286e31ad41c2aa544bd68d917bf13edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  started: 0
 --- !u!114 &275462072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +459,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time Ramaining: 0'
+  m_Text: 'Time Ramaining: ?'
 --- !u!222 &275462074
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -982,7 +988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   block: {fileID: 1597305207548506, guid: 560c7070019a02e47a35a578a7825894, type: 2}
   player1: {fileID: 1912045030905994, guid: 6a7a80feb9c33ed45a4a63c52be9e0be, type: 2}
-  numberOfInstatiatedBlocks: 30
+  numberOfInstatiatedBlocks: 15
   platformBoard: {fileID: 428745802}
   generatePlatform: 1
 --- !u!1 &888043254
@@ -1584,7 +1590,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2027225617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 322.5, y: 191, z: 0}
+  m_LocalPosition: {x: 169.5, y: 191, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 611512554}

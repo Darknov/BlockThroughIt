@@ -184,7 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 5
-  jumpTime: 0.1
+  jumpTime: 0.45
+  countDown: {fileID: 0}
 --- !u!136 &136070875937363492
 CapsuleCollider:
   m_ObjectHideFlags: 1

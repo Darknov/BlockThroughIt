@@ -9,6 +9,7 @@ public class Player2Controller : MonoBehaviour
 {
 
     public float blocksSpeed;
+	public float boostSpeed;
     private float jumpLength = 1;
 
     public RandomAttackBlockGenerator randomBlockGenerator;
@@ -78,13 +79,18 @@ public class Player2Controller : MonoBehaviour
 
         if (canTurn)
         {
+			if (Input.GetKey ("joystick 2 button 4") || Input.GetKey (KeyCode.Q)) {
+				activeBlock.ChangeSpeed (boostSpeed);
+			} else {
+				activeBlock.MoveSpeed = blocksSpeed;
+			}
+
             if (IsVertical(activeBlock))
             {
                 if (isAxisHorizontalInUse == false)
                 {
                     if (horizontalAxisPlayer2 == -1)
                     {
-                        Debug.Log("GO LEFT");
                         activeBlock.GoToYourLeft();
                         isAxisHorizontalInUse = true;
                     }

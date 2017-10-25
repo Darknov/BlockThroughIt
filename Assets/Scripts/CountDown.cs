@@ -15,12 +15,11 @@ public class CountDown : MonoBehaviour {
 
 	void Update () {
 
+		text.text = "Time Remaining: " + (int)timeRemaining;
 
-
-		text.text = "Time Ramaining: " + (int)timeRemaining;
-
-		if (!started)
+		if (!started) {
 			return;
+		}
 
 		if (timeRemaining >= 0 && GameObject.FindWithTag("Player")) {
 			timeRemaining -= Time.deltaTime;
