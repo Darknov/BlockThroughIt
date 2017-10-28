@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
-
     public float blocksSpeed;
 	public float boostSpeed;
     private float jumpLength = 1;
@@ -15,10 +14,9 @@ public class Player2Controller : MonoBehaviour
     public RandomAttackBlockGenerator randomBlockGenerator;
     private AttackBlock activeBlock;
     public Transform northSpawn, southSpawn, eastSpawn, westSpawn;
-
     private AttackBlock northBlock, southBlock, eastBlock, westBlock;
     public PlatformBoard platformBoard;
-
+    public ShadowBlock blockShadow;
 
     private float horizontalAxisPlayer2;
     private float verticalAxisPlayer2;
@@ -46,10 +44,8 @@ public class Player2Controller : MonoBehaviour
         horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
         verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
 
-        Debug.Log("Horizonal: " + horizontalAxisPlayer2);
-        Debug.Log("Vertical:" + verticalAxisPlayer2);
 
-        bool canFire = activeBlock == null;// && cooldownTimeCounter <= cooldownTime;
+        bool canFire = activeBlock == null;
 
         if (canFire)
         {
@@ -93,11 +89,13 @@ public class Player2Controller : MonoBehaviour
                     {
                         activeBlock.GoToYourLeft();
                         isAxisHorizontalInUse = true;
+                        UpdateShadow();
                     }
                     else if (horizontalAxisPlayer2 == 1)
                     {
                         activeBlock.GoToYourRight();
                         isAxisHorizontalInUse = true;
+                        UpdateShadow();
                     }
                 }
             }
@@ -108,18 +106,32 @@ public class Player2Controller : MonoBehaviour
                     if (verticalAxisPlayer2 == -1)
                     {
                         if (activeBlock == westBlock)
+                        {
                             activeBlock.GoToYourRight();
+                            UpdateShadow();
+                        }
+
                         else
+                        {
                             activeBlock.GoToYourLeft();
+                            UpdateShadow();
+                        }
 
                         isAxisVerticalInUse = true;
                     }
                     else if (verticalAxisPlayer2 == 1)
                     {
                         if (activeBlock == westBlock)
+                        {
                             activeBlock.GoToYourLeft();
+                            UpdateShadow();
+                        }
+
                         else
+                        {
                             activeBlock.GoToYourRight();
+                            UpdateShadow();
+                        }
 
                         isAxisVerticalInUse = true;
                     }
@@ -135,6 +147,7 @@ public class Player2Controller : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick2Button5))
             {
                 activeBlock.TurnNinetyDegreesAndUpdateTriggers();
+                UpdateShadow();
             }
 
         }
@@ -148,13 +161,15 @@ public class Player2Controller : MonoBehaviour
     }
 
     void ActivateBlock(AttackBlock block)
-    {
-        block.SetActivationState(true);
+    {   
         this.activeBlock = block;
+        this.activeBlock.Activate();
 
         SetAttackBlockColor(Color.red, activeBlock);
         block.PlatformHit += OnActiveBlockPlatformHit;
         block.DestroyAttackBlock += RespawnEmptyBlocks;
+
+        blockShadow.CreateShadow(this.activeBlock.gameObject);
     }
 
     void OnActiveBlockPlatformHit(object source, EventArgs args)
@@ -163,18 +178,16 @@ public class Player2Controller : MonoBehaviour
         SetAttackBlockColor(Color.white, activeBlock);
         platformBoard.addBlock(activeBlock);
 
-        RespawnEmptyBlocks(source, args);
+        blockShadow.DestroyShadow();
 
+        RespawnEmptyBlocks(source, args);
     }
 
     void RespawnEmptyBlocks(object source, EventArgs args)
     {
         if (activeBlock == null) return;
 
-        if (activeBlock.MoveDirection.Equals(Vector3.back))
-        {
-            northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
-        }
+        if (activeBlock.MoveDirection.Equals(Vector3.back)) northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.forward) southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.left) eastBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
         else if (activeBlock.MoveDirection == Vector3.right) westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
@@ -199,5 +212,11 @@ public class Player2Controller : MonoBehaviour
         southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
         eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
         westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+    }
+
+    private void UpdateShadow()
+    {
+        blockShadow.DestroyShadow();
+        blockShadow.CreateShadow(activeBlock.gameObject);
     }
 }

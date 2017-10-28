@@ -16,7 +16,6 @@ public class PlatformBoard : MonoBehaviour {
     // Use this for initialization
     void Start () {
         transposeBy = (float)((rowLength / 2.0) * block.GetComponent<BoxCollider>().size.x + (widthOfAGap * (rowLength - 1.0))/2.0) - block.GetComponent<BoxCollider>().size.x/2;
-        Debug.Log(transposeBy);
         this.transform.position = new Vector3(transform.position.x - transposeBy, transform.position.y, transform.position.z - transposeBy);
 
 
@@ -51,12 +50,10 @@ public class PlatformBoard : MonoBehaviour {
     {
 
         Transform[] gameObjects = activeBlock.GetComponentsInChildren<Transform>();
-        Debug.Log(blocks.Length);
         foreach (Transform item in gameObjects)
         {
             int x = Convert.ToInt32(item.position.x + transposeBy);
             int y = Convert.ToInt32(item.position.z + transposeBy);
-            Debug.Log("BLOCK: " + x + ", " + y);
             Vector3 vector = new Vector3(this.transform.position.x + x + widthOfAGap * x, this.transform.position.y, this.transform.position.z + y + widthOfAGap * y);
 
 
@@ -100,7 +97,6 @@ public class PlatformBoard : MonoBehaviour {
                 {
                     this.blocks[i, j].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[i, j], delayOnDeletingBlock);
-                    Debug.Log("DESTROYED: " + i + ", " + j);
                 }
             }
             isBlock = true;
@@ -117,7 +113,6 @@ public class PlatformBoard : MonoBehaviour {
                 {
                     this.blocks[j, i].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[j, i], delayOnDeletingBlock);
-                    Debug.Log("DESTROYED: " + j + ", " + j);
                 }
             }
 
