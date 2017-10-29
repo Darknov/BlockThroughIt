@@ -53,22 +53,22 @@ public class Player2Controller : MonoBehaviour
 
         if (canFire)
         {
-            if (Input.GetKeyDown("joystick 2 button 0"))
+            if (Input.GetKeyDown("joystick 2 button 0") || Input.GetKeyDown("i"))
             {
                 ActivateBlock(northBlock);
                 northBlock = null;
             }
-            else if (Input.GetKeyDown("joystick 2 button 2"))
+            else if (Input.GetKeyDown("joystick 2 button 2") || Input.GetKeyDown("k"))
             {
                 ActivateBlock(southBlock);
                 southBlock = null;
             }
-            else if (Input.GetKeyDown("joystick 2 button 3"))
+            else if (Input.GetKeyDown("joystick 2 button 3") || Input.GetKeyDown("j"))
             {
                 ActivateBlock(westBlock);
                 westBlock = null;
             }
-            else if (Input.GetKeyDown("joystick 2 button 1"))
+            else if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown("l"))
             {
                 ActivateBlock(eastBlock);
                 eastBlock = null;
@@ -151,6 +151,7 @@ public class Player2Controller : MonoBehaviour
     {
         block.SetActivationState(true);
         this.activeBlock = block;
+        this.activeBlock.tag = "active";
 
         SetAttackBlockColor(Color.red, activeBlock);
         block.PlatformHit += OnActiveBlockPlatformHit;
