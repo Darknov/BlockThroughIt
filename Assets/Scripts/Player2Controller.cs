@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Player2Controller : MonoBehaviour
 {
     public float blocksSpeed;
-	public float boostSpeed;
+    public float boostSpeed;
     private float jumpLength = 1;
 
     public RandomAttackBlockGenerator randomBlockGenerator;
@@ -75,11 +75,14 @@ public class Player2Controller : MonoBehaviour
 
         if (canTurn)
         {
-			if (Input.GetKey ("joystick 2 button 4") || Input.GetKey (KeyCode.Q)) {
-				activeBlock.ChangeSpeed (boostSpeed);
-			} else {
-				activeBlock.MoveSpeed = blocksSpeed;
-			}
+            if (Input.GetKey("joystick 2 button 4") || Input.GetKey(KeyCode.Q))
+            {
+                activeBlock.ChangeSpeed(boostSpeed);
+            }
+            else
+            {
+                activeBlock.MoveSpeed = blocksSpeed;
+            }
 
             if (IsVertical(activeBlock))
             {
@@ -161,17 +164,19 @@ public class Player2Controller : MonoBehaviour
     }
 
     void ActivateBlock(AttackBlock block)
-    {   
+    {
         this.activeBlock = block;
-        this.activeBlock.tag = "active";
         this.activeBlock.Activate();
-
 
         SetAttackBlockColor(Color.red, activeBlock);
         block.PlatformHit += OnActiveBlockPlatformHit;
         block.DestroyAttackBlock += RespawnEmptyBlocks;
 
         blockShadow.CreateShadow(this.activeBlock.gameObject);
+    }
+    public AttackBlock GetActiveBlock()
+    {
+        return this.activeBlock;
     }
 
     void OnActiveBlockPlatformHit(object source, EventArgs args)

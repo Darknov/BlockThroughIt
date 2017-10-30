@@ -97,9 +97,12 @@ public class AttackBlock : MonoBehaviour {
 
     public void Deactivate() {
         isBlockInMovement = false;
-
     }
 		
+    public bool IfInMovement()
+    {
+        return isBlockInMovement;
+    }
     public void Initialize()
     {
         if (MoveDirection == null || MoveDirection == Vector3.zero) throw new NullReferenceException("You must assign direction to " + this.name);
