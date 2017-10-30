@@ -6,10 +6,7 @@ using UnityEngine;
 public class ShadowBlock : MonoBehaviour {
 
     public Material shadowBlockMaterial;
-    public Material completelyTransparent;
     public PlatformBoard platformBoard;
-
-    public GameObject justSimpleDebugCube;
     private GameObject activeBlockShadow;
 
     private enum Axis
