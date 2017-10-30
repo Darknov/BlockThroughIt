@@ -19,6 +19,7 @@ public class AttackBlock : MonoBehaviour {
     public delegate void AttackBlockDestroyEventHandler(object obj, EventArgs args);
     public AttackBlockDestroyEventHandler DestroyAttackBlock;
 
+
 	public virtual void OnPlatformHit() {
 		if (PlatformHit != null) {
 			PlatformHit (this, EventArgs.Empty);
@@ -50,6 +51,7 @@ public class AttackBlock : MonoBehaviour {
 
 	public void ChangeSpeed(float speed) {
 		this.moveSpeed = speed;
+        Initialize();
 	}
 
     public Vector3 MoveDirection { set; get; }
@@ -57,9 +59,9 @@ public class AttackBlock : MonoBehaviour {
 	void Start() {
 		this.isBlockInMovement = false;
         AdaptTriggers();
-	}
-	
-	void Update () {
+    }
+
+    void FixedUpdate () {
         if (!isBlockInMovement) return;
 
         currentTime += Time.deltaTime * moveSpeed;
@@ -81,45 +83,36 @@ public class AttackBlock : MonoBehaviour {
             if (item.isTrigger) childrenTriggers.Add(item);
         }
 
-
         foreach (var item in childrenTriggers)
         {
             item.size = new Vector3(0.3f, 0.3f, 0.3f);
             item.center = Quaternion.Inverse(this.gameObject.transform.rotation) * (MoveDirection * 0.5f);
         }
 
-
-
-
     }
 
+    public void Activate() {
+        isBlockInMovement = true;
+    }
 
+    public void Deactivate() {
+        isBlockInMovement = false;
 
-
-
-	public void SetActivationState(bool state)
-    {
-		if (state && wasBlockUsed)
-			return;
-
-        isBlockInMovement = state;
-		wasBlockUsed = true;
     }
 		
-
     public void Initialize()
     {
         if (MoveDirection == null || MoveDirection == Vector3.zero) throw new NullReferenceException("You must assign direction to " + this.name);
 
         if (moveSpeed == 0) throw new ArgumentException("moveSpeed of " + this.name + "cannot be 0");
 
-        jumpTime = (1 / moveSpeed)*Time.deltaTime;
+        jumpTime = (1 / (moveSpeed)) * Time.deltaTime;
         currentTime = jumpTime;
     }
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "platform") {
-			SetActivationState (false);
+			Deactivate();
 			BecomePartOfPlatform ();
 		}
 	}
@@ -146,12 +139,26 @@ public class AttackBlock : MonoBehaviour {
 
     public void GoToYourLeft()
     {
-        gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.left;
+        if(MoveDirection == Vector3.forward || MoveDirection == Vector3.back)
+        {
+            gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.left;
+        }
+        else
+        {
+            gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.forward;
+        }
     }
 
     public void GoToYourRight()
     {
-        gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
+        if (MoveDirection == Vector3.forward || MoveDirection == Vector3.back)
+        {
+            gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
+        }
+        else
+        {
+            gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.back;
+        }
     }
 
     public void TurnNinetyDegreesAndUpdateTriggers()
@@ -159,7 +166,6 @@ public class AttackBlock : MonoBehaviour {
         gameObject.transform.Rotate(0, 90, 0);
         AdaptTriggers();
     }
-
 
 }
 
