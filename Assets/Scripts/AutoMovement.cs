@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AutoMovement : MonoBehaviour
 {
+	public static Vector3 shinyCubePosition;
+	public static Vector3 shinyCubePosition2;
+
     public float velocity;
     public float jumpTime;
 	public CountDown countDown;
@@ -23,6 +26,9 @@ public class AutoMovement : MonoBehaviour
 
     void Start()
     {
+		shinyCubePosition = new Vector3(0, -5, 0);
+		shinyCubePosition2 = new Vector3(0, -5, 0);
+
         TargetPosition = transform.position;
 		targetX = transform.position.x;
 		targetZ = transform.position.z;
@@ -47,10 +53,14 @@ public class AutoMovement : MonoBehaviour
         horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
         vertivalAxis = Input.GetAxisRaw("VerticalJoy");
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1) lastKey = MoveKey.Right;
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1) lastKey = MoveKey.Left;
-        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1) lastKey = MoveKey.Up;
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1) lastKey = MoveKey.Down;
+		if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D) || horizontalAxis == 1)
+			lastKey = MoveKey.Right;
+		else if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A) || horizontalAxis == -1)
+			lastKey = MoveKey.Left;
+		else if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W) || vertivalAxis == 1)
+			lastKey = MoveKey.Up;
+		else if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S) || vertivalAxis == -1)
+			lastKey = MoveKey.Down;
 
 		if (lastKey != MoveKey.None)
 			this.countDown.started = true;
@@ -73,6 +83,8 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX + 1f, jumpHeight, targetZ);
                 targetX += 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(1f, 0f, 0f)), 1f);
+				shinyCubePosition = new Vector3 (targetX, 0, targetZ);
+				shinyCubePosition2 = new Vector3 (targetX + 1f, 0, targetZ);
                 //isHorizontalAxisInUse = true;
             }
 
@@ -81,6 +93,8 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX - 1f, jumpHeight, targetZ);
                 targetX -= 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-1f, 0f, 0f)), 1f);
+				shinyCubePosition = new Vector3 (targetX, 0, targetZ);
+				shinyCubePosition2 = new Vector3 (targetX - 1f, 0, targetZ);
                 //isHorizontalAxisInUse = true;
             }
         }
@@ -91,6 +105,8 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX, jumpHeight, targetZ + 1f);
                 targetZ += 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, 1f)), 1f);
+				shinyCubePosition = new Vector3 (targetX, 0, targetZ);
+				shinyCubePosition2 = new Vector3 (targetX, 0, targetZ + 1f);
                 //isVerticalAxisInUse = true;
             }
 
@@ -99,6 +115,8 @@ public class AutoMovement : MonoBehaviour
                 TargetPosition = new Vector3(targetX, jumpHeight, targetZ - 1f);
                 targetZ -= 1f;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0f, 0f, -1f)), 1f);
+				shinyCubePosition = new Vector3 (targetX, 0, targetZ);
+				shinyCubePosition2 = new Vector3 (targetX, 0, targetZ - 1f);
                 //isVerticalAxisInUse = true;
             }
         }
