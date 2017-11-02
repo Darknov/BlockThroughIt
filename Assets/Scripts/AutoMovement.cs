@@ -6,7 +6,7 @@ public class AutoMovement : MonoBehaviour
 {
     public float velocity;
     public float jumpTime;
-	public CountDown countDown;
+    public CountDown countDown;
     private float jumpHeight = 1f;
     private float targetX;
     private float targetZ;
@@ -21,14 +21,21 @@ public class AutoMovement : MonoBehaviour
 
     private MoveKey lastKey = MoveKey.None;
 
+    public bool inverseControl;
+    public float timeOfInverseControlIfExist;
+    private float inverseTimer = 0.0f;
+
     void Start()
     {
         TargetPosition = transform.position;
-		targetX = transform.position.x;
-		targetZ = transform.position.z;
+        targetX = transform.position.x;
+        targetZ = transform.position.z;
         timeCounter = jumpTime;
 
-		countDown = FindObjectOfType<CountDown> ();
+        countDown = FindObjectOfType<CountDown>();
+
+        if (timeOfInverseControlIfExist == 0.0f)
+            timeOfInverseControlIfExist = 5f;
     }
 
     void Update()
@@ -47,24 +54,49 @@ public class AutoMovement : MonoBehaviour
         horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
         vertivalAxis = Input.GetAxisRaw("VerticalJoy");
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1) lastKey = MoveKey.Right;
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1) lastKey = MoveKey.Left;
-        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1) lastKey = MoveKey.Up;
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1) lastKey = MoveKey.Down;
+        if (inverseControl)
+        {
+            inverseTimer += Time.deltaTime;
 
-		if (lastKey != MoveKey.None)
-			this.countDown.started = true;
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1)
+                lastKey = MoveKey.Right;
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1)
+                lastKey = MoveKey.Left;
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1)
+                lastKey = MoveKey.Up;
+            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1)
+                lastKey = MoveKey.Down;
+
+            if (inverseTimer > timeOfInverseControlIfExist)
+            {
+                inverseControl = false;
+                inverseTimer = 0.0f;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1) lastKey = MoveKey.Right;
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1) lastKey = MoveKey.Left;
+            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || vertivalAxis == 1) lastKey = MoveKey.Up;
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || vertivalAxis == -1) lastKey = MoveKey.Down;
+        }
+
+
+        if (lastKey != MoveKey.None)
+        {
+            this.countDown.started = true;
+        }
 
 
         if (timeCounter > 0)
         {
-            timeCounter -= Time.deltaTime ;
+            timeCounter -= Time.deltaTime;
             return;
         }
 
         if (onAir) return;
 
-        
+
 
         if (isHorizontalAxisInUse == false)
         {
