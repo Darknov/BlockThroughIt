@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameOver : MonoBehaviour {
 
+	public float restartDelay = 2f;
+
 	Animator anim;
+	float restartTimer;
 
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -13,10 +18,18 @@ public class GameOver : MonoBehaviour {
 	void Update () {
 		if (CountDown.timeRemaining <= 0) {
 			anim.SetTrigger ("GameOver1");
+			restartTimer += Time.deltaTime;
+			if (restartTimer >= restartDelay) {
+				SceneManager.LoadScene (0);
+			}
 		}
 
 		if (!GameObject.FindWithTag("Player")) {
 			anim.SetTrigger ("GameOver2");
+			restartTimer += Time.deltaTime;
+			if (restartTimer >= restartDelay) {
+				SceneManager.LoadScene (0);
+			}
 		}
 	}
 }
