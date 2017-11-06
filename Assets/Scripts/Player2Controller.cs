@@ -23,6 +23,9 @@ public class Player2Controller : MonoBehaviour
     private bool isAxisHorizontalInUse;
     private bool isAxisVerticalInUse;
 
+    public static bool isDestroyBlockAvailable;
+    public static bool isDestroyBlockActivated;
+
     void Start()
     {
 
@@ -36,6 +39,10 @@ public class Player2Controller : MonoBehaviour
 
         isAxisHorizontalInUse = false;
         isAxisVerticalInUse = false;
+
+        isDestroyBlockAvailable = true;
+        isDestroyBlockActivated = false;
+
     }
 
     void Update()
@@ -46,6 +53,12 @@ public class Player2Controller : MonoBehaviour
 
 
         bool canFire = activeBlock == null;
+
+//        if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+//        {
+//            isDestroyBlockAvailable = false;
+//            isDestroyBlockActivated = true;
+//        }
 
         if (canFire)
         {
@@ -165,14 +178,27 @@ public class Player2Controller : MonoBehaviour
 
     void ActivateBlock(AttackBlock block)
     {
-        this.activeBlock = block;
-        this.activeBlock.Activate();
+        if (isDestroyBlockActivated == false)
+        {
+            this.activeBlock = block;
+            this.activeBlock.Activate();
 
-        SetAttackBlockColor(Color.red, activeBlock);
-        block.PlatformHit += OnActiveBlockPlatformHit;
-        block.DestroyAttackBlock += RespawnEmptyBlocks;
+            SetAttackBlockColor(Color.red, activeBlock);
+            block.PlatformHit += OnActiveBlockPlatformHit;
+            block.DestroyAttackBlock += RespawnEmptyBlocks;
 
-        blockShadow.CreateShadow(this.activeBlock.gameObject);
+            blockShadow.CreateShadow(this.activeBlock.gameObject);
+        }
+        else
+        {
+            this.activeBlock = block;
+            this.activeBlock.Activate();
+            SetAttackBlockColor(Color.yellow, activeBlock);
+            block.PlatformHit += OnActiveBlockPlatformHit;
+            block.DestroyAttackBlock += RespawnEmptyBlocks;
+
+            //blockShadow.CreateShadow(this.activeBlock.gameObject);
+        }
     }
     public AttackBlock GetActiveBlock()
     {
