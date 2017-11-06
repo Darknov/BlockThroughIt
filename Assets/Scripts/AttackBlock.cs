@@ -113,11 +113,20 @@ public class AttackBlock : MonoBehaviour {
         currentTime = jumpTime;
     }
 
-	void OnTriggerEnter(Collider other) {
-		if (other.tag == "platform") {
-			Deactivate();
-			BecomePartOfPlatform ();
-		}
+	void OnTriggerEnter(Collider other) 
+    { 
+        if (other.tag == "platform")
+        {
+            if (Player2Controller.isDestroyBlockActivated)
+            {
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                Deactivate();
+                BecomePartOfPlatform();
+            }
+        }
 	}
 
 	void BecomePartOfPlatform() {
