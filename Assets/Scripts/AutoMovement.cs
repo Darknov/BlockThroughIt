@@ -84,7 +84,7 @@ public class AutoMovement : MonoBehaviour
             timeCounter -= Time.deltaTime ;
             return;
         }
-
+		//oo
         if (onAir) return;
 
 		if (lastKey == MoveKey.Right)
