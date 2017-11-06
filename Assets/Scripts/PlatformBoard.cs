@@ -40,7 +40,8 @@ public class PlatformBoard : MonoBehaviour {
             this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
             this.blocks[x, y].tag = "platform";
             checkIfThereAreMaxBlocksInRow(); 
-        } else
+        }
+        else
         {
             Debug.Log("x,y:" + x + "," + y + " is out of bounds. Check your code!");
         }
@@ -70,8 +71,6 @@ public class PlatformBoard : MonoBehaviour {
             }
             else
             {
-                Debug.Log("cos");
-
                 //Debug.Log("x,y:" + x + "," + y + " is out of bounds. You do not belong here. BEGONE!");
                 Destroy(item.gameObject);
             }

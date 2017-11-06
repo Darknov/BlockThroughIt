@@ -25,10 +25,10 @@ public class Player2Controller : MonoBehaviour
 
     public static bool isDestroyBlockAvailable;
     public static bool isDestroyBlockActivated;
+    public static bool isDestroyBlockUsed;
 
     void Start()
     {
-
         if (northSpawn == null || southSpawn == null || eastSpawn == null || null == westSpawn)
             throw new NullReferenceException("You must assign all spawn points to " + this.GetType().Name);
 
@@ -42,26 +42,23 @@ public class Player2Controller : MonoBehaviour
 
         isDestroyBlockAvailable = true;
         isDestroyBlockActivated = false;
-
     }
 
     void Update()
     {
-
         horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
         verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
 
-
         bool canFire = activeBlock == null;
-
-//        if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
-//        {
-//            isDestroyBlockAvailable = false;
-//            isDestroyBlockActivated = true;
-//        }
 
         if (canFire)
         {
+            if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+            {
+                isDestroyBlockAvailable = false;
+                isDestroyBlockActivated = true;
+            }
+
             if (Input.GetKeyDown("joystick 2 button 0") || Input.GetKeyDown("i"))
             {
                 ActivateBlock(northBlock);
@@ -165,9 +162,7 @@ public class Player2Controller : MonoBehaviour
                 activeBlock.TurnNinetyDegreesAndUpdateTriggers();
                 UpdateShadow();
             }
-
         }
-
     }
 
     bool IsVertical(AttackBlock attackBlock)
@@ -178,28 +173,20 @@ public class Player2Controller : MonoBehaviour
 
     void ActivateBlock(AttackBlock block)
     {
-        if (isDestroyBlockActivated == false)
-        {
-            this.activeBlock = block;
-            this.activeBlock.Activate();
+        this.activeBlock = block;
+        this.activeBlock.Activate();
+        Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
 
-            SetAttackBlockColor(Color.red, activeBlock);
-            block.PlatformHit += OnActiveBlockPlatformHit;
-            block.DestroyAttackBlock += RespawnEmptyBlocks;
+        block.PlatformHit += OnActiveBlockPlatformHit;
+        block.DestroyAttackBlock += RespawnEmptyBlocks;
 
+        if (Player2Controller.isDestroyBlockActivated == false)
             blockShadow.CreateShadow(this.activeBlock.gameObject);
-        }
-        else
-        {
-            this.activeBlock = block;
-            this.activeBlock.Activate();
-            SetAttackBlockColor(Color.yellow, activeBlock);
-            block.PlatformHit += OnActiveBlockPlatformHit;
-            block.DestroyAttackBlock += RespawnEmptyBlocks;
 
-            //blockShadow.CreateShadow(this.activeBlock.gameObject);
-        }
+        SetAttackBlockColor(color, activeBlock);
+       
     }
+
     public AttackBlock GetActiveBlock()
     {
         return this.activeBlock;
@@ -220,13 +207,24 @@ public class Player2Controller : MonoBehaviour
     {
         if (activeBlock == null) return;
 
-        if (activeBlock.MoveDirection.Equals(Vector3.back)) northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
-        else if (activeBlock.MoveDirection == Vector3.forward) southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
-        else if (activeBlock.MoveDirection == Vector3.left) eastBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
-        else if (activeBlock.MoveDirection == Vector3.right) westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength, activeBlock.MoveDirection);
+        if (activeBlock.MoveDirection.Equals(Vector3.back))
+            northBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength,
+                activeBlock.MoveDirection);
+        else if (activeBlock.MoveDirection == Vector3.forward)
+            southBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength,
+                activeBlock.MoveDirection);
+        else if (activeBlock.MoveDirection == Vector3.left)
+            eastBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength,
+                activeBlock.MoveDirection);
+        else if (activeBlock.MoveDirection == Vector3.right)
+            westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength,
+                activeBlock.MoveDirection);
 
         this.activeBlock.transform.parent = null;
         this.activeBlock = null;
+
+        if (Player2Controller.isDestroyBlockAvailable == false && Player2Controller.isDestroyBlockActivated)
+            Player2Controller.isDestroyBlockActivated = false;
     }
 
     void SetAttackBlockColor(Color color, AttackBlock activeBlock)
