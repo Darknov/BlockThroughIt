@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
-    public float blocksSpeed;
+	public static bool p2GamePad = true;
+
+	public float blocksSpeed;
     public float boostSpeed;
     private float jumpLength = 1;
 
