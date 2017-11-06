@@ -21,6 +21,9 @@ public class GameOver : MonoBehaviour {
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
 				SceneManager.LoadScene (0);
+				if (CountDown.timeRemaining != 60) {
+					CountDown.timeRemaining = 60;
+				}
 			}
 		}
 
@@ -29,6 +32,9 @@ public class GameOver : MonoBehaviour {
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
 				SceneManager.LoadScene (0);
+				if (CountDown.timeRemaining != 60) {
+					CountDown.timeRemaining = 60;
+				}
 			}
 		}
 	}
