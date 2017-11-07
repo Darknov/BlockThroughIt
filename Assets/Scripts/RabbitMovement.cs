@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RabbitMovement : MonoBehaviour {
 
+    public GameAccelerator gameAccelerator;
     public Vector3 goalPosition;
     public Animator animator;
     public float animationSpeedMultiplier = 1;
@@ -14,20 +15,45 @@ public class RabbitMovement : MonoBehaviour {
     private float jumpTime;
     private float timeCounter;
     private bool onAir = false; 
-    private bool idle;
-    private bool canMove = true;
+    private bool outOfPlatform = false;
 
-    void Start() {
-        idle = true;
-        jumpTime = 1.0f/moveSpeed;
-
-        animator.SetFloat("jumpAnimationSpeed", animationSpeedMultiplier * moveSpeed);
-    }
+    public List<RaycastHit> hits;
 
     void Update()
     {
+        LoadSpeedFromGameAcc();
         CheckControls();
         UpdateMovement();
+    }
+
+    void FixedUpdate()
+    {
+        // move those vars up!
+
+        Vector3 dir = transform.TransformDirection(Vector3.down);
+
+        Vector3 pos = Vector3.down * 0.2f;
+        pos += gameObject.transform.position;
+
+        Debug.DrawRay(pos, dir);
+
+        Vector3 boxCenter = Vector3.zero + Vector3.down*0.2f;
+        Vector3 boxSize = Vector3.one*0.1f;
+
+        hits = new List<RaycastHit>(Physics.BoxCastAll(this.transform.position + boxCenter, boxSize,dir));
+
+        bool atLeastOneOut = false;
+
+        foreach (var item in hits)
+        {
+            if(item.collider.gameObject.CompareTag("platform"))
+            {
+                atLeastOneOut = true;
+            }
+        }
+
+        outOfPlatform = !atLeastOneOut;
+
     }
 
     void CheckControls()
@@ -35,41 +61,76 @@ public class RabbitMovement : MonoBehaviour {
         float horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
         float verticalAxis = Input.GetAxisRaw("VerticalJoy");
 
-        movingUp = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || verticalAxis == 1;
-        movingDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || verticalAxis == -1;
-        movingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1;
-        movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1;
+        if(Input.anyKeyDown)
+        {
+            movingUp = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || verticalAxis == 1;
+            movingDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || verticalAxis == -1;
+            movingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1;
+            movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1;
+        }
+
+
     }
 
     void UpdateMovement()
     {
 
-        if(timeCounter > jumpTime) canMove = true;
-        else canMove = false;
+        if(onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
+
+        if(outOfPlatform) return;
+
+        if(timeCounter > 1.3f*jumpTime)
+        {
+            MoveAndResetTimer();        
+        } 
+
+
         timeCounter += Time.deltaTime;
 
-        if(canMove)
-        {
-            if (movingUp) MoveUp();
-            else if (movingLeft) MoveLeft();
-            else if (movingDown) MoveDown();
-            else if (movingRight) MoveRight();
+    }
 
-            idle = !(movingDown || movingLeft || movingRight || movingUp);
-            onAir = !idle;
+    void MoveAndResetTimer() {
+            if (movingUp) 
+            {
+                MoveUp();
+                timeCounter = 0;
+                onAir = true;
+            }
+            else if (movingLeft) 
+            {
+                MoveLeft();
+                timeCounter = 0;
+                onAir = true;
+            }
+            else if (movingDown) 
+            {
+                MoveDown();
+                timeCounter = 0;
+                onAir = true;
 
-            if (onAir) timeCounter = 0;
-        } else {
-        }
-    
-        if(onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed + 0.05f);
+            }
+            else if (movingRight) 
+            {
+                MoveRight();
+                timeCounter = 0;
+                onAir = true;
 
+            }
+
+            
     }
 
     void Move(Vector3 Direction)
     {
         goalPosition = gameObject.transform.position + Direction;
         animator.Play("rabbit_move");
+    }
+
+    private void LoadSpeedFromGameAcc()
+    {
+        moveSpeed = gameAccelerator.player1Speed;
+        jumpTime = 1.0f/moveSpeed;
+        animator.SetFloat("jumpAnimationSpeed", animationSpeedMultiplier * moveSpeed);
     }
 
 #region MoveMethods

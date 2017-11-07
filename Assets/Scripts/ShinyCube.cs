@@ -17,7 +17,7 @@ public class ShinyCube : MonoBehaviour {
 	void Update ()
 	{
 		//MakeItShiny ();
-		MakeItShiny2 ();
+		// MakeItShiny2 ();
 	}
 
 	void MakeItShiny()

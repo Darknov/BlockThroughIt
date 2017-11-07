@@ -13,7 +13,7 @@ public class Player2Controller : MonoBehaviour
     public float boostSpeed;
     public float timeOfInverseControlOfPlayer2 = 3.0f;
     private float jumpLength = 1;
-
+	public GameAccelerator gameAccelerator;
     public RandomAttackBlockGenerator randomBlockGenerator;
     private AttackBlock activeBlock;
     public Transform northSpawn, southSpawn, eastSpawn, westSpawn;
@@ -50,6 +50,8 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
+		blocksSpeed = gameAccelerator.player2Speed;
+
 		if (p2GamePad) {
 			
 			horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");

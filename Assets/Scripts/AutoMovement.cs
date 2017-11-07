@@ -204,7 +204,6 @@ public class AutoMovement : MonoBehaviour
         if (col.gameObject.tag == "platform")
         {
             onAir = true;
-            Debug.Log("JUMP!");
             animator.SetBool("onGround", false);
         }
     }

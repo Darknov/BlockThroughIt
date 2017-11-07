@@ -261,7 +261,6 @@ GameObject:
   - component: {fileID: 4139261463348404}
   - component: {fileID: 23126142954362568}
   - component: {fileID: 54842595513470270}
-  - component: {fileID: 114651362930970730}
   - component: {fileID: 114415410441594614}
   - component: {fileID: 135113085433229908}
   m_Layer: 0
@@ -819,26 +818,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faee4adf9b8a2e044a67cf79f3ee598f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameAccelerator: {fileID: 0}
   goalPosition: {x: 0, y: 0, z: 0}
   animator: {fileID: 95793791394526472}
   animationSpeedMultiplier: 1
   moveSpeed: 3
---- !u!114 &114651362930970730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1477952418447080}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22d603181e0883f4ab83cfaa8387d3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flyingDuration: 5
-  velocity: 5
-  jumpTime: 0.45
-  countDown: {fileID: 0}
-  animator: {fileID: 95793791394526472}
 --- !u!135 &135113085433229908
 SphereCollider:
   m_ObjectHideFlags: 1

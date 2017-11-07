@@ -51,18 +51,13 @@ public class PlatformCreator : MonoBehaviour
 
                     if (!isPlayer1Initialized)
                     {
-                        Instantiate(player1, new Vector3(vector.x + i, vector.y + 1f, vector.z + j), Quaternion.identity);
+                        player1.transform.position = new Vector3(vector.x + i, vector.y + 1f, vector.z + j);
                         isPlayer1Initialized = true;
                     }
                 }
             }
         }
 
-
-    }
-
-    void Update()
-    {
 
     }
 
