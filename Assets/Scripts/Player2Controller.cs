@@ -27,7 +27,7 @@ public class Player2Controller : MonoBehaviour
 
     public static bool isDestroyBlockAvailable;
     public static bool isDestroyBlockActivated;
-    public static bool isDestroyBlockUsed;
+    public static bool canDestroyBlockMove;
 
     void Start()
     {
@@ -44,6 +44,7 @@ public class Player2Controller : MonoBehaviour
 
         isDestroyBlockAvailable = true;
         isDestroyBlockActivated = false;
+        canDestroyBlockMove = true;
     }
 
     void Update()
@@ -57,7 +58,7 @@ public class Player2Controller : MonoBehaviour
 
 			if (canFire)
 			{
-				if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+				if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
 				{
 					isDestroyBlockAvailable = false;
 					isDestroyBlockActivated = true;
@@ -182,7 +183,7 @@ public class Player2Controller : MonoBehaviour
 				}
 
 				if (Input.GetKeyDown("joystick 2 button 0") || Input.GetKeyDown("i"))
-				{
+				{            
 					ActivateBlock(northBlock);
 					northBlock = null;
 				}
@@ -222,15 +223,21 @@ public class Player2Controller : MonoBehaviour
 					{
 						if (Input.GetKeyDown(KeyCode.J))
 						{
-							activeBlock.GoToYourLeft();
-							isAxisHorizontalInUse = true;
-							UpdateShadow();
+						    if (isDestroyBlockActivated == false || canDestroyBlockMove)
+						    {
+						        activeBlock.GoToYourLeft();
+						        isAxisHorizontalInUse = true;
+						        UpdateShadow();
+                            }
 						}
 						else if (Input.GetKeyDown(KeyCode.L))
 						{
-							activeBlock.GoToYourRight();
-							isAxisHorizontalInUse = true;
-							UpdateShadow();
+						    if (isDestroyBlockActivated == false || canDestroyBlockMove)
+						    {
+						        activeBlock.GoToYourRight();
+						        isAxisHorizontalInUse = true;
+						        UpdateShadow();
+						    }
 						}
 					}
 				}
@@ -242,14 +249,20 @@ public class Player2Controller : MonoBehaviour
 						{
 							if (activeBlock == westBlock)
 							{
-								activeBlock.GoToYourRight();
-								UpdateShadow();
+							    if (isDestroyBlockActivated == false || canDestroyBlockMove)
+							    {
+							        activeBlock.GoToYourRight();
+							        UpdateShadow();
+							    }
 							}
 
 							else
 							{
-								activeBlock.GoToYourLeft();
-								UpdateShadow();
+							    if (isDestroyBlockActivated == false || canDestroyBlockMove)
+							    {
+							        activeBlock.GoToYourLeft();
+							        UpdateShadow();
+							    }
 							}
 
 							isAxisVerticalInUse = true;
@@ -258,14 +271,20 @@ public class Player2Controller : MonoBehaviour
 						{
 							if (activeBlock == westBlock)
 							{
-								activeBlock.GoToYourLeft();
-								UpdateShadow();
+							    if (isDestroyBlockActivated == false || canDestroyBlockMove)
+							    {
+							        activeBlock.GoToYourLeft();
+							        UpdateShadow();
+							    }
 							}
 
 							else
 							{
-								activeBlock.GoToYourRight();
-								UpdateShadow();
+							    if (isDestroyBlockActivated == false || canDestroyBlockMove)
+							    {
+							        activeBlock.GoToYourRight();
+							        UpdateShadow();
+							    }
 							}
 
 							isAxisVerticalInUse = true;

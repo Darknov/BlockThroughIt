@@ -119,6 +119,7 @@ public class AttackBlock : MonoBehaviour {
         {
             if (Player2Controller.isDestroyBlockActivated)
             {
+                Player2Controller.canDestroyBlockMove = false;
                 Destroy(other.gameObject);
             }
             else
