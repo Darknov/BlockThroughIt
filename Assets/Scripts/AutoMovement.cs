@@ -94,7 +94,7 @@ public class AutoMovement : MonoBehaviour
 			GetComponent<Rigidbody> ().useGravity = false;
 			flyingTime = (Time.time - trueTime);
 			if (flyingTime >= flyingDuration) {
-				herbasFlaying = false;
+				herbasFlying = false;
 				flyingTime = 0f;
 			}
 		}
