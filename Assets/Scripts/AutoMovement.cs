@@ -18,6 +18,9 @@ public class AutoMovement : MonoBehaviour
     public float velocity;
     public float jumpTime;
 	public CountDown countDown;
+
+    public Animator animator;
+
     private float jumpHeight = 1f;
     private float targetX;
     private float targetZ;
@@ -26,7 +29,7 @@ public class AutoMovement : MonoBehaviour
     private bool onAir = true;
     private float timeCounter;
     private float horizontalAxis;
-    private float vertivalAxis;
+    private float verticalAxis;
     private bool isHorizontalAxisInUse = false;
     private bool isVerticalAxisInUse = false;
 
@@ -52,6 +55,8 @@ public class AutoMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        if (TargetPosition.x != transform.position.x || TargetPosition.z != transform.position.z)
         transform.position = Vector3.MoveTowards(transform.position, TargetPosition, velocity * Time.deltaTime);
     }
 
@@ -59,16 +64,16 @@ public class AutoMovement : MonoBehaviour
     {
 		if (!p1KeyBoard) {
 			horizontalAxis = Input.GetAxisRaw ("HorizontalJoy");
-			vertivalAxis = Input.GetAxisRaw ("VerticalJoy");
+			verticalAxis = Input.GetAxisRaw ("VerticalJoy");
 		    if (!inverseControl)
 		    {
 		        if (horizontalAxis == 1)
 		            lastKey = MoveKey.Right;
 		        else if (horizontalAxis == -1)
 		            lastKey = MoveKey.Left;
-		        else if (vertivalAxis == 1)
+		        else if (verticalAxis == 1)
 		            lastKey = MoveKey.Up;
-		        else if (vertivalAxis == -1)
+		        else if (verticalAxis == -1)
 		            lastKey = MoveKey.Down;
 		    }
 		    else
@@ -77,9 +82,9 @@ public class AutoMovement : MonoBehaviour
 		            lastKey = MoveKey.Right;
 		        else if (horizontalAxis == 1)
 		            lastKey = MoveKey.Left;
-		        else if (vertivalAxis == -1)
+		        else if (verticalAxis == -1)
 		            lastKey = MoveKey.Up;
-		        else if (vertivalAxis == 1)
+		        else if (verticalAxis == 1)
 		            lastKey = MoveKey.Down;
             }
 		}
@@ -110,6 +115,7 @@ public class AutoMovement : MonoBehaviour
 			
 		}
 		
+
 
 		if (lastKey != MoveKey.None)
 			this.countDown.started = true;
@@ -176,7 +182,7 @@ public class AutoMovement : MonoBehaviour
         if (horizontalAxis == 0)
             isHorizontalAxisInUse = false;
 
-        if (vertivalAxis == 0)
+        if (verticalAxis == 0)
             isVerticalAxisInUse = false;
 
         timeCounter = jumpTime;
@@ -188,7 +194,9 @@ public class AutoMovement : MonoBehaviour
         {
             TargetPosition.y = 0.5f;
             onAir = false;
+            animator.StopPlayback();
         }
+        animator.SetBool("onGround", true);
     }
 
     void OnTriggerExit(Collider col)
@@ -196,6 +204,8 @@ public class AutoMovement : MonoBehaviour
         if (col.gameObject.tag == "platform")
         {
             onAir = true;
+            Debug.Log("JUMP!");
+            animator.SetBool("onGround", false);
         }
     }
 
