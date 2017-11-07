@@ -7,6 +7,8 @@ public class AutoMovement : MonoBehaviour
 	public static Vector3 shinyCubePosition;
 	public static Vector3 shinyCubePosition2;
 	public static bool p1KeyBoard = true;
+    public static bool inverseControl = false;
+    public static bool inverseControlUsed = false;
 
 	public static bool herbasFlying = false;
 	public float flyingDuration = 5f;
@@ -58,25 +60,54 @@ public class AutoMovement : MonoBehaviour
 		if (!p1KeyBoard) {
 			horizontalAxis = Input.GetAxisRaw ("HorizontalJoy");
 			vertivalAxis = Input.GetAxisRaw ("VerticalJoy");
-			if (horizontalAxis == 1)
-				lastKey = MoveKey.Right;
-			else if (horizontalAxis == -1)
-				lastKey = MoveKey.Left;
-			else if (vertivalAxis == 1)
-				lastKey = MoveKey.Up;
-			else if (vertivalAxis == -1)
-				lastKey = MoveKey.Down;
+		    if (!inverseControl)
+		    {
+		        if (horizontalAxis == 1)
+		            lastKey = MoveKey.Right;
+		        else if (horizontalAxis == -1)
+		            lastKey = MoveKey.Left;
+		        else if (vertivalAxis == 1)
+		            lastKey = MoveKey.Up;
+		        else if (vertivalAxis == -1)
+		            lastKey = MoveKey.Down;
+		    }
+		    else
+		    {
+		        if (horizontalAxis == -1)
+		            lastKey = MoveKey.Right;
+		        else if (horizontalAxis == 1)
+		            lastKey = MoveKey.Left;
+		        else if (vertivalAxis == -1)
+		            lastKey = MoveKey.Up;
+		        else if (vertivalAxis == 1)
+		            lastKey = MoveKey.Down;
+            }
 		}
 
 		if (p1KeyBoard) {
-			if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D))
-				lastKey = MoveKey.Right;
-			else if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A))
-				lastKey = MoveKey.Left;
-			else if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W))
-				lastKey = MoveKey.Up;
-			else if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S))
-				lastKey = MoveKey.Down;
+		    if (!inverseControl)
+		    {
+		        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+		            lastKey = MoveKey.Right;
+		        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+		            lastKey = MoveKey.Left;
+		        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+		            lastKey = MoveKey.Up;
+		        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+		            lastKey = MoveKey.Down;
+            }
+		    else
+		    {
+		        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+		            lastKey = MoveKey.Right;
+		        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+		            lastKey = MoveKey.Left;
+		        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+		            lastKey = MoveKey.Up;
+		        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+		            lastKey = MoveKey.Down;
+            }
+			
 		}
 		
 

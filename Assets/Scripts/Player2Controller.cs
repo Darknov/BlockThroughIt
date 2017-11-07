@@ -11,6 +11,7 @@ public class Player2Controller : MonoBehaviour
 
 	public float blocksSpeed;
     public float boostSpeed;
+    public float timeOfInverseControlOfPlayer2 = 3.0f;
     private float jumpLength = 1;
 
     public RandomAttackBlockGenerator randomBlockGenerator;
@@ -64,7 +65,25 @@ public class Player2Controller : MonoBehaviour
 					isDestroyBlockActivated = true;
 				}
 
-				if (Input.GetKeyDown("joystick 2 button 0"))
+			    if (Input.GetKeyDown("joystick 2 button 6") && !AutoMovement.inverseControlUsed)
+			    {
+			        AutoMovement.inverseControl = true;
+			    }
+
+			    if (AutoMovement.inverseControl)
+			    {
+			        timeOfInverseControlOfPlayer2 -= Time.deltaTime;
+                    Debug.Log(timeOfInverseControlOfPlayer2);
+			        if (timeOfInverseControlOfPlayer2 < 0)
+			        {
+			            AutoMovement.inverseControlUsed = true;
+			            AutoMovement.inverseControl = false;
+			        }
+			            
+			    }
+			        
+
+			    if (Input.GetKeyDown("joystick 2 button 0"))
 				{
 					ActivateBlock(northBlock);
 					northBlock = null;
@@ -181,6 +200,22 @@ public class Player2Controller : MonoBehaviour
 					isDestroyBlockAvailable = false;
 					isDestroyBlockActivated = true;
 				}
+
+			    if (Input.GetKeyDown(KeyCode.Alpha9) && !AutoMovement.inverseControlUsed)
+			    {
+			        AutoMovement.inverseControl = true;
+			    }
+
+			    if (AutoMovement.inverseControl)
+			    {
+			        timeOfInverseControlOfPlayer2 -= Time.deltaTime;
+			        Debug.Log(timeOfInverseControlOfPlayer2);
+			        if (timeOfInverseControlOfPlayer2 < 0)
+			        {
+			            AutoMovement.inverseControlUsed = true;
+			            AutoMovement.inverseControl = false;
+			        }
+			    }
 
 				if (Input.GetKeyDown("joystick 2 button 0") || Input.GetKeyDown("i"))
 				{            
