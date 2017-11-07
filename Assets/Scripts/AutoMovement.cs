@@ -8,6 +8,11 @@ public class AutoMovement : MonoBehaviour
 	public static Vector3 shinyCubePosition2;
 	public static bool p1KeyBoard = true;
 
+	public static bool herbasFlaying = false;
+	public float flyingDuration = 5f;
+	private float flyingTime = 0f;
+	public static float trueTime;
+
     public float velocity;
     public float jumpTime;
 	public CountDown countDown;
@@ -85,7 +90,21 @@ public class AutoMovement : MonoBehaviour
             return;
         }
 
-        if (onAir) return;
+		if (herbasFlaying) {
+			GetComponent<Rigidbody> ().useGravity = false;
+			flyingTime = (Time.time - trueTime);
+			if (flyingTime >= flyingDuration) {
+				herbasFlaying = false;
+				flyingTime = 0f;
+			}
+		}
+
+		if (!herbasFlaying) {
+			GetComponent<Rigidbody> ().useGravity = true;
+			if (onAir) {
+				return;
+			}
+		}
 
 		if (lastKey == MoveKey.Right)
 		{
