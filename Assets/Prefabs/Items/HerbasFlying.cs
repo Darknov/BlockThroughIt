@@ -9,7 +9,7 @@ public class HerbasFlying : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		
 		if (col.gameObject.tag == "Player") {
-			AutoMovement.herbasFlaying = true;
+			AutoMovement.herbasFlying = true;
 			AutoMovement.trueTime = Time.time;
 			Destroy (herbas);
 		}
