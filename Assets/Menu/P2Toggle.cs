@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class P2Toggle : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public void ToggleChange(bool newValue) {
+		Player2Controller.p2GamePad = newValue;
 	}
 }

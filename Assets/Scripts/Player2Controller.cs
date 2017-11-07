@@ -48,123 +48,244 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
-        horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
-        verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
+		if (p2GamePad) {
+			
+			horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
+			verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
 
-        bool canFire = activeBlock == null;
+			bool canFire = activeBlock == null;
 
-        if (canFire)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
-            {
-                isDestroyBlockAvailable = false;
-                isDestroyBlockActivated = true;
-            }
+			if (canFire)
+			{
+				if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+				{
+					isDestroyBlockAvailable = false;
+					isDestroyBlockActivated = true;
+				}
 
-            if (Input.GetKeyDown("joystick 2 button 0") || Input.GetKeyDown("i"))
-            {
-                ActivateBlock(northBlock);
-                northBlock = null;
-            }
-            else if (Input.GetKeyDown("joystick 2 button 2") || Input.GetKeyDown("k"))
-            {
-                ActivateBlock(southBlock);
-                southBlock = null;
-            }
-            else if (Input.GetKeyDown("joystick 2 button 3") || Input.GetKeyDown("j"))
-            {
-                ActivateBlock(westBlock);
-                westBlock = null;
-            }
-            else if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown("l"))
-            {
-                ActivateBlock(eastBlock);
-                eastBlock = null;
-            }
-        }
+				if (Input.GetKeyDown("joystick 2 button 0"))
+				{
+					ActivateBlock(northBlock);
+					northBlock = null;
+				}
+				else if (Input.GetKeyDown("joystick 2 button 2"))
+				{
+					ActivateBlock(southBlock);
+					southBlock = null;
+				}
+				else if (Input.GetKeyDown("joystick 2 button 3"))
+				{
+					ActivateBlock(westBlock);
+					westBlock = null;
+				}
+				else if (Input.GetKeyDown("joystick 2 button 1"))
+				{
+					ActivateBlock(eastBlock);
+					eastBlock = null;
+				}
+			}
 
-        bool canTurn = !canFire;
+			bool canTurn = !canFire;
 
-        if (canTurn)
-        {
-            if (Input.GetKey("joystick 2 button 4") || Input.GetKeyDown(KeyCode.Q))
-            {
-                activeBlock.ChangeSpeed(boostSpeed);
-            }
-            else
-            {
-                activeBlock.MoveSpeed = blocksSpeed;
-            }
+			if (canTurn)
+			{
+				if (Input.GetKey("joystick 2 button 4"))
+				{
+					activeBlock.ChangeSpeed(boostSpeed);
+				}
+				else
+				{
+					activeBlock.MoveSpeed = blocksSpeed;
+				}
 
-            if (IsVertical(activeBlock))
-            {
-                if (isAxisHorizontalInUse == false)
-                {
-                    if (horizontalAxisPlayer2 == -1 || Input.GetKeyDown(KeyCode.J))
-                    {
-                        activeBlock.GoToYourLeft();
-                        isAxisHorizontalInUse = true;
-                        UpdateShadow();
-                    }
-                    else if (horizontalAxisPlayer2 == 1 || Input.GetKeyDown(KeyCode.L))
-                    {
-                        activeBlock.GoToYourRight();
-                        isAxisHorizontalInUse = true;
-                        UpdateShadow();
-                    }
-                }
-            }
-            else
-            {
-                if (isAxisVerticalInUse == false)
-                {
-                    if (verticalAxisPlayer2 == -1 || Input.GetKeyDown(KeyCode.I))
-                    {
-                        if (activeBlock == westBlock)
-                        {
-                            activeBlock.GoToYourRight();
-                            UpdateShadow();
-                        }
+				if (IsVertical(activeBlock))
+				{
+					if (isAxisHorizontalInUse == false)
+					{
+						if (horizontalAxisPlayer2 == -1)
+						{
+							activeBlock.GoToYourLeft();
+							isAxisHorizontalInUse = true;
+							UpdateShadow();
+						}
+						else if (horizontalAxisPlayer2 == 1)
+						{
+							activeBlock.GoToYourRight();
+							isAxisHorizontalInUse = true;
+							UpdateShadow();
+						}
+					}
+				}
+				else
+				{
+					if (isAxisVerticalInUse == false)
+					{
+						if (verticalAxisPlayer2 == -1)
+						{
+							if (activeBlock == westBlock)
+							{
+								activeBlock.GoToYourRight();
+								UpdateShadow();
+							}
 
-                        else
-                        {
-                            activeBlock.GoToYourLeft();
-                            UpdateShadow();
-                        }
+							else
+							{
+								activeBlock.GoToYourLeft();
+								UpdateShadow();
+							}
 
-                        isAxisVerticalInUse = true;
-                    }
-                    else if (verticalAxisPlayer2 == 1 || Input.GetKeyDown(KeyCode.K))
-                    {
-                        if (activeBlock == westBlock)
-                        {
-                            activeBlock.GoToYourLeft();
-                            UpdateShadow();
-                        }
+							isAxisVerticalInUse = true;
+						}
+						else if (verticalAxisPlayer2 == 1)
+						{
+							if (activeBlock == westBlock)
+							{
+								activeBlock.GoToYourLeft();
+								UpdateShadow();
+							}
 
-                        else
-                        {
-                            activeBlock.GoToYourRight();
-                            UpdateShadow();
-                        }
+							else
+							{
+								activeBlock.GoToYourRight();
+								UpdateShadow();
+							}
 
-                        isAxisVerticalInUse = true;
-                    }
-                }
-            }
+							isAxisVerticalInUse = true;
+						}
+					}
+				}
 
-            if (horizontalAxisPlayer2 == 0)
-                isAxisHorizontalInUse = false;
+				if (horizontalAxisPlayer2 == 0)
+					isAxisHorizontalInUse = false;
 
-            if (verticalAxisPlayer2 == 0)
-                isAxisVerticalInUse = false;
+				if (verticalAxisPlayer2 == 0)
+					isAxisVerticalInUse = false;
 
-            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick2Button5))
-            {
-                activeBlock.TurnNinetyDegreesAndUpdateTriggers();
-                UpdateShadow();
-            }
-        }
+				if (Input.GetKeyDown(KeyCode.Joystick2Button5))
+				{
+					activeBlock.TurnNinetyDegreesAndUpdateTriggers();
+					UpdateShadow();
+				}
+			}
+		}
+
+		if (!p2GamePad) {
+			
+			bool canFire = activeBlock == null;
+
+			if (canFire)
+			{
+				if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+				{
+					isDestroyBlockAvailable = false;
+					isDestroyBlockActivated = true;
+				}
+
+				if (Input.GetKeyDown("joystick 2 button 0") || Input.GetKeyDown("i"))
+				{
+					ActivateBlock(northBlock);
+					northBlock = null;
+				}
+				else if (Input.GetKeyDown("joystick 2 button 2") || Input.GetKeyDown("k"))
+				{
+					ActivateBlock(southBlock);
+					southBlock = null;
+				}
+				else if (Input.GetKeyDown("joystick 2 button 3") || Input.GetKeyDown("j"))
+				{
+					ActivateBlock(westBlock);
+					westBlock = null;
+				}
+				else if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown("l"))
+				{
+					ActivateBlock(eastBlock);
+					eastBlock = null;
+				}
+			}
+
+			bool canTurn = !canFire;
+
+			if (canTurn)
+			{
+				if (Input.GetKeyDown(KeyCode.Q))
+				{
+					activeBlock.ChangeSpeed(boostSpeed);
+				}
+				else
+				{
+					activeBlock.MoveSpeed = blocksSpeed;
+				}
+
+				if (IsVertical(activeBlock))
+				{
+					if (isAxisHorizontalInUse == false)
+					{
+						if (Input.GetKeyDown(KeyCode.J))
+						{
+							activeBlock.GoToYourLeft();
+							isAxisHorizontalInUse = true;
+							UpdateShadow();
+						}
+						else if (Input.GetKeyDown(KeyCode.L))
+						{
+							activeBlock.GoToYourRight();
+							isAxisHorizontalInUse = true;
+							UpdateShadow();
+						}
+					}
+				}
+				else
+				{
+					if (isAxisVerticalInUse == false)
+					{
+						if (Input.GetKeyDown(KeyCode.I))
+						{
+							if (activeBlock == westBlock)
+							{
+								activeBlock.GoToYourRight();
+								UpdateShadow();
+							}
+
+							else
+							{
+								activeBlock.GoToYourLeft();
+								UpdateShadow();
+							}
+
+							isAxisVerticalInUse = true;
+						}
+						else if (Input.GetKeyDown(KeyCode.K))
+						{
+							if (activeBlock == westBlock)
+							{
+								activeBlock.GoToYourLeft();
+								UpdateShadow();
+							}
+
+							else
+							{
+								activeBlock.GoToYourRight();
+								UpdateShadow();
+							}
+
+							isAxisVerticalInUse = true;
+						}
+					}
+				}
+
+				if (horizontalAxisPlayer2 == 0)
+					isAxisHorizontalInUse = false;
+
+				if (verticalAxisPlayer2 == 0)
+					isAxisVerticalInUse = false;
+
+				if (Input.GetKeyDown(KeyCode.LeftControl))
+				{
+					activeBlock.TurnNinetyDegreesAndUpdateTriggers();
+					UpdateShadow();
+				}
+			}
+		}
     }
 
     bool IsVertical(AttackBlock attackBlock)
