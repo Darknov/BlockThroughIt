@@ -11,6 +11,7 @@ public class AutoMovement : MonoBehaviour
 	public static bool herbasFlaying = false;
 	public float flyingDuration = 5f;
 	private float flyingTime = 0f;
+	public static float trueTime;
 
     public float velocity;
     public float jumpTime;
@@ -91,15 +92,15 @@ public class AutoMovement : MonoBehaviour
 
 		if (herbasFlaying) {
 			GetComponent<Rigidbody> ().useGravity = false;
-			flyingTime += Time.deltaTime;
+			flyingTime = (Time.time - trueTime);
 			if (flyingTime >= flyingDuration) {
-				GetComponent<Rigidbody> ().useGravity = true;
-				flyingTime = 0f;
 				herbasFlaying = false;
+				flyingTime = 0f;
 			}
 		}
 
 		if (!herbasFlaying) {
+			GetComponent<Rigidbody> ().useGravity = true;
 			if (onAir) {
 				return;
 			}
