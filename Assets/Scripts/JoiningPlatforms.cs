@@ -13,4 +13,9 @@ public class JoiningPlatforms : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void checkIfPlatformsApart()
+    {
+
+    }
 }
