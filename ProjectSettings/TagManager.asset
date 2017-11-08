@@ -8,6 +8,7 @@ TagManager:
   - block
   - trigger
   - active
+  - platformBoard
   layers:
   - Default
   - TransparentFX

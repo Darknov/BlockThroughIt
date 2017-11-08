@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 428745804}
   m_Layer: 0
   m_Name: PlatformBoard
-  m_TagString: Untagged
+  m_TagString: platformBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -730,6 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e944c49cb358c214399ba513a9320064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frequency: 0.2
 --- !u!1 &542883827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1376,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1477952418447080, guid: f1ab0a3b866db9247a420d49018352e9,
     type: 2}
   m_PrefabInternal: {fileID: 1738507585}
+--- !u!114 &1073509238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073509232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5346f06315d1a4587d845047403634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1238792396
 Prefab:
   m_ObjectHideFlags: 0

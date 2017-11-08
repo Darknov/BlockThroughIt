@@ -37,7 +37,7 @@ public class PlatformBoard : MonoBehaviour {
     public void addBlock(int x, int y)
     {
         Vector3 vector = new Vector3(this.transform.position.x + x + widthOfAGap * x, this.transform.position.y, this.transform.position.z + y + widthOfAGap * y);
-        if (x >= this.transform.position.x && x < rowLength && y >= this.transform.position.x && x < rowLength)
+        if (x >= 0 && x < rowLength && y >= 0 && y < rowLength && this.blocks[x, y] == null)
         {
             this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
             this.blocks[x, y].tag = "platform";
