@@ -42,7 +42,6 @@ public class PlatformBoard : MonoBehaviour {
             this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
             this.blocks[x, y].tag = "platform";
             checkIfThereAreMaxBlocksInRow();
-            this.GetComponent<JoiningPlatforms>().checkIfPlatformsApart();
         }
         else
         {
@@ -71,7 +70,6 @@ public class PlatformBoard : MonoBehaviour {
                 }
                 
                 checkIfThereAreMaxBlocksInRow();
-                this.GetComponent<JoiningPlatforms>().checkIfPlatformsApart();
             }
             else
             {
