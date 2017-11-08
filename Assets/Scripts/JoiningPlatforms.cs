@@ -10,6 +10,7 @@ public class JoiningPlatforms : MonoBehaviour
     private int rowLength;
     private GameObject[,] blocks;
     PlatformBoard platform;
+    public float frequency = 2.0f;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class JoiningPlatforms : MonoBehaviour
         this.blocks = this.GetComponent<PlatformBoard>().blocks;
         this.platform = this.GetComponent<PlatformBoard>();
 
-        InvokeRepeating("checkIfPlatformsApart", 0, 2.0f);
+        InvokeRepeating("checkIfPlatformsApart", 0, frequency);
     }
 
     // Update is called once per frame
