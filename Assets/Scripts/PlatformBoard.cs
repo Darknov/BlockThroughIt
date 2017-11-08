@@ -10,6 +10,8 @@ public class PlatformBoard : MonoBehaviour {
     public float widthOfAGap = 0.0f;
     public GameObject[,] blocks;
     public float delayOnDeletingBlock = 3f;
+    public bool differentDeleteBlocks = false;
+    public int minimalAmountOfDeletedBlocks = 7;
 
     private float transposeBy;
 
@@ -81,20 +83,31 @@ public class PlatformBoard : MonoBehaviour {
 
     public void checkIfThereAreMaxBlocksInRow()
     {
-       
-        for(int i = 0; i < rowLength; i++)
+        if(differentDeleteBlocks)
+        {
+            newBlockDelete();
+        }
+        else
+        {
+            classicBlockDelete();
+        }
+    }
+
+    public void classicBlockDelete()
+    {
+        for (int i = 0; i < rowLength; i++)
         {
             bool isBlock = true;
-            for(int j = 0; j < rowLength; j++)
+            for (int j = 0; j < rowLength; j++)
             {
-                if(this.blocks[i,j] == null)
+                if (this.blocks[i, j] == null)
                 {
                     isBlock = false;
                 }
             }
-            if(isBlock)
+            if (isBlock)
             {
-                for(int j = 0; j < rowLength; j++)
+                for (int j = 0; j < rowLength; j++)
                 {
                     this.blocks[i, j].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[i, j], delayOnDeletingBlock);
@@ -117,6 +130,54 @@ public class PlatformBoard : MonoBehaviour {
                 }
             }
 
+        }
+    }
+
+    public void newBlockDelete()
+    {
+        List<GameObject> blocks = new List<GameObject>();
+        for (int i = 0; i < rowLength; i++)
+        {
+            blocks.Clear();
+            for (int j = 0; j < rowLength; j++)
+            {
+                if(this.blocks[i, j] != null)
+                {
+                    blocks.Add(this.blocks[i, j]);
+                }
+                else
+                {
+                    if(blocks.Count >= minimalAmountOfDeletedBlocks)
+                    {
+                        foreach(var item in blocks)
+                        {
+                            item.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                            Destroy(item, delayOnDeletingBlock);
+                        }
+                    }
+                    blocks.Clear();
+                }
+            }
+
+            for (int j = 0; j < rowLength; j++)
+            {
+                if (this.blocks[j, i] != null)
+                {
+                    blocks.Add(this.blocks[j, i]);
+                }
+                else
+                {
+                    if (blocks.Count >= minimalAmountOfDeletedBlocks)
+                    {
+                        foreach (var item in blocks)
+                        {
+                            item.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                            Destroy(item, delayOnDeletingBlock);
+                        }
+                    }
+                    blocks.Clear();
+                }
+            }
         }
     }
 }
