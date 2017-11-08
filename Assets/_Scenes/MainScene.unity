@@ -413,7 +413,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275462069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -637, y: 396, z: 0}
+  m_LocalPosition: {x: -485, y: 256.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2027225621}
@@ -681,6 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428745803}
   - component: {fileID: 428745802}
+  - component: {fileID: 428745804}
   m_Layer: 0
   m_Name: PlatformBoard
   m_TagString: Untagged
@@ -703,6 +704,8 @@ MonoBehaviour:
   rowLength: 9
   widthOfAGap: 0
   delayOnDeletingBlock: 1
+  differentDeleteBlocks: 0
+  minimalAmountOfDeletedBlocks: 7
 --- !u!4 &428745803
 Transform:
   m_ObjectHideFlags: 0
@@ -716,6 +719,17 @@ Transform:
   m_Father: {fileID: 542883828}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &428745804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 428745801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e944c49cb358c214399ba513a9320064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &542883827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,7 +1937,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2027225617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 757, y: 426, z: 0}
+  m_LocalPosition: {x: 605, y: 286.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 611512554}
