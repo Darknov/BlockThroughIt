@@ -19,11 +19,24 @@ public class RabbitMovement : MonoBehaviour {
 
     public List<RaycastHit> hits;
 
+    public static bool automovementSwitch = false;
+    public static bool automovementSwitchUsed = false;
+    private bool helper = true;
+    private float jump;
+    
     void Update()
     {
         LoadSpeedFromGameAcc();
         CheckControls();
-        UpdateMovement();
+        if(!automovementSwitch)
+            UpdateMovement();
+
+        if (automovementSwitch && helper )
+        {
+            UpdateMovement();
+            jump -= Time.deltaTime;
+            if (jump < 0) helper = false;           
+        }
     }
 
     void FixedUpdate()
@@ -58,6 +71,7 @@ public class RabbitMovement : MonoBehaviour {
 
     void CheckControls()
     {
+  
         float horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
         float verticalAxis = Input.GetAxisRaw("VerticalJoy");
 
@@ -67,6 +81,8 @@ public class RabbitMovement : MonoBehaviour {
             movingDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || verticalAxis == -1;
             movingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1;
             movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1;
+            helper = true;
+            jump = jumpTime;
         }
 
 
@@ -74,19 +90,17 @@ public class RabbitMovement : MonoBehaviour {
 
     void UpdateMovement()
     {
+        if (onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
+        
 
-        if(onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
-
-        if(outOfPlatform) return;
+        if (outOfPlatform) return;
 
         if(timeCounter > 1.3f*jumpTime)
         {
-            MoveAndResetTimer();        
+            MoveAndResetTimer();
+            
         } 
-
-
         timeCounter += Time.deltaTime;
-
     }
 
     void MoveAndResetTimer() {
@@ -115,9 +129,7 @@ public class RabbitMovement : MonoBehaviour {
                 timeCounter = 0;
                 onAir = true;
 
-            }
-
-            
+            }        
     }
 
     void Move(Vector3 Direction)
