@@ -19,8 +19,7 @@ public class RabbitMovement : MonoBehaviour {
 
     public List<RaycastHit> hits;
 
-    public static bool automovementSwitch = false;
-    public static bool automovementSwitchUsed = false;
+    public bool isAutomovementOn = false;
     private bool helper = true;
     private float jump;
     
@@ -28,10 +27,10 @@ public class RabbitMovement : MonoBehaviour {
     {
         LoadSpeedFromGameAcc();
         CheckControls();
-        if(!automovementSwitch)
+        if(!isAutomovementOn)
             UpdateMovement();
 
-        if (automovementSwitch && helper )
+        if (isAutomovementOn && helper )
         {
             UpdateMovement();
             jump -= Time.deltaTime;
