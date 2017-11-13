@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RabbitMovement : MonoBehaviour {
+public class Player1Controller : MonoBehaviour {
 
+    public LaserController laserActivator;
     public GameAccelerator gameAccelerator;
     public Vector3 goalPosition;
     public Animator animator;
@@ -47,8 +48,6 @@ public class RabbitMovement : MonoBehaviour {
         Vector3 pos = Vector3.down * 0.2f;
         pos += gameObject.transform.position;
 
-        Debug.DrawRay(pos, dir);
-
         Vector3 boxCenter = Vector3.zero + Vector3.down*0.2f;
         Vector3 boxSize = Vector3.one*0.1f;
 
@@ -70,7 +69,8 @@ public class RabbitMovement : MonoBehaviour {
 
     void CheckControls()
     {
-  
+        if(laserActivator.isActivated) return;
+
         float horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
         float verticalAxis = Input.GetAxisRaw("VerticalJoy");
 
@@ -82,6 +82,11 @@ public class RabbitMovement : MonoBehaviour {
             movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1;
             helper = true;
             jump = jumpTime;
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            laserActivator.ActivateLaser();
         }
 
 
