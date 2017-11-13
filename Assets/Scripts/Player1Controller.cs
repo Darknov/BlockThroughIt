@@ -72,8 +72,7 @@ public class Player1Controller : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Vector3 moveDirection = goalPosition - this.transform.position;
-            laserActivator.ActivateLaser(moveDirection);
+            laserActivator.ActivateLaser();
         }
 
 

@@ -13,11 +13,8 @@ public class LaserController : MonoBehaviour {
 	private float timeCounter = 0;
 	private Vector3 shootDirection;
 
-	public void ActivateLaser(Vector3 direction) {
+	public void ActivateLaser() {
 		isActivated = true;
-		shootDirection = direction * 100f;
-
-		// shootDirection += Vector3.down;
 	}
 
 	void Update() {
@@ -34,16 +31,13 @@ public class LaserController : MonoBehaviour {
 			RaycastHit[] hitInfos;
 
 
-			Vector3 pos = gameObject.transform.position + Vector3.down * 0.5f;
-			Vector3 dir = shootDirection + Vector3.down * 0.5f;
+			Vector3 pos = gameObject.transform.position + Vector3.down;
+			Vector3 dir = this.transform.position + this.transform.rotation * Vector3.forward * 1000f;
 
-
-			Debug.LogError("Position: " + pos);
-			Debug.LogError("Direction: " + dir);
 
 			hitInfos = Physics.RaycastAll(pos, dir, 1000f);
 
-			Debug.DrawLine(pos, dir, Color.cyan, 100f);
+			Debug.DrawLine(pos, dir, Color.cyan, 1000f);
 
 			foreach (var hitInfo in hitInfos)
 			{
