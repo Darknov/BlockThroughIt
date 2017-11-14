@@ -18,6 +18,7 @@ public class GameOver : MonoBehaviour {
 	void Update () {
 		if (CountDown.timeRemaining <= 0) {
 			anim.SetTrigger ("GameOver1");
+			CountDown.started = false;
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
 				SceneManager.LoadScene (0);
@@ -29,6 +30,7 @@ public class GameOver : MonoBehaviour {
 
 		if (!GameObject.FindWithTag("Player")) {
 			anim.SetTrigger ("GameOver2");
+			CountDown.started = false;
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
 				SceneManager.LoadScene (0);

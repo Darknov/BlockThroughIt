@@ -7,7 +7,7 @@ public class CountDown : MonoBehaviour {
 
 	public static float timeRemaining = 60;
 	Text text;
-	public bool started = false;
+	public static bool started = false;
 		
 	void Start () {
 		text = GetComponent<Text>();

@@ -118,7 +118,7 @@ public class AutoMovement : MonoBehaviour
 
 
 		if (lastKey != MoveKey.None)
-			this.countDown.started = true;
+			CountDown.started = true;
 
 
         if (timeCounter > 0)

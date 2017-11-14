@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player1Controller : MonoBehaviour {
 
+	public static bool herbasFlying = false;
+
     public LaserController laserActivator;
     public GameAccelerator gameAccelerator;
     public Vector3 goalPosition;
@@ -23,7 +25,7 @@ public class Player1Controller : MonoBehaviour {
     public bool isAutomovementOn = false;
     private bool helper = true;
     private float jump;
-    
+
     void Update()
     {
         LoadSpeedFromGameAcc();
@@ -55,16 +57,13 @@ public class Player1Controller : MonoBehaviour {
 
         bool atLeastOneOut = false;
 
-        foreach (var item in hits)
-        {
-            if(item.collider.gameObject.CompareTag("platform"))
-            {
-                atLeastOneOut = true;
-            }
-        }
+		foreach (var item in hits) {
+			if (item.collider.gameObject.CompareTag ("platform")) {
+				atLeastOneOut = true;
+			}
+		}
 
-        outOfPlatform = !atLeastOneOut;
-
+		outOfPlatform = !atLeastOneOut;
     }
 
     void CheckControls()
@@ -82,6 +81,7 @@ public class Player1Controller : MonoBehaviour {
             movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1;
             helper = true;
             jump = jumpTime;
+			CountDown.started = true;
         }
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -96,8 +96,7 @@ public class Player1Controller : MonoBehaviour {
     {
         if (onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
         
-
-        if (outOfPlatform) return;
+        if (!herbasFlying && outOfPlatform) return;
 
         if(timeCounter > 1.3f*jumpTime)
         {
