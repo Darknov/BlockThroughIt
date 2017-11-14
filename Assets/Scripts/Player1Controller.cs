@@ -23,9 +23,10 @@ public class Player1Controller : MonoBehaviour {
 
     public List<RaycastHit> hits;
 
-    public bool isAutomovementOn = false;
-    private bool helper = true;
+    public static bool isAutomovementOn = false;
+    private bool makeMove = true;
     private float jump;
+    public static int hommingMissleCounter = 3;
 
     void Update()
     {
@@ -34,11 +35,11 @@ public class Player1Controller : MonoBehaviour {
         if(!isAutomovementOn)
             UpdateMovement();
 
-        if (isAutomovementOn && helper )
+        if (isAutomovementOn && makeMove)
         {
             UpdateMovement();
             jump -= Time.deltaTime;
-            if (jump < 0) helper = false;           
+            if (jump < 0) makeMove = false;           
         }
     }
 
@@ -78,7 +79,7 @@ public class Player1Controller : MonoBehaviour {
 				movingDown = Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S);
 				movingLeft = Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A);
 				movingRight = Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D);
-				helper = true;
+				makeMove = true;
 				jump = jumpTime;
 				CountDown.started = true;
 			}
@@ -98,7 +99,7 @@ public class Player1Controller : MonoBehaviour {
 				movingDown = verticalAxis == -1;
 				movingLeft = horizontalAxis == -1;
 				movingRight = horizontalAxis == 1;
-				helper = true;
+				makeMove = true;
 				jump = jumpTime;
 			}
 

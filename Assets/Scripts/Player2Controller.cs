@@ -12,6 +12,7 @@ public class Player2Controller : MonoBehaviour
 	public float blocksSpeed;
     public float boostSpeed;
     public float timeOfInverseControlOfPlayer2 = 3.0f;
+    public float timeOfswitchMovementOfPlayer1 = 5.0f;
     private float jumpLength = 1;
 	public GameAccelerator gameAccelerator;
     public RandomAttackBlockGenerator randomBlockGenerator;
@@ -29,6 +30,7 @@ public class Player2Controller : MonoBehaviour
     public static bool isDestroyBlockAvailable;
     public static bool isDestroyBlockActivated;
     public static bool canDestroyBlockMove;
+    public static int movementSwitchCounter = 3;
 
     void Start()
     {
@@ -208,7 +210,23 @@ public class Player2Controller : MonoBehaviour
 			        AutoMovement.inverseControl = true;
 			    }
 
-			    if (AutoMovement.inverseControl)
+                if(Input.GetKeyDown(KeyCode.Alpha1) && movementSwitchCounter>0)
+                {
+                    movementSwitchCounter--;
+                    Player1Controller.isAutomovementOn = false;
+                }
+
+                if (Player1Controller.isAutomovementOn == false)
+                {
+                    timeOfswitchMovementOfPlayer1 -= Time.deltaTime;
+                    Debug.Log(timeOfswitchMovementOfPlayer1);
+                    if (timeOfswitchMovementOfPlayer1 < 0)
+                    {
+                        Player1Controller.isAutomovementOn = true;                       
+                    }
+                }
+
+                if (AutoMovement.inverseControl)
 			    {
 			        timeOfInverseControlOfPlayer2 -= Time.deltaTime;
 			        Debug.Log(timeOfInverseControlOfPlayer2);
