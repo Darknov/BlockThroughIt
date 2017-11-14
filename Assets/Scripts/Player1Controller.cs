@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player1Controller : MonoBehaviour {
 
+	public static bool p1KeyBoard = true;
 	public static bool herbasFlying = false;
 
     public LaserController laserActivator;
@@ -70,25 +71,41 @@ public class Player1Controller : MonoBehaviour {
     {
         if(laserActivator.isActivated) return;
 
-        float horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
-        float verticalAxis = Input.GetAxisRaw("VerticalJoy");
+		if (p1KeyBoard) {
+			
+			if (Input.anyKeyDown) {
+				movingUp = Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W);
+				movingDown = Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S);
+				movingLeft = Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A);
+				movingRight = Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D);
+				helper = true;
+				jump = jumpTime;
+				CountDown.started = true;
+			}
 
-        if(Input.anyKeyDown)
-        {
-            movingUp = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || verticalAxis == 1;
-            movingDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || verticalAxis == -1;
-            movingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || horizontalAxis == -1;
-            movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || horizontalAxis == 1;
-            helper = true;
-            jump = jumpTime;
-			CountDown.started = true;
-        }
+			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+				laserActivator.ActivateLaser ();
+			}
+		}
 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            laserActivator.ActivateLaser();
-        }
+		if (!p1KeyBoard) {
+			
+			float horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
+			float verticalAxis = Input.GetAxisRaw("VerticalJoy");
 
+			if (Input.anyKeyDown) {
+				movingUp = verticalAxis == 1;
+				movingDown = verticalAxis == -1;
+				movingLeft = horizontalAxis == -1;
+				movingRight = horizontalAxis == 1;
+				helper = true;
+				jump = jumpTime;
+			}
+
+			if (verticalAxis != 0 || horizontalAxis != 0) {
+				CountDown.started = true;
+			}
+		}
 
     }
 

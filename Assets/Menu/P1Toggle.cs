@@ -5,6 +5,6 @@ using UnityEngine;
 public class P1Toggle : MonoBehaviour {
 
 	public void ToggleChange(bool newValue) {
-		AutoMovement.p1KeyBoard = newValue;
+		Player1Controller.p1KeyBoard = newValue;
 	}
 }

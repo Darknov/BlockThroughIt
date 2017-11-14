@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1304090010638654
 GameObject:
   m_ObjectHideFlags: 1
@@ -450,7 +450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286e31ad41c2aa544bd68d917bf13edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  started: 0
 --- !u!114 &114295273764959850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -619,7 +618,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Item Time Remaining: 60'
+  m_Text: Item Time Remaining
 --- !u!114 &114829390511462082
 MonoBehaviour:
   m_ObjectHideFlags: 1
