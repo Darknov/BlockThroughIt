@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33242104621277932}
   - component: {fileID: 65935369637353142}
   - component: {fileID: 23131060632070920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33608837342571154}
   - component: {fileID: 65757912239539334}
   - component: {fileID: 23421765771245710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4240708917315550}
   - component: {fileID: 33155480350749830}
   - component: {fileID: 23606725181421442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4795883610998692}
   - component: {fileID: 33676186837592140}
   - component: {fileID: 23069923246576072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4550114873482384}
   - component: {fileID: 135982170896418058}
   - component: {fileID: 114462713637224744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Herbas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

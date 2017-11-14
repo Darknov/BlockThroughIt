@@ -119,7 +119,7 @@ public class Player1Controller : MonoBehaviour
         if (onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
 
 
-        if (outOfPlatform) return;
+		if (!herbasFlying && outOfPlatform) return;
 
         if (timeCounter > 1.3f * jumpTime)
         {
