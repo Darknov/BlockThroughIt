@@ -33,6 +33,7 @@ public class Player2Controller : MonoBehaviour
     public static int movementSwitchCounter = 3;
 
     public Text movementSwitchAlert;
+    private Material tempMaterial;
 
     void Start()
     {
@@ -385,6 +386,7 @@ public class Player2Controller : MonoBehaviour
         this.activeBlock = block;
         this.activeBlock.Activate();
         Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
+        tempMaterial = block.GetComponentInChildren<Renderer>().material;
 
         block.PlatformHit += OnActiveBlockPlatformHit;
         block.DestroyAttackBlock += RespawnEmptyBlocks;
@@ -405,7 +407,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.white, activeBlock);
-        platformBoard.addBlock(activeBlock);
+        platformBoard.addBlock(activeBlock, tempMaterial);
 
         blockShadow.DestroyShadow();
 

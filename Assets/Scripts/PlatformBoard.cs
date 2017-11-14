@@ -41,6 +41,7 @@ public class PlatformBoard : MonoBehaviour {
         {
             this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
             this.blocks[x, y].tag = "platform";
+            
             checkIfThereAreMaxBlocksInRow();
         }
         else
@@ -49,7 +50,7 @@ public class PlatformBoard : MonoBehaviour {
         }
     }
 
-    public void addBlock(AttackBlock activeBlock)
+    public void addBlock(AttackBlock activeBlock, Material mat)
     {
 
         Transform[] gameObjects = activeBlock.GetComponentsInChildren<Transform>();
@@ -67,6 +68,7 @@ public class PlatformBoard : MonoBehaviour {
                 if (this.blocks[x, y] == null) {
                     this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
                     this.blocks[x, y].tag = "platform";
+                    this.blocks[x, y].GetComponent<Renderer>().material = mat;
                 }
                 
                 checkIfThereAreMaxBlocksInRow();
