@@ -217,6 +217,8 @@ public class Player2Controller : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
                 {
+                    timeOfswitchMovementOfPlayer1 = 3.0f;
+
                     movementSwitchAlert.text = "Automovement switch starts in 1s! ";// + + "s !";
                     Invoke("switchAutomovement", 1);
                 }
@@ -230,6 +232,7 @@ public class Player2Controller : MonoBehaviour
                     {
                         movementSwitchAlert.text = "";
                         Player1Controller.isAutomovementOn = true;
+                       // timeOfswitchMovementOfPlayer1 = 3.0f;
                     }
                 }
 
@@ -367,6 +370,12 @@ public class Player2Controller : MonoBehaviour
                 }
             }
         }
+        if(!GameObject.FindGameObjectWithTag("Player"))
+        {
+            movementSwitchCounter = 3;
+            Player1Controller.hommingMissleCounter = 3;
+        }
+        
     }
     void switchAutomovement()
     {
