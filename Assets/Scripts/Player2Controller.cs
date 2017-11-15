@@ -73,19 +73,19 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-                if (Input.GetKeyDown("joystick 2 button 6") && !AutoMovement.inverseControlUsed)
+				if (Input.GetKeyDown("joystick 2 button 6") && !Player1Controller.inverseControlUsed)
                 {
-                    AutoMovement.inverseControl = true;
+					Player1Controller.inverseControl = true;
                 }
 
-                if (AutoMovement.inverseControl)
+				if (Player1Controller.inverseControl)
                 {
                     timeOfInverseControlOfPlayer2 -= Time.deltaTime;
                     Debug.Log(timeOfInverseControlOfPlayer2);
                     if (timeOfInverseControlOfPlayer2 < 0)
                     {
-                        AutoMovement.inverseControlUsed = true;
-                        AutoMovement.inverseControl = false;
+						Player1Controller.inverseControlUsed = true;
+						Player1Controller.inverseControl = false;
                     }
 
                 }
@@ -210,9 +210,9 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-                if (Input.GetKeyDown(KeyCode.Alpha9) && !AutoMovement.inverseControlUsed)
+				if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
                 {
-                    AutoMovement.inverseControl = true;
+					Player1Controller.inverseControl = true;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
@@ -233,14 +233,14 @@ public class Player2Controller : MonoBehaviour
                     }
                 }
 
-                if (AutoMovement.inverseControl)
+				if (Player1Controller.inverseControl)
                 {
                     timeOfInverseControlOfPlayer2 -= Time.deltaTime;
                     Debug.Log(timeOfInverseControlOfPlayer2);
                     if (timeOfInverseControlOfPlayer2 < 0)
                     {
-                        AutoMovement.inverseControlUsed = true;
-                        AutoMovement.inverseControl = false;
+						Player1Controller.inverseControlUsed = true;
+						Player1Controller.inverseControl = false;
                     }
                 }
 

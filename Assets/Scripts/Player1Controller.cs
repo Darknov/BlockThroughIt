@@ -9,6 +9,9 @@ public class Player1Controller : MonoBehaviour
     public static bool p1KeyBoard = true;
     public static bool herbasFlying = false;
 
+	public static bool inverseControl = false;
+	public static bool inverseControlUsed = false;
+
     public LaserController laserActivator;
     public GameAccelerator gameAccelerator;
     public Vector3 goalPosition;
@@ -69,20 +72,38 @@ public class Player1Controller : MonoBehaviour
 
         if (p1KeyBoard)
         {
+			if (!inverseControl) {
+				
+				if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W) ||
+				   Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S) ||
+				   Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A) ||
+				   Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) ||
-                Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) ||
-                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            {
-                movingUp = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-                movingDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
-                movingLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
-                movingRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
-                makeMove = true;
-                jump = jumpTime;
-                CountDown.started = true;
-            }
+					movingUp = Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W);
+					movingDown = Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S);
+					movingLeft = Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A);
+					movingRight = Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D);
+					makeMove = true;
+					jump = jumpTime;
+					CountDown.started = true;
+				}
+
+			} else {
+
+				if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W) ||
+					Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S) ||
+					Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A) ||
+					Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
+
+					movingUp = Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S);
+					movingDown = Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W);
+					movingLeft = Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D);
+					movingRight = Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A);
+					makeMove = true;
+					jump = jumpTime;
+					CountDown.started = true;
+				}
+			}
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -90,26 +111,38 @@ public class Player1Controller : MonoBehaviour
             }
         }
 
+
         if (!p1KeyBoard)
         {
 
             float horizontalAxis = Input.GetAxisRaw("HorizontalJoy");
             float verticalAxis = Input.GetAxisRaw("VerticalJoy");
 
-            if (Input.anyKeyDown)
-            {
-                movingUp = verticalAxis == 1;
-                movingDown = verticalAxis == -1;
-                movingLeft = horizontalAxis == -1;
-                movingRight = horizontalAxis == 1;
-                makeMove = true;
-                jump = jumpTime;
-            }
+			if (!inverseControl) {
+				
+				if (Input.anyKeyDown) {
+					movingUp = verticalAxis == 1;
+					movingDown = verticalAxis == -1;
+					movingLeft = horizontalAxis == -1;
+					movingRight = horizontalAxis == 1;
+					makeMove = true;
+					jump = jumpTime;
+				}
+			} else {
 
-            if (verticalAxis != 0 || horizontalAxis != 0)
-            {
-                CountDown.started = true;
-            }
+				if (Input.anyKeyDown) {
+					movingUp = verticalAxis == -1;
+					movingDown = verticalAxis == 1;
+					movingLeft = horizontalAxis == 1;
+					movingRight = horizontalAxis == -1;
+					makeMove = true;
+					jump = jumpTime;
+				}
+			}
+
+			if (verticalAxis != 0 || horizontalAxis != 0) {
+				CountDown.started = true;
+			}
         }
 
     }

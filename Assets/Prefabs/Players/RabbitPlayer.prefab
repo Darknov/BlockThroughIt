@@ -872,7 +872,6 @@ MonoBehaviour:
   animator: {fileID: 95793791394526472}
   animationSpeedMultiplier: 1
   moveSpeed: 1
-  isAutomovementOn: 0
 --- !u!119 &119277753424569976
 Projector:
   m_ObjectHideFlags: 1
