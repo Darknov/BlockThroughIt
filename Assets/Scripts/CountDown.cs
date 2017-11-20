@@ -27,7 +27,7 @@ public class CountDown : MonoBehaviour {
 
 		if (timeRemaining >= 0 && GameObject.FindWithTag ("Player")) {
 			timeRemaining -= Time.deltaTime;
-		} else {
+		} else if(timeRemaining <= 0){
 			timeRemaining = 0.00f;
 		}
 	}
