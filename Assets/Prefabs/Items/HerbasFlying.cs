@@ -33,6 +33,7 @@ public class HerbasFlying : MonoBehaviour {
 			Player1Controller.herbasFlying = true;
 			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 			ItemCountDown.started = true;
+			ItemCountDown.itemText = "Herbas Boots\n" + "Time Remaining: ";
 			herbas.GetComponent<SphereCollider> ().enabled = false;
 			meshRenderer = herbas.GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer mesh in meshRenderer)

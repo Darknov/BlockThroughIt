@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ItemCountDown : MonoBehaviour {
 
 	public static float itemTimeRemaining = 5f;
-	Text text;
+	public static string itemText = "";
 	public static bool started = false;
+	Text text;
 
 	void Start () {
 		text = GetComponent<Text>();
@@ -18,7 +19,7 @@ public class ItemCountDown : MonoBehaviour {
 		text.text = "No item";
 
 		if (started) {
-			text.text = "Time Remaining: " + (int)itemTimeRemaining;
+			text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
 		}
 	}
 }
