@@ -113,13 +113,14 @@ public class AttackBlock : MonoBehaviour {
         currentTime = jumpTime;
     }
 
-	void OnTriggerEnter(Collider other) 
+	void OnTriggerEnter (Collider other) 
     { 
         if (other.tag == "platform")
         {
             if (Player2Controller.isDestroyBlockActivated)
             {
                 Player2Controller.canDestroyBlockMove = false;
+                Debug.Log("Can destroy block move: " + Player2Controller.canDestroyBlockMove);
                 Destroy(other.gameObject);
             }
             else
@@ -152,7 +153,7 @@ public class AttackBlock : MonoBehaviour {
 
     public void GoToYourLeft()
     {
-        if(MoveDirection == Vector3.forward || MoveDirection == Vector3.back)
+        if (MoveDirection == Vector3.forward || MoveDirection == Vector3.back)
         {
             gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.left;
         }

@@ -59,7 +59,6 @@ public class Player2Controller : MonoBehaviour
 
         if (p2GamePad)
         {
-
             horizontalAxisPlayer2 = Input.GetAxisRaw("HorizontalJoyPlayer2");
             verticalAxisPlayer2 = Input.GetAxisRaw("VerticalJoyPlayer2");
 
@@ -130,13 +129,13 @@ public class Player2Controller : MonoBehaviour
                 {
                     if (isAxisHorizontalInUse == false)
                     {
-                        if (horizontalAxisPlayer2 == -1)
+                        if (horizontalAxisPlayer2 == -1 && canDestroyBlockMove)
                         {
                             activeBlock.GoToYourLeft();
                             isAxisHorizontalInUse = true;
                             UpdateShadow();
                         }
-                        else if (horizontalAxisPlayer2 == 1)
+                        else if (horizontalAxisPlayer2 == 1 && canDestroyBlockMove)
                         {
                             activeBlock.GoToYourRight();
                             isAxisHorizontalInUse = true;
@@ -148,7 +147,7 @@ public class Player2Controller : MonoBehaviour
                 {
                     if (isAxisVerticalInUse == false)
                     {
-                        if (verticalAxisPlayer2 == -1)
+                        if (verticalAxisPlayer2 == -1 && canDestroyBlockMove)
                         {
                             if (activeBlock == westBlock)
                             {
@@ -164,7 +163,7 @@ public class Player2Controller : MonoBehaviour
 
                             isAxisVerticalInUse = true;
                         }
-                        else if (verticalAxisPlayer2 == 1)
+                        else if (verticalAxisPlayer2 == 1 && canDestroyBlockMove)
                         {
                             if (activeBlock == westBlock)
                             {
