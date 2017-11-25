@@ -21,6 +21,7 @@ public class HomingMissle : MonoBehaviour {
     }
 	
 	void FixedUpdate () {       
+        missle.gameObject.transform.Rotate(Vector3.forward *8);
         missle.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
     
