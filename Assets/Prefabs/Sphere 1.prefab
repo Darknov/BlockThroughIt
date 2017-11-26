@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 135897658648965284}
   - component: {fileID: 23741555712642278}
   - component: {fileID: 114008934053757042}
-  - component: {fileID: 114392167387205620}
   m_Layer: 0
   m_Name: Sphere 1
   m_TagString: Untagged
@@ -57,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d6d98471eaeb860408cb5d9ed3db328c, type: 2}
+  - {fileID: 2100000, guid: 026a398cc8ea4fc4e975ba6e32cebfcf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,29 +99,6 @@ MonoBehaviour:
   isScaling: 0
   rotationAngle: {x: 2, y: 2.5, z: 3}
   rotationSpeed: 50
-  floatSpeed: 0
-  floatRate: 0
-  startScale: {x: 0, y: 0, z: 0}
-  endScale: {x: 0, y: 0, z: 0}
-  scaleSpeed: 0
-  scaleRate: 0
---- !u!114 &114392167387205620
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1322124539148586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAnimated: 0
-  isRotating: 0
-  isFloating: 0
-  isScaling: 0
-  rotationAngle: {x: 0, y: 0, z: 0}
-  rotationSpeed: 0
   floatSpeed: 0
   floatRate: 0
   startScale: {x: 0, y: 0, z: 0}
