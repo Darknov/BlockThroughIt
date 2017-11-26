@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
-    public static bool p2GamePad = true;
+    public static bool p2GamePad = false;
 
     public float blocksSpeed;
     public float boostSpeed;
@@ -373,6 +373,7 @@ public class Player2Controller : MonoBehaviour
         {
             movementSwitchCounter = 3;
             Player1Controller.hommingMissleCounter = 3;
+            movementSwitchAlert.text = "";
         }
         
     }
