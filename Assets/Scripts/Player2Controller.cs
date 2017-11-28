@@ -72,46 +72,81 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-				if (Input.GetKeyDown("joystick 2 button 6") && !Player1Controller.inverseControlUsed)
+                if (Input.GetKeyDown("joystick 2 button 6") && !Player1Controller.inverseControlUsed)
                 {
-					Player1Controller.inverseControl = true;
-					ItemCountDown.started = true;
-					ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
+                    Player1Controller.inverseControl = true;
+                    ItemCountDown.started = true;
+                    ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
                 }
 
-				if (Player1Controller.inverseControl)
-				{
-					ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
-					timeOfInverseControlOfPlayer2 -= Time.deltaTime;
-					Debug.Log(timeOfInverseControlOfPlayer2);
-					if (timeOfInverseControlOfPlayer2 < 0)
-					{
-						ItemCountDown.started = false;
-						Player1Controller.inverseControlUsed = true;
-						Player1Controller.inverseControl = false;
-					}
-				}
-
-
-                if (Input.GetKeyDown("joystick 2 button 0"))
+                if (Player1Controller.inverseControl)
                 {
-                    ActivateBlock(northBlock);
-                    northBlock = null;
+                    ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
+                    timeOfInverseControlOfPlayer2 -= Time.deltaTime;
+                    Debug.Log(timeOfInverseControlOfPlayer2);
+                    if (timeOfInverseControlOfPlayer2 < 0)
+                    {
+                        ItemCountDown.started = false;
+                        Player1Controller.inverseControlUsed = true;
+                        Player1Controller.inverseControl = false;
+                    }
                 }
-                else if (Input.GetKeyDown("joystick 2 button 2"))
+                Debug.Log("Activated destroy block: " + isDestroyBlockActivated);
+                Debug.Log("Available destroy block: " + isDestroyBlockAvailable);
+                if (!Player2Controller.isDestroyBlockActivated)
                 {
-                    ActivateBlock(southBlock);
-                    southBlock = null;
+                    if (Input.GetKeyDown("joystick 2 button 0"))
+                    {
+                        //northBlock = randomBlockGenerator.createDestroyBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+                        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+                        ActivateBlock(northBlock);
+                        northBlock = null;
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 2"))
+                    {
+                        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
+                        ActivateBlock(southBlock);
+                        southBlock = null;
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 3"))
+                    {
+                        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
+                        ActivateBlock(westBlock);
+                        westBlock = null;
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 1"))
+                    {
+                        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+                        ActivateBlock(eastBlock);
+                        eastBlock = null;
+                    }
                 }
-                else if (Input.GetKeyDown("joystick 2 button 3"))
+                else if (Player2Controller.isDestroyBlockActivated)
                 {
-                    ActivateBlock(westBlock);
-                    westBlock = null;
-                }
-                else if (Input.GetKeyDown("joystick 2 button 1"))
-                {
-                    ActivateBlock(eastBlock);
-                    eastBlock = null;
+                    if (Input.GetKeyDown("joystick 2 button 0"))
+                    {
+                        northBlock = randomBlockGenerator.createDestroyBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+                        ActivateBlock(northBlock);
+                        northBlock = null;
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 2"))
+                    {
+                        southBlock = randomBlockGenerator.createDestroyBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
+                        ActivateBlock(southBlock);
+                        southBlock = null;
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 3"))
+                    {
+                        westBlock = randomBlockGenerator.createDestroyBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+                        ActivateBlock(westBlock);
+                        westBlock = null;
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 1"))
+                    {
+                        eastBlock = randomBlockGenerator.createDestroyBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
+                        ActivateBlock(eastBlock);
+                        eastBlock = null;
+                    }
                 }
             }
 
@@ -157,7 +192,6 @@ public class Player2Controller : MonoBehaviour
                                 activeBlock.GoToYourRight();
                                 UpdateShadow();
                             }
-
                             else
                             {
                                 activeBlock.GoToYourLeft();
@@ -212,11 +246,11 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-				if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
+                if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
                 {
-					Player1Controller.inverseControl = true;
-					ItemCountDown.started = true;
-					ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
+                    Player1Controller.inverseControl = true;
+                    ItemCountDown.started = true;
+                    ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
@@ -236,42 +270,67 @@ public class Player2Controller : MonoBehaviour
                     {
                         movementSwitchAlert.text = "";
                         Player1Controller.isAutomovementOn = true;
-                       // timeOfswitchMovementOfPlayer1 = 3.0f;
+                        // timeOfswitchMovementOfPlayer1 = 3.0f;
                     }
                 }
 
-				if (Player1Controller.inverseControl)
+                if (Player1Controller.inverseControl)
                 {
-					ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
+                    ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
                     timeOfInverseControlOfPlayer2 -= Time.deltaTime;
                     Debug.Log(timeOfInverseControlOfPlayer2);
                     if (timeOfInverseControlOfPlayer2 < 0)
                     {
-						ItemCountDown.started = false;
-						Player1Controller.inverseControlUsed = true;
-						Player1Controller.inverseControl = false;
+                        ItemCountDown.started = false;
+                        Player1Controller.inverseControlUsed = true;
+                        Player1Controller.inverseControl = false;
                     }
                 }
-
-                if (Input.GetKeyDown("i"))
+                if (!Player2Controller.isDestroyBlockActivated)
                 {
-                    ActivateBlock(northBlock);
-                    northBlock = null;
+                    if (Input.GetKeyDown("i"))
+                    {
+                        ActivateBlock(northBlock);
+                        northBlock = null;
+                    }
+                    else if (Input.GetKeyDown("k"))
+                    {
+                        ActivateBlock(southBlock);
+                        southBlock = null;
+                    }
+                    else if (Input.GetKeyDown("j"))
+                    {
+                        ActivateBlock(westBlock);
+                        westBlock = null;
+                    }
+                    else if (Input.GetKeyDown("l"))
+                    {
+                        ActivateBlock(eastBlock);
+                        eastBlock = null;
+                    }
                 }
-                else if (Input.GetKeyDown("k"))
+                else if (Player2Controller.isDestroyBlockActivated)
                 {
-                    ActivateBlock(southBlock);
-                    southBlock = null;
-                }
-                else if (Input.GetKeyDown("j"))
-                {
-                    ActivateBlock(westBlock);
-                    westBlock = null;
-                }
-                else if (Input.GetKeyDown("l"))
-                {
-                    ActivateBlock(eastBlock);
-                    eastBlock = null;
+                    if (Input.GetKeyDown("i"))
+                    {
+                        CreateDestroyBlock();
+                        northBlock = null;
+                    }
+                    else if (Input.GetKeyDown("k"))
+                    {
+                        CreateDestroyBlock();
+                        southBlock = null;
+                    }
+                    else if (Input.GetKeyDown("j"))
+                    {
+                        CreateDestroyBlock();
+                        westBlock = null;
+                    }
+                    else if (Input.GetKeyDown("l"))
+                    {
+                        CreateDestroyBlock();
+                        eastBlock = null;
+                    }
                 }
             }
 
@@ -376,13 +435,13 @@ public class Player2Controller : MonoBehaviour
                 }
             }
         }
-        if(!GameObject.FindGameObjectWithTag("Player"))
+        if (!GameObject.FindGameObjectWithTag("Player"))
         {
             movementSwitchCounter = 3;
             Player1Controller.hommingMissleCounter = 3;
             movementSwitchAlert.text = "";
         }
-        
+
     }
     void switchAutomovement()
     {
@@ -466,15 +525,40 @@ public class Player2Controller : MonoBehaviour
 
     void CreateInitialAttackBlocks()
     {
-        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
-        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
-        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
-        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+//        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+//        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
+//        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
+//        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
     }
 
     private void UpdateShadow()
     {
         blockShadow.DestroyShadow();
         blockShadow.CreateShadow(activeBlock.gameObject);
+    }
+
+    private void CreateDestroyBlock()
+    {
+        northBlock = randomBlockGenerator.createDestroyBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+        southBlock = randomBlockGenerator.createDestroyBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
+        eastBlock = randomBlockGenerator.createDestroyBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
+        westBlock = randomBlockGenerator.createDestroyBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+
+        this.activeBlock.transform.parent = null;
+        this.activeBlock = null;
+
+        this.activeBlock = northBlock;
+        this.activeBlock.Activate();
+        Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
+        tempMaterial = northBlock.GetComponentInChildren<Renderer>().material;
+
+        activeBlock.PlatformHit += OnActiveBlockPlatformHit;
+        activeBlock.DestroyAttackBlock += RespawnEmptyBlocks;
+
+        if (Player2Controller.isDestroyBlockActivated == false)
+            blockShadow.CreateShadow(this.activeBlock.gameObject);
+
+        SetAttackBlockColor(color, activeBlock);
+        
     }
 }
