@@ -3,21 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityBuildingBlock1 : MonoBehaviour {
+public class AbilityBuildingBlock1 : BoostItem {
 
     // Use this for initialization
-    PlatformBoard platform;
+    private PlatformBoard platform;
     int rowLength;
-    GameObject player;
+    private bool isActive = false ;
     void Start()
     {
         this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
         this.rowLength = this.platform.rowLength;
         this.player = GameObject.FindGameObjectWithTag("Player");
     }
+
+    public override void ActivateItem()
+    {
+        isActive = true;
+    }
+
         // Update is called once per frame
     void Update () {
-		if(Input.GetMouseButtonDown(1))
+		if(isActive)
         {
 
             int x = Convert.ToInt32(player.transform.position.x + (this.rowLength - 1) / 2);
@@ -40,6 +46,8 @@ public class AbilityBuildingBlock1 : MonoBehaviour {
             {
                 platform.addBlock(x, z - 1);
             }
+
+            isActive = false;
         }
 	}
 }

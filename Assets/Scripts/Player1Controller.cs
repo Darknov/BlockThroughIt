@@ -7,16 +7,18 @@ public class Player1Controller : MonoBehaviour
 {
 
     public static bool p1KeyBoard = true;
-    public static bool herbasFlying = false;
+    public bool isFlying = false;
 
 	public static bool inverseControl = false;
 	public static bool inverseControlUsed = false;
 
-    public LaserController laserActivator;
     public GameAccelerator gameAccelerator;
-    public Vector3 goalPosition;
+    public Vector3 goalPosition;  
     public Animator animator;
     public float animationSpeedMultiplier = 1;
+    public bool IsPlayerStopped { get; set; }
+    
+    public BoostItemContainer boostItemContainer;
 
     private bool movingUp, movingDown, movingLeft, movingRight;
     public float moveSpeed;
@@ -27,10 +29,11 @@ public class Player1Controller : MonoBehaviour
 
     public List<RaycastHit> hits;
 
-    public static bool isAutomovementOn = true;
+    public static bool isAutomovementOn = false;
     private bool makeMove = true;
     private float jump;
     public static int hommingMissleCounter = 3;
+
 
     void Update()
     {
@@ -68,7 +71,7 @@ public class Player1Controller : MonoBehaviour
 
     void CheckControls()
     {
-        if (laserActivator.isActivated) return;
+        if (IsPlayerStopped) return;
 
         if (p1KeyBoard)
         {
@@ -105,9 +108,9 @@ public class Player1Controller : MonoBehaviour
 				}
 			}
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                laserActivator.ActivateLaser();
+                boostItemContainer.ActivateItem();  
             }
         }
 
@@ -152,7 +155,7 @@ public class Player1Controller : MonoBehaviour
         if (onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
 
 
-		if (!herbasFlying && outOfPlatform) return;
+		if (!isFlying && outOfPlatform) return;
 
         if (timeCounter > 1.3f * jumpTime)
         {

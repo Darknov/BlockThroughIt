@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserController : MonoBehaviour {
+public class LaserController : BoostItem {
 
 	public LineRenderer lineRenderer;
 	public float laserGrowingSpeed;
@@ -13,11 +13,15 @@ public class LaserController : MonoBehaviour {
 	private float timeCounter = 0;
 	private Vector3 shootDirection;
 
-	public void ActivateLaser() {
+
+	public override void ActivateItem() {
 		isActivated = true;
 	}
 
-	void Update() {
+
+    void Update() {
+
+		if(player != null) player.GetComponent<Player1Controller>().IsPlayerStopped = isActivated;
 
 		if(!isActivated) return;
 
