@@ -32,6 +32,9 @@ public class Player1Controller : MonoBehaviour
     private float jump;
     public static int hommingMissleCounter = 3;
 
+    private bool isHorizontalAxisInUse = false;
+    private bool isVerticalAxisInUse = false;
+
     void Update()
     {
         LoadSpeedFromGameAcc();
@@ -84,7 +87,14 @@ public class Player1Controller : MonoBehaviour
 					movingLeft = Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A);
 					movingRight = Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D);
 					makeMove = true;
-					jump = jumpTime;
+
+				    Debug.Log("UP: " + movingUp);
+				    Debug.Log("DOWN: " + movingDown);
+				    Debug.Log("RIGHT: " + movingRight);
+				    Debug.Log("LEFT: " + movingLeft);
+				    
+
+                    jump = jumpTime;
 					CountDown.started = true;
 				}
 
@@ -119,26 +129,72 @@ public class Player1Controller : MonoBehaviour
             float verticalAxis = Input.GetAxisRaw("VerticalJoy");
 
 			if (!inverseControl) {
-				
-				if (Input.anyKeyDown) {
-					movingUp = verticalAxis == 1;
-					movingDown = verticalAxis == -1;
-					movingLeft = horizontalAxis == -1;
-					movingRight = horizontalAxis == 1;
-					makeMove = true;
-					jump = jumpTime;
-				}
+			    if (horizontalAxis != 0)
+			    {
+			        if (isHorizontalAxisInUse == false)
+			        {
+			            movingUp = false;
+			            movingDown = false;
+			            movingRight = horizontalAxis == 1;
+			            movingLeft = horizontalAxis == -1;
+			            makeMove = true;
+			            jump = jumpTime;
+			            isHorizontalAxisInUse = true;
+			        }
+			    }
+			    else if (verticalAxis != 0)
+			    {
+			        if (isVerticalAxisInUse == false)
+			        {
+			            movingUp = verticalAxis == 1;
+			            movingDown = verticalAxis == -1;
+			            movingLeft = false;
+			            movingRight = false;
+			            makeMove = true;
+			            jump = jumpTime;
+                        isVerticalAxisInUse = true;
+			        }
+			    }
+
+			    if (horizontalAxis == 0)
+			        isHorizontalAxisInUse = false;
+			    if (verticalAxis == 0)
+			        isVerticalAxisInUse = false;
+
 			} else {
 
-				if (Input.anyKeyDown) {
-					movingUp = verticalAxis == -1;
-					movingDown = verticalAxis == 1;
-					movingLeft = horizontalAxis == 1;
-					movingRight = horizontalAxis == -1;
-					makeMove = true;
-					jump = jumpTime;
-				}
-			}
+			    if (horizontalAxis != 0)
+			    {
+			        if (isHorizontalAxisInUse == false)
+			        {
+			            movingUp = false;
+			            movingDown = false;
+			            movingRight = horizontalAxis == -1;
+			            movingLeft = horizontalAxis == 1;
+			            makeMove = true;
+			            jump = jumpTime;
+			            isHorizontalAxisInUse = true;
+			        }
+			    }
+			    else if (verticalAxis != 0)
+			    {
+			        if (isVerticalAxisInUse == false)
+			        {
+			            movingUp = verticalAxis == -1;
+			            movingDown = verticalAxis == 1;
+			            movingLeft = false;
+			            movingRight = false;
+			            makeMove = true;
+			            jump = jumpTime;
+			            isVerticalAxisInUse = true;
+			        }
+			    }
+
+			    if (horizontalAxis == 0)
+			        isHorizontalAxisInUse = false;
+			    if (verticalAxis == 0)
+			        isVerticalAxisInUse = false;
+            }
 
 			if (verticalAxis != 0 || horizontalAxis != 0) {
 				CountDown.started = true;
