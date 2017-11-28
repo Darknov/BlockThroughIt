@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemCountDown : MonoBehaviour {
+public class P2ItemCountDown : MonoBehaviour {
 
 	public static float itemTimeRemaining = 5f;
-	public static string itemText = "";
+	public static string itemText = "No item";
 	public static bool started = false;
 	Text text;
 
@@ -16,7 +16,7 @@ public class ItemCountDown : MonoBehaviour {
 
 	void Update () {
 
-		text.text = "No item";
+		text.text = itemText;
 
 		if (started) {
 			text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;

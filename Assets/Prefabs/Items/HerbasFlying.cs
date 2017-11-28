@@ -6,19 +6,21 @@ using UnityEngine.UI;
 public class HerbasFlying : MonoBehaviour {
 
 	public GameObject herbas;
+	public Sprite herbasSprite;
 	public float flyingDuration = 5f;
 	private bool isTriggered = false;
 	private Component[] meshRenderer;
-	Text text;
 
 	void Update() {
 
 		if (isTriggered) {
-			ItemCountDown.itemTimeRemaining = flyingDuration;
+			P1ItemCountDown.itemTimeRemaining = flyingDuration;
 			flyingDuration -= Time.deltaTime;
 			if ((int)flyingDuration <= 0) {
-				ItemCountDown.started = false;
+				P1ItemIcon.itemSprite = null;
+				P1ItemCountDown.started = false;
 				Player1Controller.herbasFlying = false;
+				P1ItemCountDown.itemText = "No item";
 				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				isTriggered = false;
 				Destroy (herbas);
@@ -32,8 +34,9 @@ public class HerbasFlying : MonoBehaviour {
 			isTriggered = true;
 			Player1Controller.herbasFlying = true;
 			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
-			ItemCountDown.started = true;
-			ItemCountDown.itemText = "Herbas Boots\n" + "Time Remaining: ";
+			P1ItemCountDown.started = true;
+			P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
+			P1ItemIcon.itemSprite = herbasSprite;
 			herbas.GetComponent<SphereCollider> ().enabled = false;
 			meshRenderer = herbas.GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer mesh in meshRenderer)
