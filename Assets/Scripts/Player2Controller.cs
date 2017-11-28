@@ -75,19 +75,22 @@ public class Player2Controller : MonoBehaviour
 				if (Input.GetKeyDown("joystick 2 button 6") && !Player1Controller.inverseControlUsed)
                 {
 					Player1Controller.inverseControl = true;
+					ItemCountDown.started = true;
+					ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
                 }
 
 				if (Player1Controller.inverseControl)
-                {
-                    timeOfInverseControlOfPlayer2 -= Time.deltaTime;
-                    Debug.Log(timeOfInverseControlOfPlayer2);
-                    if (timeOfInverseControlOfPlayer2 < 0)
-                    {
+				{
+					ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
+					timeOfInverseControlOfPlayer2 -= Time.deltaTime;
+					Debug.Log(timeOfInverseControlOfPlayer2);
+					if (timeOfInverseControlOfPlayer2 < 0)
+					{
+						ItemCountDown.started = false;
 						Player1Controller.inverseControlUsed = true;
 						Player1Controller.inverseControl = false;
-                    }
-
-                }
+					}
+				}
 
 
                 if (Input.GetKeyDown("joystick 2 button 0"))
@@ -212,6 +215,8 @@ public class Player2Controller : MonoBehaviour
 				if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
                 {
 					Player1Controller.inverseControl = true;
+					ItemCountDown.started = true;
+					ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
@@ -237,10 +242,12 @@ public class Player2Controller : MonoBehaviour
 
 				if (Player1Controller.inverseControl)
                 {
+					ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
                     timeOfInverseControlOfPlayer2 -= Time.deltaTime;
                     Debug.Log(timeOfInverseControlOfPlayer2);
                     if (timeOfInverseControlOfPlayer2 < 0)
                     {
+						ItemCountDown.started = false;
 						Player1Controller.inverseControlUsed = true;
 						Player1Controller.inverseControl = false;
                     }
