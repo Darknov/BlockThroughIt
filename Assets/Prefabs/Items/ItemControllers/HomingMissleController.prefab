@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114134857620749196}
   - component: {fileID: 222190565741395900}
   m_Layer: 0
-  m_Name: HomingMissle
+  m_Name: HomingMissleController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

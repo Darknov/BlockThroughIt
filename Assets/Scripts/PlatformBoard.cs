@@ -20,8 +20,17 @@ public class PlatformBoard : MonoBehaviour {
         transposeBy = (float)((rowLength / 2.0) * block.GetComponent<BoxCollider>().size.x + (widthOfAGap * (rowLength - 1.0))/2.0) - block.GetComponent<BoxCollider>().size.x/2;
         this.transform.position = new Vector3(transform.position.x - transposeBy, transform.position.y, transform.position.z - transposeBy);
 
+        var r = new System.Random();
+        for(int i=0; i<rowLength; i++)
+            for (int j = 0; j < rowLength; j++)
+            {
+                if (this.blocks[i, j] != null)
+                {
+                    this.blocks[i, j].GetComponent<Material>().color = new Color((float)r.NextDouble(), (float)r.NextDouble(), (float)r.NextDouble());
+                }
+            }
 
-	}
+    }
 
     void Awake()
     {
