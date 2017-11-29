@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InverseControl : MonoBehaviour {
-
+	//
 	public float timeOfInverseControlOfPlayer2 = 3.0f;
 	private bool isTriggered = false;
 	public GameObject inverseControl;

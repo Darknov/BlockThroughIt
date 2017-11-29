@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HerbasFlying : MonoBehaviour {
-
+	//
 	public GameObject herbas;
 	public Sprite herbasSprite;
 	public float flyingDuration = 5f;
