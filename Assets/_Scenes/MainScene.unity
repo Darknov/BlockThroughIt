@@ -632,12 +632,12 @@ Prefab:
     - target: {fileID: 224602895581691180, guid: 4a468cad1aaf20944864f516fcf7d070,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 605
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 224602895581691180, guid: 4a468cad1aaf20944864f516fcf7d070,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 286.5
+      value: 288
       objectReference: {fileID: 0}
     - target: {fileID: 224602895581691180, guid: 4a468cad1aaf20944864f516fcf7d070,
         type: 2}
@@ -1014,7 +1014,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 595117233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -525, y: -149.5, z: 0}
+  m_LocalPosition: {x: -432, y: -149.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 339887543}
@@ -1061,7 +1061,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 602324576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 505, y: -140.75, z: 0}
+  m_LocalPosition: {x: 412, y: -140.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 339887543}
@@ -1191,6 +1191,11 @@ BillboardRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Billboard: {fileID: 0}
+--- !u!1 &843765905 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1576305778183534, guid: f1ab0a3b866db9247a420d49018352e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1738507585}
 --- !u!1 &863696989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1597305207548506, guid: 560c7070019a02e47a35a578a7825894, type: 2}
-  player1: {fileID: 0}
+  player1: {fileID: 843765905}
   numberOfInstatiatedBlocks: 15
   platformBoard: {fileID: 428745802}
   generatePlatform: 1
@@ -1570,6 +1575,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114092749891071074, guid: f1ab0a3b866db9247a420d49018352e9,
+        type: 2}
+      propertyPath: gameAccelerator
+      value: 
+      objectReference: {fileID: 1851627372}
+    - target: {fileID: 114777841851785604, guid: f1ab0a3b866db9247a420d49018352e9,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 843765905}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1ab0a3b866db9247a420d49018352e9, type: 2}
   m_IsPrefabParent: 0
