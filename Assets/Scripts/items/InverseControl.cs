@@ -80,7 +80,7 @@ public class InverseControl : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "block") {
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
 				P2ItemCountDown.itemText = "Inverse Control\n" + "Press X to use";
