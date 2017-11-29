@@ -93,61 +93,28 @@ public class Player2Controller : MonoBehaviour
                 }
                 Debug.Log("Activated destroy block: " + isDestroyBlockActivated);
                 Debug.Log("Available destroy block: " + isDestroyBlockAvailable);
-                if (!Player2Controller.isDestroyBlockActivated)
+
+                if (Input.GetKeyDown("joystick 2 button 0"))
                 {
-                    if (Input.GetKeyDown("joystick 2 button 0"))
-                    {
-                        //northBlock = randomBlockGenerator.createDestroyBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
-                        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
-                        ActivateBlock(northBlock);
-                        northBlock = null;
-                    }
-                    else if (Input.GetKeyDown("joystick 2 button 2"))
-                    {
-                        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
-                        ActivateBlock(southBlock);
-                        southBlock = null;
-                    }
-                    else if (Input.GetKeyDown("joystick 2 button 3"))
-                    {
-                        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
-                        ActivateBlock(westBlock);
-                        westBlock = null;
-                    }
-                    else if (Input.GetKeyDown("joystick 2 button 1"))
-                    {
-                        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
-                        ActivateBlock(eastBlock);
-                        eastBlock = null;
-                    }
+                    ActivateBlock(northBlock);
+                    northBlock = null;
                 }
-                else if (Player2Controller.isDestroyBlockActivated)
+                else if (Input.GetKeyDown("joystick 2 button 2"))
                 {
-                    if (Input.GetKeyDown("joystick 2 button 0"))
-                    {
-                        northBlock = randomBlockGenerator.createDestroyBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
-                        ActivateBlock(northBlock);
-                        northBlock = null;
-                    }
-                    else if (Input.GetKeyDown("joystick 2 button 2"))
-                    {
-                        southBlock = randomBlockGenerator.createDestroyBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
-                        ActivateBlock(southBlock);
-                        southBlock = null;
-                    }
-                    else if (Input.GetKeyDown("joystick 2 button 3"))
-                    {
-                        westBlock = randomBlockGenerator.createDestroyBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
-                        ActivateBlock(westBlock);
-                        westBlock = null;
-                    }
-                    else if (Input.GetKeyDown("joystick 2 button 1"))
-                    {
-                        eastBlock = randomBlockGenerator.createDestroyBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
-                        ActivateBlock(eastBlock);
-                        eastBlock = null;
-                    }
+                    ActivateBlock(southBlock);
+                    southBlock = null;
                 }
+                else if (Input.GetKeyDown("joystick 2 button 3"))
+                {
+                    ActivateBlock(westBlock);
+                    westBlock = null;
+                }
+                else if (Input.GetKeyDown("joystick 2 button 1"))
+                {
+                    ActivateBlock(eastBlock);
+                    eastBlock = null;
+                }
+
             }
 
             bool canTurn = !canFire;
@@ -167,17 +134,20 @@ public class Player2Controller : MonoBehaviour
                 {
                     if (isAxisHorizontalInUse == false)
                     {
-                        if (horizontalAxisPlayer2 == -1 && canDestroyBlockMove)
+                        if (isDestroyBlockActivated == false || canDestroyBlockMove)
                         {
-                            activeBlock.GoToYourLeft();
-                            isAxisHorizontalInUse = true;
-                            UpdateShadow();
-                        }
-                        else if (horizontalAxisPlayer2 == 1 && canDestroyBlockMove)
-                        {
-                            activeBlock.GoToYourRight();
-                            isAxisHorizontalInUse = true;
-                            UpdateShadow();
+                            if (horizontalAxisPlayer2 == -1)
+                            {
+                                activeBlock.GoToYourLeft();
+                                isAxisHorizontalInUse = true;
+                                UpdateShadow();
+                            }
+                            else if (horizontalAxisPlayer2 == 1)
+                            {
+                                activeBlock.GoToYourRight();
+                                isAxisHorizontalInUse = true;
+                                UpdateShadow();
+                            }
                         }
                     }
                 }
@@ -185,36 +155,20 @@ public class Player2Controller : MonoBehaviour
                 {
                     if (isAxisVerticalInUse == false)
                     {
-                        if (verticalAxisPlayer2 == -1 && canDestroyBlockMove)
+                        if (isDestroyBlockActivated == false || canDestroyBlockMove)
                         {
-                            if (activeBlock == westBlock)
+                            if (verticalAxisPlayer2 == 1)
                             {
                                 activeBlock.GoToYourRight();
+                                isAxisVerticalInUse = true;
                                 UpdateShadow();
                             }
-                            else
+                            else if (verticalAxisPlayer2 == -1)
                             {
                                 activeBlock.GoToYourLeft();
+                                isAxisVerticalInUse = true;
                                 UpdateShadow();
                             }
-
-                            isAxisVerticalInUse = true;
-                        }
-                        else if (verticalAxisPlayer2 == 1 && canDestroyBlockMove)
-                        {
-                            if (activeBlock == westBlock)
-                            {
-                                activeBlock.GoToYourLeft();
-                                UpdateShadow();
-                            }
-
-                            else
-                            {
-                                activeBlock.GoToYourRight();
-                                UpdateShadow();
-                            }
-
-                            isAxisVerticalInUse = true;
                         }
                     }
                 }
@@ -235,6 +189,8 @@ public class Player2Controller : MonoBehaviour
 
         if (!p2GamePad)
         {
+            Debug.Log("Activated: " + isDestroyBlockActivated);
+            Debug.Log("Available: " + isDestroyBlockAvailable);
 
             bool canFire = activeBlock == null;
 
@@ -286,52 +242,27 @@ public class Player2Controller : MonoBehaviour
                         Player1Controller.inverseControl = false;
                     }
                 }
-                if (!Player2Controller.isDestroyBlockActivated)
+                if (Input.GetKeyDown("i"))
                 {
-                    if (Input.GetKeyDown("i"))
-                    {
-                        ActivateBlock(northBlock);
-                        northBlock = null;
-                    }
-                    else if (Input.GetKeyDown("k"))
-                    {
-                        ActivateBlock(southBlock);
-                        southBlock = null;
-                    }
-                    else if (Input.GetKeyDown("j"))
-                    {
-                        ActivateBlock(westBlock);
-                        westBlock = null;
-                    }
-                    else if (Input.GetKeyDown("l"))
-                    {
-                        ActivateBlock(eastBlock);
-                        eastBlock = null;
-                    }
+                    ActivateBlock(northBlock);
+                    northBlock = null;
                 }
-                else if (Player2Controller.isDestroyBlockActivated)
+                else if (Input.GetKeyDown("k"))
                 {
-                    if (Input.GetKeyDown("i"))
-                    {
-                        CreateDestroyBlock();
-                        northBlock = null;
-                    }
-                    else if (Input.GetKeyDown("k"))
-                    {
-                        CreateDestroyBlock();
-                        southBlock = null;
-                    }
-                    else if (Input.GetKeyDown("j"))
-                    {
-                        CreateDestroyBlock();
-                        westBlock = null;
-                    }
-                    else if (Input.GetKeyDown("l"))
-                    {
-                        CreateDestroyBlock();
-                        eastBlock = null;
-                    }
+                    ActivateBlock(southBlock);
+                    southBlock = null;
                 }
+                else if (Input.GetKeyDown("j"))
+                {
+                    ActivateBlock(westBlock);
+                    westBlock = null;
+                }
+                else if (Input.GetKeyDown("l"))
+                {
+                    ActivateBlock(eastBlock);
+                    eastBlock = null;
+                }
+
             }
 
             bool canTurn = !canFire;
@@ -525,10 +456,10 @@ public class Player2Controller : MonoBehaviour
 
     void CreateInitialAttackBlocks()
     {
-//        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
-//        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
-//        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
-//        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
+        northBlock = randomBlockGenerator.createRandomBlock(northSpawn, blocksSpeed, jumpLength, Vector3.back);
+        southBlock = randomBlockGenerator.createRandomBlock(southSpawn, blocksSpeed, jumpLength, Vector3.forward);
+        eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn, blocksSpeed, jumpLength, Vector3.left);
+        westBlock = randomBlockGenerator.createRandomBlock(westSpawn, blocksSpeed, jumpLength, Vector3.right);
     }
 
     private void UpdateShadow()
@@ -559,6 +490,6 @@ public class Player2Controller : MonoBehaviour
             blockShadow.CreateShadow(this.activeBlock.gameObject);
 
         SetAttackBlockColor(color, activeBlock);
-        
+
     }
 }
