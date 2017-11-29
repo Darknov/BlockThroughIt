@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class P2ItemsPickups : MonoBehaviour {
-
-	public Transform[] fromBlocks;
+	
+	public float pickupSpawnTime = 10f;
+	private int blockSize = 0;
 	int rowLength;
 	public List<GameObject> possibleItems = new List<GameObject>();
 	private System.Random randomItems = new System.Random();
@@ -12,43 +13,55 @@ public class P2ItemsPickups : MonoBehaviour {
 	private System.Random randomPlaces;
 
 	void Start() {
+		
 		rowLength = GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().rowLength;
-		fromBlocks = new Transform[rowLength * rowLength];
-		//possibleItems = new List<GameObject>();
-		//randomItems = new System.Random();
+		randomPlaces = new System.Random ();
 		possiblePlaces = new List<Transform>();
-		randomPlaces = new System.Random();
-		//Transform place = createRandomPlace ();
-		//GameObject item = createRandomItem (place);
+		InvokeRepeating ("Step", pickupSpawnTime, pickupSpawnTime);
 	}
 
-	void Update() {
+	void Step() {
 		
+		blocksSize ();
+		possiblePlacesList ();
+		Transform place = createRandomPlace ();
+		GameObject item = createRandomItem (place);
+	}
+
+	void blocksSize() {
+
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
-				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null) {
-					possiblePlaces.Add(GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j].transform);
+				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] == null) {
+					blockSize++;
 				}
 			}
 		}
 	}
 
-	void LateUpdate() {
+	void possiblePlacesList() {
 		
-		Transform place = createRandomPlace ();
-		GameObject item = createRandomItem (place);
+		for (int i = 0; i < rowLength; i++) {
+			for (int j = 0; j < rowLength; j++) {
+				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] == null) {
+					GameObject pickupPlace = new GameObject ();
+					pickupPlace.GetComponent<Transform> ().position = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 0, (float)(j-System.Math.Floor(rowLength/2.0)));
+					possiblePlaces.Add(pickupPlace.GetComponent<Transform>());
+				}
+			}
+		}
 	}
 
 	public GameObject createRandomItem(Transform place) {
 		
-		int randomIndex = randomItems.Next(0, possibleItems.Count-1);
+		int randomIndex = randomItems.Next(0, possibleItems.Count);
 		GameObject item = Instantiate(possibleItems[randomIndex], place).GetComponent<GameObject>();
 		return item;
 	}
 
 	public Transform createRandomPlace() {
 		
-		int randomIndex = randomPlaces.Next(0, possiblePlaces.Count-1);
+		int randomIndex = randomPlaces.Next(0, possiblePlaces.Count);
 		return possiblePlaces[randomIndex];
 	}
 }

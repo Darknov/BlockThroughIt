@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff10ac19bcd4d648aa0e43e885c30ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fromBlocks: []
+  pickupSpawnTime: 5
   possibleItems:
   - {fileID: 1185641131447202, guid: 2bc76e7e76b1d0142b1668960ffa6d0a, type: 2}
 --- !u!4 &1737352435
