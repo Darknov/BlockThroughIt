@@ -10,8 +10,12 @@ public class PickUpItem : MonoBehaviour
 	private Component[] meshRenderer;
 
 	void OnTriggerEnter(Collider col) {
+            Debug.LogError("TRIGGERED!");
 
-		if (col.gameObject.tag == "Player") {
+        if (col.gameObject.tag == "Player") {
+
+            Debug.LogError("TRIGGERED if!");
+
             col.gameObject.GetComponentInChildren<BoostItemContainer>().boostItem = Instantiate(shoesControllerPrefab, col.gameObject.transform).GetComponent<BoostItem>();
             col.gameObject.GetComponentInChildren<BoostItemContainer>().boostItem.player = col.gameObject;
 
