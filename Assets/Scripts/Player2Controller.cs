@@ -72,28 +72,6 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-                if (Input.GetKeyDown("joystick 2 button 6") && !Player1Controller.inverseControlUsed)
-                {
-                    Player1Controller.inverseControl = true;
-                    ItemCountDown.started = true;
-                    ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
-                }
-
-                if (Player1Controller.inverseControl)
-                {
-                    ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
-                    timeOfInverseControlOfPlayer2 -= Time.deltaTime;
-                    Debug.Log(timeOfInverseControlOfPlayer2);
-                    if (timeOfInverseControlOfPlayer2 < 0)
-                    {
-                        ItemCountDown.started = false;
-                        Player1Controller.inverseControlUsed = true;
-                        Player1Controller.inverseControl = false;
-                    }
-                }
-                Debug.Log("Activated destroy block: " + isDestroyBlockActivated);
-                Debug.Log("Available destroy block: " + isDestroyBlockAvailable);
-
                 if (Input.GetKeyDown("joystick 2 button 0"))
                 {
                     ActivateBlock(northBlock);
@@ -200,13 +178,6 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-				if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
-                {
-					Player1Controller.inverseControl = true;
-					ItemCountDown.started = true;
-					ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
-                }
-
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
                 {
                     timeOfswitchMovementOfPlayer1 = 3.0f;
@@ -225,19 +196,6 @@ public class Player2Controller : MonoBehaviour
                         movementSwitchAlert.text = "";
                         Player1Controller.isAutomovementOn = true;
                        // timeOfswitchMovementOfPlayer1 = 3.0f;
-                    }
-                }
-
-				if (Player1Controller.inverseControl)
-                {
-					ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
-                    timeOfInverseControlOfPlayer2 -= Time.deltaTime;
-                    Debug.Log(timeOfInverseControlOfPlayer2);
-                    if (timeOfInverseControlOfPlayer2 < 0)
-                    {
-						ItemCountDown.started = false;
-						Player1Controller.inverseControlUsed = true;
-						Player1Controller.inverseControl = false;
                     }
                 }
 
