@@ -122,6 +122,12 @@ public class AttackBlock : MonoBehaviour {
                 Player2Controller.canDestroyBlockMove = false;
                 Debug.Log("Can destroy block move: " + Player2Controller.canDestroyBlockMove);
                 Destroy(other.gameObject);
+
+                //
+                // respawn empty blocks
+                Destroy(gameObject);
+                GameObject.FindObjectOfType<ShadowBlock>().DestroyShadow();
+                // 
             }
             else
             {

@@ -440,6 +440,7 @@ public class Player2Controller : MonoBehaviour
 
         if (Player2Controller.isDestroyBlockAvailable == false && Player2Controller.isDestroyBlockActivated)
             Player2Controller.isDestroyBlockActivated = false;
+       
     }
 
     void SetAttackBlockColor(Color color, AttackBlock activeBlock)
