@@ -9,6 +9,9 @@ TagManager:
   - trigger
   - active
   - platformBoard
+  - itemTimeCount
+  - slider
+  - canv
   layers:
   - Default
   - TransparentFX
