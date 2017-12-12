@@ -89,9 +89,9 @@ public class Freeze : MonoBehaviour {
 			freeze.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Freeze\n" + "Press X to use";
+				P2ItemCountDown.itemText = "Freeze the opponent\n" + "Press X to use";
 			} else if (!Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Freeze\n" + "Press 9 to use";
+				P2ItemCountDown.itemText = "Freeze the opponent\n" + "Press 9 to use";
 			}
 			P2ItemIcon.itemSprite = freezeSprite;
 			freeze.GetComponent<SphereCollider> ().enabled = false;

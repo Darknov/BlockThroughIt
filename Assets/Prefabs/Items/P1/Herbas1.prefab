@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 114006728145606344}
   m_Layer: 8
   m_Name: Herbas1
-  m_TagString: Untagged
+  m_TagString: p1item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,8 +485,8 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1644971963554748}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

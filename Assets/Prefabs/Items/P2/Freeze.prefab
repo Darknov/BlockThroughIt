@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4377126426554550}
   - component: {fileID: 33769013693195858}
-  - component: {fileID: 135730575593121158}
   - component: {fileID: 23902102989631798}
   - component: {fileID: 114581113443365350}
   m_Layer: 0
@@ -40,8 +39,10 @@ GameObject:
   - component: {fileID: 4898969347170962}
   - component: {fileID: 33625236647250422}
   - component: {fileID: 23238189372869182}
+  - component: {fileID: 135997465211134138}
+  - component: {fileID: 114595764898771806}
   m_Layer: 0
-  m_Name: KKNW
+  m_Name: Freeze
   m_TagString: p2item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,12 +180,26 @@ MonoBehaviour:
   endScale: {x: 0, y: 0, z: 0}
   scaleSpeed: 0
   scaleRate: 0
---- !u!135 &135730575593121158
+--- !u!114 &114595764898771806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634467942955330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84af808857540a34d8feb5b59dee89dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeTimeOfPlayer2: 3
+  freeze: {fileID: 1634467942955330}
+  freezeSprite: {fileID: 21300000, guid: 1d831cc6f772c4549a5249de23a03c97, type: 3}
+--- !u!135 &135997465211134138
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1224252028358018}
+  m_GameObject: {fileID: 1634467942955330}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

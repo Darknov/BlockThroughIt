@@ -11,6 +11,9 @@ TagManager:
   - platformBoard
   - itemTimeCount
   - p2item
+  - p1item
+  - p1TakenItem
+  - p2TakenItem
   layers:
   - Default
   - TransparentFX

@@ -66,11 +66,11 @@ public class Player2Controller : MonoBehaviour
 
             if (canFire)
             {
-                if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
+                /*if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
                 {
                     isDestroyBlockAvailable = false;
                     isDestroyBlockActivated = true;
-                }
+                }*/
 
                 if (Input.GetKeyDown("joystick 2 button 0"))
                 {
@@ -172,11 +172,11 @@ public class Player2Controller : MonoBehaviour
 
             if (canFire)
             {
-                if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+                /*if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
                 {
                     isDestroyBlockAvailable = false;
                     isDestroyBlockActivated = true;
-                }
+                }*/
 
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
                 {

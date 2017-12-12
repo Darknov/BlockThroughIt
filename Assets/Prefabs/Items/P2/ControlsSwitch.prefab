@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4186798317974778}
   - component: {fileID: 33543360432132126}
-  - component: {fileID: 135235694904597024}
   - component: {fileID: 23481759172303150}
   - component: {fileID: 114277664490786026}
   m_Layer: 0
@@ -40,6 +39,8 @@ GameObject:
   - component: {fileID: 4971780125475856}
   - component: {fileID: 33792028919957562}
   - component: {fileID: 23268512599759276}
+  - component: {fileID: 114970428697389260}
+  - component: {fileID: 135997661944871202}
   m_Layer: 0
   m_Name: ControlsSwitch
   m_TagString: p2item
@@ -179,12 +180,27 @@ MonoBehaviour:
   endScale: {x: 0, y: 0, z: 0}
   scaleSpeed: 0
   scaleRate: 0
---- !u!135 &135235694904597024
+--- !u!114 &114970428697389260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678505784110508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc94fdd470836eb4a95dbf156fa5fdfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeOfInverseControlOfPlayer2: 3
+  inverseControl: {fileID: 1678505784110508}
+  inverseControlSprite: {fileID: 21300000, guid: 6ea0e3de66db60b4895a5af021ec2f96,
+    type: 3}
+--- !u!135 &135997661944871202
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1144290527527884}
+  m_GameObject: {fileID: 1678505784110508}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
