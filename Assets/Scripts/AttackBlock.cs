@@ -3,28 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBlock : MonoBehaviour {
+public class AttackBlock : MonoBehaviour
+{
 
     private float jumpLength;
     private bool isBlockInMovement;
-	public bool wasBlockUsed = false;
+    public bool wasBlockUsed = false;
+    public bool isDestroyBlock = false;
 
     private float moveSpeed;
     private float jumpTime;
     private float currentTime;
 
-	public delegate void PlatformHitEventHandler(object obj, EventArgs args);
-	public PlatformHitEventHandler PlatformHit;
+    public delegate void PlatformHitEventHandler(object obj, EventArgs args);
+    public PlatformHitEventHandler PlatformHit;
 
     public delegate void AttackBlockDestroyEventHandler(object obj, EventArgs args);
     public AttackBlockDestroyEventHandler DestroyAttackBlock;
 
-
-	public virtual void OnPlatformHit() {
-		if (PlatformHit != null) {
-			PlatformHit (this, EventArgs.Empty);
-		}
-	}
+    public virtual void OnPlatformHit()
+    {
+        if (PlatformHit != null)
+        {
+            PlatformHit(this, EventArgs.Empty);
+        }
+    }
 
     public virtual void OnAttackBlockDestroy()
     {
@@ -32,7 +35,6 @@ public class AttackBlock : MonoBehaviour {
         {
             DestroyAttackBlock(this, EventArgs.Empty);
         }
-
     }
 
     public float JumpLength
@@ -43,25 +45,30 @@ public class AttackBlock : MonoBehaviour {
         }
     }
 
-    public float MoveSpeed { set
+    public float MoveSpeed
+    {
+        set
         {
             this.moveSpeed = value;
         }
     }
 
-	public void ChangeSpeed(float speed) {
-		this.moveSpeed = speed;
+    public void ChangeSpeed(float speed)
+    {
+        this.moveSpeed = speed;
         Initialize();
-	}
+    }
 
     public Vector3 MoveDirection { set; get; }
 
-	void Start() {
-		this.isBlockInMovement = false;
+    void Start()
+    {
+        this.isBlockInMovement = false;
         AdaptTriggers();
     }
 
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         if (!isBlockInMovement) return;
 
         currentTime += Time.deltaTime * moveSpeed;
@@ -91,14 +98,16 @@ public class AttackBlock : MonoBehaviour {
 
     }
 
-    public void Activate() {
+    public void Activate()
+    {
         isBlockInMovement = true;
     }
 
-    public void Deactivate() {
+    public void Deactivate()
+    {
         isBlockInMovement = false;
     }
-		
+
     public bool IfInMovement()
     {
         return isBlockInMovement;
@@ -113,15 +122,14 @@ public class AttackBlock : MonoBehaviour {
         currentTime = jumpTime;
     }
 
-	void OnTriggerEnter (Collider other) 
-    { 
+    void OnTriggerEnter(Collider other)
+    {
         if (other.tag == "platform")
         {
-            if (Player2Controller.isDestroyBlockActivated)
+            if (isDestroyBlock)
             {
-                Player2Controller.canDestroyBlockMove = false;
-                Debug.Log("Can destroy block move: " + Player2Controller.canDestroyBlockMove);
                 Destroy(other.gameObject);
+                OnPlatformHit();
             }
             else
             {
@@ -129,27 +137,31 @@ public class AttackBlock : MonoBehaviour {
                 BecomePartOfPlatform();
             }
         }
-	}
+    }
 
-	void BecomePartOfPlatform() {
-		this.gameObject.tag = "platform"; 
+    void BecomePartOfPlatform()
+    {
+        this.gameObject.tag = "platform";
 
-		var children = this.gameObject.GetComponentsInChildren<Transform> ();
+        var children = this.gameObject.GetComponentsInChildren<Transform>();
 
-		foreach (var child in children) {
-			child.tag = "platform";
-		}
+        foreach (var child in children)
+        {
+            child.tag = "platform";
+        }
 
-		Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider> ();
+        Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider>();
 
-		foreach (var item in colliders) {
-			if (item.isTrigger) {
-				Destroy (item);
-			}
-		}
+        foreach (var item in colliders)
+        {
+            if (item.isTrigger)
+            {
+                Destroy(item);
+            }
+        }
 
-		OnPlatformHit ();
-	}
+        OnPlatformHit();
+    }
 
     public void GoToYourLeft()
     {
