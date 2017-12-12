@@ -9,6 +9,8 @@ TagManager:
   - trigger
   - active
   - platformBoard
+  - itemTimeCount
+  - p2item
   layers:
   - Default
   - TransparentFX
