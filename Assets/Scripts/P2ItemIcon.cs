@@ -15,12 +15,11 @@ public class P2ItemIcon : MonoBehaviour {
 
 	void Update() {
 		if (itemSprite != null) {
-			if (iconColor != Color.white) {
-				image.color = iconColor;
-			}
+			image.color = iconColor;
 			image.enabled = true;
 			image.sprite = itemSprite;
 		} else {
+			iconColor = Color.white;
 			image.enabled = false;
 		}
 	}
