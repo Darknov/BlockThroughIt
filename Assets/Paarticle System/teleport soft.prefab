@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4113763236197264}
   m_Layer: 0
-  m_Name: teleport delikaniejszy
+  m_Name: teleport soft
   m_TagString: ParticleTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
