@@ -80,7 +80,7 @@ public class InverseControl : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 
-		if (col.gameObject.tag = "p2item") {
+		if (col.gameObject.tag == "p2item") {
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "Player") {

@@ -30,7 +30,7 @@ public class Herbas : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 
-		if (col.gameObject.tag = "p1item") {
+		if (col.gameObject.tag == "p1item") {
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "Player") {
