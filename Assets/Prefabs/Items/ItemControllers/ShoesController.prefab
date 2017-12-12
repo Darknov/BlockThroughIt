@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4921378999650512}
   - component: {fileID: 114536450529747690}
+  - component: {fileID: 114604565728123782}
   m_Layer: 0
   m_Name: ShoesController
   m_TagString: Untagged
@@ -51,7 +52,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7986867dd3cd8c44acdb6db52072c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 083237d4baf78d143b4251ca612f18dd, type: 3}
   wasUsed: 0
   player: {fileID: 0}
   initialFlyingDuration: 5
+--- !u!114 &114604565728123782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799139875703756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c3744858f1c21448b827a7dd451ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  herbas: {fileID: 1979128990166850, guid: 4f3ccda600638cc46be26743b89d8dec, type: 2}
+  herbasSprite: {fileID: 21300000, guid: 083237d4baf78d143b4251ca612f18dd, type: 3}
+  flyingDuration: 5
