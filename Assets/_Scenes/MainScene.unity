@@ -1213,6 +1213,11 @@ Prefab:
       propertyPath: gameAccelerator
       value: 
       objectReference: {fileID: 1851627372}
+    - target: {fileID: 119614706745284942, guid: f1ab0a3b866db9247a420d49018352e9,
+        type: 2}
+      propertyPath: m_IgnoreLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1ab0a3b866db9247a420d49018352e9, type: 2}
   m_IsPrefabParent: 0

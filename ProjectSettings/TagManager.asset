@@ -14,6 +14,7 @@ TagManager:
   - p1item
   - p1TakenItem
   - p2TakenItem
+  - ParticleTeleport
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - Item
   - 
   - 
   - 
