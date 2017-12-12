@@ -64,11 +64,13 @@ public class Player2Controller : MonoBehaviour
 
             if (canFire)
             {
-                /*if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
+                if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
                 {
                     isDestroyBlockAvailable = false;
                     isDestroyBlockActivated = true;
-                }*/
+                }
+
+               
 
                 if (Input.GetKeyDown("joystick 2 button 0"))
                 {
@@ -164,12 +166,12 @@ public class Player2Controller : MonoBehaviour
 
             if (canFire)
             {
-                /*if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+                if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
                 {
                     isDestroyBlockAvailable = false;
                     isDestroyBlockActivated = true;
-                }*/
-
+                }
+               
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
                 {
                     timeOfswitchMovementOfPlayer1 = 3.0f;
@@ -190,7 +192,7 @@ public class Player2Controller : MonoBehaviour
                         // timeOfswitchMovementOfPlayer1 = 3.0f;
                     }
                 }
-
+               
                 if (Input.GetKeyDown("i"))
                 {
                     ActivateBlock(northBlock);
@@ -214,7 +216,7 @@ public class Player2Controller : MonoBehaviour
 
                 if (Player2Controller.isDestroyBlockActivated && activeBlock != null)
                 {
-                    //activeBlock.isDestroyBlock = true;
+                    activeBlock.isDestroyBlock = true;
                     Player2Controller.isDestroyBlockActivated = false;
                     Player2Controller.isDestroyBlockAvailable = true;
                 }
@@ -319,13 +321,13 @@ public class Player2Controller : MonoBehaviour
         Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
         tempMaterial = block.GetComponentInChildren<Renderer>().material;
 
-        /*if (Player2Controller.isDestroyBlockActivated)
+        if (Player2Controller.isDestroyBlockActivated)
             block.isDestroyBlock = true;
 
         if (block.isDestroyBlock == false)
             block.PlatformHit += OnActiveBlockPlatformHit;
         else
-            block.PlatformHit += OnDestroyBlockPlatformHit;*/
+            block.PlatformHit += OnDestroyBlockPlatformHit;
 
         block.DestroyAttackBlock += RespawnEmptyBlocks;
         blockShadow.CreateShadow(this.activeBlock.gameObject);

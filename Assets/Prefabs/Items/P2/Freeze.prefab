@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33769013693195858}
   - component: {fileID: 23902102989631798}
   - component: {fileID: 114581113443365350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23238189372869182}
   - component: {fileID: 135997465211134138}
   - component: {fileID: 114595764898771806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Freeze
   m_TagString: p2item
   m_Icon: {fileID: 0}

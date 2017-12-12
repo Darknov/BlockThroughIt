@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33543360432132126}
   - component: {fileID: 23481759172303150}
   - component: {fileID: 114277664490786026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23268512599759276}
   - component: {fileID: 114970428697389260}
   - component: {fileID: 135997661944871202}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ControlsSwitch
   m_TagString: p2item
   m_Icon: {fileID: 0}

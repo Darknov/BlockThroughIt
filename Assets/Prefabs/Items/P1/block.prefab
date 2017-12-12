@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135671242368491826}
   - component: {fileID: 23356353349880332}
   - component: {fileID: 114237427428815526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4693802427375274}
   - component: {fileID: 33039966268207920}
   - component: {fileID: 23826807852658088}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: block
   m_TagString: p1item
   m_Icon: {fileID: 0}
