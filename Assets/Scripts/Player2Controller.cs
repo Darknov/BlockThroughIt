@@ -214,7 +214,7 @@ public class Player2Controller : MonoBehaviour
 
                 if (Player2Controller.isDestroyBlockActivated && activeBlock != null)
                 {
-                    activeBlock.isDestroyBlock = true;
+                    //activeBlock.isDestroyBlock = true;
                     Player2Controller.isDestroyBlockActivated = false;
                     Player2Controller.isDestroyBlockAvailable = true;
                 }
@@ -319,13 +319,13 @@ public class Player2Controller : MonoBehaviour
         Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
         tempMaterial = block.GetComponentInChildren<Renderer>().material;
 
-        if (Player2Controller.isDestroyBlockActivated)
+        /*if (Player2Controller.isDestroyBlockActivated)
             block.isDestroyBlock = true;
 
         if (block.isDestroyBlock == false)
             block.PlatformHit += OnActiveBlockPlatformHit;
         else
-            block.PlatformHit += OnDestroyBlockPlatformHit;
+            block.PlatformHit += OnDestroyBlockPlatformHit;*/
 
         block.DestroyAttackBlock += RespawnEmptyBlocks;
         blockShadow.CreateShadow(this.activeBlock.gameObject);

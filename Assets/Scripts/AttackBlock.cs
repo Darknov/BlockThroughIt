@@ -119,8 +119,8 @@ public class AttackBlock : MonoBehaviour {
         {
             if (Player2Controller.isDestroyBlockActivated)
             {
-                Player2Controller.canDestroyBlockMove = false;
-                Debug.Log("Can destroy block move: " + Player2Controller.canDestroyBlockMove);
+                //Player2Controller.canDestroyBlockMove = false;
+                //Debug.Log("Can destroy block move: " + Player2Controller.canDestroyBlockMove);
                 Destroy(other.gameObject);
 				//Deactivate();
 				//Destroy (gameObject);
