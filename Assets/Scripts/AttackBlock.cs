@@ -8,6 +8,7 @@ public class AttackBlock : MonoBehaviour {
     private float jumpLength;
     private bool isBlockInMovement;
 	public bool wasBlockUsed = false;
+    public bool isDestroyBlock = false;
 
     private float moveSpeed;
     private float jumpTime;
@@ -117,16 +118,15 @@ public class AttackBlock : MonoBehaviour {
     { 
         if (other.tag == "platform")
         {
-            if (Player2Controller.isDestroyBlockActivated)
+            if (isDestroyBlock)
             {
-                Player2Controller.canDestroyBlockMove = false;
-                Debug.Log("Can destroy block move: " + Player2Controller.canDestroyBlockMove);
                 Destroy(other.gameObject);
-
+                Deactivate();
+                BecomePartOfPlatform();
                 //
                 // respawn empty blocks
-                Destroy(gameObject);
-                GameObject.FindObjectOfType<ShadowBlock>().DestroyShadow();
+                //Destroy(gameObject);
+                
                 // 
             }
             else

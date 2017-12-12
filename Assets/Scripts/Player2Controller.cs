@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
-    public static bool p2GamePad = true;
+    public static bool p2GamePad = false;
 
     public float blocksSpeed;
     public float boostSpeed;
@@ -29,7 +29,6 @@ public class Player2Controller : MonoBehaviour
 
     public static bool isDestroyBlockAvailable;
     public static bool isDestroyBlockActivated;
-    public static bool canDestroyBlockMove;
     public static int movementSwitchCounter = 3;
 
     public Text movementSwitchAlert;
@@ -50,7 +49,6 @@ public class Player2Controller : MonoBehaviour
 
         isDestroyBlockAvailable = true;
         isDestroyBlockActivated = false;
-        canDestroyBlockMove = true;
     }
 
     void Update()
@@ -134,20 +132,17 @@ public class Player2Controller : MonoBehaviour
                 {
                     if (isAxisHorizontalInUse == false)
                     {
-                        if (isDestroyBlockActivated == false || canDestroyBlockMove)
+                        if (horizontalAxisPlayer2 == -1)
                         {
-                            if (horizontalAxisPlayer2 == -1)
-                            {
-                                activeBlock.GoToYourLeft();
-                                isAxisHorizontalInUse = true;
-                                UpdateShadow();
-                            }
-                            else if (horizontalAxisPlayer2 == 1)
-                            {
-                                activeBlock.GoToYourRight();
-                                isAxisHorizontalInUse = true;
-                                UpdateShadow();
-                            }
+                            activeBlock.GoToYourLeft();
+                            isAxisHorizontalInUse = true;
+                            UpdateShadow();
+                        }
+                        else if (horizontalAxisPlayer2 == 1)
+                        {
+                            activeBlock.GoToYourRight();
+                            isAxisHorizontalInUse = true;
+                            UpdateShadow();
                         }
                     }
                 }
@@ -155,20 +150,17 @@ public class Player2Controller : MonoBehaviour
                 {
                     if (isAxisVerticalInUse == false)
                     {
-                        if (isDestroyBlockActivated == false || canDestroyBlockMove)
+                        if (verticalAxisPlayer2 == 1)
                         {
-                            if (verticalAxisPlayer2 == 1)
-                            {
-                                activeBlock.GoToYourRight();
-                                isAxisVerticalInUse = true;
-                                UpdateShadow();
-                            }
-                            else if (verticalAxisPlayer2 == -1)
-                            {
-                                activeBlock.GoToYourLeft();
-                                isAxisVerticalInUse = true;
-                                UpdateShadow();
-                            }
+                            activeBlock.GoToYourRight();
+                            isAxisVerticalInUse = true;
+                            UpdateShadow();
+                        }
+                        else if (verticalAxisPlayer2 == -1)
+                        {
+                            activeBlock.GoToYourLeft();
+                            isAxisVerticalInUse = true;
+                            UpdateShadow();
                         }
                     }
                 }
@@ -200,11 +192,11 @@ public class Player2Controller : MonoBehaviour
                     isDestroyBlockActivated = true;
                 }
 
-				if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
+                if (Input.GetKeyDown(KeyCode.Alpha9) && !Player1Controller.inverseControlUsed)
                 {
-					Player1Controller.inverseControl = true;
-					ItemCountDown.started = true;
-					ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
+                    Player1Controller.inverseControl = true;
+                    ItemCountDown.started = true;
+                    ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
@@ -224,20 +216,20 @@ public class Player2Controller : MonoBehaviour
                     {
                         movementSwitchAlert.text = "";
                         Player1Controller.isAutomovementOn = true;
-                       // timeOfswitchMovementOfPlayer1 = 3.0f;
+                        // timeOfswitchMovementOfPlayer1 = 3.0f;
                     }
                 }
 
-				if (Player1Controller.inverseControl)
+                if (Player1Controller.inverseControl)
                 {
-					ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
+                    ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
                     timeOfInverseControlOfPlayer2 -= Time.deltaTime;
                     Debug.Log(timeOfInverseControlOfPlayer2);
                     if (timeOfInverseControlOfPlayer2 < 0)
                     {
-						ItemCountDown.started = false;
-						Player1Controller.inverseControlUsed = true;
-						Player1Controller.inverseControl = false;
+                        ItemCountDown.started = false;
+                        Player1Controller.inverseControlUsed = true;
+                        Player1Controller.inverseControl = false;
                     }
                 }
 
@@ -261,6 +253,14 @@ public class Player2Controller : MonoBehaviour
                     ActivateBlock(eastBlock);
                     eastBlock = null;
                 }
+
+                if (Player2Controller.isDestroyBlockActivated && activeBlock != null)
+                {
+                    activeBlock.isDestroyBlock = true;
+                    Player2Controller.isDestroyBlockActivated = false;
+                    Player2Controller.isDestroyBlockAvailable = true;
+                }
+
             }
 
             bool canTurn = !canFire;
@@ -278,84 +278,53 @@ public class Player2Controller : MonoBehaviour
 
                 if (IsVertical(activeBlock))
                 {
-                    if (isAxisHorizontalInUse == false)
+                    if (Input.GetKeyDown(KeyCode.J))
                     {
-                        if (Input.GetKeyDown(KeyCode.J))
-                        {
-                            if (isDestroyBlockActivated == false || canDestroyBlockMove)
-                            {
-                                activeBlock.GoToYourLeft();
-                                isAxisHorizontalInUse = true;
-                                UpdateShadow();
-                            }
-                        }
-                        else if (Input.GetKeyDown(KeyCode.L))
-                        {
-                            if (isDestroyBlockActivated == false || canDestroyBlockMove)
-                            {
-                                activeBlock.GoToYourRight();
-                                isAxisHorizontalInUse = true;
-                                UpdateShadow();
-                            }
-                        }
+                        activeBlock.GoToYourLeft();
+                        UpdateShadow();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.L))
+                    {
+                        activeBlock.GoToYourRight();
+                        UpdateShadow();
                     }
                 }
                 else
                 {
-                    if (isAxisVerticalInUse == false)
+                    if (Input.GetKeyDown(KeyCode.I))
                     {
-                        if (Input.GetKeyDown(KeyCode.I))
+                        if (activeBlock == westBlock)
                         {
-                            if (activeBlock == westBlock)
-                            {
-                                if (isDestroyBlockActivated == false || canDestroyBlockMove)
-                                {
-                                    activeBlock.GoToYourRight();
-                                    UpdateShadow();
-                                }
-                            }
-
-                            else
-                            {
-                                if (isDestroyBlockActivated == false || canDestroyBlockMove)
-                                {
-                                    activeBlock.GoToYourLeft();
-                                    UpdateShadow();
-                                }
-                            }
-
-                            isAxisVerticalInUse = true;
+                            activeBlock.GoToYourRight();
+                            UpdateShadow();
                         }
-                        else if (Input.GetKeyDown(KeyCode.K))
+                        else
                         {
-                            if (activeBlock == westBlock)
-                            {
-                                if (isDestroyBlockActivated == false || canDestroyBlockMove)
-                                {
-                                    activeBlock.GoToYourLeft();
-                                    UpdateShadow();
-                                }
-                            }
-
-                            else
-                            {
-                                if (isDestroyBlockActivated == false || canDestroyBlockMove)
-                                {
-                                    activeBlock.GoToYourRight();
-                                    UpdateShadow();
-                                }
-                            }
-
-                            isAxisVerticalInUse = true;
+                            activeBlock.GoToYourLeft();
+                            UpdateShadow();
                         }
                     }
+                    else if (Input.GetKeyDown(KeyCode.K))
+                    {
+                        if (activeBlock == westBlock)
+                        {
+                            activeBlock.GoToYourLeft();
+                            UpdateShadow();
+                        }
+                        else
+                        {
+                            activeBlock.GoToYourRight();
+                            UpdateShadow();
+                        }
+                    }
+
+
                 }
 
-                if (horizontalAxisPlayer2 == 0)
-                    isAxisHorizontalInUse = false;
-
-                if (verticalAxisPlayer2 == 0)
-                    isAxisVerticalInUse = false;
+                Debug.Log("Use Horizontal: " + isAxisHorizontalInUse);
+                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
+                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
+                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
 
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
@@ -364,13 +333,13 @@ public class Player2Controller : MonoBehaviour
                 }
             }
         }
-        if(!GameObject.FindGameObjectWithTag("Player"))
+        if (!GameObject.FindGameObjectWithTag("Player"))
         {
             movementSwitchCounter = 3;
             Player1Controller.hommingMissleCounter = 3;
             movementSwitchAlert.text = "";
         }
-        
+
     }
     void switchAutomovement()
     {
@@ -416,6 +385,7 @@ public class Player2Controller : MonoBehaviour
         blockShadow.DestroyShadow();
 
         RespawnEmptyBlocks(source, args);
+        
     }
 
     void RespawnEmptyBlocks(object source, EventArgs args)
@@ -435,12 +405,17 @@ public class Player2Controller : MonoBehaviour
             westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength,
                 activeBlock.MoveDirection);
 
+        /////////
+        if (activeBlock.isDestroyBlock)
+        {
+           Destroy(activeBlock);
+        }
+           
+
         this.activeBlock.transform.parent = null;
         this.activeBlock = null;
 
-        if (Player2Controller.isDestroyBlockAvailable == false && Player2Controller.isDestroyBlockActivated)
-            Player2Controller.isDestroyBlockActivated = false;
-       
+
     }
 
     void SetAttackBlockColor(Color color, AttackBlock activeBlock)
