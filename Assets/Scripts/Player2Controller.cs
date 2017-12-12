@@ -361,14 +361,17 @@ public class Player2Controller : MonoBehaviour
         Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
         tempMaterial = block.GetComponentInChildren<Renderer>().material;
 
-        block.PlatformHit += OnActiveBlockPlatformHit;
+        if (Player2Controller.isDestroyBlockActivated)
+            block.isDestroyBlock = true;
+
+        if (block.isDestroyBlock == false)
+            block.PlatformHit += OnActiveBlockPlatformHit;
+        else
+            block.PlatformHit += OnDestroyBlockPlatformHit;
+
         block.DestroyAttackBlock += RespawnEmptyBlocks;
-
-        if (Player2Controller.isDestroyBlockActivated == false)
-            blockShadow.CreateShadow(this.activeBlock.gameObject);
-
+        blockShadow.CreateShadow(this.activeBlock.gameObject);
         SetAttackBlockColor(color, activeBlock);
-
     }
 
     public AttackBlock GetActiveBlock()
@@ -383,9 +386,17 @@ public class Player2Controller : MonoBehaviour
         platformBoard.addBlock(activeBlock, tempMaterial);
 
         blockShadow.DestroyShadow();
-
         RespawnEmptyBlocks(source, args);
-        
+    }
+
+    void OnDestroyBlockPlatformHit(object source, EventArgs args)
+    {
+        if (activeBlock == null) return;
+        SetAttackBlockColor(Color.black, activeBlock);
+
+        Destroy(activeBlock.gameObject);
+        blockShadow.DestroyShadow();
+        RespawnEmptyBlocks(source, args);
     }
 
     void RespawnEmptyBlocks(object source, EventArgs args)
@@ -405,17 +416,8 @@ public class Player2Controller : MonoBehaviour
             westBlock = randomBlockGenerator.createRandomBlock(activeBlock.transform.parent, blocksSpeed, jumpLength,
                 activeBlock.MoveDirection);
 
-        /////////
-        if (activeBlock.isDestroyBlock)
-        {
-           Destroy(activeBlock);
-        }
-           
-
         this.activeBlock.transform.parent = null;
         this.activeBlock = null;
-
-
     }
 
     void SetAttackBlockColor(Color color, AttackBlock activeBlock)
