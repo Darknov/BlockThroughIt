@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,7 +80,14 @@ public class InverseControl : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 
-		if (col.gameObject.tag == "block") {
+		if (col.gameObject.tag = "p2item") {
+			Destroy (col.gameObject);
+		}
+		if (col.gameObject.tag == "Player") {
+			if (P2ItemCountDown.itemText != "No item") {
+				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
+			}
+			inverseControl.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
 				P2ItemCountDown.itemText = "Inverse Control\n" + "Press X to use";

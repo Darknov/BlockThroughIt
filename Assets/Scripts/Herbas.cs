@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HerbasIcon : MonoBehaviour {
+public class Herbas : MonoBehaviour {
 
 	public GameObject herbas;
 	public Sprite herbasSprite;
@@ -30,7 +30,14 @@ public class HerbasIcon : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 
+		if (col.gameObject.tag = "p1item") {
+			Destroy (col.gameObject);
+		}
 		if (col.gameObject.tag == "Player") {
+			if (P1ItemCountDown.itemText != "No item") {
+				Destroy (GameObject.FindGameObjectWithTag("p1TakenItem"));
+			}
+			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			GameObject.FindGameObjectWithTag("Player").GetComponent<Player1Controller>().isFlying = true;
 			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
