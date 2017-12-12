@@ -56,6 +56,7 @@ MonoBehaviour:
   wasUsed: 0
   player: {fileID: 0}
   initialFlyingDuration: 5
+  partEffect: {fileID: 1777274876761260, guid: 56f89636788dfae4da47876d63d15013, type: 2}
 --- !u!114 &114604565728123782
 MonoBehaviour:
   m_ObjectHideFlags: 1
