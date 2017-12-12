@@ -9,7 +9,7 @@ public class InverseControl : MonoBehaviour {
 	private bool isTriggered = false;
 	public GameObject inverseControl;
 	public Sprite inverseControlSprite;
-	private Component[] meshRenderer;
+	//private Component[] meshRenderer;
 
 	void Update () {
 
@@ -96,9 +96,12 @@ public class InverseControl : MonoBehaviour {
 			}
 			P2ItemIcon.itemSprite = inverseControlSprite;
 			inverseControl.GetComponent<SphereCollider> ().enabled = false;
-			meshRenderer = inverseControl.GetComponentsInChildren<MeshRenderer>();
+			/*meshRenderer = inverseControl.GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer mesh in meshRenderer)
-				mesh.enabled = false;
+				mesh.enabled = false;*/
+			for (int i = 0; i < inverseControl.transform.childCount; i++) {
+				inverseControl.transform.GetChild(i).gameObject.SetActive(false);
+			}
 		}
 	}
 }

@@ -8,7 +8,7 @@ public class KKNW : MonoBehaviour {
 	public GameObject kknw;
 	public Sprite kknwSprite;
 	private bool isTriggered = false;
-	private Component[] meshRenderer;
+	//private Component[] meshRenderer;
 
 	void Update() {
 
@@ -55,9 +55,12 @@ public class KKNW : MonoBehaviour {
 			}
 			P2ItemIcon.itemSprite = kknwSprite;
 			kknw.GetComponent<SphereCollider> ().enabled = false;
-			meshRenderer = kknw.GetComponentsInChildren<MeshRenderer>();
+			/*meshRenderer = kknw.GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer mesh in meshRenderer)
-				mesh.enabled = false;
+				mesh.enabled = false;*/
+			for (int i = 0; i < kknw.transform.childCount; i++) {
+				kknw.transform.GetChild(i).gameObject.SetActive(false);
+			}
 		}
 	}
 }

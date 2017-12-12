@@ -8,7 +8,7 @@ public class Freeze : MonoBehaviour {
 	private bool isTriggered = false;
 	public GameObject freeze;
 	public Sprite freezeSprite;
-	private Component[] meshRenderer;
+	//private Component[] meshRenderer;
 
 	void Update () {
 
@@ -95,9 +95,12 @@ public class Freeze : MonoBehaviour {
 			}
 			P2ItemIcon.itemSprite = freezeSprite;
 			freeze.GetComponent<SphereCollider> ().enabled = false;
-			meshRenderer = freeze.GetComponentsInChildren<MeshRenderer>();
+			/*meshRenderer = freeze.GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer mesh in meshRenderer)
-				mesh.enabled = false;
+				mesh.enabled = false;*/
+			for (int i = 0; i < freeze.transform.childCount; i++) {
+				freeze.transform.GetChild(i).gameObject.SetActive(false);
+			}
 		}
 	}
 }
