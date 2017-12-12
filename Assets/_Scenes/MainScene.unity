@@ -1259,6 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b582a271c3bb5409913d4020f6f5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstPickupSpawnTime: 0
   pickupSpawnTime: 15
   possibleItems:
   - {fileID: 1166536956343708, guid: 7cd2c854e67623c4683c5cc8f6735e45, type: 2}

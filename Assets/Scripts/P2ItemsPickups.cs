@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class P2ItemsPickups : MonoBehaviour {
 
+	public float firstPickupSpawnTime = 0f;
 	public float pickupSpawnTime = 10f;
 	private int blockSize = 0;
 	int rowLength;
@@ -17,7 +18,7 @@ public class P2ItemsPickups : MonoBehaviour {
 
 		rotation = new Quaternion();
 		rowLength = GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().rowLength;
-		InvokeRepeating ("Step", pickupSpawnTime, pickupSpawnTime);
+		InvokeRepeating ("Step", firstPickupSpawnTime, pickupSpawnTime);
 	}
 
 	void Step() {
