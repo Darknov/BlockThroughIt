@@ -12,7 +12,15 @@ public class GameAccelerator : MonoBehaviour {
 	public float speedUpInterval;
 	private float timeCounter = 0f;
 
-	void Update() {
+    void Start()
+    {
+        if(StaticOptions.mode == 2)
+        {
+            isOn = true;
+        }
+    }
+
+    void Update() {
 
 		if(!isOn) return;
 

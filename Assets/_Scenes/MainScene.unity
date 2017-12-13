@@ -1213,7 +1213,7 @@ Prefab:
     - target: {fileID: 114626146482701818, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: warningTime
-      value: 55
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b985cc68700c93c4ca5f1904b3567259, type: 2}

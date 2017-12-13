@@ -7,6 +7,8 @@ public class LoadGameOnClick : MonoBehaviour {
 
 	public void LoadByIndex(int sceneIndex)
 	{
-		SceneManager.LoadScene (sceneIndex);
+        StaticOptions.mode = sceneIndex;
+		SceneManager.LoadScene (1);
+
 	}
 }
