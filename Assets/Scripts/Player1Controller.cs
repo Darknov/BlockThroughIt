@@ -207,6 +207,11 @@ public class Player1Controller : MonoBehaviour
 			if (verticalAxis != 0 || horizontalAxis != 0) {
 				CountDown.started = true;
 			}
+
+			if (Input.GetKeyDown("joystick 1 button 6"))
+			{
+				boostItemContainer.ActivateItem();  
+			}
         }
 
     }

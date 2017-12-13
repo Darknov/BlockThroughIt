@@ -1514,9 +1514,8 @@ MonoBehaviour:
   firstPickupSpawnTime: 0
   pickupSpawnTime: 15
   possibleItems:
-  - {fileID: 1884113545728240, guid: a26b70c6822887c428dc96bac1737c5a, type: 2}
-  - {fileID: 1152023014569484, guid: 57be7ccf61ecfbc45a954d4010722c39, type: 2}
   - {fileID: 1830882265319056, guid: a7d129c2fc0152641a16d7991d8b2b76, type: 2}
+  - {fileID: 1152023014569484, guid: 57be7ccf61ecfbc45a954d4010722c39, type: 2}
 --- !u!4 &1897435601
 Transform:
   m_ObjectHideFlags: 0

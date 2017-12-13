@@ -33,6 +33,7 @@ public class ShadowBlock : MonoBehaviour {
         Vector3 position = closestPair[0].transform.position - attackBlockComponent.MoveDirection;
         position = position - (attackBlock.transform.rotation * closestPair[1].transform.localPosition);
         this.activeBlockShadow = Instantiate(attackBlock, position, attackBlock.transform.rotation);
+		this.activeBlockShadow.transform.tag = "attackBlockShadow";
 
         DestroyColliders();
         ImmobilizeShadow();
