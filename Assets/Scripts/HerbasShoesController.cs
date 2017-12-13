@@ -33,17 +33,6 @@ public class HerbasShoesController : BoostItem {
 				player.GetComponent<Rigidbody>().useGravity = true;
                 isActive = false;
                 flyingDuration = initialFlyingDuration;
-        /*    foreach (var item in partEffect.GetComponentsInChildren<Transform>())
-            {
-                Destroy(item.gameObject);
-                Destroy(item.particleSystem.gameObject);
-            }
-            foreach (var item in partEffect.GetComponentsInParent<Transform>())
-            {
-                Destroy(item.gameObject);
-            }*/
-           // Destroy(partEffect.particleSystem.gameObject);
-           // partEffect.particleEmitter.emit = false;
             partEffect.transform.parent = null; // detach particle system
             Destroy(partEffect.gameObject, 3);
             Destroy(gameObject);

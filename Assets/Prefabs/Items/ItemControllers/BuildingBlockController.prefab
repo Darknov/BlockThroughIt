@@ -54,3 +54,4 @@ MonoBehaviour:
   image: {fileID: 0}
   wasUsed: 0
   player: {fileID: 0}
+  partEffect: {fileID: 100008, guid: c315731710b634ac1907e6aceca06447, type: 2}

@@ -9,6 +9,7 @@ public class AbilityBuildingBlock1 : BoostItem {
     private PlatformBoard platform;
     int rowLength;
     private bool isActive = false ;
+    public GameObject partEffect;
     void Start()
     {
         this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
@@ -32,18 +33,22 @@ public class AbilityBuildingBlock1 : BoostItem {
             Debug.Log(tY);
             if (tY == 90)
             {
+                Instantiate(partEffect, new Vector3(player.transform.position.x+1, player.transform.position.y, player.transform.position.z), player.transform.rotation, player.transform);
                 platform.addBlock(x + 1, z);
             }
             if (tY == 270)
             {
+                Instantiate(partEffect, new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z), player.transform.rotation, player.transform);
                 platform.addBlock(x - 1, z);
             }
             if (tY == 0)
             {
+                Instantiate(partEffect, new Vector3(player.transform.position.x , player.transform.position.y, player.transform.position.z+1), player.transform.rotation, player.transform);
                 platform.addBlock(x, z + 1);
             }
             if (tY == 180)
             {
+                Instantiate(partEffect, new Vector3(player.transform.position.x , player.transform.position.y, player.transform.position.z-1), player.transform.rotation, player.transform);
                 platform.addBlock(x, z - 1);
             }
 
