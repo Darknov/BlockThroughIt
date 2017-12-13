@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
-    public static bool p2GamePad = false;
+    public static bool p2GamePad = true;
 
     public float blocksSpeed;
     public float boostSpeed;
@@ -47,12 +47,16 @@ public class Player2Controller : MonoBehaviour
         isAxisHorizontalInUse = false;
         isAxisVerticalInUse = false;
 
-        isDestroyBlockAvailable = true;
+		isDestroyBlockAvailable = false;
         isDestroyBlockActivated = false;
     }
 
     void Update()
     {
+		Debug.Log ("isDestroyBlockAvailable" + isDestroyBlockAvailable);
+		Debug.Log ("isDestroyBlockActivated" + isDestroyBlockActivated);
+		//Debug.Log ("DestroyBlock" + activeBlock.isDestroyBlock);
+
         blocksSpeed = gameAccelerator.player2Speed;
 
         if (p2GamePad)
@@ -64,11 +68,11 @@ public class Player2Controller : MonoBehaviour
 
             if (canFire)
             {
-                if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
+                /*if (Input.GetKey("joystick 2 button 7") && isDestroyBlockAvailable)
                 {
                     isDestroyBlockAvailable = false;
                     isDestroyBlockActivated = true;
-                }
+                }*/
 
                
 
@@ -166,11 +170,11 @@ public class Player2Controller : MonoBehaviour
 
             if (canFire)
             {
-                if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
+               /*if (Input.GetKeyDown(KeyCode.Alpha0) && isDestroyBlockAvailable)
                 {
                     isDestroyBlockAvailable = false;
                     isDestroyBlockActivated = true;
-                }
+                }*/
                
                 if (Input.GetKeyDown(KeyCode.Alpha8) && movementSwitchCounter > 0)
                 {
@@ -218,7 +222,8 @@ public class Player2Controller : MonoBehaviour
                 {
                     activeBlock.isDestroyBlock = true;
                     Player2Controller.isDestroyBlockActivated = false;
-                    Player2Controller.isDestroyBlockAvailable = true;
+                    Player2Controller.isDestroyBlockAvailable = false;
+
                 }
 
             }

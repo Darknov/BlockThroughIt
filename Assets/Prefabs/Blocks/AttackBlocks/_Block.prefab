@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 33140477989776442}
   - component: {fileID: 23939391762208730}
   - component: {fileID: 65175745238990112}
-  - component: {fileID: 65875703873463922}
   m_Layer: 0
   m_Name: Block
   m_TagString: block
@@ -58,7 +57,6 @@ GameObject:
   - component: {fileID: 33670613675664402}
   - component: {fileID: 23592279723765510}
   - component: {fileID: 65265184349999440}
-  - component: {fileID: 65825252927955306}
   m_Layer: 0
   m_Name: Block (1)
   m_TagString: block
@@ -77,7 +75,6 @@ GameObject:
   - component: {fileID: 33988217466809188}
   - component: {fileID: 23426068218857636}
   - component: {fileID: 65044041670485236}
-  - component: {fileID: 65849422310545162}
   m_Layer: 0
   m_Name: Block (2)
   m_TagString: block
@@ -285,7 +282,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904944821734142}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -297,7 +294,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764855968304738}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -308,42 +305,6 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1795858070142442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65825252927955306
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795858070142442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65849422310545162
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904944821734142}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65875703873463922
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1764855968304738}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

@@ -77,19 +77,19 @@ public class Freeze : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col) {
+	void OnTriggerEnter(Collider col) {
 
 		if (col.gameObject.tag == "p2item") {
 			Destroy (col.gameObject);
 		}
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "block") {
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			freeze.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Freeze the opponent\n" + "Press X to use";
+				P2ItemCountDown.itemText = "Freeze the opponent\n" + "Press L2 to use";
 			} else if (!Player2Controller.p2GamePad) {
 				P2ItemCountDown.itemText = "Freeze the opponent\n" + "Press 9 to use";
 			}

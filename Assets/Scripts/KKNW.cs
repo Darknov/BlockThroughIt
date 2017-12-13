@@ -13,7 +13,7 @@ public class KKNW : MonoBehaviour {
 	void Update() {
 
 		if (isTriggered) {
-			Player2Controller.isDestroyBlockAvailable = true;
+			//Player2Controller.isDestroyBlockAvailable = true;
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && Player2Controller.isDestroyBlockAvailable) {
 					Player2Controller.isDestroyBlockAvailable = false;
@@ -24,8 +24,7 @@ public class KKNW : MonoBehaviour {
 					Destroy (kknw);
 				}
 			} else if (!Player2Controller.p2GamePad) {
-				if (Input.GetKeyDown (KeyCode.Alpha9) && Player2Controller.isDestroyBlockAvailable)
-				{
+				if (Input.GetKeyDown (KeyCode.Alpha9) && Player2Controller.isDestroyBlockAvailable) {
 					Player2Controller.isDestroyBlockAvailable = false;
 					Player2Controller.isDestroyBlockActivated = true;
 					P2ItemIcon.itemSprite = null;
@@ -37,22 +36,23 @@ public class KKNW : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col) {
+	void OnTriggerEnter(Collider col) {
 
 		if (col.gameObject.tag == "p2item") {
 			Destroy (col.gameObject);
 		}
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "block") {
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			kknw.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Block Destroyer\n" + "Press X to use";
+				P2ItemCountDown.itemText = "Block Destroyer\n" + "Press L2 to use";
 			} else if (!Player2Controller.p2GamePad) {
 				P2ItemCountDown.itemText = "Block Destroyer\n" + "Press 9 to use";
 			}
+			Player2Controller.isDestroyBlockAvailable = true;
 			P2ItemIcon.itemSprite = kknwSprite;
 			kknw.GetComponent<SphereCollider> ().enabled = false;
 			/*meshRenderer = kknw.GetComponentsInChildren<MeshRenderer>();
