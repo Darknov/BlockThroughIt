@@ -12,6 +12,8 @@ public class PlatformBoard : MonoBehaviour {
     public float delayOnDeletingBlock = 3f;
     public bool differentDeleteBlocks = false;
     public int minimalAmountOfDeletedBlocks = 7;
+    public GameObject shadowBlockPrefab;
+    public GameObject displayedShadowBlock;
 
     private float transposeBy;
 
@@ -42,6 +44,26 @@ public class PlatformBoard : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public void AddShadowBlock(int x, int y)
+    {
+       // if (blocks[x, y] != null) return;
+
+        Vector3 vector = new Vector3(this.transform.position.x + x + widthOfAGap * x, this.transform.position.y, this.transform.position.z + y + widthOfAGap * y);
+        if (x >= 0 && x < rowLength && y >= 0 && y < rowLength && this.blocks[x, y] == null)
+        {
+            if (displayedShadowBlock != null) Destroy(displayedShadowBlock);
+            displayedShadowBlock = Instantiate(shadowBlockPrefab, vector, Quaternion.identity);
+            this.blocks[x, y] = displayedShadowBlock;
+            this.blocks[x, y].tag = "platformShadowBlock";
+
+            checkIfThereAreMaxBlocksInRow();
+        }
+        else
+        {
+            Debug.Log("x,y:" + x + "," + y + " is out of bounds. Check your code!");
+        }
+    }
 
     public void addBlock(int x, int y)
     {
@@ -90,6 +112,12 @@ public class PlatformBoard : MonoBehaviour {
         }
 
 
+    }
+
+    public void DestroyShadow()
+    {
+        if(displayedShadowBlock != null)
+            Destroy(this.displayedShadowBlock);
     }
 
     public void checkIfThereAreMaxBlocksInRow()
