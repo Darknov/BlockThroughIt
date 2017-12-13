@@ -10,6 +10,7 @@ public class PlatformCreator : MonoBehaviour
     public PlatformBoard platformBoard;
     public bool generatePlatform = true;
     private int numberOfBlocksInRow;
+    private ArrayList colorPalette = new ArrayList() {Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.white, Color.yellow };
     
 
     bool isPlayer1Initialized = false;
@@ -46,6 +47,7 @@ public class PlatformCreator : MonoBehaviour
                 {
 
                     this.platformBoard.addBlock(i, j);
+                    this.platformBoard.blocks[i, j].GetComponent<MeshRenderer>().material.color = (Color)colorPalette[Random.Range(0, colorPalette.Count)];//Random.ColorHSV(0f, 1f, 0f, 1f, 1f, 1f, 0f, 0f);
 
                     Vector3 vector = new Vector3(platformBoard.transform.position.x, 0, platformBoard.transform.position.z);
 
