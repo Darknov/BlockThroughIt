@@ -13,5 +13,6 @@ public class VolumeControll : MonoBehaviour {
     private void Update()
     {
         AudioManager.instance.ChangeVolume(volume.value);
+        StaticOptions.AudioVolume = vol;
     }
 }

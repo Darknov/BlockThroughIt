@@ -7,11 +7,16 @@ public class SpawnItem : MonoBehaviour {
     public float frequency = 1;
     public int maxItems = 3;
     public PlatformBoard platformBoard;
+    public GameObject SoundPlayer;
     private GameObject[,] generatedItems;
+    private SoundEffectPlayOnce sound;
+    
+
 	// Use this for initialization
 	void Start () {
         generatedItems = new GameObject[platformBoard.rowLength, platformBoard.rowLength];
         InvokeRepeating("spawnRandomItem", 1, frequency);
+        sound = SoundPlayer.GetComponent<SoundEffectPlayOnce>();
     }
 	
 	// Update is called once per frame
@@ -57,6 +62,7 @@ public class SpawnItem : MonoBehaviour {
             Vector3 vector = new Vector3(platformBoard.transform.position.x + x + platformBoard.widthOfAGap * x, platformBoard.transform.position.y + 1, platformBoard.transform.position.z + y + platformBoard.widthOfAGap * y);
 
             generatedItems[x, y] = Instantiate(items[number], vector, Quaternion.identity);
+            sound.PlaySound();
             Debug.Log(vector);
         }
     }

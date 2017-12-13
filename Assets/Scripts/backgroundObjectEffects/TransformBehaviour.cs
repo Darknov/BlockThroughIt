@@ -12,8 +12,11 @@ public class TransformBehaviour : MonoBehaviour {
     public float changingHeightDivider = 300.0f;
     public bool isChangingHeight = true;
 
+    public Texture[] textures;
+
 	void Start () {
-		
+        int textureNumber = Random.Range(0, textures.Length);
+        GetComponent<Renderer>().material.mainTexture = textures[textureNumber];
 	}
 	
 	// Update is called once per frame

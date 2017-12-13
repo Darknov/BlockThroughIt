@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7428d5e041870734b8b952a0a7e5773a, type: 2}
+  - {fileID: 2100000, guid: cec9b3f4645123d4fade28fd0ab21c08, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,3 +113,4 @@ MonoBehaviour:
   isExpanding: 1
   changingHeightDivider: 300
   isChangingHeight: 1
+  textures: []
