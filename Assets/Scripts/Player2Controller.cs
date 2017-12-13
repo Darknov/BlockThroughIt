@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
-    public static bool p2GamePad = true;
+    public static bool p2GamePad = false;
 
     public float blocksSpeed;
     public float boostSpeed;
@@ -55,6 +55,7 @@ public class Player2Controller : MonoBehaviour
     {
 		Debug.Log ("isDestroyBlockAvailable" + isDestroyBlockAvailable);
 		Debug.Log ("isDestroyBlockActivated" + isDestroyBlockActivated);
+        Debug.Log("p2gamePad: " + p2GamePad);
 		//Debug.Log ("DestroyBlock" + activeBlock.isDestroyBlock);
 
         blocksSpeed = gameAccelerator.player2Speed;
@@ -162,8 +163,7 @@ public class Player2Controller : MonoBehaviour
                 }
             }
         }
-
-        if (!p2GamePad)
+        else if (!p2GamePad)
         {
 
             bool canFire = activeBlock == null;
@@ -186,12 +186,14 @@ public class Player2Controller : MonoBehaviour
 
                 if (Player1Controller.isAutomovementOn == false)
                 {
-                    movementSwitchAlert.text = "Automovement switch ends in " + (int)timeOfswitchMovementOfPlayer1 + "s !";
+                    if (movementSwitchAlert != null)
+                        movementSwitchAlert.text = "Automovement switch ends in " + (int)timeOfswitchMovementOfPlayer1 + "s !";
                     timeOfswitchMovementOfPlayer1 -= Time.deltaTime;
                     Debug.Log(timeOfswitchMovementOfPlayer1);
                     if (timeOfswitchMovementOfPlayer1 < 0)
                     {
-                        movementSwitchAlert.text = "";
+                        if (movementSwitchAlert != null)
+                            movementSwitchAlert.text = "";
                         Player1Controller.isAutomovementOn = true;
                         // timeOfswitchMovementOfPlayer1 = 3.0f;
                     }
