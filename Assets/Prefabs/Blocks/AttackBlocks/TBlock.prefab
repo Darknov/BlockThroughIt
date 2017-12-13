@@ -499,3 +499,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wasBlockUsed: 0
+  isDestroyBlock: 0

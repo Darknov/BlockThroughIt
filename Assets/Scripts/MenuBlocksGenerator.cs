@@ -14,13 +14,6 @@ public class MenuBlocksGenerator : MonoBehaviour {
     private void Start()
     {
 
-
-        foreach (var item in kindsOfBlocks)
-        {
-            item.GetComponent<Rigidbody>().useGravity = true;
-            item.GetComponent<Rigidbody>().isKinematic = false;
-        }
-
         for(int i=0; i<numberOfInitialBlocks; i++)
         {
             SpawnNewBlock();
@@ -32,6 +25,10 @@ public class MenuBlocksGenerator : MonoBehaviour {
 
     public void SpawnNewBlock()
     {
+
+
+
+        
 
         if (this.transform.childCount > limit)
         {
@@ -51,6 +48,9 @@ public class MenuBlocksGenerator : MonoBehaviour {
         Vector3 position = new Vector3(x,y,z);
 
         GameObject temp = Instantiate(block, position, Quaternion.Euler(90,0,0));
+
+        temp.GetComponent<Rigidbody>().useGravity = true;
+        temp.GetComponent<Rigidbody>().isKinematic = false;
 
         temp.transform.parent = this.transform;
 

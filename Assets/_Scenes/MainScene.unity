@@ -652,6 +652,9 @@ MonoBehaviour:
   delayOnDeletingBlock: 1
   differentDeleteBlocks: 0
   minimalAmountOfDeletedBlocks: 7
+  shadowBlockPrefab: {fileID: 1597305207548506, guid: 60a21e71330ff5845942c4ca074142b0,
+    type: 2}
+  displayedShadowBlock: {fileID: 0}
 --- !u!4 &428745803
 Transform:
   m_ObjectHideFlags: 0
@@ -989,12 +992,12 @@ Prefab:
     - target: {fileID: 224179631927529536, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 273
+      value: 285
       objectReference: {fileID: 0}
     - target: {fileID: 224179631927529536, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 226.5
+      value: 160.5
       objectReference: {fileID: 0}
     - target: {fileID: 224179631927529536, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}

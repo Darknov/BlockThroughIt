@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityBuildingBlock1 : BoostItem {
-
-    // Use this for initialization
+public class AbilityBuildingBlock1 : BoostItem
+{
     private PlatformBoard platform;
     int rowLength;
     private bool isActive = false ;
+    private bool wasUsed = false;
     public GameObject partEffect;
+    private float lastTy = 0;
+
     void Start()
     {
         this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
@@ -22,15 +24,18 @@ public class AbilityBuildingBlock1 : BoostItem {
         isActive = true;
     }
 
-        // Update is called once per frame
-    void Update () {
-		if(isActive)
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
-            int x = Convert.ToInt32(player.transform.position.x + (this.rowLength - 1) / 2);
-            int z = Convert.ToInt32(player.transform.position.z + (this.rowLength - 1) / 2);
-            float tY = this.transform.rotation.eulerAngles.y;
-            Debug.Log(tY);
+        int x, z;
+        float tY;
+
+        if (isActive)
+        {
+            x = Convert.ToInt32(player.transform.position.x + (this.rowLength - 1) / 2);
+            z = Convert.ToInt32(player.transform.position.z + (this.rowLength - 1) / 2);
+            tY = this.transform.rotation.eulerAngles.y;
             if (tY == 90)
             {
                 Instantiate(partEffect, new Vector3(player.transform.position.x+1, player.transform.position.y, player.transform.position.z), player.transform.rotation, player.transform);
@@ -52,7 +57,46 @@ public class AbilityBuildingBlock1 : BoostItem {
                 platform.addBlock(x, z - 1);
             }
 
+
+            wasUsed = true;
             isActive = false;
         }
-	}
+        else if(!wasUsed)
+        {
+            tY = this.transform.rotation.eulerAngles.y;
+
+
+            x = Convert.ToInt32(player.transform.position.x + (this.rowLength - 1) / 2);
+            z = Convert.ToInt32(player.transform.position.z + (this.rowLength - 1) / 2);
+
+            if (tY == 90)
+            {
+                platform.AddShadowBlock(x + 1, z);
+            }
+            if (tY == 270)
+            {
+                platform.AddShadowBlock(x - 1, z);
+            }
+            if (tY == 0)
+            {
+                platform.AddShadowBlock(x, z + 1);
+            }
+            if (tY == 180)
+            {
+                platform.AddShadowBlock(x, z - 1);
+            }
+
+            if(tY != lastTy)
+            {
+                lastTy = tY;
+                platform.DestroyShadow();
+            }
+        }
+
+
+    }
+
+
+
 }
+
