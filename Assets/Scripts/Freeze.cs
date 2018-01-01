@@ -77,6 +77,12 @@ public class Freeze : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter(Collision col) {
+		if (col.gameObject.tag == "Player") {
+			Destroy (freeze);
+		}
+	}
+
 	void OnTriggerEnter(Collider col) {
 
 		if (col.gameObject.tag == "p2item") {

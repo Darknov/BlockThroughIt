@@ -36,6 +36,12 @@ public class KKNW : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter(Collision col) {
+		if (col.gameObject.tag == "Player") {
+			Destroy (kknw);
+		}
+	}
+
 	void OnTriggerEnter(Collider col) {
 
 		if (col.gameObject.tag == "p2item") {
