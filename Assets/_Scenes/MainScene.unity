@@ -8074,12 +8074,12 @@ Prefab:
     - target: {fileID: 224930265288287548, guid: 9865e2464b0938949868f370b97be38f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -690
+      value: -680
       objectReference: {fileID: 0}
     - target: {fileID: 224930265288287548, guid: 9865e2464b0938949868f370b97be38f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -500
+      value: -480
       objectReference: {fileID: 0}
     - target: {fileID: 224930265288287548, guid: 9865e2464b0938949868f370b97be38f,
         type: 2}

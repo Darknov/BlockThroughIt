@@ -36,7 +36,7 @@ public class P2Toggle : MonoBehaviour {
         {
             PlayerPrefs.SetInt("isKeyboardpl2", 0);
         }
-        Player2Controller.p2GamePad = newValue;
+        Player2Controller.p2GamePad = !newValue;
       //  StaticOptions.load = 1;
     }
 }
