@@ -61,9 +61,12 @@ public class AttackBlock : MonoBehaviour
 
     public Vector3 MoveDirection { set; get; }
 
+    public Vector3 TriggersDirection { get; set; }
+
     void Start()
     {
         this.isBlockInMovement = false;
+        TriggersDirection = MoveDirection;
         AdaptTriggers();
     }
 
@@ -75,6 +78,8 @@ public class AttackBlock : MonoBehaviour
 
         if (currentTime >= jumpTime)
         {
+            TriggersDirection = MoveDirection;
+            AdaptTriggers();
             gameObject.transform.position += MoveDirection;
             currentTime = 0;
         }
@@ -93,9 +98,9 @@ public class AttackBlock : MonoBehaviour
         foreach (var item in childrenTriggers)
         {
             item.size = new Vector3(0.8f, 0.8f, 0.8f);
-            item.center = Quaternion.Inverse(this.gameObject.transform.rotation) * (MoveDirection * 0.5f);
+            Quaternion rotation = Quaternion.Inverse(this.gameObject.transform.rotation);
+            item.center = rotation * (TriggersDirection * 0.5f);
         }
-
     }
 
     public void Activate()
@@ -165,26 +170,42 @@ public class AttackBlock : MonoBehaviour
 
     public void GoToYourLeft()
     {
+
         if (MoveDirection == Vector3.forward || MoveDirection == Vector3.back)
         {
             gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.left;
+            TriggersDirection = Vector3.left;
+
         }
         else
         {
             gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.forward;
+            TriggersDirection = Vector3.forward;
+
         }
+
+        AdaptTriggers();
     }
 
     public void GoToYourRight()
     {
+
+
         if (MoveDirection == Vector3.forward || MoveDirection == Vector3.back)
         {
             gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.right;
+            TriggersDirection = Vector3.right;
+
         }
         else
         {
             gameObject.transform.localPosition = gameObject.transform.localPosition + Vector3.back;
+            TriggersDirection = Vector3.back;
+
         }
+
+        AdaptTriggers();
+
     }
 
     public void TurnNinetyDegreesAndUpdateTriggers()
