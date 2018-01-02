@@ -5,8 +5,10 @@ using UnityEngine;
 public class QuitOnClick : MonoBehaviour {
 
 	public void Quit() {
-		#if UNITY_EDITOR
-		UnityEditor.EditorApplication.isPlaying = false;
+        StaticOptions.load = 0;
+        StaticOptions.load1 = 0;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
 		#else
 		Application.Quit();
 		#endif
