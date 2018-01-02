@@ -8,6 +8,8 @@ public class Freeze : MonoBehaviour {
 	private bool isTriggered = false;
 	public GameObject freeze;
 	public Sprite freezeSprite;
+    public Material freezeMaterial;
+    public Material standardMaterial;
 	//private Component[] meshRenderer;
 
 	void Update () {
@@ -27,7 +29,8 @@ public class Freeze : MonoBehaviour {
 				}
 
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
-					P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
+				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
+                    P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					freezeTimeOfPlayer2 -= Time.deltaTime;
 					if (freezeTimeOfPlayer2 < 0) {
@@ -41,7 +44,8 @@ public class Freeze : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						Destroy (freeze);
-					}
+					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+                    }
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
@@ -57,7 +61,8 @@ public class Freeze : MonoBehaviour {
 				}
 
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
-					P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
+				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
+                    P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					freezeTimeOfPlayer2 -= Time.deltaTime;
 					if (freezeTimeOfPlayer2 < 0) {
@@ -71,7 +76,8 @@ public class Freeze : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						Destroy (freeze);
-					}
+					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+                    }
 				}
 			}
 		}

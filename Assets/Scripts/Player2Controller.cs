@@ -98,20 +98,36 @@ public class Player2Controller : MonoBehaviour
                     eastBlock = null;
                 }
 
+                if (Player2Controller.isDestroyBlockActivated && activeBlock != null)
+                {
+                    Player2Controller.isDestroyBlockActivated = false;
+                    Player2Controller.isDestroyBlockAvailable = false;
+                    activeBlock.isDestroyBlock = true;
+                }
+
             }
 
             bool canTurn = !canFire;
 
             if (canTurn)
             {
-                if (Input.GetKey("joystick 2 button 4"))
-                {
+                if ((activeBlock.MoveDirection.Equals(Vector3.back) && verticalAxisPlayer2 == 1) ||
+                    (activeBlock.MoveDirection.Equals(Vector3.forward) && verticalAxisPlayer2 == -1) ||
+                    (activeBlock.MoveDirection.Equals(Vector3.left) && horizontalAxisPlayer2 == -1) ||
+                    (activeBlock.MoveDirection.Equals(Vector3.right) && horizontalAxisPlayer2 == 1))
                     activeBlock.ChangeSpeed(boostSpeed);
-                }
                 else
-                {
                     activeBlock.MoveSpeed = blocksSpeed;
-                }
+
+
+//                if (Input.GetKey("joystick 2 button 4"))
+//                {
+//                    activeBlock.ChangeSpeed(boostSpeed);
+//                }
+//                else
+//                {
+//                    activeBlock.MoveSpeed = blocksSpeed;
+//                }
 
                 if (IsVertical(activeBlock))
                 {
@@ -222,10 +238,9 @@ public class Player2Controller : MonoBehaviour
 
                 if (Player2Controller.isDestroyBlockActivated && activeBlock != null)
                 {
-                    activeBlock.isDestroyBlock = true;
                     Player2Controller.isDestroyBlockActivated = false;
                     Player2Controller.isDestroyBlockAvailable = false;
-
+                    activeBlock.isDestroyBlock = true;
                 }
 
             }
@@ -234,14 +249,22 @@ public class Player2Controller : MonoBehaviour
 
             if (canTurn)
             {
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
+                if ((activeBlock.MoveDirection.Equals(Vector3.back) && Input.GetKeyDown(KeyCode.K)) ||
+                    (activeBlock.MoveDirection.Equals(Vector3.forward) && Input.GetKeyDown(KeyCode.I)) ||
+                    (activeBlock.MoveDirection.Equals(Vector3.left) && Input.GetKeyDown(KeyCode.J)) ||
+                    (activeBlock.MoveDirection.Equals(Vector3.right) && Input.GetKeyDown(KeyCode.L)))
                     activeBlock.ChangeSpeed(boostSpeed);
-                }
                 else
-                {
                     activeBlock.MoveSpeed = blocksSpeed;
-                }
+
+//                if (Input.GetKeyDown(KeyCode.Q))
+//                {
+//                    activeBlock.ChangeSpeed(boostSpeed);
+//                }
+//                else
+//                {
+//                    activeBlock.MoveSpeed = blocksSpeed;
+//                }
 
                 if (IsVertical(activeBlock))
                 {
@@ -284,14 +307,7 @@ public class Player2Controller : MonoBehaviour
                             UpdateShadow();
                         }
                     }
-
-
                 }
-
-                Debug.Log("Use Horizontal: " + isAxisHorizontalInUse);
-                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
-                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
-                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
 
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {

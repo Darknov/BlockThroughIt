@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,13 @@ public class InverseControl : MonoBehaviour {
 	private bool isTriggered = false;
 	public GameObject inverseControl;
 	public Sprite inverseControlSprite;
-	//private Component[] meshRenderer;
+    public Material inversedControlMaterial;
+    public Material standardMaterial;
 
-	void Update () {
+    //private Component[] meshRenderer;
+
+
+    void Update () {
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -26,9 +31,9 @@ public class InverseControl : MonoBehaviour {
 					P1ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
 					P2ItemCountDown.itemText = "Inverse Control Used\n" + "Time Remaining: ";
 				}
-
 				if (Player1Controller.inverseControl) {
-					P1ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
+				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
+                    P1ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					timeOfInverseControlOfPlayer2 -= Time.deltaTime;
 					if (timeOfInverseControlOfPlayer2 < 0) {
@@ -42,7 +47,8 @@ public class InverseControl : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						Destroy (inverseControl);
-					}
+					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+                    }
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.inverseControlUsed) {
@@ -58,7 +64,8 @@ public class InverseControl : MonoBehaviour {
 				}
 
 				if (Player1Controller.inverseControl) {
-					P1ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
+				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial;
+                    P1ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					timeOfInverseControlOfPlayer2 -= Time.deltaTime;
 					if (timeOfInverseControlOfPlayer2 < 0) {
@@ -72,7 +79,8 @@ public class InverseControl : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						Destroy (inverseControl);
-					}
+					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+                    }
 				}
 			}
 		}

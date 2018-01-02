@@ -195,6 +195,8 @@ MonoBehaviour:
   inverseControl: {fileID: 1678505784110508}
   inverseControlSprite: {fileID: 21300000, guid: 6ea0e3de66db60b4895a5af021ec2f96,
     type: 3}
+  inversedControlMaterial: {fileID: 0}
+  standardMaterial: {fileID: 0}
 --- !u!135 &135997661944871202
 SphereCollider:
   m_ObjectHideFlags: 1
