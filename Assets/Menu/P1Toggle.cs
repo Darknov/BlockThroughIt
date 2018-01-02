@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class P1Toggle : MonoBehaviour {
-  /*  Toggle toggleKey;
-    Toggle togglePad;*/
+    Toggle toggleKey;
+    Toggle togglePad;
     private void Start()
-    {/*
+    {
         toggleKey = GameObject.FindGameObjectWithTag("p1togglePM").GetComponent<Toggle>();
         togglePad = GameObject.FindGameObjectWithTag("p1togglepad").GetComponent<Toggle>();
-        if (PlayerPrefs.GetInt("loaded") == 1)
-        {         
+        if (StaticOptions.load == 1)
+        {
             if (PlayerPrefs.GetInt("Keyboard") == 1)
             {
                 toggleKey.isOn = true;
@@ -24,7 +24,7 @@ public class P1Toggle : MonoBehaviour {
                 togglePad.isOn = true;
                 Player1Controller.p1KeyBoard = false;
             }
-        }*/
+        }
     }
     public void ToggleChange(bool newValue) {
 
@@ -37,6 +37,6 @@ public class P1Toggle : MonoBehaviour {
             PlayerPrefs.SetInt("isKeyboard", 0);        
         }
         Player1Controller.p1KeyBoard = newValue;
-      //  StaticOptions.load = 1;
+        StaticOptions.load = 1;
     }
 }

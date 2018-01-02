@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class P2Toggle : MonoBehaviour {
 
-   /* Toggle toggleKey;
-    Toggle togglePad;*/
+    Toggle toggleKey;
+    Toggle togglePad;
     private void Start()
     {
-       /* togglePad = GameObject.FindGameObjectWithTag("p2togglepad").GetComponent<Toggle>();
+        togglePad = GameObject.FindGameObjectWithTag("p2togglepad").GetComponent<Toggle>();
         toggleKey = GameObject.FindGameObjectWithTag("p2togglePM").GetComponent<Toggle>();
-        if (PlayerPrefs.GetInt("loaded") == 1)
+        if (StaticOptions.load1 == 2)
         {
             if (PlayerPrefs.GetInt("Keyboardpl2") == 1)
             {
@@ -25,7 +25,7 @@ public class P2Toggle : MonoBehaviour {
                 togglePad.isOn = false;
                 Player2Controller.p2GamePad = false;
             }
-        }*/
+        }
     }
     public void ToggleChange(bool newValue) {
         if (newValue)
@@ -37,6 +37,6 @@ public class P2Toggle : MonoBehaviour {
             PlayerPrefs.SetInt("isKeyboardpl2", 0);
         }
         Player2Controller.p2GamePad = !newValue;
-      //  StaticOptions.load = 1;
+        StaticOptions.load1 = 2;
     }
 }

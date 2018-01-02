@@ -8,5 +8,6 @@ public static class StaticOptions{
     public static float AudioVolumeMaster = 0.5f;
 
     public static int mode = 0;
-   // public static int load = 0;
+    public static int load = 0;
+    public static int load1 = 0;
 }

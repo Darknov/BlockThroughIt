@@ -13,13 +13,12 @@ public class LoadGameOnClick : MonoBehaviour
         P2ItemCountDown.started = false;
         P2ItemCountDown.itemText = "No item";
         P2ItemIcon.itemSprite = null;
-		if (GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining != 60)
+	     if (CountDown.timeRemaining != 60)
         {
-			GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining = 60;
+            CountDown.timeRemaining = 60;
         }
         CountDown.started = false;
 
-        //PlayerPrefs.SetInt("loaded", StaticOptions.load);
         if (PlayerPrefs.GetInt("isKeyboard") == 1)
         {
             PlayerPrefs.SetInt("Keyboard", 1);
