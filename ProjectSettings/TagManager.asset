@@ -23,6 +23,7 @@ TagManager:
   - p1togglepad
   - p2togglePM
   - p2togglepad
+  - Timebar
   layers:
   - Default
   - TransparentFX
