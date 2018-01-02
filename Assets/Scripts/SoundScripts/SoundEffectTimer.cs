@@ -24,7 +24,7 @@ public class SoundEffectTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CountDown.timeRemaining < countdown.warningTime && notPlayed)
+		if(GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining < countdown.warningTime && notPlayed)
         {
             sound.Play();
             notPlayed = false;

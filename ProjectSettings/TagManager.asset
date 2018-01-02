@@ -18,6 +18,7 @@ TagManager:
   - slider
   - canv
   - shadow
+  - countDown
   layers:
   - Default
   - TransparentFX
