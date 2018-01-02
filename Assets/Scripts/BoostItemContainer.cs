@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class BoostItemContainer : MonoBehaviour {
 
-	public BoostItem boostItem;
+	private BoostItem boostItem;
 
 	public BoostItem BoostItem
 	{
-		set { boostItem = value;}
+		set
+        {
+            if(this.boostItem != null) Destroy(this.boostItem.gameObject);
+            boostItem = value;
+        }
+        get
+        {
+            return boostItem;
+        }
 	}
 
 	public void ActivateItem()

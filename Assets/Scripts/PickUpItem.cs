@@ -12,8 +12,8 @@ public class PickUpItem : MonoBehaviour
 	void OnTriggerEnter(Collider col) {
 
         if (col.gameObject.tag == "Player") {
-            col.gameObject.GetComponentInChildren<BoostItemContainer>().boostItem = Instantiate(shoesControllerPrefab, col.gameObject.transform).GetComponent<BoostItem>();
-            col.gameObject.GetComponentInChildren<BoostItemContainer>().boostItem.player = col.gameObject;
+            col.gameObject.GetComponentInChildren<BoostItemContainer>().BoostItem = Instantiate(shoesControllerPrefab, col.gameObject.transform).GetComponent<BoostItem>();
+            col.gameObject.GetComponentInChildren<BoostItemContainer>().BoostItem.player = col.gameObject;
 
             GameObject.Destroy(this.gameObject);
         }
