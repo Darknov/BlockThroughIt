@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>();
-	}
+    }
 
 	void Update () {
 		if (CountDown.timeRemaining <= 0) {

@@ -15,9 +15,14 @@ TagManager:
   - p1TakenItem
   - p2TakenItem
   - ParticleTeleport
-  - slider
   - canv
   - shadow
+  - music
+  - slider1
+  - p1togglePM
+  - p1togglepad
+  - p2togglePM
+  - p2togglepad
   layers:
   - Default
   - TransparentFX

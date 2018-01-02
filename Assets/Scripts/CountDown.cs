@@ -7,12 +7,12 @@ public class CountDown : MonoBehaviour {
 
 	public static float timeRemaining = 60f;
 	public float warningTime = 5f;
-	Text text;
+    Text text;
 	public static bool started = false;
 		
 	void Start () {
 		text = GetComponent<Text>();
-		InvokeRepeating ("Blink", 0, 1f);
+        InvokeRepeating ("Blink", 0, 1f);
 		InvokeRepeating ("Blink2", 0.5f, 1f);
 
 	}
