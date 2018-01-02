@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour {
 
-	public static float timeRemaining = 60f;
+	public float timeRemaining = 60f;
 	public float warningTime = 5f;
     Text text;
 	public static bool started = false;
