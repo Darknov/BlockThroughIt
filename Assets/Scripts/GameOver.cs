@@ -13,17 +13,17 @@ public class GameOver : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>();
-	}
+    }
 
 	void Update () {
-		if (CountDown.timeRemaining <= 0) {
+		if (GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining <= 0) {
 			anim.SetTrigger ("GameOver1");
 			CountDown.started = false;
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
 				SceneManager.LoadScene (0);
-				if (CountDown.timeRemaining != 60) {
-					CountDown.timeRemaining = 60;
+				if (GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining != 60) {
+					GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining = 60;
 				}
 			}
 		}
@@ -34,8 +34,8 @@ public class GameOver : MonoBehaviour {
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
 				SceneManager.LoadScene (0);
-				if (CountDown.timeRemaining != 60) {
-					CountDown.timeRemaining = 60;
+				if (GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining != 60) {
+					GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining = 60;
 				}
 			}
 		}

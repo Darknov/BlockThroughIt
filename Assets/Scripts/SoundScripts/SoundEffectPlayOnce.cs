@@ -12,7 +12,7 @@ public class SoundEffectPlayOnce : MonoBehaviour {
     void Awake()
     {
         source.clip = Clip;
-        source.volume = StaticOptions.AudioVolume;
+       // source.volume = StaticOptions.AudioVolume;
     }
 
     // Use this for initialization

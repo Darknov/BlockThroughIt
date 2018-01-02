@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundEffectsManager : MonoBehaviour {
 
     public Sound[] sounds;
     public static SoundEffectsManager instance;
+
 
     // Use this for initialization
     void Awake()
@@ -18,6 +20,7 @@ public class SoundEffectsManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
@@ -30,13 +33,12 @@ public class SoundEffectsManager : MonoBehaviour {
 
     private void Start()
     {
-
     }
 
     public void ChangeVolume(float s)
     {
         sounds[0].source.volume = s;
-        VolumeControll.vol = sounds[0].source.volume;
+       // SoundsVolumeController.vol = sounds[0].source.volume;
     }
 
     public void Play(string name)
@@ -47,6 +49,6 @@ public class SoundEffectsManager : MonoBehaviour {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-
+        s.source.Play();
     }
 }

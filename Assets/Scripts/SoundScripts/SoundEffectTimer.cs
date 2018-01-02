@@ -5,15 +5,15 @@ using UnityEngine;
 public class SoundEffectTimer : MonoBehaviour
 {
 
-    public GameObject SoundPlayer;
-    private AudioSource sound;
+    //public GameObject SoundPlayer;
+   // private AudioSource sound;
     private bool notPlayed = true;
     private CountDown countdown;
     // Use this for initialization
 
     void Awake()
     {
-        sound = SoundPlayer.GetComponent<AudioSource>();
+       // sound = SoundPlayer.GetComponent<AudioSource>();
     }
 
     void Start()
@@ -24,12 +24,12 @@ public class SoundEffectTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CountDown.timeRemaining < countdown.warningTime && notPlayed)
+		if(GameObject.FindGameObjectWithTag("countDown").GetComponent<CountDown>().timeRemaining < countdown.warningTime && notPlayed)
         {
-            sound.Play();
+            // sound.Play();
+            FindObjectOfType<AudioManager>().Play("EndingMusic");
             notPlayed = false;
         }
-
     }
 
 
