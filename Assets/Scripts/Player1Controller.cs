@@ -96,11 +96,7 @@ public class Player1Controller : MonoBehaviour
 					movingRight = Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D);
 					makeMove = true;
 
-				    Debug.Log("UP: " + movingUp);
-				    Debug.Log("DOWN: " + movingDown);
-				    Debug.Log("RIGHT: " + movingRight);
-				    Debug.Log("LEFT: " + movingLeft);
-				    
+
 
                     jump = jumpTime;
 					CountDown.started = true;

@@ -57,13 +57,11 @@ public class SpawnItem : MonoBehaviour {
             {
                 x = Random.Range(0, platformBoard.rowLength);
                 y = Random.Range(0, platformBoard.rowLength);
-                Debug.Log(x + " " + y);
             } while (platformBoard.blocks[x, y] == null || generatedItems[x, y] != null);
             Vector3 vector = new Vector3(platformBoard.transform.position.x + x + platformBoard.widthOfAGap * x, platformBoard.transform.position.y + 1, platformBoard.transform.position.z + y + platformBoard.widthOfAGap * y);
 
             generatedItems[x, y] = Instantiate(items[number], vector, Quaternion.identity);
             sound.PlaySound();
-            Debug.Log(vector);
         }
     }
 }

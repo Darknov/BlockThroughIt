@@ -13,12 +13,12 @@ public class Player2Controller : MonoBehaviour
     public float boostSpeed;
     public float timeOfInverseControlOfPlayer2 = 3.0f;
     public float timeOfswitchMovementOfPlayer1 = 5.0f;
-    private float jumpLength = 1;
+    public float jumpLength = 1;
     public GameAccelerator gameAccelerator;
     public RandomAttackBlockGenerator randomBlockGenerator;
-    private AttackBlock activeBlock;
+    public AttackBlock activeBlock;
     public Transform northSpawn, southSpawn, eastSpawn, westSpawn;
-    private AttackBlock northBlock, southBlock, eastBlock, westBlock;
+    public AttackBlock northBlock, southBlock, eastBlock, westBlock;
     public PlatformBoard platformBoard;
     public ShadowBlock blockShadow;
 
@@ -33,6 +33,8 @@ public class Player2Controller : MonoBehaviour
 
     public Text movementSwitchAlert;
     private Material tempMaterial;
+
+    private bool isRepairing = false;
 
     void Start()
     {
@@ -53,12 +55,11 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
-		Debug.Log ("isDestroyBlockAvailable" + isDestroyBlockAvailable);
-		Debug.Log ("isDestroyBlockActivated" + isDestroyBlockActivated);
-        Debug.Log("p2gamePad: " + p2GamePad);
 		//Debug.Log ("DestroyBlock" + activeBlock.isDestroyBlock);
 
         blocksSpeed = gameAccelerator.player2Speed;
+
+        TrackSpawnedBlocks();
 
         if (p2GamePad)
         {
@@ -189,12 +190,11 @@ public class Player2Controller : MonoBehaviour
                     if (movementSwitchAlert != null)
                         movementSwitchAlert.text = "Automovement switch ends in " + (int)timeOfswitchMovementOfPlayer1 + "s !";
                     timeOfswitchMovementOfPlayer1 -= Time.deltaTime;
-                    Debug.Log(timeOfswitchMovementOfPlayer1);
                     if (timeOfswitchMovementOfPlayer1 < 0)
                     {
                         if (movementSwitchAlert != null)
                             movementSwitchAlert.text = "";
-                        Player1Controller.isAutomovementOn = true;
+                        Player1Controller.isAutomovementOn = false;
                         // timeOfswitchMovementOfPlayer1 = 3.0f;
                     }
                 }
@@ -288,10 +288,7 @@ public class Player2Controller : MonoBehaviour
 
                 }
 
-                Debug.Log("Use Horizontal: " + isAxisHorizontalInUse);
-                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
-                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
-                Debug.Log("Use Vertical: " + isAxisVerticalInUse);
+
 
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
@@ -308,6 +305,27 @@ public class Player2Controller : MonoBehaviour
         }
 
     }
+
+    private void TrackSpawnedBlocks()
+    {
+        if(activeBlock == null && !isRepairing)
+        {
+            isRepairing = true;
+
+            if (northBlock == null)
+                northBlock = randomBlockGenerator.createRandomBlock(northSpawn.transform, blocksSpeed, jumpLength, Vector3.back);
+            else if (southBlock == null)
+                southBlock = randomBlockGenerator.createRandomBlock(southSpawn.transform, blocksSpeed, jumpLength, Vector3.forward);
+            else if (eastBlock == null)
+                eastBlock = randomBlockGenerator.createRandomBlock(eastSpawn.transform, blocksSpeed, jumpLength, Vector3.left);
+            else if (westBlock == null)
+                westBlock = randomBlockGenerator.createRandomBlock(westSpawn.transform, blocksSpeed, jumpLength, Vector3.right);
+
+            isRepairing = false;
+        }
+
+    }
+
     void switchAutomovement()
     {
         movementSwitchCounter--;
@@ -323,7 +341,9 @@ public class Player2Controller : MonoBehaviour
 
     void ActivateBlock(AttackBlock block)
     {
+
         this.activeBlock = block;
+
         this.activeBlock.Activate();
         Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
         tempMaterial = block.GetComponentInChildren<Renderer>().material;
@@ -366,7 +386,7 @@ public class Player2Controller : MonoBehaviour
         RespawnEmptyBlocks(source, args);
     }
 
-    void RespawnEmptyBlocks(object source, EventArgs args)
+    public void RespawnEmptyBlocks(object source, EventArgs args)
     {
         if (activeBlock == null) return;
 

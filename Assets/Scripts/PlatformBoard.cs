@@ -78,7 +78,7 @@ public class PlatformBoard : MonoBehaviour {
         }
         else
         {
-            Debug.Log("x,y:" + x + "," + y + " is out of bounds. Check your code!");
+            Debug.LogWarning("x,y:" + x + "," + y + " is out of bounds. Check your code!");
         }
     }
 
