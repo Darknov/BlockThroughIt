@@ -92,7 +92,7 @@ public class AttackBlock : MonoBehaviour
 
         foreach (var item in childrenTriggers)
         {
-            item.size = new Vector3(0.3f, 0.3f, 0.3f);
+            item.size = new Vector3(0.8f, 0.8f, 0.8f);
             item.center = Quaternion.Inverse(this.gameObject.transform.rotation) * (MoveDirection * 0.5f);
         }
 
