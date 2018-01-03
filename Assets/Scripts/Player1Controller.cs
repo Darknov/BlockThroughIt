@@ -216,7 +216,7 @@ public class Player1Controller : MonoBehaviour
     {
         if (onAir) gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, goalPosition, Time.deltaTime * moveSpeed);
 
-		if (IsPlayerStopped) return;
+		//if (IsPlayerStopped) return;
 		if (!isFlying && outOfPlatform) return;
 
         if (timeCounter > 1.3f * jumpTime)
