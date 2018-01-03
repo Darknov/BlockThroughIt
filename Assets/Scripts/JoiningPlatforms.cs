@@ -18,7 +18,7 @@ public class JoiningPlatforms : MonoBehaviour
         this.blocks = this.GetComponent<PlatformBoard>().blocks;
         this.platform = this.GetComponent<PlatformBoard>();
 
-        InvokeRepeating("checkIfPlatformsApart", 0, frequency);
+        InvokeRepeating("checkPlatform", 0, frequency);
     }
 
     // Update is called once per frame
@@ -26,6 +26,13 @@ public class JoiningPlatforms : MonoBehaviour
     {
 
     }
+
+    public void checkPlatform()
+    {
+        if(!StaticOptions.isFlying)
+            checkIfPlatformsApart();
+    }
+
 
     public void checkIfPlatformsApart()
     {

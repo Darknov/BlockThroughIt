@@ -10,4 +10,6 @@ public static class StaticOptions{
     public static int mode = 0;
     public static int load = 0;
     public static int load1 = 0;
+
+    public static bool isFlying = false;
 }

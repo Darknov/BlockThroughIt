@@ -19,7 +19,7 @@ public class Herbas : MonoBehaviour {
 			if ((int)flyingDuration <= 0) {
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
-				GameObject.FindGameObjectWithTag("Player").GetComponent<Player1Controller>().isFlying = false;
+				StaticOptions.isFlying = false;
 				P1ItemCountDown.itemText = "No item";
 				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				isTriggered = false;
@@ -39,7 +39,7 @@ public class Herbas : MonoBehaviour {
 			}
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
-			GameObject.FindGameObjectWithTag("Player").GetComponent<Player1Controller>().isFlying = true;
+			StaticOptions.isFlying = true;
 			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 			P1ItemCountDown.started = true;
 			P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";

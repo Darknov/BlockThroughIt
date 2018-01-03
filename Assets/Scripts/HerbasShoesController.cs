@@ -30,11 +30,11 @@ public class HerbasShoesController : BoostItem {
         GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingDuration);
 
             player.GetComponent<Rigidbody>().useGravity = false;
-            player.GetComponent<Player1Controller>().isFlying = true;
+            StaticOptions.isFlying = true;
 
         if (flyingDuration <= 0f) {
 				ItemCountDown.started = false;
-				player.GetComponent<Player1Controller>().isFlying = false;
+				StaticOptions.isFlying = false;
 				player.GetComponent<Rigidbody>().useGravity = true;
                 isActive = false;
                 flyingDuration = initialFlyingDuration;
