@@ -29,36 +29,84 @@ public class PlatformCreator : MonoBehaviour
         }
 
         bool[,] isBlockOnPosition;
-
+        char[,] isBlockOnPositionColor;
         if (generatePlatform)
         {
             isBlockOnPosition = getRandomizedIsBlockOnPositionArray();
-        }
-        else
-        {
-            isBlockOnPosition = getStaticIsBlockOnPositionArray();
-        }
-
-        for (int i = 0; i < numberOfBlocksInRow; i++)
-        {
-            for (int j = 0; j < numberOfBlocksInRow; j++)
+            for (int i = 0; i < numberOfBlocksInRow; i++)
             {
-                if (isBlockOnPosition[i, j])
+                for (int j = 0; j < numberOfBlocksInRow; j++)
                 {
-
-                    this.platformBoard.addBlock(i, j);
-                    this.platformBoard.blocks[i, j].GetComponent<MeshRenderer>().material.color = (Color)colorPalette[Random.Range(0, colorPalette.Count)];//Random.ColorHSV(0f, 1f, 0f, 1f, 1f, 1f, 0f, 0f);
-
-                    Vector3 vector = new Vector3(platformBoard.transform.position.x, 0, platformBoard.transform.position.z);
-
-                    if (!isPlayer1Initialized)
+                    if (isBlockOnPosition[i, j])
                     {
-                        player1.transform.position = new Vector3(vector.x + i, vector.y + 1f, vector.z + j);
-                        isPlayer1Initialized = true;
+
+                        this.platformBoard.addBlock(i, j);
+                        this.platformBoard.blocks[i, j].GetComponent<MeshRenderer>().material.color = (Color)colorPalette[Random.Range(0, colorPalette.Count)];//Random.ColorHSV(0f, 1f, 0f, 1f, 1f, 1f, 0f, 0f);
+
+                        Vector3 vector = new Vector3(platformBoard.transform.position.x, 0, platformBoard.transform.position.z);
+
+                        if (!isPlayer1Initialized)
+                        {
+                            player1.transform.position = new Vector3(vector.x + i, vector.y + 1f, vector.z + j);
+                            isPlayer1Initialized = true;
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            isBlockOnPositionColor = getStaticIsBlockOnPositionArray();
+            for (int i = 0; i < numberOfBlocksInRow; i++)
+            {
+                for (int j = 0; j < numberOfBlocksInRow; j++)
+                {
+                    if (isBlockOnPositionColor[i, j] != ' ')
+                    {
+
+                        this.platformBoard.addBlock(i, j);
+                        //this.platformBoard.blocks[i, j].GetComponent<MeshRenderer>().material.color = (Color)colorPalette[Random.Range(0, colorPalette.Count)];//Random.ColorHSV(0f, 1f, 0f, 1f, 1f, 1f, 0f, 0f);
+                        Color c = Color.white;
+                        if(isBlockOnPositionColor[i, j] == 'R')
+                        {
+                            c = Color.red;
+                        }
+                        if (isBlockOnPositionColor[i, j] == 'Y')
+                        {
+                            c = Color.yellow;
+                        }
+                        if (isBlockOnPositionColor[i, j] == 'B')
+                        {
+                            c = Color.blue;
+                        }
+                        if (isBlockOnPositionColor[i, j] == 'G')
+                        {
+                            c = Color.green;
+                        }
+                        if (isBlockOnPositionColor[i, j] == 'M')
+                        {
+                            c = Color.magenta;
+                        }
+                        if (isBlockOnPositionColor[i, j] == 'C')
+                        {
+                            c = Color.cyan;
+                        }
+
+
+                        this.platformBoard.blocks[i, j].GetComponent<Renderer>().material.color = c;
+                        Vector3 vector = new Vector3(platformBoard.transform.position.x, 0, platformBoard.transform.position.z);
+
+                        if (!isPlayer1Initialized)
+                        {
+                            player1.transform.position = new Vector3(vector.x + i, vector.y + 1f, vector.z + j);
+                            isPlayer1Initialized = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        
 
 
     }
@@ -171,45 +219,61 @@ public class PlatformCreator : MonoBehaviour
         return currentIsBlock;
     }
 
-    bool[,] getStaticIsBlockOnPositionArray()
+    char[,] getStaticIsBlockOnPositionArray()
     {
-        bool[,] isBlockOnPosition = new bool[this.numberOfBlocksInRow, this.numberOfBlocksInRow];
+        char[,] isBlockOnPosition = new char[this.numberOfBlocksInRow, this.numberOfBlocksInRow];
 
-        char[] blocks0 ={ ' ', 'B', ' ', ' ',' ',
-                          ' ', 'B', ' ', 'B',' ',
-                          ' ', 'B', 'B', 'B','B',
-                          ' ', 'B', 'B', 'B',' ',
-                          ' ', ' ', ' ', 'B',' '};
+        for (int i = 0; i < numberOfBlocksInRow; i++)
+        {
+            for (int j = 0; j < numberOfBlocksInRow; j++)
+            {
+                isBlockOnPosition[i, j] = ' ';
+            }
+        }
 
-        char[] blocks1 ={ ' ', 'B', ' ', ' ',' ',
-                          ' ', 'B', 'B', ' ',' ',
-                          ' ', 'B', ' ', 'B','B',
-                          ' ', 'B', 'B', 'B',' ',
+        /*
+         * R - red
+         * Y - yellow
+         * M - magenta
+         * B - blue
+         * G - green
+         * C - cyan
+         */
+        char[] blocks0 ={ ' ', 'B', ' ', 'M',' ',
+                          ' ', 'B', ' ', 'M',' ',
+                          ' ', 'B', 'R', 'M','M',
+                          ' ', 'B', 'R', 'R',' ',
+                          ' ', ' ', ' ', 'R',' '};
+
+        char[] blocks1 ={ ' ', 'R', 'C', ' ',' ',
+                          ' ', 'R', 'C', 'C','C',
+                          ' ', 'R', ' ', 'Y','Y',
+                          ' ', 'R', 'Y', 'Y',' ',
                           ' ', ' ', ' ', ' ',' '};
 
-        char[] blocks2 ={ ' ', 'B', ' ', ' ',' ',
-                          ' ', 'B', ' ', 'B',' ',
-                          ' ', 'B', 'B', 'B','B',
-                          ' ', 'B', 'B', 'B',' ',
+        char[] blocks2 ={ ' ', 'G', 'M', ' ',' ',
+                          ' ', 'G', 'M', 'M',' ',
+                          ' ', 'G', 'Y', 'Y','Y',
+                          ' ', 'G', ' ', 'B','B',
                           ' ', ' ', ' ', 'B',' '};
 
         char[] blocks3 ={ ' ', 'B', ' ', ' ',' ',
-                          'B', 'B', ' ', 'B','B',
-                          ' ', 'B', 'B', 'B','B',
-                          ' ', 'B', ' ', 'B',' ',
-                          'B', ' ', ' ', 'B',' '};
+                          'B', 'B', ' ', 'R','R',
+                          ' ', 'B', 'M', 'R','R',
+                          ' ', 'M', 'M', 'Y',' ',
+                          'G', ' ', ' ', 'Y',' '};
 
-        char[] blocks4 ={ ' ', 'B', 'B', ' ','B',
-                          'B', 'B', ' ', 'B',' ',
-                          ' ', 'B', 'B', 'B','B',
-                          ' ', 'B', 'B', 'B',' ',
-                          'B', ' ', ' ', 'B',' '};
+        char[] blocks4 ={ ' ', 'B', 'B', 'B','B',
+                          'C', 'B', ' ', ' ',' ',
+                          'C', 'G', 'G', ' ',' ',
+                          'C', 'G', 'G', 'R',' ',
+                          'C', ' ', ' ', 'R',' '};
 
-        char[] blocks5 ={ 'B', 'B', ' ', ' ',' ',
-                          'B', 'B', ' ', 'B',' ',
-                          ' ', 'B', 'B', 'B','B',
-                          ' ', 'B', 'B', 'B',' ',
-                          ' ', ' ', ' ', 'B','B'};
+        char[] blocks5 ={ 'Y', 'Y', ' ', ' ',' ',
+                          'Y', 'Y', ' ', 'R',' ',
+                          ' ', 'G', 'G', 'R','M',
+                          ' ', 'G', 'G', 'R','M',
+                          ' ', ' ', ' ', 'R','M'};
 
 
         List<char[]> blocksList = new List<char[]>();
@@ -228,17 +292,17 @@ public class PlatformCreator : MonoBehaviour
             {
                 if(i >= 5 || j >= 5)
                 {
-                    isBlockOnPosition[i, j] = false;
+                    isBlockOnPosition[i, j] = ' ';
                 }
                 else
                 {
-                    if(winnerBlock[i*5 + j] == 'B')
+                    if(winnerBlock[i*5 + j] != ' ')
                     {
-                        isBlockOnPosition[i, j] = true;
+                        isBlockOnPosition[i, j] = winnerBlock[i * 5 + j];
                     }
                     else
                     {
-                        isBlockOnPosition[i, j] = false;
+                        isBlockOnPosition[i, j] = ' ';
                     }
                 }
             }
