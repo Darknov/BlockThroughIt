@@ -61,8 +61,12 @@ public class JoiningPlatforms : MonoBehaviour
                         {
                             if (j + 1 < rowLength && blocks[j + 1, k] != null)
                             {
-                                platform.addBlock(j, k);
+                                Material m = blocks[j + 1, k].GetComponent<Renderer>().material;
                                 Destroy(blocks[j + 1, k]);
+                                blocks[j + 1, k] = null;
+                                platform.addBlock(j, k, m);
+                              
+                                
                             }
                         }
                     }
@@ -76,8 +80,12 @@ public class JoiningPlatforms : MonoBehaviour
                         {
                             if (j - 1 >= 0 && blocks[j - 1, k] != null)
                             {
-                                platform.addBlock(j, k);
+                                Material m = blocks[j - 1, k].GetComponent<Renderer>().material;
                                 Destroy(blocks[j - 1, k]);
+                                blocks[j - 1, k] = null;
+                                platform.addBlock(j, k, m);
+                                
+
                             }
                         }
                     }
@@ -108,8 +116,12 @@ public class JoiningPlatforms : MonoBehaviour
                         {
                             if (k + 1 < rowLength && blocks[j, k + 1] != null)
                             {
-                                platform.addBlock(j, k);
+                                Material m = blocks[j, k + 1].GetComponent<Renderer>().material;
                                 Destroy(blocks[j, k + 1]);
+                                blocks[j, k + 1] = null;
+                                platform.addBlock(j, k, m);
+                                
+
                             }
                         }
                     }
@@ -123,8 +135,11 @@ public class JoiningPlatforms : MonoBehaviour
                         {
                             if (k - 1 >= 0 && blocks[j, k - 1] != null)
                             {
-                                platform.addBlock(j, k);
+                                Material m = blocks[j, k - 1].GetComponent<Renderer>().material;
                                 Destroy(blocks[j, k - 1]);
+                                blocks[j, k - 1] = null;
+                                platform.addBlock(j, k, m);
+                                
                             }
                         }
                     }

@@ -82,6 +82,24 @@ public class PlatformBoard : MonoBehaviour {
         }
     }
 
+    public void addBlock(int x, int y, Material mat)
+    {
+        displayedShadowBlock = null;
+        Vector3 vector = new Vector3(this.transform.position.x + x + widthOfAGap * x, this.transform.position.y, this.transform.position.z + y + widthOfAGap * y);
+        if (x >= 0 && x < rowLength && y >= 0 && y < rowLength && this.blocks[x, y] == null)
+        {
+            this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
+            this.blocks[x, y].tag = "platform";
+            this.blocks[x, y].GetComponent<Renderer>().material = mat;
+
+            checkIfThereAreMaxBlocksInRow();
+        }
+        else
+        {
+            Debug.LogWarning("x,y:" + x + "," + y + " is out of bounds. Check your code!");
+        }
+    }
+
     public void addBlock(AttackBlock activeBlock, Material mat)
     {
 
