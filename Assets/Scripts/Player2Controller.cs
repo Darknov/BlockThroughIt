@@ -365,7 +365,7 @@ public class Player2Controller : MonoBehaviour
 
         this.activeBlock.Activate();
         Color color = Player2Controller.isDestroyBlockActivated ? Color.yellow : Color.red;
-        tempMaterial = block.GetComponentInChildren<Renderer>().material;
+        tempMaterial = new Material(block.GetComponentInChildren<Renderer>().material);
 
         if (Player2Controller.isDestroyBlockActivated)
             block.isDestroyBlock = true;

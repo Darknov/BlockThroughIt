@@ -101,6 +101,8 @@ public class PlatformBoard : MonoBehaviour {
                     this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
                     this.blocks[x, y].tag = "platform";
                     this.blocks[x, y].GetComponent<Renderer>().material = mat;
+
+                    //this.blocks[x, y].GetComponent<Renderer>().material.color = mat.color;
                 }
                 
                 checkIfThereAreMaxBlocksInRow();
