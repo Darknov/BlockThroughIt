@@ -44,10 +44,11 @@ public class KKNW : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 
-		if (col.gameObject.tag == "p2item") {
+		/*if (col.gameObject.tag == "p2item") {
 			Destroy (col.gameObject);
-		}
+		}*/
 		if (col.gameObject.tag == "block") {
+			StaticOptions.numberOfP2ItmesInGame--;
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

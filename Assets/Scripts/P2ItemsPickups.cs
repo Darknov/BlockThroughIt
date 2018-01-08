@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class P2ItemsPickups : MonoBehaviour {
 
+	public int numbersOfSpawnItems = 3;
 	public float firstPickupSpawnTime = 0f;
 	public float pickupSpawnTime = 10f;
 	private int blockSize = 0;
@@ -16,20 +17,28 @@ public class P2ItemsPickups : MonoBehaviour {
 
 	void Start() {
 
+		StaticOptions.maxP2ItmesSpawn = numbersOfSpawnItems;
+		StaticOptions.numberOfP2ItmesInGame = 0;
 		rotation = new Quaternion();
 		rowLength = GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().rowLength;
 		InvokeRepeating ("Step", firstPickupSpawnTime, pickupSpawnTime);
+		P2ItemIcon.itemSprite = null;
+		P2ItemCountDown.itemText = "No item";
+		Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 	}
 
 	void Step() {
 
-		randomPlaces = new System.Random ();
-		possiblePlaces = new List<Vector3>();
-		blocksSize ();
-		possiblePlacesList ();
-		Vector3 place = createRandomPlace ();
-		createRandomItem (place);
-		possiblePlaces.Clear();
+		if (StaticOptions.numberOfP2ItmesInGame < StaticOptions.maxP2ItmesSpawn) {
+			randomPlaces = new System.Random ();
+			possiblePlaces = new List<Vector3> ();
+			blocksSize ();
+			possiblePlacesList ();
+			Vector3 place = createRandomPlace ();
+			createRandomItem (place);
+			StaticOptions.numberOfP2ItmesInGame++;
+			possiblePlaces.Clear ();
+		}
 	}
 
 	void blocksSize() {
@@ -65,5 +74,26 @@ public class P2ItemsPickups : MonoBehaviour {
 
 		int randomIndex = randomPlaces.Next(0, possiblePlaces.Count);
 		return possiblePlaces[randomIndex];
+	}
+
+	void OnTriggerEnter(Collider col) {
+
+		if(col.gameObject.tag == "platform") {
+			Destroy (gameObject);
+			StaticOptions.numberOfP2ItmesInGame--;
+		}
+
+		if(col.gameObject.tag == "p2item") {
+			Destroy (gameObject);
+			StaticOptions.numberOfP2ItmesInGame--;
+			randomPlaces = new System.Random ();
+			possiblePlaces = new List<Vector3> ();
+			blocksSize ();
+			possiblePlacesList ();
+			Vector3 place = createRandomPlace ();
+			createRandomItem (place);
+			StaticOptions.numberOfP2ItmesInGame++;
+			possiblePlaces.Clear ();
+		}
 	}
 }
