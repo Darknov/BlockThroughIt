@@ -11,9 +11,7 @@ public class InverseControl : MonoBehaviour {
 
     void Update () {
 
-		if (!StaticOptions.p2SpawnItems.Exists (x => x == inverseControl)) {
-			Destroy (inverseControl);
-		}
+		isDestroyed ();
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -35,7 +33,7 @@ public class InverseControl : MonoBehaviour {
 						Player1Controller.inverseControl = false;
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (inverseControl);
+						StaticOptions.p2SpawnItems.Remove (inverseControl);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
@@ -59,11 +57,32 @@ public class InverseControl : MonoBehaviour {
 						Player1Controller.inverseControl = false;
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (inverseControl);
+						StaticOptions.p2SpawnItems.Remove (inverseControl);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
 			}
+		}
+	}
+
+	void LateUpdate() {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == inverseControl.transform.position.y)) {
+			Destroy (inverseControl);
+		}
+	}
+
+	void isDestroyed() {
+
+		if(!StaticOptions.p1SpawnItems.Exists(x => x == inverseControl)) {
+			P2ItemIcon.itemSprite = null;
+			P2ItemCountDown.started = false;
+			Player1Controller.inverseControlUsed = false;
+			Player1Controller.inverseControl = false;
+			P2ItemCountDown.itemText = "No item";
+			isTriggered = false;
+			StaticOptions.p2SpawnItems.Remove (inverseControl);
+			Destroy (inverseControl);
+			GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 		}
 	}
 
@@ -77,7 +96,6 @@ public class InverseControl : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-			StaticOptions.p2SpawnItems.Remove (inverseControl);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

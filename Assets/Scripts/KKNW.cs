@@ -11,10 +11,8 @@ public class KKNW : MonoBehaviour {
 
 	void Update() {
 
-		if (!StaticOptions.p2SpawnItems.Exists (x => x == kknw)) {
-			Destroy (kknw);
-		}
-
+		isDestroyed ();
+		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && Player2Controller.isDestroyBlockAvailable) {
@@ -23,7 +21,7 @@ public class KKNW : MonoBehaviour {
 					P2ItemIcon.itemSprite = null;
 					P2ItemCountDown.itemText = "No item";
 					isTriggered = false;
-					Destroy (kknw);
+					StaticOptions.p2SpawnItems.Remove (kknw);
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && Player2Controller.isDestroyBlockAvailable) {
@@ -32,9 +30,28 @@ public class KKNW : MonoBehaviour {
 					P2ItemIcon.itemSprite = null;
 					P2ItemCountDown.itemText = "No item";
 					isTriggered = false;
-					Destroy (kknw);
+					StaticOptions.p2SpawnItems.Remove (kknw);
 				}
 			}
+		}
+	}
+
+	void LateUpdate() {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == kknw.transform.position.y)) {
+			Destroy (kknw);
+		}
+	}
+
+	void isDestroyed() {
+
+		if(!StaticOptions.p1SpawnItems.Exists(x => x == kknw)) {
+			Player2Controller.isDestroyBlockAvailable = false;
+			Player2Controller.isDestroyBlockActivated = false;
+			P2ItemIcon.itemSprite = null;
+			P2ItemCountDown.itemText = "No item";
+			isTriggered = false;
+			StaticOptions.p2SpawnItems.Remove (kknw);
+			Destroy (kknw);
 		}
 	}
 
@@ -48,7 +65,6 @@ public class KKNW : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-			StaticOptions.p2SpawnItems.Remove (kknw);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

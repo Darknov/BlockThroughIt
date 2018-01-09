@@ -9,13 +9,13 @@ public class Herbas : MonoBehaviour {
 	public Sprite herbasSprite;
 	public float flyingDuration = 5f;
 	private bool isTriggered = false;
+	public GameObject partEffect;
+	private Component[] meshRenderer;
 
 	void Update() {
-
-		if (!StaticOptions.p1SpawnItems.Exists (x => x == herbas)) {
-			Destroy (herbas);
-		}
 			
+		isDestroyed ();
+
 		if (isTriggered) {
 			if (!Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown ("joystick 2 button 6")) {
@@ -25,17 +25,28 @@ public class Herbas : MonoBehaviour {
 					P1ItemCountDown.started = true;
 					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
 					P1ItemCountDown.itemTimeRemaining = flyingDuration;
+					Instantiate(partEffect, 
+						new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
+							GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
+							GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z
+						), 
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().rotation,  
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().transform
+					);
+				}
+				if (StaticOptions.isFlying) {
 					flyingDuration -= Time.deltaTime;
-					if ((int)flyingDuration <= 0) {
+					if ((int)flyingDuration <= 0)
 						P1ItemIcon.iconColor = Color.white;
-						P1ItemIcon.itemSprite = null;
-						P1ItemCountDown.started = false;
-						StaticOptions.isFlying = false;
-						P1ItemCountDown.itemText = "No item";
-						GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
-						isTriggered = false;
-						Destroy (herbas);
-					}
+					P1ItemIcon.itemSprite = null;
+					P1ItemCountDown.started = false;
+					StaticOptions.isFlying = false;
+					P1ItemCountDown.itemText = "No item";
+					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
+					isTriggered = false;
+					StaticOptions.p1SpawnItems.Remove (herbas);
+					partEffect.transform.parent = null;
+					Destroy(partEffect.gameObject, 3);
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
@@ -44,6 +55,16 @@ public class Herbas : MonoBehaviour {
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
 					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
+					Instantiate(partEffect, 
+						new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
+							GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
+							GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z
+						), 
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().rotation,  
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().transform
+					);
+				}
+				if (StaticOptions.isFlying) {
 					P1ItemCountDown.itemTimeRemaining = flyingDuration;
 					flyingDuration -= Time.deltaTime;
 					if ((int)flyingDuration <= 0) {
@@ -54,19 +75,48 @@ public class Herbas : MonoBehaviour {
 						P1ItemCountDown.itemText = "No item";
 						GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 						isTriggered = false;
-						Destroy (herbas);
+						StaticOptions.p1SpawnItems.Remove (herbas);
+						partEffect.transform.parent = null;
+						Destroy(partEffect.gameObject, 3);
 					}
 				}
 			}
 		}
 	}
 
+	void LateUpdate() {
+		if (!StaticOptions.p1SpawnItems.Exists (x => x == herbas)) {
+			Destroy (herbas);
+		}
+	}
+
+	void isDestroyed() {
+
+		if(!StaticOptions.p1SpawnItems.Exists(x => x == herbas)) {
+			P1ItemIcon.iconColor = Color.white;
+			P1ItemIcon.itemSprite = null;
+			P1ItemCountDown.started = false;
+			StaticOptions.isFlying = false;
+			P1ItemCountDown.itemText = "No item";
+			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
+			isTriggered = false;
+			StaticOptions.p1SpawnItems.Remove (herbas);
+			partEffect.transform.parent = null;
+			Destroy(partEffect.gameObject, 3);
+			Destroy (herbas);
+		}
+	}
+
 	void OnCollisionEnter(Collision col) {
 		
 		if (col.gameObject.tag == "Player") {
-			StaticOptions.p1SpawnItems.Remove (herbas);
 			if (P1ItemCountDown.itemText != "No item") {
-				Destroy (GameObject.FindGameObjectWithTag("p1TakenItem"));
+				P1ItemIcon.iconColor = Color.white;
+				P1ItemIcon.itemSprite = null;
+				P1ItemCountDown.started = false;
+				P1ItemCountDown.itemText = "No item";
+				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
+				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
@@ -77,8 +127,9 @@ public class Herbas : MonoBehaviour {
 			}
 			P1ItemIcon.itemSprite = herbasSprite;
 			herbas.GetComponent<SphereCollider> ().enabled = false;
-			for (int i = 0; i < herbas.transform.childCount; i++) {
-				herbas.transform.GetChild(i).gameObject.SetActive(false);
+			meshRenderer = herbas.GetComponentsInChildren<MeshRenderer> ();
+			foreach (MeshRenderer mesh in meshRenderer) {
+				mesh.enabled = false;
 			}
 		}
 	}

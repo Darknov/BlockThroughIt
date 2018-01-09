@@ -8624,9 +8624,7 @@ MonoBehaviour:
   pickupSpawnTime: 15
   possibleItems:
   - {fileID: 1786838397290552, guid: e2e5633ca0db3734b9174526b57bf130, type: 2}
-  - {fileID: 1870934395384414, guid: 4194e950dd7d1564a87e3184be61f055, type: 2}
   - {fileID: 1903919589418104, guid: 36454fd59f943cc40aeecfe6b9397da1, type: 2}
-  - {fileID: 1877846781448926, guid: 5614d5a3c715357499aacb7eec99f513, type: 2}
 --- !u!1 &1349334740
 GameObject:
   m_ObjectHideFlags: 0

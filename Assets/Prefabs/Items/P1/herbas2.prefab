@@ -195,6 +195,7 @@ MonoBehaviour:
   herbas: {fileID: 1786838397290552}
   herbasSprite: {fileID: 21300000, guid: 083237d4baf78d143b4251ca612f18dd, type: 3}
   flyingDuration: 5
+  partEffect: {fileID: 1751018717025780, guid: d0c5e996fafcfde4fb812f63e8bebdda, type: 2}
 --- !u!135 &135134414434463092
 SphereCollider:
   m_ObjectHideFlags: 1

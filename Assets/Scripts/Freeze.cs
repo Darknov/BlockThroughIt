@@ -13,9 +13,7 @@ public class Freeze : MonoBehaviour {
 
 	void Update () {
 
-		if (!StaticOptions.p2SpawnItems.Exists (x => x == freeze)) {
-			Destroy (freeze);
-		}
+		isDestroyed ();
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -38,7 +36,7 @@ public class Freeze : MonoBehaviour {
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (freeze);
+						StaticOptions.p2SpawnItems.Remove (freeze);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
@@ -62,11 +60,32 @@ public class Freeze : MonoBehaviour {
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (freeze);
+						StaticOptions.p2SpawnItems.Remove (freeze);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
 			}
+		}
+	}
+
+	void LateUpdate() {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == freeze.transform.position.y)) {
+			Destroy (freeze);
+		}
+	}
+
+	void isDestroyed() {
+
+		if(!StaticOptions.p1SpawnItems.Exists(x => x == freeze)) {
+			P2ItemIcon.itemSprite = null;
+			P2ItemCountDown.started = false;
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
+			P2ItemCountDown.itemText = "No item";
+			isTriggered = false;
+			StaticOptions.p2SpawnItems.Remove (freeze);
+			Destroy (freeze);
+			GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 		}
 	}
 
@@ -80,8 +99,6 @@ public class Freeze : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-			
-			StaticOptions.p2SpawnItems.Remove (freeze);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
