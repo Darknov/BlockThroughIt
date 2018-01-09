@@ -21,14 +21,9 @@ public class InverseControl : MonoBehaviour {
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && !Player1Controller.inverseControlUsed) {
-<<<<<<< HEAD
-                    FindObjectOfType<AudioManager>().Play("inverseControl"); //////
-                    P1ItemIcon.itemSprite = inverseControlSprite;
-					P1ItemIcon.iconColor = Color.red;
-=======
+                    FindObjectOfType<AudioManager>().Play("inverseControl");
 					//P1ItemIcon.itemSprite = inverseControlSprite;
 					//P1ItemIcon.iconColor = Color.red;
->>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
 					//P1ItemCountDown.started = true;
@@ -58,14 +53,9 @@ public class InverseControl : MonoBehaviour {
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.inverseControlUsed) {
-<<<<<<< HEAD
-                    FindObjectOfType<AudioManager>().Play("inverseControl"); ////
-                    P1ItemIcon.itemSprite = inverseControlSprite;
-					P1ItemIcon.iconColor = Color.red;
-=======
+                    FindObjectOfType<AudioManager>().Play("inverseControl");
 					//P1ItemIcon.itemSprite = inverseControlSprite;
 					//P1ItemIcon.iconColor = Color.red;
->>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
 					//P1ItemCountDown.started = true;
@@ -108,13 +98,9 @@ public class InverseControl : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-<<<<<<< HEAD
-            FindObjectOfType<AudioManager>().Play("godGetItem"); ////////
-            if (P2ItemCountDown.itemText != "No item") {
-=======
+            FindObjectOfType<AudioManager>().Play("godGetItem");
 			StaticOptions.p2SpawnItems.Remove (inverseControl);
 			if (P2ItemCountDown.itemText != "No item") {
->>>>>>> PO3
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			inverseControl.tag = "p2TakenItem";

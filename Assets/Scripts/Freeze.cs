@@ -19,16 +19,10 @@ public class Freeze : MonoBehaviour {
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-<<<<<<< HEAD
 				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
-                    FindObjectOfType<AudioManager>().Play("freeze"); ////// 
-                    P1ItemIcon.itemSprite = freezeSprite;
-					P1ItemIcon.iconColor = Color.red;
-=======
-				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+                    FindObjectOfType<AudioManager>().Play("freeze");
 					//P1ItemIcon.itemSprite = freezeSprite;
 					//P1ItemIcon.iconColor = Color.red;
->>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
 					//P1ItemCountDown.started = true;
@@ -58,16 +52,10 @@ public class Freeze : MonoBehaviour {
                     }
 				}
 			} else if (!Player2Controller.p2GamePad) {
-<<<<<<< HEAD
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
-                    FindObjectOfType<AudioManager>().Play("freeze"); //////
-                    P1ItemIcon.itemSprite = freezeSprite;
-					P1ItemIcon.iconColor = Color.red;
-=======
-				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+                    FindObjectOfType<AudioManager>().Play("freeze");
 					//P1ItemIcon.itemSprite = freezeSprite;
 					//P1ItemIcon.iconColor = Color.red;
->>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
 					//P1ItemCountDown.started = true;
@@ -108,21 +96,11 @@ public class Freeze : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-<<<<<<< HEAD
-
-		if (col.gameObject.tag == "p2item") {
-			Destroy (col.gameObject);
-		}
+				
 		if (col.gameObject.tag == "block") {
-            FindObjectOfType<AudioManager>().Play("godGetItem"); ////////
-            if (P2ItemCountDown.itemText != "No item") {
-=======
-		
-		if (col.gameObject.tag == "block") {
-			
+            FindObjectOfType<AudioManager>().Play("godGetItem");
 			StaticOptions.p2SpawnItems.Remove (freeze);
 			if (P2ItemCountDown.itemText != "No item") {
->>>>>>> PO3
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			freeze.tag = "p2TakenItem";
