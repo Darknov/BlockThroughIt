@@ -64,13 +64,8 @@ public class KKNW : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		
-<<<<<<< HEAD
 		if (col.gameObject.tag == "block") {
             FindObjectOfType<AudioManager>().Play("godGetItem");
-			StaticOptions.p2SpawnItems.Remove (kknw);
-=======
-		if (col.gameObject.tag == "block") {
->>>>>>> PO3
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

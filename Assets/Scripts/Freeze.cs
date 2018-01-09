@@ -17,14 +17,8 @@ public class Freeze : MonoBehaviour {
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-<<<<<<< HEAD
 				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
-					//P1ItemIcon.itemSprite = freezeSprite;
-					//P1ItemIcon.iconColor = Color.red;
-=======
-				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
->>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
 					P2ItemCountDown.started = true;
@@ -34,15 +28,9 @@ public class Freeze : MonoBehaviour {
 
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
-<<<<<<< HEAD
-                    //P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeOfPlayer2);
                     freezeTimeOfPlayer2 -= Time.deltaTime;
-=======
-					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
-					freezeTimeOfPlayer2 -= Time.deltaTime;
->>>>>>> PO3
 					if (freezeTimeOfPlayer2 < 0) {
 						P2ItemIcon.itemSprite = null;
 						P2ItemCountDown.started = false;
@@ -55,14 +43,8 @@ public class Freeze : MonoBehaviour {
                     }
 				}
 			} else if (!Player2Controller.p2GamePad) {
-<<<<<<< HEAD
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
-					//P1ItemIcon.itemSprite = freezeSprite;
-					//P1ItemIcon.iconColor = Color.red;
-=======
-				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
->>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
 					P2ItemCountDown.started = true;
@@ -118,15 +100,9 @@ public class Freeze : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-<<<<<<< HEAD
 				
 		if (col.gameObject.tag == "block") {
             FindObjectOfType<AudioManager>().Play("godGetItem");
-			StaticOptions.p2SpawnItems.Remove (freeze);
-=======
-		
-		if (col.gameObject.tag == "block") {
->>>>>>> PO3
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
