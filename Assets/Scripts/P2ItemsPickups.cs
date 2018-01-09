@@ -13,8 +13,10 @@ public class P2ItemsPickups : MonoBehaviour {
 	private Quaternion rotation;
 	private List<Vector3> possiblePlaces;
 	private System.Random randomPlaces;
+    public GameObject partEffect;
 
-	void Start() {
+
+    void Start() {
 
 		StaticOptions.p2SpawnItems = new List<GameObject> ();
 		StaticOptions.maxP2ItmesSpawn = numbersOfSpawnItems;
@@ -66,8 +68,10 @@ public class P2ItemsPickups : MonoBehaviour {
 			int randomIndex = randomItems.Next (0, possibleItems.Count);
 			GameObject item = Instantiate (possibleItems [randomIndex], position, rotation);
 			StaticOptions.p2SpawnItems.Add (item);
-		}
-	}
+            Instantiate(partEffect, position, rotation);
+
+        }
+    }
 
 	public Vector3 createRandomPlace() {
 
