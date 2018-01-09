@@ -36,7 +36,8 @@ public class Freeze : MonoBehaviour {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
                     //P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
-					freezeTimeOfPlayer2 -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeOfPlayer2);
+                    freezeTimeOfPlayer2 -= Time.deltaTime;
 					if (freezeTimeOfPlayer2 < 0) {
 						//P1ItemIcon.itemSprite = null;
 						P2ItemIcon.itemSprite = null;

@@ -27,6 +27,7 @@ TagManager:
   - countDown
   - p2Pickups
   - p1Pickups
+  - evilTimeBar
   layers:
   - Default
   - TransparentFX

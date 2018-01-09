@@ -20,7 +20,6 @@ public class HerbasShoesController : BoostItem {
         FindObjectOfType<AudioManager>().Play("herbasSound"); //////
         this.isActive = true;
         Instantiate(partEffect, new Vector3( player.transform.position.x, player.transform.position.y, player.transform.position.z) , player.transform.rotation, player.transform);
-        //Instantiate(timebar, new Vector3(0, 2, -9), new Quaternion(39, 1, 180, 0) );
     }
 
 	void Update() {
@@ -28,7 +27,7 @@ public class HerbasShoesController : BoostItem {
         if (!isActive) return;
 			ItemCountDown.itemTimeRemaining = flyingDuration;
 			flyingDuration -= Time.deltaTime;
-        GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingDuration);
+            GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingDuration);
 
             player.GetComponent<Rigidbody>().useGravity = false;
             StaticOptions.isFlying = true;
