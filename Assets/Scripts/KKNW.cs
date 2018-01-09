@@ -11,7 +11,7 @@ public class KKNW : MonoBehaviour {
 
 	void Update() {
 
-		isDestroyed ();
+		//isDestroyed ();
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -50,7 +50,6 @@ public class KKNW : MonoBehaviour {
 			P2ItemIcon.itemSprite = null;
 			P2ItemCountDown.itemText = "No item";
 			isTriggered = false;
-			StaticOptions.p2SpawnItems.Remove (kknw);
 			Destroy (kknw);
 		}
 	}

@@ -8,6 +8,7 @@ public class Herbas : MonoBehaviour {
 	public GameObject herbas;
 	public Sprite herbasSprite;
 	public float flyingDuration = 5f;
+	private float flyingCountDown;
 	private bool isTriggered = false;
 	public GameObject partEffect;
 	private Component[] meshRenderer;
@@ -35,8 +36,8 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
-					flyingDuration -= Time.deltaTime;
-					if ((int)flyingDuration <= 0)
+					flyingCountDown -= Time.deltaTime;
+					if ((int)flyingCountDown <= 0)
 						P1ItemIcon.iconColor = Color.white;
 					P1ItemIcon.itemSprite = null;
 					P1ItemCountDown.started = false;
@@ -65,8 +66,8 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
-					P1ItemCountDown.itemTimeRemaining = flyingDuration;
-					flyingDuration -= Time.deltaTime;
+					P1ItemCountDown.itemTimeRemaining = flyingCountDown;
+					flyingCountDown -= Time.deltaTime;
 					if ((int)flyingDuration <= 0) {
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
@@ -118,6 +119,7 @@ public class Herbas : MonoBehaviour {
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
+			flyingCountDown = flyingDuration;
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {

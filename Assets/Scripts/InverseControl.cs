@@ -11,7 +11,7 @@ public class InverseControl : MonoBehaviour {
 
     void Update () {
 
-		isDestroyed ();
+		//isDestroyed ();
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {

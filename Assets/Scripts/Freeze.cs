@@ -13,7 +13,7 @@ public class Freeze : MonoBehaviour {
 
 	void Update () {
 
-		isDestroyed ();
+		//isDestroyed ();
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
