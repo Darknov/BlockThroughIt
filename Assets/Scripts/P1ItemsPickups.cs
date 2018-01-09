@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2ItemsPickups : MonoBehaviour {
+public class P1ItemsPickups : MonoBehaviour {
 
 	public int numbersOfSpawnItems = 3;
 	public float firstPickupSpawnTime = 0f;
@@ -16,14 +16,14 @@ public class P2ItemsPickups : MonoBehaviour {
 
 	void Start() {
 
-		StaticOptions.p2SpawnItems = new List<GameObject> ();
-		StaticOptions.maxP2ItmesSpawn = numbersOfSpawnItems;
+		StaticOptions.p1SpawnItems = new List<GameObject> ();
+		StaticOptions.maxP1ItmesSpawn = numbersOfSpawnItems;
 		rotation = new Quaternion();
 		rowLength = GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().rowLength;
 		InvokeRepeating ("Step", firstPickupSpawnTime, pickupSpawnTime);
-		P2ItemIcon.itemSprite = null;
-		P2ItemCountDown.itemText = "No item";
-		Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
+		P1ItemIcon.itemSprite = null;
+		P1ItemCountDown.itemText = "No item";
+		Destroy (GameObject.FindGameObjectWithTag("p1TakenItem"));
 	}
 
 	void Step() {
@@ -40,9 +40,9 @@ public class P2ItemsPickups : MonoBehaviour {
 
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
-				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 0, (float)(j-System.Math.Floor(rowLength/2.0)));
-				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null) {
-					StaticOptions.p2SpawnItems.RemoveAll (x => x.transform.position == pickupPlace);
+				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 1, (float)(j-System.Math.Floor(rowLength/2.0)));
+				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] == null) {
+					StaticOptions.p1SpawnItems.RemoveAll (x => x.transform.position == pickupPlace);
 				}
 			}
 		}
@@ -52,8 +52,8 @@ public class P2ItemsPickups : MonoBehaviour {
 
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
-				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 0, (float)(j-System.Math.Floor(rowLength/2.0)));
-				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] == null && !StaticOptions.p2SpawnItems.Exists(x => x.transform.position == pickupPlace)) {
+				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 1, (float)(j-System.Math.Floor(rowLength/2.0)));
+				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null && !StaticOptions.p1SpawnItems.Exists(x => x.transform.position == pickupPlace)) {
 					possiblePlaces.Add(pickupPlace);
 				}
 			}
@@ -62,10 +62,10 @@ public class P2ItemsPickups : MonoBehaviour {
 
 	void createRandomItem(Vector3 position) {
 
-		if (StaticOptions.p2SpawnItems.Count < StaticOptions.maxP2ItmesSpawn) {
+		if (StaticOptions.p1SpawnItems.Count < StaticOptions.maxP2ItmesSpawn) {
 			int randomIndex = randomItems.Next (0, possibleItems.Count);
 			GameObject item = Instantiate (possibleItems [randomIndex], position, rotation);
-			StaticOptions.p2SpawnItems.Add (item);
+			StaticOptions.p1SpawnItems.Add (item);
 		}
 	}
 

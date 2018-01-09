@@ -11,7 +11,7 @@ public class KKNW : MonoBehaviour {
 
 	void Update() {
 
-		if (!StaticOptions.spawnItems.Exists (x => x == kknw)) {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x == kknw)) {
 			Destroy (kknw);
 		}
 
@@ -40,7 +40,7 @@ public class KKNW : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
-			StaticOptions.spawnItems.Remove (kknw);
+			StaticOptions.p2SpawnItems.Remove (kknw);
 			Destroy (kknw);
 		}
 	}
@@ -48,7 +48,7 @@ public class KKNW : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-			StaticOptions.spawnItems.Remove (kknw);
+			StaticOptions.p2SpawnItems.Remove (kknw);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

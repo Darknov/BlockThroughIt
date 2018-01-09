@@ -14,7 +14,7 @@ public class InverseControl : MonoBehaviour {
 
     void Update () {
 
-		if (!StaticOptions.spawnItems.Exists (x => x == inverseControl)) {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x == inverseControl)) {
 			Destroy (inverseControl);
 		}
 
@@ -88,7 +88,7 @@ public class InverseControl : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
-			StaticOptions.spawnItems.Remove (inverseControl);
+			StaticOptions.p2SpawnItems.Remove (inverseControl);
 			Destroy (inverseControl);
 		}
 	}
@@ -96,7 +96,7 @@ public class InverseControl : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-			StaticOptions.spawnItems.Remove (inverseControl);
+			StaticOptions.p2SpawnItems.Remove (inverseControl);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

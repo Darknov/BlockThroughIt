@@ -13,7 +13,7 @@ public class Freeze : MonoBehaviour {
 
 	void Update () {
 
-		if (!StaticOptions.spawnItems.Exists (x => x == freeze)) {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x == freeze)) {
 			Destroy (freeze);
 		}
 
@@ -88,7 +88,7 @@ public class Freeze : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
-			StaticOptions.spawnItems.Remove (freeze);
+			StaticOptions.p2SpawnItems.Remove (freeze);
 			Destroy (freeze);
 		}
 	}
@@ -97,7 +97,7 @@ public class Freeze : MonoBehaviour {
 		
 		if (col.gameObject.tag == "block") {
 			
-			StaticOptions.spawnItems.Remove (freeze);
+			StaticOptions.p2SpawnItems.Remove (freeze);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
