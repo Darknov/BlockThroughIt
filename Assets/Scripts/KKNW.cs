@@ -8,12 +8,14 @@ public class KKNW : MonoBehaviour {
 	public GameObject kknw;
 	public Sprite kknwSprite;
 	private bool isTriggered = false;
-	//private Component[] meshRenderer;
 
 	void Update() {
 
+		if (!StaticOptions.p2SpawnItems.Exists (x => x == kknw)) {
+			Destroy (kknw);
+		}
+
 		if (isTriggered) {
-			//Player2Controller.isDestroyBlockAvailable = true;
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && Player2Controller.isDestroyBlockAvailable) {                 
 					Player2Controller.isDestroyBlockAvailable = false;
@@ -38,11 +40,13 @@ public class KKNW : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
+			StaticOptions.p2SpawnItems.Remove (kknw);
 			Destroy (kknw);
 		}
 	}
 
 	void OnTriggerEnter(Collider col) {
+<<<<<<< HEAD
 
 		if (col.gameObject.tag == "p2item") {
 			Destroy (col.gameObject);
@@ -50,6 +54,12 @@ public class KKNW : MonoBehaviour {
 		if (col.gameObject.tag == "block") {
             FindObjectOfType<AudioManager>().Play("godGetItem"); ////////
             if (P2ItemCountDown.itemText != "No item") {
+=======
+		
+		if (col.gameObject.tag == "block") {
+			StaticOptions.p2SpawnItems.Remove (kknw);
+			if (P2ItemCountDown.itemText != "No item") {
+>>>>>>> PO3
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			kknw.tag = "p2TakenItem";
@@ -62,9 +72,6 @@ public class KKNW : MonoBehaviour {
 			Player2Controller.isDestroyBlockAvailable = true;
 			P2ItemIcon.itemSprite = kknwSprite;
 			kknw.GetComponent<SphereCollider> ().enabled = false;
-			/*meshRenderer = kknw.GetComponentsInChildren<MeshRenderer>();
-			foreach (MeshRenderer mesh in meshRenderer)
-				mesh.enabled = false;*/
 			for (int i = 0; i < kknw.transform.childCount; i++) {
 				kknw.transform.GetChild(i).gameObject.SetActive(false);
 			}
