@@ -10,9 +10,12 @@ public class Freeze : MonoBehaviour {
 	public Sprite freezeSprite;
     public Material freezeMaterial;
     public Material standardMaterial;
-	//private Component[] meshRenderer;
 
 	void Update () {
+
+		if (!StaticOptions.spawnItems.Exists (x => x == freeze)) {
+			Destroy (freeze);
+		}
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -85,17 +88,16 @@ public class Freeze : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
+			StaticOptions.spawnItems.Remove (freeze);
 			Destroy (freeze);
 		}
 	}
 
 	void OnTriggerEnter(Collider col) {
-
-		/*if (col.gameObject.tag == "p2item") {
-			Destroy (col.gameObject);
-		}*/
+		
 		if (col.gameObject.tag == "block") {
-			StaticOptions.numberOfP2ItmesInGame--;
+			
+			StaticOptions.spawnItems.Remove (freeze);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
@@ -108,9 +110,6 @@ public class Freeze : MonoBehaviour {
 			}
 			P2ItemIcon.itemSprite = freezeSprite;
 			freeze.GetComponent<SphereCollider> ().enabled = false;
-			/*meshRenderer = freeze.GetComponentsInChildren<MeshRenderer>();
-			foreach (MeshRenderer mesh in meshRenderer)
-				mesh.enabled = false;*/
 			for (int i = 0; i < freeze.transform.childCount; i++) {
 				freeze.transform.GetChild(i).gameObject.SetActive(false);
 			}

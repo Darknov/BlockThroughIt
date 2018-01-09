@@ -12,8 +12,7 @@ public static class StaticOptions{
     public static int load1 = 0;
 
     public static bool isFlying = false;
-	public static int numberOfP1ItmesInGame = 0;
+	public static List<GameObject> spawnItems;
 	public static int maxP1ItmesSpawn = 3;
-	public static int numberOfP2ItmesInGame = 0;
 	public static int maxP2ItmesSpawn = 3;
 }

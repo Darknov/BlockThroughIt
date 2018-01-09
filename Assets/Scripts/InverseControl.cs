@@ -14,6 +14,10 @@ public class InverseControl : MonoBehaviour {
 
     void Update () {
 
+		if (!StaticOptions.spawnItems.Exists (x => x == inverseControl)) {
+			Destroy (inverseControl);
+		}
+
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && !Player1Controller.inverseControlUsed) {
@@ -84,18 +88,15 @@ public class InverseControl : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
+			StaticOptions.spawnItems.Remove (inverseControl);
 			Destroy (inverseControl);
 		}
 	}
 
 	void OnTriggerEnter(Collider col) {
-
-		/*if (col.gameObject.tag == "p2item") {
-			StaticOptions.numberOfItmesInGame--;
-			Destroy (col.gameObject);
-		}*/
+		
 		if (col.gameObject.tag == "block") {
-			StaticOptions.numberOfP2ItmesInGame--;
+			StaticOptions.spawnItems.Remove (inverseControl);
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
@@ -108,9 +109,6 @@ public class InverseControl : MonoBehaviour {
 			}
 			P2ItemIcon.itemSprite = inverseControlSprite;
 			inverseControl.GetComponent<SphereCollider> ().enabled = false;
-			/*meshRenderer = inverseControl.GetComponentsInChildren<MeshRenderer>();
-			foreach (MeshRenderer mesh in meshRenderer)
-				mesh.enabled = false;*/
 			for (int i = 0; i < inverseControl.transform.childCount; i++) {
 				inverseControl.transform.GetChild(i).gameObject.SetActive(false);
 			}

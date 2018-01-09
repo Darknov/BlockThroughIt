@@ -25,6 +25,7 @@ TagManager:
   - p2togglepad
   - Timebar
   - countDown
+  - p2Pickups
   layers:
   - Default
   - TransparentFX

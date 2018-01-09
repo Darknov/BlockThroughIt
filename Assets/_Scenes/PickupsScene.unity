@@ -10479,7 +10479,7 @@ GameObject:
   - component: {fileID: 1897435600}
   m_Layer: 0
   m_Name: P2Pickups
-  m_TagString: Untagged
+  m_TagString: p2Pickups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10497,7 +10497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numbersOfSpawnItems: 3
   firstPickupSpawnTime: 0
-  pickupSpawnTime: 15
+  pickupSpawnTime: 1
   possibleItems:
   - {fileID: 1830882265319056, guid: a7d129c2fc0152641a16d7991d8b2b76, type: 2}
   - {fileID: 1152023014569484, guid: 57be7ccf61ecfbc45a954d4010722c39, type: 2}
