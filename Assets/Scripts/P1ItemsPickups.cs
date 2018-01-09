@@ -13,8 +13,10 @@ public class P1ItemsPickups : MonoBehaviour {
 	private Quaternion rotation;
 	private List<Vector3> possiblePlaces;
 	private System.Random randomPlaces;
+    public GameObject partEffect;
 
-	void Start() {
+
+    void Start() {
 
 		StaticOptions.p1SpawnItems = new List<GameObject> ();
 		StaticOptions.maxP1ItmesSpawn = numbersOfSpawnItems;
@@ -70,8 +72,10 @@ public class P1ItemsPickups : MonoBehaviour {
 			int randomIndex = randomItems.Next (0, possibleItems.Count);
 			GameObject item = Instantiate (possibleItems [randomIndex], position, rotation);
 			StaticOptions.p1SpawnItems.Add (item);
-		}
-	}
+            Instantiate(partEffect, position, rotation);
+
+        }
+    }
 
 	public Vector3 createRandomPlace() {
 
