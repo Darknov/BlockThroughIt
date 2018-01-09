@@ -62,7 +62,7 @@ public class P1ItemsPickups : MonoBehaviour {
 
 	void createRandomItem(Vector3 position) {
 
-		if (StaticOptions.p1SpawnItems.Count < StaticOptions.maxP2ItmesSpawn) {
+		if (StaticOptions.p1SpawnItems.Count < StaticOptions.maxP1ItmesSpawn) {
 			int randomIndex = randomItems.Next (0, possibleItems.Count);
 			GameObject item = Instantiate (possibleItems [randomIndex], position, rotation);
 			StaticOptions.p1SpawnItems.Add (item);
