@@ -17,7 +17,8 @@ public class InverseControl : MonoBehaviour {
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && !Player1Controller.inverseControlUsed) {
-					P1ItemIcon.itemSprite = inverseControlSprite;
+                    FindObjectOfType<AudioManager>().Play("inverseControl"); //////
+                    P1ItemIcon.itemSprite = inverseControlSprite;
 					P1ItemIcon.iconColor = Color.red;
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
@@ -48,7 +49,8 @@ public class InverseControl : MonoBehaviour {
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.inverseControlUsed) {
-					P1ItemIcon.itemSprite = inverseControlSprite;
+                    FindObjectOfType<AudioManager>().Play("inverseControl"); ////
+                    P1ItemIcon.itemSprite = inverseControlSprite;
 					P1ItemIcon.iconColor = Color.red;
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
@@ -94,7 +96,8 @@ public class InverseControl : MonoBehaviour {
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "block") {
-			if (P2ItemCountDown.itemText != "No item") {
+            FindObjectOfType<AudioManager>().Play("godGetItem"); ////////
+            if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			inverseControl.tag = "p2TakenItem";

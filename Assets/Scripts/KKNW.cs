@@ -15,7 +15,7 @@ public class KKNW : MonoBehaviour {
 		if (isTriggered) {
 			//Player2Controller.isDestroyBlockAvailable = true;
 			if (Player2Controller.p2GamePad) {
-				if (Input.GetKeyDown ("joystick 2 button 6") && Player2Controller.isDestroyBlockAvailable) {
+				if (Input.GetKeyDown ("joystick 2 button 6") && Player2Controller.isDestroyBlockAvailable) {                 
 					Player2Controller.isDestroyBlockAvailable = false;
 					Player2Controller.isDestroyBlockActivated = true;
 					P2ItemIcon.itemSprite = null;
@@ -48,7 +48,8 @@ public class KKNW : MonoBehaviour {
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "block") {
-			if (P2ItemCountDown.itemText != "No item") {
+            FindObjectOfType<AudioManager>().Play("godGetItem"); ////////
+            if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			kknw.tag = "p2TakenItem";

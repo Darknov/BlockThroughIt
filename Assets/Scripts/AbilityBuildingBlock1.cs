@@ -21,6 +21,7 @@ public class AbilityBuildingBlock1 : BoostItem
 
     public override void ActivateItem()
     {
+        FindObjectOfType<AudioManager>().Play("AbilityPutBlock"); ///////////
         isActive = true;
     }
 

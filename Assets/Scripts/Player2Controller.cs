@@ -399,7 +399,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.black, activeBlock);
-
+        FindObjectOfType<AudioManager>().Play("kknw");///
         Destroy(activeBlock.gameObject);
         blockShadow.DestroyShadow();
         RespawnEmptyBlocks(source, args);

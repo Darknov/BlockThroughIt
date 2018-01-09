@@ -32,7 +32,7 @@ public class AttackBlock : MonoBehaviour
     public virtual void OnAttackBlockDestroy()
     {
         if (DestroyAttackBlock != null)
-        {
+        {    
             DestroyAttackBlock(this, EventArgs.Empty);
         }
     }

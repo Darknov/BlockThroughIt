@@ -17,6 +17,7 @@ public class LaserController : BoostItem
 
     public override void ActivateItem()
     {
+        FindObjectOfType<AudioManager>().Play("AbilityLaser");/////////////
         isActivated = true;
     }
 

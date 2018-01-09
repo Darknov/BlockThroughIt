@@ -15,13 +15,13 @@ public class GameOver : MonoBehaviour {
 		anim = GetComponent<Animator>();
     }
 
-	void Update () {
+    void Update () {
 		if (CountDown.timeRemaining <= 0) {
 			anim.SetTrigger ("GameOver1");
 			CountDown.started = false;
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {
-				SceneManager.LoadScene (0);
+                SceneManager.LoadScene (0);
 				if (CountDown.timeRemaining != 60) {
                     CountDown.timeRemaining = 60;
 				}

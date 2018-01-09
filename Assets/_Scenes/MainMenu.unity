@@ -1906,8 +1906,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: AudioManager
-    clip: {fileID: 8300000, guid: 7a5d9c106ad051445830fb94a223217e, type: 3}
+  - name: godGetItem
+    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
     loop: 0
     source: {fileID: 0}
   - name: tetrisLaugh
@@ -1953,6 +1953,26 @@ MonoBehaviour:
   - name: backgroundMusic
     clip: {fileID: 8300000, guid: fa48fd069663c416c8ae40edb1dbe116, type: 3}
     loop: 1
+    source: {fileID: 0}
+  - name: herbasSound
+    clip: {fileID: 8300000, guid: 319532c1ec3184a43982c09842086fe6, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: godPutBlock
+    clip: {fileID: 8300000, guid: d4004314799269543b4ae0960325dbf0, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: inverseControl
+    clip: {fileID: 8300000, guid: 2778b30f8e1dab94ea4a981c74dd7667, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: freeze
+    clip: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: kknw
+    clip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &438580373
 Transform:

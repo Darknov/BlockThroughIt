@@ -17,6 +17,7 @@ public class HerbasShoesController : BoostItem {
 
     public override void ActivateItem()
     {
+        FindObjectOfType<AudioManager>().Play("herbasSound"); //////
         this.isActive = true;
         Instantiate(partEffect, new Vector3( player.transform.position.x, player.transform.position.y, player.transform.position.z) , player.transform.rotation, player.transform);
         //Instantiate(timebar, new Vector3(0, 2, -9), new Quaternion(39, 1, 180, 0) );
