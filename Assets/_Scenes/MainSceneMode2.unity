@@ -2952,6 +2952,20 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 114350354312178950, guid: 4a468cad1aaf20944864f516fcf7d070,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Game Over!
+
+        Rabbit Wins'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114154861213363314, guid: 4a468cad1aaf20944864f516fcf7d070,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Game Over!
+
+        God Wins'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a468cad1aaf20944864f516fcf7d070, type: 2}
   m_IsPrefabParent: 0
@@ -8104,7 +8118,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 1
+  m_Text: Rabbit
 --- !u!222 &1548408542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10510,7 +10524,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 2
+  m_Text: God
 --- !u!222 &2053720721
 CanvasRenderer:
   m_ObjectHideFlags: 0

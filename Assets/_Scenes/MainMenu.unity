@@ -4670,7 +4670,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 1
+  m_Text: Rabbit
 --- !u!222 &1305157967
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5221,7 +5221,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 2
+  m_Text: God
 --- !u!222 &1433391543
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5957,7 +5957,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: de38026a41105c9468f8fb6093ae49f9, type: 3}
-    m_FontSize: 32
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -5969,7 +5969,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Ada J\u0119drzejczak\nKamil Ka\u017Amierczak\nDominik Lange\nPrzemys\u0142aw
-    Maciaszek\nPawe\u0142 Ograbek"
+    Maciaszek\nPawe\u0142 Ograbek\nPiotr Zieli\u0144ski\nAleksandra Dziobiak"
 --- !u!222 &1607723546
 CanvasRenderer:
   m_ObjectHideFlags: 0
