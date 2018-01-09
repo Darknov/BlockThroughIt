@@ -53,7 +53,11 @@ public class P1ItemsPickups : MonoBehaviour {
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
 				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 1, (float)(j-System.Math.Floor(rowLength/2.0)));
-				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null && !StaticOptions.p1SpawnItems.Exists(x => x.transform.position == pickupPlace)) {
+				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null &&
+						!StaticOptions.p1SpawnItems.Exists(x => x.transform.position == pickupPlace &&
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x != (float)(i-System.Math.Floor(rowLength/2.0)) &&
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z != (float)(j-System.Math.Floor(rowLength/2.0))
+					)) {
 					possiblePlaces.Add(pickupPlace);
 				}
 			}
@@ -62,7 +66,7 @@ public class P1ItemsPickups : MonoBehaviour {
 
 	void createRandomItem(Vector3 position) {
 
-		if (StaticOptions.p1SpawnItems.Count < StaticOptions.maxP2ItmesSpawn) {
+		if (StaticOptions.p1SpawnItems.Count < StaticOptions.maxP1ItmesSpawn) {
 			int randomIndex = randomItems.Next (0, possibleItems.Count);
 			GameObject item = Instantiate (possibleItems [randomIndex], position, rotation);
 			StaticOptions.p1SpawnItems.Add (item);

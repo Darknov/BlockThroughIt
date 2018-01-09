@@ -13,79 +13,100 @@ public class Freeze : MonoBehaviour {
 
 	void Update () {
 
-		if (!StaticOptions.p2SpawnItems.Exists (x => x == freeze)) {
-			Destroy (freeze);
-		}
+		isDestroyed ();
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
+<<<<<<< HEAD
 				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
 					//P1ItemIcon.itemSprite = freezeSprite;
 					//P1ItemIcon.iconColor = Color.red;
+=======
+				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+>>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
-					//P1ItemCountDown.started = true;
 					P2ItemCountDown.started = true;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = true;
-					//P1ItemCountDown.itemText = "Freeze\n" + "Time Remaining: ";
 					P2ItemCountDown.itemText = "Freeze Used\n" + "Time Remaining: ";
 				}
 
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
+<<<<<<< HEAD
                     //P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeOfPlayer2);
                     freezeTimeOfPlayer2 -= Time.deltaTime;
+=======
+					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
+					freezeTimeOfPlayer2 -= Time.deltaTime;
+>>>>>>> PO3
 					if (freezeTimeOfPlayer2 < 0) {
-						//P1ItemIcon.itemSprite = null;
 						P2ItemIcon.itemSprite = null;
-						//P1ItemCountDown.started = false;
 						P2ItemCountDown.started = false;
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
-						//P1ItemCountDown.itemText = "No item";
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (freeze);
+						StaticOptions.p2SpawnItems.Remove (freeze);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
 			} else if (!Player2Controller.p2GamePad) {
+<<<<<<< HEAD
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
 					//P1ItemIcon.itemSprite = freezeSprite;
 					//P1ItemIcon.iconColor = Color.red;
+=======
+				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+>>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
-					//P1ItemCountDown.started = true;
 					P2ItemCountDown.started = true;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = true;
-					//P1ItemCountDown.itemText = "Freeze\n" + "Time Remaining: ";
 					P2ItemCountDown.itemText = "Freeze Used\n" + "Time Remaining: ";
 				}
 
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
-                    //P1ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
 					freezeTimeOfPlayer2 -= Time.deltaTime;
 					if (freezeTimeOfPlayer2 < 0) {
-						//P1ItemIcon.itemSprite = null;
 						P2ItemIcon.itemSprite = null;
-						//P1ItemCountDown.started = false;
 						P2ItemCountDown.started = false;
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
-						//P1ItemCountDown.itemText = "No item";
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (freeze);
+						StaticOptions.p2SpawnItems.Remove (freeze);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
 			}
+		}
+	}
+
+	void LateUpdate() {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == freeze.transform.position.y)) {
+			Destroy (freeze);
+		}
+	}
+
+	void isDestroyed() {
+
+		if(!StaticOptions.p1SpawnItems.Exists(x => x == freeze)) {
+			P2ItemIcon.itemSprite = null;
+			P2ItemCountDown.started = false;
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
+			P2ItemCountDown.itemText = "No item";
+			isTriggered = false;
+			StaticOptions.p2SpawnItems.Remove (freeze);
+			Destroy (freeze);
+			GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 		}
 	}
 
@@ -97,10 +118,15 @@ public class Freeze : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
+<<<<<<< HEAD
 				
 		if (col.gameObject.tag == "block") {
             FindObjectOfType<AudioManager>().Play("godGetItem");
 			StaticOptions.p2SpawnItems.Remove (freeze);
+=======
+		
+		if (col.gameObject.tag == "block") {
+>>>>>>> PO3
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

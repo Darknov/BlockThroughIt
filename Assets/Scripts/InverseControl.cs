@@ -9,82 +9,92 @@ public class InverseControl : MonoBehaviour {
     public Material inversedControlMaterial;
     public Material standardMaterial;
 
-    //private Component[] meshRenderer;
-
-
     void Update () {
 
-		if (!StaticOptions.p2SpawnItems.Exists (x => x == inverseControl)) {
-			Destroy (inverseControl);
-		}
+		isDestroyed ();
 
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && !Player1Controller.inverseControlUsed) {
+<<<<<<< HEAD
                     FindObjectOfType<AudioManager>().Play("inverseControl");
 					//P1ItemIcon.itemSprite = inverseControlSprite;
 					//P1ItemIcon.iconColor = Color.red;
+=======
+>>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
-					//P1ItemCountDown.started = true;
 					P2ItemCountDown.started = true;
 					Player1Controller.inverseControlUsed = true;
-					//P1ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
 					P2ItemCountDown.itemText = "Inverse Control Used\n" + "Time Remaining: ";
 				}
 				if (Player1Controller.inverseControl) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
-                    //P1ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					timeOfInverseControlOfPlayer2 -= Time.deltaTime;
 					if (timeOfInverseControlOfPlayer2 < 0) {
-						//P1ItemIcon.itemSprite = null;
 						P2ItemIcon.itemSprite = null;
-						//P1ItemCountDown.started = false;
 						P2ItemCountDown.started = false;
 						Player1Controller.inverseControlUsed = false;
 						Player1Controller.inverseControl = false;
-						//P1ItemCountDown.itemText = "No item";
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (inverseControl);
+						StaticOptions.p2SpawnItems.Remove (inverseControl);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.inverseControlUsed) {
+<<<<<<< HEAD
                     FindObjectOfType<AudioManager>().Play("inverseControl");
 					//P1ItemIcon.itemSprite = inverseControlSprite;
 					//P1ItemIcon.iconColor = Color.red;
+=======
+>>>>>>> PO3
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
-					//P1ItemCountDown.started = true;
 					P2ItemCountDown.started = true;
 					Player1Controller.inverseControlUsed = true;
-					//P1ItemCountDown.itemText = "Inverse Control\n" + "Time Remaining: ";
 					P2ItemCountDown.itemText = "Inverse Control Used\n" + "Time Remaining: ";
 				}
 
 				if (Player1Controller.inverseControl) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial;
-                    //P1ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					P2ItemCountDown.itemTimeRemaining = timeOfInverseControlOfPlayer2;
 					timeOfInverseControlOfPlayer2 -= Time.deltaTime;
 					if (timeOfInverseControlOfPlayer2 < 0) {
-						//P1ItemIcon.itemSprite = null;
 						P2ItemIcon.itemSprite = null;
-						//P1ItemCountDown.started = false;
 						P2ItemCountDown.started = false;
 						Player1Controller.inverseControlUsed = false;
 						Player1Controller.inverseControl = false;
-						//P1ItemCountDown.itemText = "No item";
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
-						Destroy (inverseControl);
+						StaticOptions.p2SpawnItems.Remove (inverseControl);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
                     }
 				}
 			}
+		}
+	}
+
+	void LateUpdate() {
+		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == inverseControl.transform.position.y)) {
+			Destroy (inverseControl);
+		}
+	}
+
+	void isDestroyed() {
+
+		if(!StaticOptions.p1SpawnItems.Exists(x => x == inverseControl)) {
+			P2ItemIcon.itemSprite = null;
+			P2ItemCountDown.started = false;
+			Player1Controller.inverseControlUsed = false;
+			Player1Controller.inverseControl = false;
+			P2ItemCountDown.itemText = "No item";
+			isTriggered = false;
+			StaticOptions.p2SpawnItems.Remove (inverseControl);
+			Destroy (inverseControl);
+			GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 		}
 	}
 
@@ -98,8 +108,11 @@ public class InverseControl : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
+<<<<<<< HEAD
             FindObjectOfType<AudioManager>().Play("godGetItem");
 			StaticOptions.p2SpawnItems.Remove (inverseControl);
+=======
+>>>>>>> PO3
 			if (P2ItemCountDown.itemText != "No item") {
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
