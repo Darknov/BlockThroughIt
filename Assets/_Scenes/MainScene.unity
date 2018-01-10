@@ -3458,7 +3458,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 428745801}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dfb38623a6322347a23547488de5520, type: 3}
   m_Name: 
@@ -5080,6 +5080,54 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 769547760}
+--- !u!1 &785700467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 785700469}
+  - component: {fileID: 785700468}
+  m_Layer: 0
+  m_Name: P1Pickups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &785700468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785700467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b398480b85fbe7048adb010ffdbecd22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numbersOfSpawnItems: 3
+  firstPickupSpawnTime: 0
+  pickupSpawnTime: 1
+  possibleItems:
+  - {fileID: 1870934395384414, guid: 4194e950dd7d1564a87e3184be61f055, type: 2}
+  - {fileID: 1903919589418104, guid: 36454fd59f943cc40aeecfe6b9397da1, type: 2}
+  - {fileID: 1786838397290552, guid: e2e5633ca0db3734b9174526b57bf130, type: 2}
+  partEffect: {fileID: 0}
+--- !u!4 &785700469
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785700467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &793771962
 GameObject:
   m_ObjectHideFlags: 0
@@ -9654,7 +9702,7 @@ Transform:
   - {fileID: 1049988307}
   - {fileID: 1163103904}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1726534606
 GameObject:
@@ -9970,6 +10018,10 @@ Prefab:
         type: 2}
       propertyPath: m_IgnoreLayers.m_Bits
       value: 768
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591692424541668, guid: f1ab0a3b866db9247a420d49018352e9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1ab0a3b866db9247a420d49018352e9, type: 2}
@@ -10782,7 +10834,7 @@ RectTransform:
   - {fileID: 1851919492}
   - {fileID: 794861179}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10818,7 +10870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numbersOfSpawnItems: 3
   firstPickupSpawnTime: 0
-  pickupSpawnTime: 15
+  pickupSpawnTime: 1
   possibleItems:
   - {fileID: 1830882265319056, guid: a7d129c2fc0152641a16d7991d8b2b76, type: 2}
   - {fileID: 1152023014569484, guid: 57be7ccf61ecfbc45a954d4010722c39, type: 2}
@@ -10835,7 +10887,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1903995046
 GameObject:
@@ -11256,7 +11308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2041456610
 MonoBehaviour:
   m_ObjectHideFlags: 0
