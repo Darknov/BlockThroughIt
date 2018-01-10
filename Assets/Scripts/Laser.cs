@@ -160,6 +160,7 @@ public class Laser : MonoBehaviour {
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;
 				P1ItemCountDown.itemText = "No item";
+				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
