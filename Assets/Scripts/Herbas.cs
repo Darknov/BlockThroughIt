@@ -8,13 +8,13 @@ public class Herbas : MonoBehaviour {
 	public GameObject herbas;
 	public Sprite herbasSprite;
 	public float flyingDuration = 5f;
-	private float flyingCountDown;
+	private float flyingTimeCountDown;
 	private bool isTriggered = false;
 	public GameObject partEffect;
 	private Component[] meshRenderer;
 
 	void Update() {
-			
+
 		isDestroyed ();
 
 		if (isTriggered) {
@@ -25,7 +25,7 @@ public class Herbas : MonoBehaviour {
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
 					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
-					P1ItemCountDown.itemTimeRemaining = flyingCountDown;
+					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					Instantiate(partEffect, 
 						new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
@@ -36,8 +36,8 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
-					flyingCountDown -= Time.deltaTime;
-					if ((int)flyingCountDown <= 0)
+					flyingTimeCountDown -= Time.deltaTime;
+					if ((int)flyingTimeCountDown <= 0) {
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
 						P1ItemCountDown.started = false;
@@ -67,9 +67,9 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
-					P1ItemCountDown.itemTimeRemaining = flyingCountDown;
-					flyingCountDown -= Time.deltaTime;
-					if ((int)flyingDuration <= 0) {
+					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
+					flyingTimeCountDown -= Time.deltaTime;
+					if ((int)flyingTimeCountDown <= 0) {
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
 						P1ItemCountDown.started = false;
@@ -84,6 +84,7 @@ public class Herbas : MonoBehaviour {
 				}
 			}
 		}
+	}
 
 	void LateUpdate() {
 		if (!StaticOptions.p1SpawnItems.Exists (x => x == herbas)) {
@@ -109,7 +110,7 @@ public class Herbas : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col) {
-		
+
 		if (col.gameObject.tag == "Player") {
 			if (P1ItemCountDown.itemText != "No item") {
 				P1ItemIcon.iconColor = Color.white;
@@ -120,7 +121,7 @@ public class Herbas : MonoBehaviour {
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
-			flyingCountDown = flyingDuration;
+			flyingTimeCountDown = flyingDuration;
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
