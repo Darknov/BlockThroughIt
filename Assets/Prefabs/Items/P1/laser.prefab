@@ -171,10 +171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laser: {fileID: 1903919589418104}
   laserSprite: {fileID: 21300000, guid: 7b7de2430deee964da27ba2590989b37, type: 3}
-  lineRenderer: {fileID: 0}
+  picture: {fileID: 1102398688161196, guid: 3c12d7409d33daa48908edc42372ac79, type: 2}
   laserGrowingSpeed: 5
   laserRange: 1000
-  isActivated: 0
   duration: 2
 --- !u!114 &114653336908514960
 MonoBehaviour:

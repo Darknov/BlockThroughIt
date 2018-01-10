@@ -8607,9 +8607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numbersOfSpawnItems: 3
   firstPickupSpawnTime: 0
-  pickupSpawnTime: 15
+  pickupSpawnTime: 1
   possibleItems:
-  - {fileID: 1786838397290552, guid: e2e5633ca0db3734b9174526b57bf130, type: 2}
   - {fileID: 1903919589418104, guid: 36454fd59f943cc40aeecfe6b9397da1, type: 2}
   partEffect: {fileID: 1628452649589310, guid: e1abf6804077aa1428ea5df1a79c9e05, type: 2}
 --- !u!1 &1349334740
