@@ -48,7 +48,7 @@ public class InverseControl : MonoBehaviour {
 				}
 
 				if (Player1Controller.inverseControl) {
-				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial;
+				    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial;
 					P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
 					inverseControlTimeCountDown -= Time.deltaTime;
 					if (inverseControlTimeCountDown < 0) {
@@ -60,7 +60,7 @@ public class InverseControl : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (inverseControl);
-					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+					    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 						Destroy (inverseControl);
                     }
 				}
@@ -92,12 +92,15 @@ public class InverseControl : MonoBehaviour {
 				Player1Controller.inverseControl = false;
 				P2ItemCountDown.itemText = "No item";
 				isTriggered = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
 				StaticOptions.p2SpawnItems.Remove (GameObject.FindGameObjectWithTag("p2TakenItem"));
 				GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			inverseControlTimeCountDown = timeOfInverseControlOfPlayer2;
 			inverseControl.tag = "p2TakenItem";
+			Player1Controller.inverseControlUsed = false;
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
 				P2ItemCountDown.itemText = "Inverse Control\n" + "Press L2 to use";

@@ -54,11 +54,14 @@ public class KKNW : MonoBehaviour {
 		if (col.gameObject.tag == "block") {
 			if (P2ItemCountDown.itemText != "No item") {
 				P2ItemIcon.iconColor = Color.white;
-				Player2Controller.isDestroyBlockAvailable = false;
-				Player2Controller.isDestroyBlockActivated = false;
 				P2ItemIcon.itemSprite = null;
+				P2ItemCountDown.started = false;
+				Player1Controller.inverseControlUsed = false;
+				Player1Controller.inverseControl = false;
 				P2ItemCountDown.itemText = "No item";
 				isTriggered = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
 				StaticOptions.p2SpawnItems.Remove (GameObject.FindGameObjectWithTag("p2TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}

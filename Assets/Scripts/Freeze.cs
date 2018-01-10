@@ -91,10 +91,12 @@ public class Freeze : MonoBehaviour {
 				P2ItemIcon.iconColor = Color.white;
 				P2ItemIcon.itemSprite = null;
 				P2ItemCountDown.started = false;
-				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
-				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
+				Player1Controller.inverseControlUsed = false;
+				Player1Controller.inverseControl = false;
 				P2ItemCountDown.itemText = "No item";
 				isTriggered = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
 				StaticOptions.p2SpawnItems.Remove (GameObject.FindGameObjectWithTag("p2TakenItem"));
 				GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));

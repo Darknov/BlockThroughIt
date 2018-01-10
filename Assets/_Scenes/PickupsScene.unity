@@ -8621,8 +8621,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numbersOfSpawnItems: 3
   firstPickupSpawnTime: 0
-  pickupSpawnTime: 1
+  pickupSpawnTime: 10
   possibleItems:
+  - {fileID: 1786838397290552, guid: e2e5633ca0db3734b9174526b57bf130, type: 2}
+  - {fileID: 1870934395384414, guid: 4194e950dd7d1564a87e3184be61f055, type: 2}
   - {fileID: 1903919589418104, guid: 36454fd59f943cc40aeecfe6b9397da1, type: 2}
 --- !u!1 &1349334740
 GameObject:
@@ -11364,11 +11366,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numbersOfSpawnItems: 3
   firstPickupSpawnTime: 0
-  pickupSpawnTime: 15
+  pickupSpawnTime: 1
   possibleItems:
   - {fileID: 1830882265319056, guid: a7d129c2fc0152641a16d7991d8b2b76, type: 2}
-  - {fileID: 1152023014569484, guid: 57be7ccf61ecfbc45a954d4010722c39, type: 2}
-  - {fileID: 1884113545728240, guid: a26b70c6822887c428dc96bac1737c5a, type: 2}
+  - {fileID: 1830882265319056, guid: a7d129c2fc0152641a16d7991d8b2b76, type: 2}
+  - {fileID: 1830882265319056, guid: a7d129c2fc0152641a16d7991d8b2b76, type: 2}
 --- !u!4 &1897435601
 Transform:
   m_ObjectHideFlags: 0
