@@ -54,8 +54,8 @@ public class PlatformBoard : MonoBehaviour {
         {
             if (displayedShadowBlock != null) Destroy(displayedShadowBlock);
             displayedShadowBlock = Instantiate(shadowBlockPrefab, vector, Quaternion.identity);
-            this.blocks[x, y] = displayedShadowBlock;
-            this.blocks[x, y].tag = "platform";
+            //this.blocks[x, y] = displayedShadowBlock;
+            //this.blocks[x, y].tag = "platform";
 
             checkIfThereAreMaxBlocksInRow();
         }
@@ -160,7 +160,7 @@ public class PlatformBoard : MonoBehaviour {
             bool isBlock = true;
             for (int j = 0; j < rowLength; j++)
             {
-                if (this.blocks[i, j] == null)
+                if (this.blocks[i, j] == null || this.blocks[i, j].tag == "shadow")
                 {
                     isBlock = false;
                 }

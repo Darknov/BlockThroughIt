@@ -5444,7 +5444,7 @@ MonoBehaviour:
   player1: {fileID: 843765905}
   numberOfInstatiatedBlocks: 15
   platformBoard: {fileID: 428745802}
-  generatePlatform: 1
+  generatePlatform: 0
 --- !u!1 &873513475
 GameObject:
   m_ObjectHideFlags: 0

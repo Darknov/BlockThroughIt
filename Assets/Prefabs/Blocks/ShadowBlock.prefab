@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114589683056285892}
   m_Layer: 0
   m_Name: ShadowBlock
-  m_TagString: platform
+  m_TagString: shadow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
