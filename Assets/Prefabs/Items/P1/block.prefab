@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 4693802427375274}
   - component: {fileID: 33039966268207920}
   - component: {fileID: 23826807852658088}
+  - component: {fileID: 135860522274391118}
+  - component: {fileID: 114602294448169296}
   m_Layer: 9
   m_Name: block
   m_TagString: p1item
@@ -179,6 +181,21 @@ MonoBehaviour:
   endScale: {x: 0, y: 0, z: 0}
   scaleSpeed: 0
   scaleRate: 0
+--- !u!114 &114602294448169296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1870934395384414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a8049534c542c4e82c9887f71fb724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  builder: {fileID: 1870934395384414}
+  builderSprite: {fileID: 21300000, guid: 926cdad46da8d3946a06209965661efb, type: 3}
+  partEffect: {fileID: 100008, guid: c315731710b634ac1907e6aceca06447, type: 2}
+  player: {fileID: 1576305778183534, guid: f1ab0a3b866db9247a420d49018352e9, type: 2}
 --- !u!135 &135671242368491826
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -187,6 +204,18 @@ SphereCollider:
   m_GameObject: {fileID: 1028673065161412}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135860522274391118
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1870934395384414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

@@ -40,8 +40,8 @@ public class P2ItemsPickups : MonoBehaviour {
 
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
-				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 0, (float)(j-System.Math.Floor(rowLength/2.0)));
 				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null) {
+					Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 0, (float)(j-System.Math.Floor(rowLength/2.0)));
 					StaticOptions.p2SpawnItems.RemoveAll (x => x.transform.position == pickupPlace);
 				}
 			}

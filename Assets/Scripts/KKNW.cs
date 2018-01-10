@@ -10,8 +10,6 @@ public class KKNW : MonoBehaviour {
 	private bool isTriggered = false;
 
 	void Update() {
-
-		isDestroyed ();
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -22,6 +20,7 @@ public class KKNW : MonoBehaviour {
 					P2ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p2SpawnItems.Remove (kknw);
+					Destroy (kknw);
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && Player2Controller.isDestroyBlockAvailable) {
@@ -31,26 +30,14 @@ public class KKNW : MonoBehaviour {
 					P2ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p2SpawnItems.Remove (kknw);
+					Destroy (kknw);
 				}
 			}
 		}
 	}
 
 	void LateUpdate() {
-		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == kknw.transform.position.y)) {
-			Destroy (kknw);
-		}
-	}
-
-	void isDestroyed() {
-
-		if(!StaticOptions.p1SpawnItems.Exists(x => x == kknw)) {
-			Player2Controller.isDestroyBlockAvailable = false;
-			Player2Controller.isDestroyBlockActivated = false;
-			P2ItemIcon.itemSprite = null;
-			P2ItemCountDown.itemText = "No item";
-			isTriggered = false;
-			StaticOptions.p2SpawnItems.Remove (kknw);
+		if (!StaticOptions.p2SpawnItems.Exists (x => x == kknw)) {
 			Destroy (kknw);
 		}
 	}
@@ -66,6 +53,13 @@ public class KKNW : MonoBehaviour {
 		
 		if (col.gameObject.tag == "block") {
 			if (P2ItemCountDown.itemText != "No item") {
+				P2ItemIcon.iconColor = Color.white;
+				Player2Controller.isDestroyBlockAvailable = false;
+				Player2Controller.isDestroyBlockActivated = false;
+				P2ItemIcon.itemSprite = null;
+				P2ItemCountDown.itemText = "No item";
+				isTriggered = false;
+				StaticOptions.p2SpawnItems.Remove (GameObject.FindGameObjectWithTag("p2TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			kknw.tag = "p2TakenItem";
