@@ -13,12 +13,7 @@ public class Freeze : MonoBehaviour {
     public Material standardMaterial;
 
 	void Update () {
-
-<<<<<<< HEAD
-		//isDestroyed ();
-
-=======
->>>>>>> PO3
+		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
@@ -31,19 +26,12 @@ public class Freeze : MonoBehaviour {
 				}
 
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
-<<<<<<< HEAD
-				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
-					P2ItemCountDown.itemTimeRemaining = freezeTimeOfPlayer2;
-                    GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeOfPlayer2);
-                    freezeTimeOfPlayer2 -= Time.deltaTime;
-					if (freezeTimeOfPlayer2 < 0) {
-=======
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
+					GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeOfPlayer2);
 					freezeTimeCountDown -= Time.deltaTime;
 					if (freezeTimeCountDown < 0) {
 						P2ItemIcon.iconColor = Color.white;
->>>>>>> PO3
 						P2ItemIcon.itemSprite = null;
 						P2ItemCountDown.started = false;
 						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;

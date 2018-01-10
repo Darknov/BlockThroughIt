@@ -8,11 +8,7 @@ public class Herbas : MonoBehaviour {
 	public GameObject herbas;
 	public Sprite herbasSprite;
 	public float flyingDuration = 5f;
-<<<<<<< HEAD
 	private float flyingCountDown;
-=======
-	private float flyingTimeCountDown;
->>>>>>> PO3
 	private bool isTriggered = false;
 	public GameObject partEffect;
 	private Component[] meshRenderer;
@@ -29,7 +25,7 @@ public class Herbas : MonoBehaviour {
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
 					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
-					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
+					P1ItemCountDown.itemTimeRemaining = flyingCountDown;
 					Instantiate(partEffect, 
 						new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
@@ -40,13 +36,8 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
-<<<<<<< HEAD
 					flyingCountDown -= Time.deltaTime;
 					if ((int)flyingCountDown <= 0)
-=======
-					flyingTimeCountDown -= Time.deltaTime;
-					if ((int)flyingTimeCountDown <= 0) {
->>>>>>> PO3
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
 						P1ItemCountDown.started = false;
@@ -76,15 +67,9 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
-<<<<<<< HEAD
 					P1ItemCountDown.itemTimeRemaining = flyingCountDown;
 					flyingCountDown -= Time.deltaTime;
 					if ((int)flyingDuration <= 0) {
-=======
-					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
-					flyingTimeCountDown -= Time.deltaTime;
-					if ((int)flyingTimeCountDown <= 0) {
->>>>>>> PO3
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
 						P1ItemCountDown.started = false;
@@ -99,7 +84,6 @@ public class Herbas : MonoBehaviour {
 				}
 			}
 		}
-	}
 
 	void LateUpdate() {
 		if (!StaticOptions.p1SpawnItems.Exists (x => x == herbas)) {
@@ -136,11 +120,7 @@ public class Herbas : MonoBehaviour {
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
-<<<<<<< HEAD
 			flyingCountDown = flyingDuration;
-=======
-			flyingTimeCountDown = flyingDuration;
->>>>>>> PO3
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {

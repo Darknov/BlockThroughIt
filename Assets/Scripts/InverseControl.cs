@@ -11,12 +11,7 @@ public class InverseControl : MonoBehaviour {
     public Material standardMaterial;
 
     void Update () {
-
-<<<<<<< HEAD
-		//isDestroyed ();
-
-=======
->>>>>>> PO3
+		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown ("joystick 2 button 6") && !Player1Controller.inverseControlUsed) {

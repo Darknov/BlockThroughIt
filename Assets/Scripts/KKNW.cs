@@ -10,11 +10,6 @@ public class KKNW : MonoBehaviour {
 	private bool isTriggered = false;
 
 	void Update() {
-<<<<<<< HEAD
-
-		//isDestroyed ();
-=======
->>>>>>> PO3
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -42,23 +37,7 @@ public class KKNW : MonoBehaviour {
 	}
 
 	void LateUpdate() {
-<<<<<<< HEAD
-		if (!StaticOptions.p2SpawnItems.Exists (x => x.transform.position.y == kknw.transform.position.y)) {
-			Destroy (kknw);
-		}
-	}
-
-	void isDestroyed() {
-
-		if(!StaticOptions.p1SpawnItems.Exists(x => x == kknw)) {
-			Player2Controller.isDestroyBlockAvailable = false;
-			Player2Controller.isDestroyBlockActivated = false;
-			P2ItemIcon.itemSprite = null;
-			P2ItemCountDown.itemText = "No item";
-			isTriggered = false;
-=======
 		if (!StaticOptions.p2SpawnItems.Exists (x => x == kknw)) {
->>>>>>> PO3
 			Destroy (kknw);
 		}
 	}
