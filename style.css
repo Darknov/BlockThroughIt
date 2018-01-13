@@ -1,0 +1,44 @@
+body {
+  background-color: #333;
+  background: url(https://i.snag.gy/LQ0ecm.jpg);
+
+}
+
+.main-container {
+  padding-top: 30px;
+  background: #ddd;
+
+}  
+
+section {
+  padding: 30px;
+}
+
+.authors-container {
+  text-align: center;
+}
+
+.button-container {
+  margin: 0 auto;
+  width: max-content;
+}
+
+.button-container > button {
+  font-size: 40px;
+}
+
+.red
+{
+  color: white;
+  background-color: red;
+}
+.green
+{
+  color: white;
+  background-color: green;
+}
+.blue
+{
+  color: white;
+  background-color: blue;
+}
