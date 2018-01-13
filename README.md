@@ -1,2 +1,2 @@
-# BlockThroughIt
+# GameOfBlocks
 
