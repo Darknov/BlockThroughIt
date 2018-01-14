@@ -204,7 +204,8 @@ public class Player1Controller : MonoBehaviour
 				CountDown.started = true;
 			}
 
-			if (Input.GetKeyDown("joystick 1 button 6"))
+			if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")
+                || Input.GetKeyDown("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8"))
 			{
 				boostItemContainer.ActivateItem();  
 			}

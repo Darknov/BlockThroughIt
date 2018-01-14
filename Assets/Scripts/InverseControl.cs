@@ -14,7 +14,7 @@ public class InverseControl : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if (Input.GetKeyDown ("joystick 2 button 6") && !Player1Controller.inverseControlUsed) {
+				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && !Player1Controller.inverseControlUsed) {
                     FindObjectOfType<AudioManager>().Play("inverseControl");
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;

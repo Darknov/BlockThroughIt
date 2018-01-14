@@ -13,7 +13,7 @@ public class KKNW : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if (Input.GetKeyDown ("joystick 2 button 6") && Player2Controller.isDestroyBlockAvailable) {                 
+				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && Player2Controller.isDestroyBlockAvailable) {                 
 					Player2Controller.isDestroyBlockAvailable = false;
 					Player2Controller.isDestroyBlockActivated = true;
 					P2ItemIcon.itemSprite = null;

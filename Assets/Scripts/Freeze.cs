@@ -16,7 +16,7 @@ public class Freeze : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if (Input.GetKeyDown ("joystick 2 button 6") && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+				if ((Input.GetKeyDown ("joystick 2 button 6")|| Input.GetKeyDown("joystick 2 button 8")) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
 					P2ItemIcon.iconColor = Color.red;
 					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;

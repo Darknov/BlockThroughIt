@@ -173,7 +173,7 @@ public class Player2Controller : MonoBehaviour
                 if (verticalAxisPlayer2 == 0)
                     isAxisVerticalInUse = false;
 
-                if (Input.GetKeyDown(KeyCode.Joystick2Button5))
+                if (Input.GetKeyDown(KeyCode.Joystick2Button5) || Input.GetKeyDown(KeyCode.Joystick2Button7))
                 {
                     activeBlock.TurnNinetyDegreesAndUpdateTriggers();
                     UpdateShadow();
