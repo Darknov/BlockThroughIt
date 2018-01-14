@@ -16,4 +16,6 @@ public static class StaticOptions{
 	public static int maxP1ItmesSpawn = 3;
 	public static List<GameObject> p2SpawnItems;
 	public static int maxP2ItmesSpawn = 3;
+
+    public static float backInTime = 3f;
 }

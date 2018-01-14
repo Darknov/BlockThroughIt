@@ -16,8 +16,9 @@ public class GameOver : MonoBehaviour {
     }
 
     void Update () {
-		if (CountDown.timeRemaining <= 0) {
-			anim.SetTrigger ("GameOver1");
+        if (CountDown.timeRemaining >= 120 || CountDown.timeRemaining <= 0)
+        {
+            anim.SetTrigger ("GameOver1");
 			CountDown.started = false;
 			restartTimer += Time.deltaTime;
 			if (restartTimer >= restartDelay) {

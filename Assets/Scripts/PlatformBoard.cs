@@ -171,6 +171,8 @@ public class PlatformBoard : MonoBehaviour {
                 {
                     this.blocks[i, j].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[i, j], delayOnDeletingBlock);
+                    CountDown.timeRemaining -= StaticOptions.backInTime;
+                    FindObjectOfType<AudioManager>().Play("EndingMusic");
                 }
             }
             isBlock = true;
@@ -187,6 +189,8 @@ public class PlatformBoard : MonoBehaviour {
                 {
                     this.blocks[j, i].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[j, i], delayOnDeletingBlock);
+                    CountDown.timeRemaining -= StaticOptions.backInTime;
+                    FindObjectOfType<AudioManager>().Play("EndingMusic");
                 }
             }
 
