@@ -11,9 +11,9 @@ public class CountDown : MonoBehaviour {
 
     void Start()
     {
-        text = GetComponent<Text>();
-        InvokeRepeating("Blink", 0, 1f);
-        InvokeRepeating("Blink2", 0.5f, 1f);
+       // text = GetComponent<Text>();
+        //InvokeRepeating("Blink", 0, 1f);
+        //InvokeRepeating("Blink2", 0.5f, 1f);
 
     }
 

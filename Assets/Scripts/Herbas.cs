@@ -19,7 +19,8 @@ public class Herbas : MonoBehaviour {
 
 		if (isTriggered) {
 			if (!Player1Controller.p1KeyBoard) {
-				if (Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8"))
+				if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8") 
+                    || Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7"))
                 {
 					P1ItemIcon.iconColor = Color.green;
 					StaticOptions.isFlying = true;

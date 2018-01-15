@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4612177754256856}
   m_Layer: 0
-  m_Name: Eff_Aura_2_loop
+  m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
