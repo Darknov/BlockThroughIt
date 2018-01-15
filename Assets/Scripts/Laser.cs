@@ -21,7 +21,7 @@ public class Laser : MonoBehaviour {
 		isDestroyed ();
 
 		if (isTriggered) {
-			laser.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
+			laser.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").transform.position, GameObject.FindGameObjectWithTag ("Player").transform.rotation);
 			if (!Player1Controller.p1KeyBoard) {
                 
                 if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8")

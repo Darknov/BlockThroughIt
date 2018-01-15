@@ -19,7 +19,7 @@ public class Player1Controller : MonoBehaviour
     public static bool IsPlayerStopped = false;
     public static bool IsPlayerStoppedUsed = false;
     
-    public BoostItemContainer boostItemContainer;
+    //public BoostItemContainer boostItemContainer;
 
     private bool movingUp, movingDown, movingLeft, movingRight;
     public float moveSpeed;
@@ -118,10 +118,10 @@ public class Player1Controller : MonoBehaviour
 				}
 			}
 
-            if (Input.GetKeyDown(KeyCode.Tab))
+           /* if (Input.GetKeyDown(KeyCode.Tab))
             {
                 boostItemContainer.ActivateItem();  
-            }
+            }*/
         }
 
 
@@ -203,11 +203,11 @@ public class Player1Controller : MonoBehaviour
 				CountDown.started = true;
 			}
 
-			if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")
+			/*if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")
                 || Input.GetKeyDown("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8"))
 			{
 				boostItemContainer.ActivateItem();  
-			}
+			}*/
         }
 
     }

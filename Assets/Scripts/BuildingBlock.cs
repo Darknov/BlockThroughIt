@@ -179,7 +179,8 @@ public class BuildingBlock : MonoBehaviour {
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (builder);
 			partEffect.transform.parent = null;
-			Destroy(partEffect.gameObject, 3);
+           // DestroyImmediate(partEffect.gameObject, 3);
+			//Destroy(partEffect.gameObject, 3);
 			Destroy (builder);
 		}
 	}

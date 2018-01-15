@@ -57,9 +57,9 @@ public class P1ItemsPickups : MonoBehaviour {
 			for (int j = 0; j < rowLength; j++) {
 				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 1, (float)(j-System.Math.Floor(rowLength/2.0)));
 				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null &&
-						!StaticOptions.p1SpawnItems.Exists(x => x.transform.position == pickupPlace &&
+						!StaticOptions.p1SpawnItems.Exists(x => x.transform.position == pickupPlace /*&&
 						GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x != (float)(i-System.Math.Floor(rowLength/2.0)) &&
-						GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z != (float)(j-System.Math.Floor(rowLength/2.0))
+						GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z != (float)(j-System.Math.Floor(rowLength/2.0))*/
 					)) {
 					possiblePlaces.Add(pickupPlace);
 				}

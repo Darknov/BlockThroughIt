@@ -53,7 +53,7 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						Destroy (partEffect.gameObject, 3);
+						//Destroy (partEffect.gameObject, 3);
 					}
 				}
 			} else if (Player1Controller.p1KeyBoard) {
@@ -88,7 +88,7 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						Destroy(partEffect.gameObject, 3);
+						//Destroy(partEffect.gameObject, 3);
 					}
 				}
 			}
@@ -115,7 +115,7 @@ public class Herbas : MonoBehaviour {
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (herbas);
 			partEffect.transform.parent = null;
-			Destroy(partEffect.gameObject, 3);
+			///Destroy(partEffect.gameObject, 3);
 			Destroy (herbas);
 		}
 	}
