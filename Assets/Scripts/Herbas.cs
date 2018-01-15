@@ -38,8 +38,11 @@ public class Herbas : MonoBehaviour {
 					);
 				}
 				if (StaticOptions.isFlying) {
+
 					flyingTimeCountDown -= Time.deltaTime;
-					if ((int)flyingTimeCountDown <= 0) {
+                    GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingTimeCountDown);
+
+                    if ((int)flyingTimeCountDown <= 0) {
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
 						P1ItemCountDown.started = false;
@@ -71,7 +74,9 @@ public class Herbas : MonoBehaviour {
 				if (StaticOptions.isFlying) {
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					flyingTimeCountDown -= Time.deltaTime;
-					if ((int)flyingTimeCountDown <= 0) {
+                    GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingTimeCountDown);
+
+                    if ((int)flyingTimeCountDown <= 0) {
 						P1ItemIcon.iconColor = Color.white;
 						P1ItemIcon.itemSprite = null;
 						P1ItemCountDown.started = false;
@@ -97,7 +102,9 @@ public class Herbas : MonoBehaviour {
 	void isDestroyed() {
 
 		if(!StaticOptions.p1SpawnItems.Exists(x => x == herbas)) {
-			P1ItemIcon.iconColor = Color.white;
+            GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+
+            P1ItemIcon.iconColor = Color.white;
 			P1ItemIcon.itemSprite = null;
 			P1ItemCountDown.started = false;
 			StaticOptions.isFlying = false;
@@ -115,12 +122,14 @@ public class Herbas : MonoBehaviour {
 
 		if (col.gameObject.tag == "Player") {
 			if (P1ItemCountDown.itemText != "No item") {
-				P1ItemIcon.iconColor = Color.white;
+                P1ItemIcon.iconColor = Color.white;
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;
 				P1ItemCountDown.itemText = "No item";
-				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
+                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+
+                GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}

@@ -14,7 +14,7 @@ public class InverseControl : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && !Player1Controller.inverseControlUsed) {
+				if ((Input.GetKeyDown ("joystick 2 button 5") || Input.GetKeyDown("joystick 2 button 7")) && !Player1Controller.inverseControlUsed) {
                     FindObjectOfType<AudioManager>().Play("inverseControl");
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
@@ -26,7 +26,9 @@ public class InverseControl : MonoBehaviour {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
 					P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
 					inverseControlTimeCountDown -= Time.deltaTime;
-					if (inverseControlTimeCountDown < 0) {
+                    GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", inverseControlTimeCountDown);
+
+                    if (inverseControlTimeCountDown < 0) {
 						P2ItemIcon.iconColor = Color.white;
 						P2ItemIcon.itemSprite = null;
 						P2ItemCountDown.started = false;
@@ -53,7 +55,9 @@ public class InverseControl : MonoBehaviour {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial;
 					P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
 					inverseControlTimeCountDown -= Time.deltaTime;
-					if (inverseControlTimeCountDown < 0) {
+                    GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", inverseControlTimeCountDown);
+
+                    if (inverseControlTimeCountDown < 0) {
 						P2ItemIcon.iconColor = Color.white;
 						P2ItemIcon.itemSprite = null;
 						P2ItemCountDown.started = false;
@@ -89,7 +93,9 @@ public class InverseControl : MonoBehaviour {
 			
             FindObjectOfType<AudioManager>().Play("godGetItem");
 			if (P2ItemCountDown.itemText != "No item") {
-				P2ItemIcon.iconColor = Color.white;
+                GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", 0f);
+
+                P2ItemIcon.iconColor = Color.white;
 				P2ItemIcon.itemSprite = null;
 				P2ItemCountDown.started = false;
 				Player1Controller.inverseControlUsed = false;

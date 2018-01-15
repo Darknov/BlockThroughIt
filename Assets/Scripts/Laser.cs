@@ -34,7 +34,9 @@ public class Laser : MonoBehaviour {
 				P1ItemCountDown.itemTimeRemaining = timeCounter;
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
-					if ((int)timeCounter >= 0) {
+                    GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", timeCounter);
+
+                    if ((int)timeCounter >= 0) {
 						if (laser.transform.localScale.z < laserRange) {
 							laser.transform.localScale = new Vector3 (
 								laser.transform.localScale.x, 
@@ -84,7 +86,9 @@ public class Laser : MonoBehaviour {
 				P1ItemCountDown.itemTimeRemaining = timeCounter;
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
-					if ((int)timeCounter >= 0) {
+                    GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", timeCounter);
+
+                    if ((int)timeCounter >= 0) {
 						if (laser.transform.localScale.z < laserRange) {
 							laser.transform.localScale = new Vector3 (
 								laser.transform.localScale.x, 
@@ -142,7 +146,9 @@ public class Laser : MonoBehaviour {
 	void isDestroyed() {
 
 		if(!StaticOptions.p1SpawnItems.Exists(x => x == laser)) {
-			P1ItemIcon.iconColor = Color.white;
+            GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+
+            P1ItemIcon.iconColor = Color.white;
 			P1ItemIcon.itemSprite = null;
 			P1ItemCountDown.started = false;
 			P1ItemCountDown.itemText = "No item";
@@ -156,7 +162,9 @@ public class Laser : MonoBehaviour {
 
 		if (col.gameObject.tag == "Player") {
 			if (P1ItemCountDown.itemText != "No item") {
-				P1ItemIcon.iconColor = Color.white;
+                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+
+                P1ItemIcon.iconColor = Color.white;
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;

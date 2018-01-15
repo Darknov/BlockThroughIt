@@ -54,7 +54,8 @@ public class KKNW : MonoBehaviour {
 		if (col.gameObject.tag == "block") {
             FindObjectOfType<AudioManager>().Play("godGetItem");
 			if (P2ItemCountDown.itemText != "No item") {
-				P2ItemIcon.iconColor = Color.white;
+                GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", 0f);
+                P2ItemIcon.iconColor = Color.white;
 				Player2Controller.isDestroyBlockAvailable = false;
 				Player2Controller.isDestroyBlockActivated = false;
 				P2ItemIcon.itemSprite = null;

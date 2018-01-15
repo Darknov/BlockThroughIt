@@ -7,7 +7,10 @@ public class P1ItemIcon : MonoBehaviour {
 
 	public static Sprite itemSprite = null;
 	public static Color iconColor = Color.white;
-	Image image;
+    public GameObject partEffect;
+    Image image;
+    private bool boom = true;
+    private Sprite checkPickup;
 
 	void Start () {
 		image = GetComponent<Image>();
@@ -15,12 +18,26 @@ public class P1ItemIcon : MonoBehaviour {
 
 	void Update() {
 		if (itemSprite != null) {
-			image.color = iconColor;
+            if (checkPickup != itemSprite)
+            {
+                boom = true;
+            }
+            if (boom )
+            {
+                Instantiate(partEffect, GameObject.FindGameObjectWithTag("rabbitsRing").transform.position, GameObject.FindGameObjectWithTag("rabbitsRing").transform.rotation);
+                boom = false;
+            }
+
+            image.color = iconColor;
 			image.enabled = true;
 			image.sprite = itemSprite;
+            checkPickup = itemSprite;
+            
 		} else {
 			iconColor = Color.white;
 			image.enabled = false;
-		}
+            boom = true;
+        }
+
 	}
 }

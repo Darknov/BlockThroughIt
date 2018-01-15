@@ -30,8 +30,7 @@ public class BuildingBlock : MonoBehaviour {
 		if (isTriggered) {
 			builder.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
 			if (!Player1Controller.p1KeyBoard) { //dodałam tu uruchamianie joystickiem, nie bylo wczesniej, a chyba dzialalo :O
-				if (Input.GetKeyDown (KeyCode.Tab) || Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")
-                || Input.GetKeyDown("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8")) {
+				if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
 					x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
 					z = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.z + (this.rowLength - 1) / 2);
 					tY = builder.transform.rotation.eulerAngles.y;
@@ -171,6 +170,7 @@ public class BuildingBlock : MonoBehaviour {
 	void isDestroyed() {
 
 		if(!StaticOptions.p1SpawnItems.Exists(x => x == builder)) {
+            GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
 			P1ItemIcon.iconColor = Color.white;
 			P1ItemIcon.itemSprite = null;
 			P1ItemCountDown.itemText = "No item";
@@ -186,7 +186,8 @@ public class BuildingBlock : MonoBehaviour {
 
 		if (col.gameObject.tag == "Player") {
 			if (P1ItemCountDown.itemText != "No item") {
-				P1ItemIcon.iconColor = Color.white;
+                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+                P1ItemIcon.iconColor = Color.white;
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;

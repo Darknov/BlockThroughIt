@@ -7,18 +7,34 @@ public class P2ItemIcon : MonoBehaviour {
 
 	public static Sprite itemSprite = null;
 	public static Color iconColor = Color.white;
-	Image image;
+    public GameObject partEffect;
+    Image image;
 
-	void Start () {
+    private bool boom = true;
+    private Sprite checkPickup;
+
+    void Start () {
 		image = GetComponent<Image>();
 	}
 
 	void Update() {
 		if (itemSprite != null) {
-			image.color = iconColor;
+            if (checkPickup != itemSprite)
+            {
+                boom = true;
+            }
+            if (boom)
+            {
+                Instantiate(partEffect, GameObject.FindGameObjectWithTag("godsRing").transform.position, GameObject.FindGameObjectWithTag("godsRing").transform.rotation);
+                boom = false;
+            }
+            image.color = iconColor;
 			image.enabled = true;
 			image.sprite = itemSprite;
-		} else {
+            checkPickup = itemSprite;
+
+        }
+        else {
 			iconColor = Color.white;
 			image.enabled = false;
 		}
