@@ -31,7 +31,8 @@ public class BuildingBlock : MonoBehaviour {
 			builder.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
 			if (!Player1Controller.p1KeyBoard) { //dodałam tu uruchamianie joystickiem, nie bylo wczesniej, a chyba dzialalo :O
 				if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
-					x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
+                    FindObjectOfType<AudioManager>().Play("AbilityPutBlock");
+                    x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
 					z = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.z + (this.rowLength - 1) / 2);
 					tY = builder.transform.rotation.eulerAngles.y;
 					if (tY == 90) {
@@ -95,7 +96,8 @@ public class BuildingBlock : MonoBehaviour {
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-					x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
+                    FindObjectOfType<AudioManager>().Play("AbilityPutBlock");
+                    x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
 					z = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.z + (this.rowLength - 1) / 2);
 					tY = builder.transform.rotation.eulerAngles.y;
 					if (tY == 90) {
@@ -196,7 +198,8 @@ public class BuildingBlock : MonoBehaviour {
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
-			builder.tag = "p1TakenItem";
+            
+            builder.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
 				P1ItemCountDown.itemText = "Build 1 block\n" + "Press L2 to use";

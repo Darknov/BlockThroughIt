@@ -35,7 +35,8 @@ public class P1ItemsPickups : MonoBehaviour {
 		possiblePlacesList ();
 		Vector3 place = createRandomPlace ();
 		createRandomItem (place);
-		possiblePlaces.Clear ();
+        FindObjectOfType<AudioManager>().Play("WildItemAppears");
+        possiblePlaces.Clear ();
 	}
 
 	void Update() {

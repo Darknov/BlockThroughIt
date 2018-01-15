@@ -23,9 +23,11 @@ public class Laser : MonoBehaviour {
 		if (isTriggered) {
 			laser.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
 			if (!Player1Controller.p1KeyBoard) {
-				if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8")
+                
+                if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8")
                     || Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
-					P1ItemIcon.iconColor = Color.green;
+                    FindObjectOfType<AudioManager>().Play("AbilityLaser");
+                    P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					timeCounter = duration;
 					P1ItemCountDown.started = true;
@@ -77,7 +79,8 @@ public class Laser : MonoBehaviour {
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-					P1ItemIcon.iconColor = Color.green;
+                    FindObjectOfType<AudioManager>().Play("AbilityLaser");
+                    P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					timeCounter = duration;
 					P1ItemCountDown.started = true;
@@ -173,13 +176,15 @@ public class Laser : MonoBehaviour {
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
-			laser.tag = "p1TakenItem";
+           
+            laser.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
 				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press L2 to use";
 			} else if (Player1Controller.p1KeyBoard) {
 				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press Tab to use";
 			}
+
 			P1ItemIcon.itemSprite = laserSprite;
 			laser.GetComponent<SphereCollider> ().enabled = false;
 			meshRenderer = laser.GetComponentsInChildren<MeshRenderer> ();

@@ -26,6 +26,7 @@ public class P2ItemIcon : MonoBehaviour {
             if (boom)
             {
                 Instantiate(partEffect, GameObject.FindGameObjectWithTag("godsRing").transform.position, GameObject.FindGameObjectWithTag("godsRing").transform.rotation);
+                FindObjectOfType<AudioManager>().Play("godGetItem");
                 boom = false;
             }
             image.color = iconColor;

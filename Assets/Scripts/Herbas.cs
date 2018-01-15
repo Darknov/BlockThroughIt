@@ -22,7 +22,8 @@ public class Herbas : MonoBehaviour {
 				if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8") 
                     || Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7"))
                 {
-					P1ItemIcon.iconColor = Color.green;
+                    FindObjectOfType<AudioManager>().Play("herbasSound");
+                    P1ItemIcon.iconColor = Color.green;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
@@ -57,7 +58,8 @@ public class Herbas : MonoBehaviour {
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-					P1ItemIcon.iconColor = Color.green;
+                    FindObjectOfType<AudioManager>().Play("herbasSound");
+                    P1ItemIcon.iconColor = Color.green;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
@@ -133,7 +135,7 @@ public class Herbas : MonoBehaviour {
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 			}
-			flyingTimeCountDown = flyingDuration;
+            flyingTimeCountDown = flyingDuration;
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
