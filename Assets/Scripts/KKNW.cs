@@ -36,11 +36,11 @@ public class KKNW : MonoBehaviour {
 		}
 	}
 
-	void LateUpdate() {
+	/*void LateUpdate() {
 		if (!StaticOptions.p2SpawnItems.Exists (x => x == kknw)) {
 			Destroy (kknw);
 		}
-	}
+	}*/
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {

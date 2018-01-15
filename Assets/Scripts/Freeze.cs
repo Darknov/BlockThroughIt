@@ -77,11 +77,11 @@ public class Freeze : MonoBehaviour {
 		}
 	}
 
-	void LateUpdate() {
+	/*void LateUpdate() {
 		if (!StaticOptions.p2SpawnItems.Exists (x => x == freeze)) {
 			Destroy (freeze);
 		}
-	}
+	}*/
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
