@@ -16,16 +16,17 @@ public class Freeze : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if ((Input.GetKeyDown ("joystick 2 button 5")|| Input.GetKeyDown("joystick 2 button 7")) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+				if ((Input.GetKeyDown ("joystick 2 button 5")|| Input.GetKeyDown("joystick 2 button 7")) && !Player1Controller.IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
 					P2ItemIcon.iconColor = Color.red;
-					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
+                    Player1Controller.IsPlayerStopped = true;
 					P2ItemCountDown.started = true;
-					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = true;
+                    Player1Controller.IsPlayerStoppedUsed = true;
+                    
 					P2ItemCountDown.itemText = "Freeze Used\n" + "Time Remaining: ";
 				}
 
-				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
+				if (Player1Controller.IsPlayerStopped) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
@@ -34,8 +35,8 @@ public class Freeze : MonoBehaviour {
 						P2ItemIcon.iconColor = Color.white;
 						P2ItemIcon.itemSprite = null;
 						P2ItemCountDown.started = false;
-						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
-						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
+                        Player1Controller.IsPlayerStoppedUsed = false;
+                        Player1Controller.IsPlayerStopped = false;
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (freeze);
@@ -44,16 +45,16 @@ public class Freeze : MonoBehaviour {
                     }
 				}
 			} else if (!Player2Controller.p2GamePad) {
-				if (Input.GetKeyDown (KeyCode.Alpha9) && !GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed) {
+				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.IsPlayerStoppedUsed) {
                     FindObjectOfType<AudioManager>().Play("freeze");
 					P2ItemIcon.iconColor = Color.red;
-					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = true;
+                    Player1Controller.IsPlayerStopped = true;
 					P2ItemCountDown.started = true;
-					GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = true;
+                    Player1Controller.IsPlayerStoppedUsed = true;
 					P2ItemCountDown.itemText = "Freeze Used\n" + "Time Remaining: ";
 				}
 
-				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped) {
+				if (Player1Controller.IsPlayerStopped) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
@@ -63,8 +64,8 @@ public class Freeze : MonoBehaviour {
 						P2ItemIcon.iconColor = Color.white;
 						P2ItemIcon.itemSprite = null;
 						P2ItemCountDown.started = false;
-						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
-						GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
+                        Player1Controller.IsPlayerStoppedUsed = false;
+                        Player1Controller.IsPlayerStopped = false;
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (freeze);
@@ -98,9 +99,13 @@ public class Freeze : MonoBehaviour {
                 P2ItemIcon.iconColor = Color.white;
 				P2ItemIcon.itemSprite = null;
 				P2ItemCountDown.started = false;
-				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStoppedUsed = false;
-				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player1Controller> ().IsPlayerStopped = false;
-				P2ItemCountDown.itemText = "No item";
+                Player1Controller.inverseControlUsed = false;
+                Player1Controller.inverseControl = false;
+                Player1Controller.IsPlayerStoppedUsed = false;
+                Player1Controller.IsPlayerStopped = false;
+                Player2Controller.isDestroyBlockAvailable = false;
+                Player2Controller.isDestroyBlockActivated = false;
+                P2ItemCountDown.itemText = "No item";
 				isTriggered = false;
 				StaticOptions.p2SpawnItems.Remove (GameObject.FindGameObjectWithTag("p2TakenItem"));
 				GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;

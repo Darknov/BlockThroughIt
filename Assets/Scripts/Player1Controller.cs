@@ -16,8 +16,8 @@ public class Player1Controller : MonoBehaviour
     public Vector3 goalPosition;  
     public Animator animator;
     public float animationSpeedMultiplier = 1;
-	public bool IsPlayerStopped { get; set; }
-	public bool IsPlayerStoppedUsed { get; set; }
+    public static bool IsPlayerStopped = false;
+    public static bool IsPlayerStoppedUsed = false;
     
     public BoostItemContainer boostItemContainer;
 
@@ -39,8 +39,7 @@ public class Player1Controller : MonoBehaviour
     private bool isVerticalAxisInUse = false;
 
 	void Start() {
-		IsPlayerStopped = false;
-		IsPlayerStoppedUsed = false;
+
 	}
 
     void Update()

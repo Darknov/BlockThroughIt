@@ -25,7 +25,7 @@ public class LaserController : BoostItem
     void Update()
     {
 
-        if (player != null) player.GetComponent<Player1Controller>().IsPlayerStopped = isActivated;
+        if (player != null) Player1Controller.IsPlayerStopped = isActivated;
 
         if (!isActivated) return;
 

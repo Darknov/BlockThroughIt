@@ -56,7 +56,11 @@ public class KKNW : MonoBehaviour {
 			if (P2ItemCountDown.itemText != "No item") {
                 GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", 0f);
                 P2ItemIcon.iconColor = Color.white;
-				Player2Controller.isDestroyBlockAvailable = false;
+                Player1Controller.inverseControlUsed = false;
+                Player1Controller.inverseControl = false;
+                Player1Controller.IsPlayerStoppedUsed = false;
+                Player1Controller.IsPlayerStopped = false;
+                Player2Controller.isDestroyBlockAvailable = false;
 				Player2Controller.isDestroyBlockActivated = false;
 				P2ItemIcon.itemSprite = null;
 				P2ItemCountDown.itemText = "No item";

@@ -63,7 +63,11 @@ public class InverseControl : MonoBehaviour {
 						P2ItemCountDown.started = false;
 						Player1Controller.inverseControlUsed = false;
 						Player1Controller.inverseControl = false;
-						P2ItemCountDown.itemText = "No item";
+                        Player1Controller.IsPlayerStoppedUsed = false;
+                        Player1Controller.IsPlayerStopped = false;
+                        Player2Controller.isDestroyBlockAvailable = false;
+                        Player2Controller.isDestroyBlockActivated = false;
+                        P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (inverseControl);
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
