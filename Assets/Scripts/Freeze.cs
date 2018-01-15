@@ -57,6 +57,7 @@ public class Freeze : MonoBehaviour {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
 					P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
+
 					if (freezeTimeCountDown < 0) {
 						P2ItemIcon.iconColor = Color.white;
 						P2ItemIcon.itemSprite = null;
