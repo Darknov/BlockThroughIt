@@ -192,17 +192,13 @@ public class BuildingBlock : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
-<<<<<<< Updated upstream
-			if (P1ItemCountDown.itemText != "No item") {
-                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
-                P1ItemIcon.iconColor = Color.white;
-=======
             GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
             GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
             GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(true);
-            if (P1ItemCountDown.itemText != "No item") {
-				P1ItemIcon.iconColor = Color.white;
->>>>>>> Stashed changes
+            if (P1ItemCountDown.itemText != "No item")
+            {
+                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+                P1ItemIcon.iconColor = Color.white;
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;

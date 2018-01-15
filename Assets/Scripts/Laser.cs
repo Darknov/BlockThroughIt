@@ -167,18 +167,14 @@ public class Laser : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
-<<<<<<< Updated upstream
-			if (P1ItemCountDown.itemText != "No item") {
-                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
-
-                P1ItemIcon.iconColor = Color.white;
-=======
             GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(true);
             GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
             GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
-            if (P1ItemCountDown.itemText != "No item") {
-				P1ItemIcon.iconColor = Color.white;
->>>>>>> Stashed changes
+            if (P1ItemCountDown.itemText != "No item")
+            {
+                GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+
+                P1ItemIcon.iconColor = Color.white;
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;
@@ -186,14 +182,9 @@ public class Laser : MonoBehaviour {
 				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-<<<<<<< Updated upstream
 			}
            
             laser.tag = "p1TakenItem";
-=======
-            }
-			laser.tag = "p1TakenItem";
->>>>>>> Stashed changes
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
 				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press L2 to use";
