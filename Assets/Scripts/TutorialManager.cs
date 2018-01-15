@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour {
 
@@ -19,13 +20,14 @@ public class TutorialManager : MonoBehaviour {
 	void Update () {
 		if(Input.anyKeyDown)
         {
-            if (textureNumber < textures.Length)
+            if (textureNumber < textures.Length- 1)
             {
                 textureNumber++;
             }
             else
             {
                 // tutaj dodac zmiane sceny na menuScene
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             }
             
 
