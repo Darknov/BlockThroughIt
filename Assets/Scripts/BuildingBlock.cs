@@ -73,7 +73,9 @@ public class BuildingBlock : MonoBehaviour {
 					P1ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-				} else if (!wasUsed) {
+                    GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
+                }
+                else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;
 					x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
 					z = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.z + (this.rowLength - 1) / 2);
@@ -138,7 +140,9 @@ public class BuildingBlock : MonoBehaviour {
 					P1ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-				} else if (!wasUsed) {
+                    GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
+                }
+                else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;
 					x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
 					z = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.z + (this.rowLength - 1) / 2);
@@ -188,9 +192,17 @@ public class BuildingBlock : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
+<<<<<<< Updated upstream
 			if (P1ItemCountDown.itemText != "No item") {
                 GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
                 P1ItemIcon.iconColor = Color.white;
+=======
+            GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
+            GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
+            GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(true);
+            if (P1ItemCountDown.itemText != "No item") {
+				P1ItemIcon.iconColor = Color.white;
+>>>>>>> Stashed changes
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;

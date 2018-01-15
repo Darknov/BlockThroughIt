@@ -32,7 +32,7 @@ public class Laser : MonoBehaviour {
 					timeCounter = duration;
 					P1ItemCountDown.started = true;
 					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
-				}
+                }
 				P1ItemCountDown.itemTimeRemaining = timeCounter;
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
@@ -75,8 +75,9 @@ public class Laser : MonoBehaviour {
 						StaticOptions.p1SpawnItems.Remove (laser);
 						DeactivateLaser ();
 						Destroy (laser);
-					}
-				}
+                        GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
+                    }
+                }
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
                     FindObjectOfType<AudioManager>().Play("AbilityLaser");
@@ -85,7 +86,8 @@ public class Laser : MonoBehaviour {
 					timeCounter = duration;
 					P1ItemCountDown.started = true;
 					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
-				}
+                    //GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
+                }
 				P1ItemCountDown.itemTimeRemaining = timeCounter;
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
@@ -128,8 +130,9 @@ public class Laser : MonoBehaviour {
 						StaticOptions.p1SpawnItems.Remove (laser);
 						DeactivateLaser ();
 						Destroy (laser);
-					}
-				}
+                        GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
+                    }
+                }
 			}
 		}
 	}
@@ -138,9 +141,9 @@ public class Laser : MonoBehaviour {
 		isActivated = false;
 		laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, 0);
 		timeCounter = duration;
-	}
+    }
 
-	void LateUpdate() {
+    void LateUpdate() {
 		if (!StaticOptions.p1SpawnItems.Exists (x => x == laser)) {
 			Destroy (laser);
 		}
@@ -164,10 +167,18 @@ public class Laser : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
+<<<<<<< Updated upstream
 			if (P1ItemCountDown.itemText != "No item") {
                 GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
 
                 P1ItemIcon.iconColor = Color.white;
+=======
+            GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(true);
+            GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
+            GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
+            if (P1ItemCountDown.itemText != "No item") {
+				P1ItemIcon.iconColor = Color.white;
+>>>>>>> Stashed changes
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;
@@ -175,9 +186,14 @@ public class Laser : MonoBehaviour {
 				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
+<<<<<<< Updated upstream
 			}
            
             laser.tag = "p1TakenItem";
+=======
+            }
+			laser.tag = "p1TakenItem";
+>>>>>>> Stashed changes
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
 				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press L2 to use";
