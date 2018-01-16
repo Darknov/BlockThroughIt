@@ -27,8 +27,10 @@ public class P2ItemIcon : MonoBehaviour {
             }
             if (boom)
             {
-                Instantiate(partEffect, GameObject.FindGameObjectWithTag("godsRing").transform.position, GameObject.FindGameObjectWithTag("godsRing").transform.rotation);
-                if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("godGetItem");
+                Instantiate(partEffect, new Vector3(8, -0, -9.1f), new Quaternion());
+
+               // Instantiate(partEffect, GameObject.FindGameObjectWithTag("godsRing").transform.position, GameObject.FindGameObjectWithTag("godsRing").transform.rotation);
+                if(FindObjectOfType<AudioManager>()!=null)FindObjectOfType<AudioManager>().Play("godGetItem");
                 boom = false;
             }
             image.color = iconColor;

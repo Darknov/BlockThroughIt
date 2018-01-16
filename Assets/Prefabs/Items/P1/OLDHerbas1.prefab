@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 135985180119772340}
   - component: {fileID: 114006728145606344}
   m_Layer: 9
-  m_Name: Herbas1
+  m_Name: OLDHerbas1
   m_TagString: p1item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,6 +443,7 @@ MonoBehaviour:
   herbas: {fileID: 1644971963554748}
   herbasSprite: {fileID: 21300000, guid: 083237d4baf78d143b4251ca612f18dd, type: 3}
   flyingDuration: 5
+  partEffect: {fileID: 0}
 --- !u!114 &114188958212923736
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -54,8 +54,10 @@ public class Herbas : MonoBehaviour {
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
 						//Destroy (partEffect.gameObject, 3);
-					}
-				}
+                        GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
+
+                    }
+                }
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
                     var audioManager = FindObjectOfType<AudioManager>();
@@ -90,8 +92,10 @@ public class Herbas : MonoBehaviour {
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
 						//Destroy(partEffect.gameObject, 3);
-					}
-				}
+                        GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
+
+                    }
+                }
 			}
 		}
 	}
@@ -118,14 +122,17 @@ public class Herbas : MonoBehaviour {
 			partEffect.transform.parent = null;
 			///Destroy(partEffect.gameObject, 3);
 			Destroy (herbas);
-		}
-	}
+        }
+    }
 
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
-			if (P1ItemCountDown.itemText != "No item") {
-                P1ItemIcon.iconColor = Color.white;
+            GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
+            GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(true);
+            GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
+            if (P1ItemCountDown.itemText != "No item") {
+				P1ItemIcon.iconColor = Color.white;
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;

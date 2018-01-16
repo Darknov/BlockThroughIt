@@ -78,11 +78,11 @@ public class InverseControl : MonoBehaviour {
 		}
 	}
 
-	void LateUpdate() {
+	/*void LateUpdate() {
 		if (!StaticOptions.p2SpawnItems.Exists (x => x == inverseControl)) {
 			Destroy (inverseControl);
 		}
-	}
+	}*/
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Player") {
