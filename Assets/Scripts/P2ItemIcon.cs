@@ -19,11 +19,13 @@ public class P2ItemIcon : MonoBehaviour {
 	}
 
 	void Update() {
-		if (itemSprite != null) {
+
+        if (itemSprite != null) {
+            player2Hint.SetActive(true);
+
             if (checkPickup != itemSprite)
             {
                 boom = true;
-                player2Hint.SetActive(true);
             }
             if (boom)
             {

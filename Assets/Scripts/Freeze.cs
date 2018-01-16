@@ -46,7 +46,7 @@ public class Freeze : MonoBehaviour {
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.IsPlayerStoppedUsed) {
-                    FindObjectOfType<AudioManager>().Play("freeze");
+                    if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("freeze");
 					P2ItemIcon.iconColor = Color.red;
                     Player1Controller.IsPlayerStopped = true;
 					P2ItemCountDown.started = true;

@@ -40,8 +40,6 @@ public class P1ItemIcon : MonoBehaviour {
                 if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("GettingItem");
 
                 boom = false;
-                //player1Hint.SetActive(false);
-
             }
 
             image.color = iconColor;
