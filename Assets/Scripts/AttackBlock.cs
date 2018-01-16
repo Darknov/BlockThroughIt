@@ -165,7 +165,7 @@ public class AttackBlock : MonoBehaviour
             }
         }
 
-        OnPlatformHit();
+        OnPlatformHit(); 
     }
 
     public void GoToYourLeft()

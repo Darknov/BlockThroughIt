@@ -106,29 +106,29 @@ public class PlatformBoard : MonoBehaviour {
         Transform[] gameObjects = activeBlock.GetComponentsInChildren<Transform>();
         foreach (Transform item in gameObjects)
         {
-            int x = Convert.ToInt32(item.position.x + transposeBy);
-            int y = Convert.ToInt32(item.position.z + transposeBy);
-            Vector3 vector = new Vector3(this.transform.position.x + x + widthOfAGap * x, this.transform.position.y, this.transform.position.z + y + widthOfAGap * y);
-
-
-            if (x >= transform.position.x + transposeBy && x < rowLength && y >= transform.position.z + transposeBy && y < rowLength)
+            if (item != activeBlock.transform)
             {
-                Destroy(item.gameObject);
+                int x = Convert.ToInt32(item.position.x + transposeBy);
+                int y = Convert.ToInt32(item.position.z + transposeBy);
+                Vector3 vector = new Vector3(this.transform.position.x + x + widthOfAGap * x, this.transform.position.y, this.transform.position.z + y + widthOfAGap * y);
 
-                if (this.blocks[x, y] == null) {
-                    this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity);
-                    this.blocks[x, y].tag = "platform";
-                    this.blocks[x, y].GetComponent<Renderer>().material = mat;
+                if (x >= transform.position.x + transposeBy && x < rowLength && y >= transform.position.z + transposeBy && y < rowLength)
+                {
+                    Destroy(item.gameObject);
 
-                    //this.blocks[x, y].GetComponent<Renderer>().material.color = mat.color;
+                    if (this.blocks[x, y] == null)
+                    {
+                        this.blocks[x, y] = Instantiate(block, vector, Quaternion.identity); // GUILTY!
+                        this.blocks[x, y].tag = "platform";
+                        this.blocks[x, y].GetComponent<Renderer>().material = mat;
+                    }
+
+                    checkIfThereAreMaxBlocksInRow();
                 }
-                
-                checkIfThereAreMaxBlocksInRow();
-            }
-            else
-            {
-                //Debug.Log("x,y:" + x + "," + y + " is out of bounds. You do not belong here. BEGONE!");
-                Destroy(item.gameObject);
+                else
+                {
+                    Destroy(item.gameObject);
+                }
             }
         }
 

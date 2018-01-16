@@ -389,7 +389,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.white, activeBlock);
-        platformBoard.addBlock(activeBlock, tempMaterial);
+        platformBoard.addBlock(activeBlock, tempMaterial); 
 
         blockShadow.DestroyShadow();
         RespawnEmptyBlocks(source, args);

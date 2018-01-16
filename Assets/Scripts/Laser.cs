@@ -15,7 +15,8 @@ public class Laser : MonoBehaviour {
 	public float duration = 2f;
 	private float timeCounter;
 	private Vector3 shootDirection;
-	public GameObject partEffect;
+	public GameObject partEffectPrefab;
+    private GameObject partEffectClone;
 
 	void Update() {
 
@@ -31,15 +32,15 @@ public class Laser : MonoBehaviour {
 					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
-						FindObjectOfType<AudioManager>().Play("AbilityLaser");
-						Instantiate(partEffect, 
+						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
+						partEffectClone = Instantiate(partEffectPrefab, 
 							new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z
 							), 
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().rotation,  
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().transform
-						);
+						) as GameObject;
 						StaticOptions.specialEffects = false;
 					}
                 }
@@ -56,8 +57,8 @@ public class Laser : MonoBehaviour {
 						P1ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
-						partEffect.transform.parent = null;
-						Destroy (partEffect);
+						partEffectPrefab.transform.parent = null;
+						Destroy (partEffectClone);
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -70,14 +71,14 @@ public class Laser : MonoBehaviour {
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
 						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
-						Instantiate(partEffect, 
+                        partEffectClone = Instantiate(partEffectPrefab, 
 							new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z
 							), 
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().rotation,  
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().transform
-						);
+						) as GameObject;
 						StaticOptions.specialEffects = false;
 					}
 
@@ -94,8 +95,8 @@ public class Laser : MonoBehaviour {
 						isTriggered = false;
 						isActivated = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
-						partEffect.transform.parent = null;
-						Destroy (partEffect);
+                        partEffectClone.transform.parent = null;
+						Destroy (partEffectClone);
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -121,8 +122,8 @@ public class Laser : MonoBehaviour {
 			P1ItemCountDown.itemText = "No item";
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (laser);
-			partEffect.transform.parent = null;
-			Destroy (partEffect);
+			partEffectPrefab.transform.parent = null;
+			Destroy (partEffectPrefab);
 			Destroy (laser);
 		}
 	}
