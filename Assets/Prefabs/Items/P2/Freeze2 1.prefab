@@ -147,9 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeTimeOfPlayer2: 3
   freeze: {fileID: 1152023014569484}
-  freezeSprite: {fileID: 21300000, guid: 6cacf1e376fc85e49a784c6782fd3333, type: 3}
+  freezeSprite: {fileID: 21300000, guid: 1d831cc6f772c4549a5249de23a03c97, type: 3}
   freezeMaterial: {fileID: 2100000, guid: 8b0adcf0796ec644895af4a66334843f, type: 2}
   standardMaterial: {fileID: 2100000, guid: 840e02b46f8e9b84c8acf31307797515, type: 2}
+  partEffect: {fileID: 1000013285955420, guid: f2746ecdf91f3ef4ea1bd22d8e19f9e8, type: 2}
 --- !u!135 &135666396838534700
 SphereCollider:
   m_ObjectHideFlags: 1
