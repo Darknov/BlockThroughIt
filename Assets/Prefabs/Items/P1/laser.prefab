@@ -315,7 +315,8 @@ MonoBehaviour:
   laserGrowingSpeed: 5
   laserRange: 1000
   duration: 2
-  partEffect: {fileID: 1000012264517964, guid: f6d13cef4188a3042a481ef36e06f60c, type: 2}
+  partEffectPrefab: {fileID: 1055597324811698, guid: cc54ae3e786e3d848a1b1fb686747613,
+    type: 2}
 --- !u!114 &114653336908514960
 MonoBehaviour:
   m_ObjectHideFlags: 1
