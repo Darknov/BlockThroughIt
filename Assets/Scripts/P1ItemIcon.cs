@@ -38,6 +38,7 @@ public class P1ItemIcon : MonoBehaviour {
 
                // Instantiate(partEffect, GameObject.FindGameObjectWithTag("rabbitsRing").transform.position, GameObject.FindGameObjectWithTag("rabbitsRing").transform.rotation);
                 if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("GettingItem");
+
                 boom = false;
                 //player1Hint.SetActive(false);
 
