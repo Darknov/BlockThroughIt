@@ -40,7 +40,7 @@ public class Freeze : MonoBehaviour {
 
 				if (Player1Controller.IsPlayerStopped) {
 				    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
-					P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
+					//P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeCountDown);
 					if (freezeTimeCountDown < 0) {
@@ -81,7 +81,7 @@ public class Freeze : MonoBehaviour {
 
 				if (Player1Controller.IsPlayerStopped) {
 				    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
-					P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
+					//P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeCountDown);
 

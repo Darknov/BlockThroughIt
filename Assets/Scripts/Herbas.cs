@@ -122,8 +122,10 @@ public class Herbas : MonoBehaviour {
 			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (herbas);
-			partEffect.transform.parent = null;
-			Destroy (partEffect);
+			if (GameObject.FindWithTag ("p1particle") != null) {
+				GameObject.FindWithTag ("p1particle").transform.parent = null;
+				Destroy (GameObject.FindWithTag ("p1particle"));
+			}
 			Destroy (herbas);
         }
     }

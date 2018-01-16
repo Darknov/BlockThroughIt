@@ -28,7 +28,7 @@ public class BuildingBlock : MonoBehaviour {
 		float tY;
 
 		if (isTriggered) {
-			builder.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
+			this.builder.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
 			if (!Player1Controller.p1KeyBoard) { //dodałam tu uruchamianie joystickiem, nie bylo wczesniej, a chyba dzialalo :O
 				if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
                     FindObjectOfType<AudioManager>().Play("AbilityPutBlock");
@@ -184,8 +184,10 @@ public class BuildingBlock : MonoBehaviour {
 			P1ItemCountDown.itemText = "No item";
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (builder);
-			partEffect.transform.parent = null;
-			Destroy (partEffect);
+			if (GameObject.FindWithTag ("p1particle") != null) {
+				GameObject.FindWithTag ("p1particle").transform.parent = null;
+				Destroy (GameObject.FindWithTag ("p1particle"));
+			}
 			Destroy (builder);
 		}
 	}
