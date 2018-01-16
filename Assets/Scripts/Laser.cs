@@ -69,7 +69,7 @@ public class Laser : MonoBehaviour {
 					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
-						FindObjectOfType<AudioManager>().Play("AbilityLaser");
+						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
 						Instantiate(partEffect, 
 							new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 

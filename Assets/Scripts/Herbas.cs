@@ -68,7 +68,7 @@ public class Herbas : MonoBehaviour {
 					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (StaticOptions.specialEffects) {
-						FindObjectOfType<AudioManager>().Play("herbasSound");
+						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("herbasSound");
 						Instantiate(partEffect, 
 							new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
@@ -94,7 +94,7 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						Destroy (partEffect);
+						DestroyImmediate (partEffect);
                         GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
 
                     }

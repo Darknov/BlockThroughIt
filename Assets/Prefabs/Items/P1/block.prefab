@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 135860522274391118}
   - component: {fileID: 114602294448169296}
   m_Layer: 9
-  m_Name: blockParticle
+  m_Name: block
   m_TagString: p1item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
