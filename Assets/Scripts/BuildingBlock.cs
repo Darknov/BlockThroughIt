@@ -74,7 +74,7 @@ public class BuildingBlock : MonoBehaviour {
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
                     GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
-					Destroy (partEffect);
+					Destroy (GameObject.FindWithTag ("p1particle"));
                 }
                 else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;

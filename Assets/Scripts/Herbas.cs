@@ -55,7 +55,7 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						Destroy (partEffect);
+						Destroy (GameObject.FindWithTag ("p1particle"));
                         GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
 
                     }
@@ -96,7 +96,7 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						DestroyImmediate (partEffect);
+						Destroy (GameObject.FindWithTag ("p1particle"));
                         GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
 
                     }
