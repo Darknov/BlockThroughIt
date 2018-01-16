@@ -74,6 +74,7 @@ public class BuildingBlock : MonoBehaviour {
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
                     GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
+					Destroy (partEffect);
                 }
                 else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;
@@ -177,14 +178,14 @@ public class BuildingBlock : MonoBehaviour {
 
 		if(!StaticOptions.p1SpawnItems.Exists(x => x == builder)) {
             GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
+			Laser.isActivated = false;
 			P1ItemIcon.iconColor = Color.white;
 			P1ItemIcon.itemSprite = null;
 			P1ItemCountDown.itemText = "No item";
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (builder);
 			partEffect.transform.parent = null;
-           // DestroyImmediate(partEffect.gameObject, 3);
-			//Destroy(partEffect.gameObject, 3);
+			Destroy (partEffect);
 			Destroy (builder);
 		}
 	}
@@ -202,10 +203,12 @@ public class BuildingBlock : MonoBehaviour {
 				P1ItemIcon.itemSprite = null;
 				P1ItemCountDown.started = false;
 				StaticOptions.isFlying = false;
+				Laser.isActivated = false;
 				P1ItemCountDown.itemText = "No item";
 				GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 				StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
 				Destroy (GameObject.FindGameObjectWithTag ("p1TakenItem"));
+				Destroy (GameObject.FindGameObjectWithTag ("p1particle"));
 			}
             
             builder.tag = "p1TakenItem";
