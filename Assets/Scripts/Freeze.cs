@@ -134,10 +134,11 @@ public class Freeze : MonoBehaviour {
                 Player2Controller.isDestroyBlockActivated = false;
                 P2ItemCountDown.itemText = "No item";
 				isTriggered = false;
+				if (GameObject.FindWithTag ("p2particle") != null) {
+					GameObject.FindWithTag ("p2particle").transform.parent = null;
+					Destroy (GameObject.FindWithTag ("p2particle"));
+				}
 				StaticOptions.p2SpawnItems.Remove (GameObject.FindGameObjectWithTag("p2TakenItem"));
-				GameObject.FindWithTag ("p2particle").transform.parent = null;
-				Destroy (GameObject.FindWithTag ("p2particle"));
-				//GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 				Destroy (GameObject.FindGameObjectWithTag("p2TakenItem"));
 			}
 			freezeSpecialEffects = true;
