@@ -33,6 +33,7 @@ TagManager:
   - laserTip
   - p1particle
   - p2particle
+  - p2hint
   layers:
   - Default
   - TransparentFX
