@@ -96,7 +96,7 @@ public class BuildingBlock : MonoBehaviour {
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-                    FindObjectOfType<AudioManager>().Play("AbilityPutBlock");
+                    if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityPutBlock");
                     x = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.x + (this.rowLength - 1) / 2);
 					z = Convert.ToInt32 (GameObject.FindGameObjectWithTag ("Player").transform.position.z + (this.rowLength - 1) / 2);
 					tY = builder.transform.rotation.eulerAngles.y;
@@ -164,7 +164,7 @@ public class BuildingBlock : MonoBehaviour {
 	}
 
 	void LateUpdate() {
-		if (!StaticOptions.p1SpawnItems.Exists (x => x == builder)) {
+        if (!StaticOptions.p1SpawnItems.Exists (x => x == builder)) {
 			Destroy (builder);
 		}
 	}

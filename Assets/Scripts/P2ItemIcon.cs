@@ -9,6 +9,7 @@ public class P2ItemIcon : MonoBehaviour {
 	public static Color iconColor = Color.white;
     public GameObject partEffect;
     Image image;
+    public GameObject player2Hint;
 
     private bool boom = true;
     private Sprite checkPickup;
@@ -22,11 +23,12 @@ public class P2ItemIcon : MonoBehaviour {
             if (checkPickup != itemSprite)
             {
                 boom = true;
+                player2Hint.SetActive(true);
             }
             if (boom)
             {
                 Instantiate(partEffect, GameObject.FindGameObjectWithTag("godsRing").transform.position, GameObject.FindGameObjectWithTag("godsRing").transform.rotation);
-                FindObjectOfType<AudioManager>().Play("godGetItem");
+                if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("godGetItem");
                 boom = false;
             }
             image.color = iconColor;

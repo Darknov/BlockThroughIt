@@ -9,6 +9,7 @@ public class P1ItemCountDown : MonoBehaviour {
 	public static string itemText = "No item";
 	public static bool started = false;
 	Text text;
+    public GameObject player1hint;
 
 	void Start () {
 		text = GetComponent<Text>();
@@ -20,6 +21,8 @@ public class P1ItemCountDown : MonoBehaviour {
 
 		if (started) {
 			text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
+            player1hint.SetActive(false);
+
 		}
 	}
 }

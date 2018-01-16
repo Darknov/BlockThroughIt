@@ -43,7 +43,7 @@ public class InverseControl : MonoBehaviour {
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.inverseControlUsed) {
-                    FindObjectOfType<AudioManager>().Play("inverseControl");
+                    if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("inverseControl");
 					P2ItemIcon.iconColor = Color.red;
 					Player1Controller.inverseControl = true;
 					P2ItemCountDown.started = true;
@@ -95,7 +95,7 @@ public class InverseControl : MonoBehaviour {
 		
 		if (col.gameObject.tag == "block") {
 			
-            FindObjectOfType<AudioManager>().Play("godGetItem");
+            if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("godGetItem");
 			if (P2ItemCountDown.itemText != "No item") {
                 GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", 0f);
 

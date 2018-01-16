@@ -79,7 +79,8 @@ public class Laser : MonoBehaviour {
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-                    FindObjectOfType<AudioManager>().Play("AbilityLaser");
+                    if(FindObjectOfType<AudioManager>() != null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
+
                     P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					timeCounter = duration;

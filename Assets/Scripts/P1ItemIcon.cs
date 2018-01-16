@@ -8,6 +8,7 @@ public class P1ItemIcon : MonoBehaviour {
 	public static Sprite itemSprite = null;
 	public static Color iconColor = Color.white;
     public GameObject partEffect;
+    public GameObject player1Hint;
     Image image;
     private bool boom = true;
     private Sprite checkPickup;
@@ -18,15 +19,23 @@ public class P1ItemIcon : MonoBehaviour {
 
 	void Update() {
 		if (itemSprite != null) {
+            player1Hint.SetActive(true);
+
             if (checkPickup != itemSprite)
             {
                 boom = true;
+
             }
             if (boom )
             {
                 Instantiate(partEffect, GameObject.FindGameObjectWithTag("rabbitsRing").transform.position, GameObject.FindGameObjectWithTag("rabbitsRing").transform.rotation);
-                FindObjectOfType<AudioManager>().Play("GettingItem");
+                if(FindObjectOfType<AudioManager>()!=null)
+                {
+                    FindObjectOfType<AudioManager>().Play("GettingItem");
+                }
                 boom = false;
+                //player1Hint.SetActive(false);
+
             }
 
             image.color = iconColor;
@@ -38,7 +47,9 @@ public class P1ItemIcon : MonoBehaviour {
 			iconColor = Color.white;
 			image.enabled = false;
             boom = true;
+            player1Hint.SetActive(false);
+
         }
 
-	}
+    }
 }

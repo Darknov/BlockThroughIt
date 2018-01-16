@@ -58,7 +58,8 @@ public class Herbas : MonoBehaviour {
 				}
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-                    FindObjectOfType<AudioManager>().Play("herbasSound");
+                    var audioManager = FindObjectOfType<AudioManager>();
+                    if(audioManager != null) audioManager.Play("herbasSound");
                     P1ItemIcon.iconColor = Color.green;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;

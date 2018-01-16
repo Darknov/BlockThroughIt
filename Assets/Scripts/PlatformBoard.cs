@@ -61,7 +61,7 @@ public class PlatformBoard : MonoBehaviour {
         }
         else
         {
-            Debug.Log("x,y:" + x + "," + y + " is out of bounds. Check your code!");
+            Debug.LogWarning("x,y:" + x + "," + y + " is out of bounds. Check your code!");
         }
     }
 
@@ -175,7 +175,7 @@ public class PlatformBoard : MonoBehaviour {
                     if (StaticOptions.backInTime < CountDown.timeRemaining)
                     {
                         CountDown.timeRemaining -= StaticOptions.backInTime;
-                        FindObjectOfType<AudioManager>().Play("EndingMusic");
+                        if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("EndingMusic");
                     }
                     else
                     {
@@ -201,7 +201,7 @@ public class PlatformBoard : MonoBehaviour {
                     if (StaticOptions.backInTime < CountDown.timeRemaining)
                     {
                         CountDown.timeRemaining -= StaticOptions.backInTime;
-                        FindObjectOfType<AudioManager>().Play("EndingMusic");
+                        if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("EndingMusic");
                     }
                     else
                     {

@@ -52,8 +52,11 @@ public class KKNW : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		
 		if (col.gameObject.tag == "block") {
-            FindObjectOfType<AudioManager>().Play("godGetItem");
-			if (P2ItemCountDown.itemText != "No item") {
+
+            var audioManager = FindObjectOfType<AudioManager>();
+            if(audioManager != null) audioManager.Play("godGetItem");
+
+            if (P2ItemCountDown.itemText != "No item") {
                 GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", 0f);
                 P2ItemIcon.iconColor = Color.white;
                 Player1Controller.inverseControlUsed = false;

@@ -34,6 +34,9 @@ public class JoiningPlatforms : MonoBehaviour
 
     public void checkIfPlatformsApart()
     {
+        if (GameObject.FindGameObjectWithTag("Player") == null) return;
+
+
         Vector3 player1 = GameObject.FindGameObjectWithTag("Player").transform.position;
         float x = player1.x;
         float z = player1.z;
