@@ -38,8 +38,6 @@ public class LaserTip : MonoBehaviour {
 	void Shoot() {
 
 		laserLight.enabled = true;
-		//laserParticles.Stop ();
-		//laserParticles.Play ();
 		laserLine.enabled = true;
 		laserLine.SetPosition (0, transform.position);
 		laserRay.origin = transform.position;

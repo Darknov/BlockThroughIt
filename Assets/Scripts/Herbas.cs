@@ -21,11 +21,11 @@ public class Herbas : MonoBehaviour {
 			if (!Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8") 
 					|| Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
-                    P1ItemIcon.iconColor = Color.green;
+					P1ItemIcon.iconColor = Color.cyan;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Flying Boots";
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (StaticOptions.specialEffects) {
 						FindObjectOfType<AudioManager>().Play("herbasSound");
@@ -61,11 +61,11 @@ public class Herbas : MonoBehaviour {
                 }
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-                    P1ItemIcon.iconColor = Color.green;
+                    P1ItemIcon.iconColor = Color.cyan;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Flying Boots";
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (StaticOptions.specialEffects) {
 						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("herbasSound");
@@ -152,9 +152,9 @@ public class Herbas : MonoBehaviour {
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Flying boots\n" + "Press L2 to use";
+				P1ItemCountDown.itemText = "Flying boots";
 			} else if (Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Flying boots\n" + "Press Tab to use";
+				P1ItemCountDown.itemText = "Flying boots";
 			}
 			P1ItemIcon.itemSprite = herbasSprite;
 			herbas.GetComponent<SphereCollider> ().enabled = false;

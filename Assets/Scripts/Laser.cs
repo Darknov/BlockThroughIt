@@ -28,7 +28,7 @@ public class Laser : MonoBehaviour {
                     P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Destroying Beam";
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
 						FindObjectOfType<AudioManager>().Play("AbilityLaser");
@@ -66,7 +66,7 @@ public class Laser : MonoBehaviour {
                     P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Destroying Beam";
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
 						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
@@ -151,9 +151,9 @@ public class Laser : MonoBehaviour {
             laser.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press L2 to use";
+				P1ItemCountDown.itemText = "Destroying Beam";
 			} else if (Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press Tab to use";
+				P1ItemCountDown.itemText = "Destroying Beam";
 			}
 			P1ItemIcon.itemSprite = laserSprite;
 			laser.GetComponent<SphereCollider> ().enabled = false;

@@ -74,9 +74,9 @@ public class KKNW : MonoBehaviour {
 			kknw.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Block Destroyer\n" + "Press L2 to use";
+				P2ItemCountDown.itemText = "Destroy Blocks";
 			} else if (!Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Block Destroyer\n" + "Press 9 to use";
+				P2ItemCountDown.itemText = "Destroy Blocks";
 			}
 			Player2Controller.isDestroyBlockAvailable = true;
 			P2ItemIcon.itemSprite = kknwSprite;

@@ -16,11 +16,11 @@ public class InverseControl : MonoBehaviour {
 			if (Player2Controller.p2GamePad) {
 				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && !Player1Controller.inverseControlUsed) {
                     FindObjectOfType<AudioManager>().Play("inverseControl");
-					P2ItemIcon.iconColor = Color.red;
+					P2ItemIcon.iconColor = Color.yellow;
 					Player1Controller.inverseControl = true;
 					P2ItemCountDown.started = true;
 					Player1Controller.inverseControlUsed = true;
-					P2ItemCountDown.itemText = "Inverse Control Used\n" + "Time Remaining: ";
+					P2ItemCountDown.itemText = "Rabbit is cofused";
 				}
 				if (Player1Controller.inverseControl) {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
@@ -44,11 +44,11 @@ public class InverseControl : MonoBehaviour {
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && !Player1Controller.inverseControlUsed) {
                     if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("inverseControl");
-					P2ItemIcon.iconColor = Color.red;
+					P2ItemIcon.iconColor = Color.yellow;
 					Player1Controller.inverseControl = true;
 					P2ItemCountDown.started = true;
 					Player1Controller.inverseControlUsed = true;
-					P2ItemCountDown.itemText = "Inverse Control Used\n" + "Time Remaining: ";
+					P2ItemCountDown.itemText = "Rabbit is cofused";
 				}
 
 				if (Player1Controller.inverseControl) {
@@ -114,9 +114,9 @@ public class InverseControl : MonoBehaviour {
 			inverseControl.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Inverse Control\n" + "Press L2 to use";
+				P2ItemCountDown.itemText = "Confuse";
 			} else if (!Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Inverse Control\n" + "Press 9 to use";
+				P2ItemCountDown.itemText = "Confuse";
 			}
 			P2ItemIcon.itemSprite = inverseControlSprite;
 			inverseControl.GetComponent<SphereCollider> ().enabled = false;

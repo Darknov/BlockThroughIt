@@ -214,9 +214,9 @@ public class BuildingBlock : MonoBehaviour {
             builder.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Build 1 block\n" + "Press L2 to use";
+				P1ItemCountDown.itemText = "Build 1 block";
 			} else if (Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Build 1 block\n" + "Press Tab to use";
+				P1ItemCountDown.itemText = "Build 1 block";
 			}
 			P1ItemIcon.itemSprite = builderSprite;
 			builder.GetComponent<SphereCollider> ().enabled = false;
