@@ -9,7 +9,7 @@ public class TimeBar : MonoBehaviour {
     public Text tekst;
 
     private float hitpoint = 0;
-    private float maxhitpoint = 5;
+    public float maxhitpoint = 5;
 
 
     // Use this for initialization
@@ -22,12 +22,14 @@ public class TimeBar : MonoBehaviour {
     {
         float ratio = hitpoint / maxhitpoint;
         currentTime.rectTransform.localScale = new Vector3(ratio, 1, 1);
-        tekst.text = (ratio*5).ToString() +  " s";
+        //tekst.text = (ratio*5).ToString() +  " s";
 
     }
 
     private void SubTime(float time)
     {
+        UpdateBar();
+
         hitpoint = time;
         if(time < 0 )
         {

@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +20,7 @@ public class P1ItemCountDown : MonoBehaviour {
 		text.text = itemText;
 
 		if (started) {
-			text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
+			//text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
             player1hint.SetActive(false);
 
 		}

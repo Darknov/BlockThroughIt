@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 19900008}
   m_Layer: 0
   m_Name: ring1
-  m_TagString: Untagged
+  m_TagString: p1particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

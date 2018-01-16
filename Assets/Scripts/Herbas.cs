@@ -21,11 +21,11 @@ public class Herbas : MonoBehaviour {
 			if (!Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8") 
 					|| Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
-                    P1ItemIcon.iconColor = Color.green;
+					P1ItemIcon.iconColor = Color.cyan;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Flying Boots";
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (StaticOptions.specialEffects) {
 						FindObjectOfType<AudioManager>().Play("herbasSound");
@@ -42,6 +42,7 @@ public class Herbas : MonoBehaviour {
 				}
 				if (StaticOptions.isFlying) {
 					flyingTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = flyingDuration;
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingTimeCountDown);
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (flyingTimeCountDown <= 0) {
@@ -54,18 +55,18 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						Destroy (partEffect);
+						Destroy (GameObject.FindWithTag ("p1particle"));
                         GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
 
                     }
                 }
 			} else if (Player1Controller.p1KeyBoard) {
 				if (Input.GetKeyDown (KeyCode.Tab)) {
-                    P1ItemIcon.iconColor = Color.green;
+                    P1ItemIcon.iconColor = Color.cyan;
 					StaticOptions.isFlying = true;
 					GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = false;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Herbas Flying Boots\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Flying Boots";
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (StaticOptions.specialEffects) {
 						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("herbasSound");
@@ -82,6 +83,7 @@ public class Herbas : MonoBehaviour {
 				}
 				if (StaticOptions.isFlying) {
 					flyingTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = flyingDuration;
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingTimeCountDown);
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
                     if (flyingTimeCountDown <= 0) {
@@ -94,7 +96,7 @@ public class Herbas : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (herbas);
 						partEffect.transform.parent = null;
-						DestroyImmediate (partEffect);
+						Destroy (GameObject.FindWithTag ("p1particle"));
                         GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
 
                     }
@@ -122,8 +124,10 @@ public class Herbas : MonoBehaviour {
 			GameObject.FindWithTag ("Player").GetComponent<Rigidbody> ().useGravity = true;
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (herbas);
-			partEffect.transform.parent = null;
-			Destroy (partEffect);
+			if (GameObject.FindWithTag ("p1particle") != null) {
+				GameObject.FindWithTag ("p1particle").transform.parent = null;
+				Destroy (GameObject.FindWithTag ("p1particle"));
+			}
 			Destroy (herbas);
         }
     }
@@ -152,9 +156,9 @@ public class Herbas : MonoBehaviour {
 			herbas.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Flying boots\n" + "Press L2 to use";
+				P1ItemCountDown.itemText = "Flying boots";
 			} else if (Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Flying boots\n" + "Press Tab to use";
+				P1ItemCountDown.itemText = "Flying boots";
 			}
 			P1ItemIcon.itemSprite = herbasSprite;
 			herbas.GetComponent<SphereCollider> ().enabled = false;

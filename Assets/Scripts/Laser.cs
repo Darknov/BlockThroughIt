@@ -15,8 +15,7 @@ public class Laser : MonoBehaviour {
 	public float duration = 2f;
 	private float timeCounter;
 	private Vector3 shootDirection;
-	public GameObject partEffectPrefab;
-    private GameObject partEffectClone;
+	public GameObject partEffect;
 
 	void Update() {
 
@@ -29,18 +28,18 @@ public class Laser : MonoBehaviour {
                     P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Destroying Beam";
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
-						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
-						partEffectClone = Instantiate(partEffectPrefab, 
+						FindObjectOfType<AudioManager>().Play("AbilityLaser");
+						Instantiate(partEffect, 
 							new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z
 							), 
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().rotation,  
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().transform
-						) as GameObject;
+						);
 						StaticOptions.specialEffects = false;
 					}
                 }
@@ -57,8 +56,8 @@ public class Laser : MonoBehaviour {
 						P1ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
-						partEffectPrefab.transform.parent = null;
-						Destroy (partEffectClone);
+						partEffect.transform.parent = null;
+						Destroy (partEffect);
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -67,18 +66,18 @@ public class Laser : MonoBehaviour {
                     P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					P1ItemCountDown.started = true;
-					P1ItemCountDown.itemText = "Destroying Beam\n" + "Time Remaining: ";
+					P1ItemCountDown.itemText = "Destroying Beam";
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if (StaticOptions.specialEffects) {
 						if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("AbilityLaser");
-                        partEffectClone = Instantiate(partEffectPrefab, 
+						Instantiate(partEffect, 
 							new Vector3(GameObject.FindWithTag ("Player").GetComponent<Transform>().position.x, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.y, 
 								GameObject.FindWithTag ("Player").GetComponent<Transform>().position.z
 							), 
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().rotation,  
 							GameObject.FindWithTag ("Player").GetComponent<Transform>().transform
-						) as GameObject;
+						);
 						StaticOptions.specialEffects = false;
 					}
 
@@ -95,8 +94,8 @@ public class Laser : MonoBehaviour {
 						isTriggered = false;
 						isActivated = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
-                        partEffectClone.transform.parent = null;
-						Destroy (partEffectClone);
+						partEffect.transform.parent = null;
+						Destroy (partEffect);
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -122,8 +121,10 @@ public class Laser : MonoBehaviour {
 			P1ItemCountDown.itemText = "No item";
 			isTriggered = false;
 			StaticOptions.p1SpawnItems.Remove (laser);
-			partEffectPrefab.transform.parent = null;
-			Destroy (partEffectPrefab);
+			if (GameObject.FindWithTag ("p1particle") != null) {
+				GameObject.FindWithTag ("p1particle").transform.parent = null;
+				Destroy (GameObject.FindWithTag ("p1particle"));
+			}
 			Destroy (laser);
 		}
 	}
@@ -152,9 +153,9 @@ public class Laser : MonoBehaviour {
             laser.tag = "p1TakenItem";
 			isTriggered = true;
 			if (!Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press L2 to use";
+				P1ItemCountDown.itemText = "Destroying Beam";
 			} else if (Player1Controller.p1KeyBoard) {
-				P1ItemCountDown.itemText = "Destroying Beam\n" + "Press Tab to use";
+				P1ItemCountDown.itemText = "Destroying Beam";
 			}
 			P1ItemIcon.itemSprite = laserSprite;
 			laser.GetComponent<SphereCollider> ().enabled = false;

@@ -20,7 +20,7 @@ public class P2ItemCountDown : MonoBehaviour {
 		text.text = itemText;
 
 		if (started) {
-			text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
+			//text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
             player2hint.SetActive(false);
 		}
 	}
