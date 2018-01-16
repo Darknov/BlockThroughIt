@@ -27,7 +27,7 @@ public class TutorialManager : MonoBehaviour {
             else
             {
                 // tutaj dodac zmiane sceny na menuScene
-                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                SceneManager.LoadScene(0, LoadSceneMode.Single);
             }
             
 
