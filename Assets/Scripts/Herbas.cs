@@ -42,6 +42,7 @@ public class Herbas : MonoBehaviour {
 				}
 				if (StaticOptions.isFlying) {
 					flyingTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = flyingDuration;
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingTimeCountDown);
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
 					if (flyingTimeCountDown <= 0) {
@@ -82,6 +83,7 @@ public class Herbas : MonoBehaviour {
 				}
 				if (StaticOptions.isFlying) {
 					flyingTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = flyingDuration;
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", flyingTimeCountDown);
 					P1ItemCountDown.itemTimeRemaining = flyingTimeCountDown;
                     if (flyingTimeCountDown <= 0) {

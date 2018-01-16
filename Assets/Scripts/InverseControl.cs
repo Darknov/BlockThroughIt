@@ -26,6 +26,7 @@ public class InverseControl : MonoBehaviour {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
 					//P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
 					inverseControlTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("evilTimeBar").GetComponent<TimeBar>().maxhitpoint = timeOfInverseControlOfPlayer2;
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", inverseControlTimeCountDown);
 
                     if (inverseControlTimeCountDown < 0) {
@@ -55,6 +56,8 @@ public class InverseControl : MonoBehaviour {
 				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial;
 					//P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
 					inverseControlTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("evilTimeBar").GetComponent<TimeBar>().maxhitpoint = timeOfInverseControlOfPlayer2;
+
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", inverseControlTimeCountDown);
 
                     if (inverseControlTimeCountDown < 0) {

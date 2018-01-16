@@ -42,6 +42,8 @@ public class Freeze : MonoBehaviour {
 				    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
 					//P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("evilTimeBar").GetComponent<TimeBar>().maxhitpoint = freezeTimeOfPlayer2;
+
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeCountDown);
 					if (freezeTimeCountDown < 0) {
 						P2ItemIcon.iconColor = Color.white;
@@ -83,6 +85,8 @@ public class Freeze : MonoBehaviour {
 				    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = freezeMaterial;
 					//P2ItemCountDown.itemTimeRemaining = freezeTimeCountDown;
 					freezeTimeCountDown -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("evilTimeBar").GetComponent<TimeBar>().maxhitpoint = freezeTimeOfPlayer2;
+
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", freezeTimeCountDown);
 
                     if (freezeTimeCountDown < 0) {
