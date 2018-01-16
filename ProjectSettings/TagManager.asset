@@ -28,6 +28,11 @@ TagManager:
   - p2Pickups
   - p1Pickups
   - evilTimeBar
+  - rabbitsRing
+  - godsRing
+  - laserTip
+  - p1particle
+  - p2particle
   layers:
   - Default
   - TransparentFX

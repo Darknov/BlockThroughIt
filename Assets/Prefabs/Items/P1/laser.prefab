@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4359639386497936}
   - component: {fileID: 114572398897437158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: laserGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4657412777625978}
   - component: {fileID: 33220229195671496}
   - component: {fileID: 23450072779963744}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: laserGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,6 +315,7 @@ MonoBehaviour:
   laserGrowingSpeed: 5
   laserRange: 1000
   duration: 2
+  partEffect: {fileID: 1000012264517964, guid: f6d13cef4188a3042a481ef36e06f60c, type: 2}
 --- !u!114 &114653336908514960
 MonoBehaviour:
   m_ObjectHideFlags: 1

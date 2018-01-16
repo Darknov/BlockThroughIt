@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4286863693042252}
   - component: {fileID: 33772971042430874}
   - component: {fileID: 23501873511091424}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: herbas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4009650255561052}
   - component: {fileID: 114535153210054356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: flying_shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
