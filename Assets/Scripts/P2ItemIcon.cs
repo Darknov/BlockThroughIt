@@ -14,11 +14,15 @@ public class P2ItemIcon : MonoBehaviour {
     private bool boom = true;
     private Sprite checkPickup;
 
+    public bool isIconVisible = false;
+
     void Start () {
 		image = GetComponent<Image>();
 	}
 
 	void Update() {
+
+        isIconVisible = itemSprite != null;
 
         if (itemSprite != null) {
 
@@ -38,12 +42,14 @@ public class P2ItemIcon : MonoBehaviour {
 			image.enabled = true;
 			image.sprite = itemSprite;
             checkPickup = itemSprite;
-            player2Hint.SetActive(true);
+
 
         }
         else {
 			iconColor = Color.white;
 			image.enabled = false;
-		}
-	}
+            player2Hint.GetComponent<SpriteRenderer>().enabled = false;
+
+        }
+    }
 }
