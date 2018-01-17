@@ -21,7 +21,6 @@ public class P2ItemIcon : MonoBehaviour {
 	void Update() {
 
         if (itemSprite != null) {
-            player2Hint.SetActive(true);
 
             if (checkPickup != itemSprite)
             {
@@ -39,6 +38,7 @@ public class P2ItemIcon : MonoBehaviour {
 			image.enabled = true;
 			image.sprite = itemSprite;
             checkPickup = itemSprite;
+            player2Hint.SetActive(true);
 
         }
         else {

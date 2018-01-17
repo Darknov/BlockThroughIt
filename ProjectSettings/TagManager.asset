@@ -33,8 +33,12 @@ TagManager:
   - laserTip
   - p1particle
   - p2particle
+<<<<<<< HEAD
   - p1spawnParticle
   - p2spawnParticle
+=======
+  - p2hint
+>>>>>>> ecb9c3126411b8c37366577984a5020edc25a47c
   layers:
   - Default
   - TransparentFX
