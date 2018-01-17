@@ -7,26 +7,22 @@ public class KKNW : MonoBehaviour {
 
 	public GameObject kknw;
 	public Sprite kknwSprite;
-	private bool isTriggered = false;
-    public GameObject player2hint;
-
-    private void Start()
-    {
-        player2hint = GameObject.FindGameObjectWithTag("p2hint");
-    }
-
+	public bool isTriggered = false;
+    public bool isActivated = false;
     void Update() {
 		
 		if (isTriggered) {
-			if (Player2Controller.p2GamePad) {
-				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && Player2Controller.isDestroyBlockAvailable) {                 
-					Player2Controller.isDestroyBlockAvailable = false;
+
+            if (Player2Controller.p2GamePad) {
+				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && Player2Controller.isDestroyBlockAvailable) {
+                    isActivated = true;
+                    //P2ItemCountDown.started = false; // temp
+                    Player2Controller.isDestroyBlockAvailable = false;
 					Player2Controller.isDestroyBlockActivated = true;
 					P2ItemIcon.itemSprite = null;
 					P2ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p2SpawnItems.Remove (kknw);
-                    player2hint.SetActive(false);
                     Destroy (kknw);
 
 				}
@@ -59,9 +55,9 @@ public class KKNW : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 
-		if (col.gameObject.tag == "platform") {
-			Destroy (kknw);
-		}
+		//if (col.gameObject.tag == "platform") {
+		//	Destroy (kknw);
+		//}
 		
 		if (col.gameObject.tag == "block") {
 

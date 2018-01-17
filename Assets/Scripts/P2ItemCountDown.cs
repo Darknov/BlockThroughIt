@@ -20,8 +20,8 @@ public class P2ItemCountDown : MonoBehaviour {
 		text.text = itemText;
 
 		if (started) {
-			//text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
-            player2hint.SetActive(false);
-		}
-	}
+            //text.text = itemText + Mathf.Round (itemTimeRemaining * 100f) / 100f;
+            //player2hint.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 }

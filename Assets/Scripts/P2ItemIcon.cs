@@ -10,7 +10,7 @@ public class P2ItemIcon : MonoBehaviour {
     public GameObject partEffect;
     Image image;
     public GameObject player2Hint;
-
+    public bool isIconActive = false;
     private bool boom = true;
     private Sprite checkPickup;
 
@@ -19,6 +19,8 @@ public class P2ItemIcon : MonoBehaviour {
 	}
 
 	void Update() {
+
+        isIconActive = itemSprite != null;
 
         if (itemSprite != null) {
             player2Hint.SetActive(true);

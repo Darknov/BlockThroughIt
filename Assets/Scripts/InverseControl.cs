@@ -96,9 +96,9 @@ public class InverseControl : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 
-		if (col.gameObject.tag == "platform") {
-			Destroy (inverseControl);
-		}
+		//if (col.gameObject.tag == "platform") {
+		//	Destroy (inverseControl);
+		//}
 		
 		if (col.gameObject.tag == "block") {
 			
