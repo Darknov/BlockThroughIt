@@ -56,8 +56,8 @@ public class Laser : MonoBehaviour {
 						P1ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
-						partEffect.transform.parent = null;
-						Destroy (partEffect);
+						GameObject.FindWithTag ("p1particle").transform.parent = null;
+						Destroy (GameObject.FindWithTag ("p1particle"));
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -94,8 +94,8 @@ public class Laser : MonoBehaviour {
 						isTriggered = false;
 						isActivated = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
-						partEffect.transform.parent = null;
-						Destroy (partEffect);
+						GameObject.FindWithTag ("p1particle").transform.parent = null;
+						Destroy (GameObject.FindWithTag ("p1particle"));
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
