@@ -123,9 +123,10 @@ public class Freeze : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 
-		//if (col.gameObject.tag == "platform") {
-		//	Destroy (freeze);
-		//}
+		if (col.gameObject.tag == "platform") {
+			StaticOptions.p2SpawnItems.Remove (freeze);
+			Destroy (freeze);
+		}
 				
 		if (col.gameObject.tag == "block") {
             if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("godGetItem");

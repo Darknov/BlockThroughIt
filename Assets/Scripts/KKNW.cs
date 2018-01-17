@@ -55,9 +55,10 @@ public class KKNW : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 
-		//if (col.gameObject.tag == "platform") {
-		//	Destroy (kknw);
-		//}
+		if (col.gameObject.tag == "platform") {
+			StaticOptions.p2SpawnItems.Remove (kknw);
+			Destroy (kknw);
+		}
 		
 		if (col.gameObject.tag == "block") {
 
