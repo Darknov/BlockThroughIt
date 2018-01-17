@@ -16,13 +16,11 @@ public class BuildingBlock : MonoBehaviour {
 	int rowLength;
 
 	void Start() {
-		//this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
-		//this.rowLength = this.platform.rowLength;
+		this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
+		this.rowLength = this.platform.rowLength;
 	}
 
 	void Update() {
-		this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
-		this.rowLength = this.platform.rowLength;
 		isDestroyed ();
 
 		int x, z;
@@ -44,7 +42,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x + 1, z);
-						//platform.DestroyShadow ();
 					}
 					if (tY == 270) {
 						Instantiate (partEffect, new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x - 1, 
@@ -54,7 +51,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x - 1, z);
-						//platform.DestroyShadow ();
 					}
 					if (tY == 0) {
 						Instantiate (partEffect, new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, 
@@ -64,7 +60,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x, z + 1);
-						//platform.DestroyShadow ();
 					}
 					if (tY == 180) {
 						Instantiate (partEffect, new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, 
@@ -74,7 +69,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x, z - 1);
-						//platform.DestroyShadow ();
 					}
 					wasUsed = true;
 					isTriggered = false;
@@ -120,7 +114,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x + 1, z);
-						//platform.DestroyShadow ();
 					}
 					if (tY == 270) {
 						Instantiate (partEffect, new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x - 1, 
@@ -130,7 +123,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x - 1, z);
-						//platform.DestroyShadow ();
 					}
 					if (tY == 0) {
 						Instantiate (partEffect, new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, 
@@ -140,7 +132,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x, z + 1);
-						//platform.DestroyShadow ();
 					}
 					if (tY == 180) {
 						Instantiate (partEffect, new Vector3 (GameObject.FindGameObjectWithTag ("Player").transform.position.x, 
@@ -150,7 +141,6 @@ public class BuildingBlock : MonoBehaviour {
 							GameObject.FindGameObjectWithTag ("Player").transform);
 						platform.DestroyShadow ();
 						platform.addBlock (x, z - 1);
-						//platform.DestroyShadow ();
 					}
 					wasUsed = true;
 					isTriggered = false;

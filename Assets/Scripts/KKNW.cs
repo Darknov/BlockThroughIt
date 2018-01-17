@@ -58,6 +58,10 @@ public class KKNW : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
+
+		if (col.gameObject.tag == "platform") {
+			Destroy (kknw);
+		}
 		
 		if (col.gameObject.tag == "block") {
 
@@ -82,9 +86,9 @@ public class KKNW : MonoBehaviour {
 			kknw.tag = "p2TakenItem";
 			isTriggered = true;
 			if (Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Destroy Blocks";
+				P2ItemCountDown.itemText = "Blocks Destroyer";
 			} else if (!Player2Controller.p2GamePad) {
-				P2ItemCountDown.itemText = "Destroy Blocks";
+				P2ItemCountDown.itemText = "Blocks Destroyer";
 			}
 			Player2Controller.isDestroyBlockAvailable = true;
 			P2ItemIcon.itemSprite = kknwSprite;

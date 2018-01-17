@@ -122,6 +122,10 @@ public class Freeze : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
+
+		if (col.gameObject.tag == "platform") {
+			Destroy (freeze);
+		}
 				
 		if (col.gameObject.tag == "block") {
             if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("godGetItem");
