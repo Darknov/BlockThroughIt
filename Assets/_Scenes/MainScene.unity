@@ -7199,22 +7199,22 @@ Prefab:
     - target: {fileID: 224001844215311714, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224001844215311714, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 224894163421697072, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -5
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 224894163421697072, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 224614954477863370, guid: b985cc68700c93c4ca5f1904b3567259,
         type: 2}
