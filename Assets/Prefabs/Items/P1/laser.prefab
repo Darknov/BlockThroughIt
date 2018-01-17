@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1903919589418104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3965778, y: -3.899999, z: 5.847343}
+  m_LocalPosition: {x: 2.1202874, y: -4.4000006, z: -5.133547}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4286164024832862}
@@ -315,8 +315,7 @@ MonoBehaviour:
   laserGrowingSpeed: 5
   laserRange: 1000
   duration: 2
-  partEffectPrefab: {fileID: 1055597324811698, guid: cc54ae3e786e3d848a1b1fb686747613,
-    type: 2}
+  partEffect: {fileID: 1000012264517964, guid: f6d13cef4188a3042a481ef36e06f60c, type: 2}
 --- !u!114 &114653336908514960
 MonoBehaviour:
   m_ObjectHideFlags: 1
