@@ -8,14 +8,14 @@ public class KKNW : MonoBehaviour {
 	public GameObject kknw;
 	public Sprite kknwSprite;
 	public bool isTriggered = false;
-
+    public bool isActivated = false;
     void Update() {
 		
 		if (isTriggered) {
 
             if (Player2Controller.p2GamePad) {
 				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && Player2Controller.isDestroyBlockAvailable) {
-
+                    isActivated = true;
                     //P2ItemCountDown.started = false; // temp
                     Player2Controller.isDestroyBlockAvailable = false;
 					Player2Controller.isDestroyBlockActivated = true;
