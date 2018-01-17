@@ -17,8 +17,8 @@ public class P1ItemIcon : MonoBehaviour {
 
 	void Start () {
 		image = GetComponent<Image>();
-        Instantiate(ring, new Vector3(-7.5f, 0, -8.6f), new Quaternion(0, 90, 90, 2));
-        Instantiate(ring, new Vector3(7.5f, 0, -8.6f), new Quaternion(0, 90, 90, 2));
+        Instantiate(ring, new Vector3(-8f, 0, -8.6f), new Quaternion(0, 90, 90, 2));
+        Instantiate(ring, new Vector3(8f, 0, -8.6f), new Quaternion(0, 90, 90, 2));
 
 
     }
