@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54136225191485640}
   - component: {fileID: 65154452396256592}
   - component: {fileID: 114589683056285892}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShadowBlock
   m_TagString: shadow
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -69,6 +70,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
