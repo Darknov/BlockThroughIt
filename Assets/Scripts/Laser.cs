@@ -46,6 +46,8 @@ public class Laser : MonoBehaviour {
 
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = duration;
+
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", timeCounter);
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if(timeCounter <= 0) {
@@ -84,6 +86,7 @@ public class Laser : MonoBehaviour {
                 }
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = duration;
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", timeCounter);
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
                     if (timeCounter <= 0) {
