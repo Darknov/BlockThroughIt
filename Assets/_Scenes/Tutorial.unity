@@ -292,6 +292,8 @@ MonoBehaviour:
   textures:
   - {fileID: 2800000, guid: 13e55b646b36af746bf106c4ea45f184, type: 3}
   - {fileID: 2800000, guid: 3ae6c03debcd78f4c93014e4bdce3800, type: 3}
+  - {fileID: 2800000, guid: a5dc72da6decb4a4987c79fb2bbad40b, type: 3}
+  - {fileID: 2800000, guid: 55ad3ed6dbd9a9c4db43161b1996ab38, type: 3}
 --- !u!222 &1703811426
 CanvasRenderer:
   m_ObjectHideFlags: 0
