@@ -389,7 +389,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.white, activeBlock);
-        platformBoard.addBlock(activeBlock, tempMaterial);
+        platformBoard.addBlock(activeBlock, tempMaterial); 
 
         blockShadow.DestroyShadow();
         RespawnEmptyBlocks(source, args);
@@ -399,7 +399,7 @@ public class Player2Controller : MonoBehaviour
     {
         if (activeBlock == null) return;
         SetAttackBlockColor(Color.black, activeBlock);
-        FindObjectOfType<AudioManager>().Play("kknw");///
+        if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("kknw");///
         Destroy(activeBlock.gameObject);
         blockShadow.DestroyShadow();
         RespawnEmptyBlocks(source, args);

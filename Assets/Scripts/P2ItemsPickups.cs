@@ -40,6 +40,12 @@ public class P2ItemsPickups : MonoBehaviour {
 
 	void Update() {
 
+		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("p2spawnParticle")) {
+			if (!go.GetComponent<ParticleSystem> ().isPlaying) {
+				Destroy (go);
+			}
+		}
+
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
 				if (GameObject.FindGameObjectWithTag ("platformBoard").GetComponent<PlatformBoard> ().blocks [i, j] != null) {

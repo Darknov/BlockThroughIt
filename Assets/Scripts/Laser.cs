@@ -46,8 +46,6 @@ public class Laser : MonoBehaviour {
 
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
-                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = duration;
-
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", timeCounter);
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
 					if(timeCounter <= 0) {
@@ -59,7 +57,7 @@ public class Laser : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
 						partEffect.transform.parent = null;
-						Destroy (GameObject.FindWithTag ("p1particle"));
+						Destroy (partEffect);
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -86,8 +84,6 @@ public class Laser : MonoBehaviour {
                 }
 				if (isActivated) {
 					timeCounter -= Time.deltaTime;
-                    GameObject.FindGameObjectWithTag("Timebar").GetComponent<TimeBar>().maxhitpoint = duration;
-
                     GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", timeCounter);
 					P1ItemCountDown.itemTimeRemaining = timeCounter;
                     if (timeCounter <= 0) {
@@ -99,7 +95,7 @@ public class Laser : MonoBehaviour {
 						isActivated = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
 						partEffect.transform.parent = null;
-						Destroy (GameObject.FindWithTag ("p1particle"));
+						Destroy (partEffect);
                         GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
@@ -129,7 +125,7 @@ public class Laser : MonoBehaviour {
 				GameObject.FindWithTag ("p1particle").transform.parent = null;
 				Destroy (GameObject.FindWithTag ("p1particle"));
 			}
-			DestroyImmediate (laser);
+			Destroy (laser);
 		}
 	}
 

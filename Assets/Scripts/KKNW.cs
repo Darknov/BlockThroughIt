@@ -8,8 +8,14 @@ public class KKNW : MonoBehaviour {
 	public GameObject kknw;
 	public Sprite kknwSprite;
 	private bool isTriggered = false;
+    public GameObject player2hint;
 
-	void Update() {
+    private void Start()
+    {
+        player2hint = GameObject.FindGameObjectWithTag("p2hint");
+    }
+
+    void Update() {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
@@ -20,7 +26,9 @@ public class KKNW : MonoBehaviour {
 					P2ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p2SpawnItems.Remove (kknw);
-					Destroy (kknw);
+                    player2hint.SetActive(false);
+                    Destroy (kknw);
+
 				}
 			} else if (!Player2Controller.p2GamePad) {
 				if (Input.GetKeyDown (KeyCode.Alpha9) && Player2Controller.isDestroyBlockAvailable) {

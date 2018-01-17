@@ -41,6 +41,12 @@ public class P1ItemsPickups : MonoBehaviour {
 
 	void Update() {
 
+		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("p1spawnParticle")) {
+			if (!go.GetComponent<ParticleSystem> ().isPlaying) {
+				Destroy (go);
+			}
+		}
+
 		for (int i = 0; i < rowLength; i++) {
 			for (int j = 0; j < rowLength; j++) {
 				Vector3 pickupPlace = new Vector3((float)(i-System.Math.Floor(rowLength/2.0)), 1, (float)(j-System.Math.Floor(rowLength/2.0)));
