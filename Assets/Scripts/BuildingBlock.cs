@@ -15,7 +15,8 @@ public class BuildingBlock : MonoBehaviour {
 	private PlatformBoard platform;
 	int rowLength;
 
-	void Start() {
+
+    void Start() {
 		this.platform = GameObject.FindGameObjectWithTag("platformBoard").GetComponent<PlatformBoard>();
 		this.rowLength = this.platform.rowLength;
 	}
@@ -82,7 +83,6 @@ public class BuildingBlock : MonoBehaviour {
 					P1ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-                    GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
                     Destroy(GameObject.FindGameObjectWithTag("p1particle"));
                 }
                 else if (!wasUsed) {
@@ -158,7 +158,6 @@ public class BuildingBlock : MonoBehaviour {
 					P1ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-                    GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
                     Destroy(GameObject.FindGameObjectWithTag("p1particle"));
                 }
                 else if (!wasUsed) {
@@ -213,9 +212,6 @@ public class BuildingBlock : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
-            GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
-            GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
-            GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(true);
             if (P1ItemCountDown.itemText != "No item")
             {
                 GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);

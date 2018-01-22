@@ -61,7 +61,6 @@ public class Laser : MonoBehaviour {
 						StaticOptions.p1SpawnItems.Remove (laser);
 						GameObject.FindWithTag ("p1particle").transform.parent = null;
 						Destroy (GameObject.FindWithTag ("p1particle"));
-                        GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
 			} else if (Player1Controller.p1KeyBoard) {
@@ -100,7 +99,6 @@ public class Laser : MonoBehaviour {
 						StaticOptions.p1SpawnItems.Remove (laser);
 						GameObject.FindWithTag ("p1particle").transform.parent = null;
 						Destroy (GameObject.FindWithTag ("p1particle"));
-                        GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(false);
                     }
                 }
 			}
@@ -136,9 +134,6 @@ public class Laser : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 
 		if (col.gameObject.tag == "Player") {
-            GameObject.FindWithTag("Player").transform.Find("laserOH").gameObject.SetActive(true);
-            GameObject.FindWithTag("Player").transform.Find("herbasOH").gameObject.SetActive(false);
-            GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
             if (P1ItemCountDown.itemText != "No item") {
                 GameObject.FindGameObjectWithTag("Timebar").SendMessage("SubTime", 0f);
 				isActivated = false;

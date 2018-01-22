@@ -34,7 +34,7 @@ public class GameOver : MonoBehaviour
             }
         }
 
-        if (!GameObject.FindWithTag("Player") || CountDown.timeRemaining <= 0)
+        if (!GameObject.FindWithTag("Player"))
         {
             anim.SetTrigger("GameOver2");
             CountDown.started = false;
