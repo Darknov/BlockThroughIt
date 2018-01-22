@@ -23,7 +23,7 @@ public class InverseControl : MonoBehaviour {
 					P2ItemCountDown.itemText = "Rabbit is cofused";
 				}
 				if (Player1Controller.inverseControl) {
-                        if (GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material != null)
+                        if (GameObject.FindGameObjectWithTag("Player")!=null)
                         GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
                         //P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
                         inverseControlTimeCountDown -= Time.deltaTime;
@@ -39,7 +39,7 @@ public class InverseControl : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (inverseControl);
-                        if (GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material != null)
+                        if (GameObject.FindGameObjectWithTag("Player")!=null)
 					   GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 	 					Destroy (inverseControl);
                     }
