@@ -105,8 +105,8 @@ public class Herbas : MonoBehaviour {
 
 	void LateUpdate() {
 		if (!StaticOptions.p1SpawnItems.Exists (x => x == herbas)) {
-			gameObject.GetComponent<Rigidbody> ().useGravity = true;
-			//Destroy (herbas);
+			//gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			Destroy (herbas);
 		}
 	}
 

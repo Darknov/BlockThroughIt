@@ -107,8 +107,8 @@ public class Laser : MonoBehaviour {
 
     void LateUpdate() {
 		if (!StaticOptions.p1SpawnItems.Exists (x => x == laser)) {
-			gameObject.GetComponent<Rigidbody> ().useGravity = true;
-			//Destroy (laser);
+			//gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			Destroy (laser);
 		}
 	}
 
