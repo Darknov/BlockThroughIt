@@ -29,7 +29,9 @@ public class BuildingBlock : MonoBehaviour {
 		if (isTriggered) {
 			this.builder.transform.SetPositionAndRotation (GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().position, GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ().rotation);
 			if (!Player1Controller.p1KeyBoard) { //dodałam tu uruchamianie joystickiem, nie bylo wczesniej, a chyba dzialalo :O
-				if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
+				if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")
+                    || Input.GetKeyDown("joystick 1 button 4") || Input.GetKeyDown("joystick 1 button 6"))
+                {
                     if (StaticOptions.specialEffects)
                     {
                         if (FindObjectOfType<AudioManager>() != null) FindObjectOfType<AudioManager>().Play("AbilityPutBlock");
@@ -81,7 +83,7 @@ public class BuildingBlock : MonoBehaviour {
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
                     GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
-					Destroy (partEffect);
+                    Destroy(GameObject.FindGameObjectWithTag("p1particle"));
                 }
                 else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;
@@ -157,6 +159,7 @@ public class BuildingBlock : MonoBehaviour {
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
                     GameObject.FindWithTag("Player").transform.Find("blockOH").gameObject.SetActive(false);
+                    Destroy(GameObject.FindGameObjectWithTag("p1particle"));
                 }
                 else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;

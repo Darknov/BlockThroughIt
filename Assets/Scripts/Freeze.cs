@@ -18,8 +18,18 @@ public class Freeze : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if ((Input.GetKeyDown ("joystick 2 button 6")|| Input.GetKeyDown("joystick 2 button 8")) && !Player1Controller.IsPlayerStoppedUsed) {
-					P2ItemIcon.iconColor = Color.blue;
+                if ((Input.GetKeyDown ("joystick 2 button 4")|| Input.GetKeyDown("joystick 2 button 6")) && !Player1Controller.IsPlayerStoppedUsed) {
+                    Debug.Log("---");
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 1"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 2"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 3"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 4"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 5"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 6"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 7"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 8"));
+                    Debug.Log(Input.GetKeyDown("joystick 2 button 9"));
+                    P2ItemIcon.iconColor = Color.blue;
                     Player1Controller.IsPlayerStopped = true;
 					P2ItemCountDown.started = true;
                     Player1Controller.IsPlayerStoppedUsed = true;

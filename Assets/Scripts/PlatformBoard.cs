@@ -14,6 +14,7 @@ public class PlatformBoard : MonoBehaviour {
     public int minimalAmountOfDeletedBlocks = 7;
     public GameObject shadowBlockPrefab;
     public GameObject displayedShadowBlock;
+    private bool ifRowDestroied = false;
 
     private float transposeBy;
 
@@ -143,7 +144,8 @@ public class PlatformBoard : MonoBehaviour {
 
     public void checkIfThereAreMaxBlocksInRow()
     {
-        if(differentDeleteBlocks)
+        ifRowDestroied = true;
+        if (differentDeleteBlocks)
         {
             newBlockDelete();
         }
@@ -171,17 +173,21 @@ public class PlatformBoard : MonoBehaviour {
                 {
                     this.blocks[i, j].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[i, j], delayOnDeletingBlock);
+                    
                    
-                    if (StaticOptions.backInTime < CountDown.timeRemaining)
-                    {
-                        CountDown.timeRemaining -= StaticOptions.backInTime;
-                        if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("EndingMusic");
-                    }
-                    else
-                    {
-                        CountDown.timeRemaining = 0f;
-                    }
+                    
                 }
+                if ((StaticOptions.backInTime < CountDown.timeRemaining) && ifRowDestroied)
+                {
+                    ifRowDestroied = false;
+                    CountDown.timeRemaining -= StaticOptions.backInTime;
+                    if (FindObjectOfType<AudioManager>() != null) FindObjectOfType<AudioManager>().Play("EndingMusic");
+                }
+                else
+                {
+                    CountDown.timeRemaining = 0f;
+                }
+
             }
             isBlock = true;
             for (int j = 0; j < rowLength; j++)
@@ -197,16 +203,20 @@ public class PlatformBoard : MonoBehaviour {
                 {
                     this.blocks[j, i].gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     Destroy(this.blocks[j, i], delayOnDeletingBlock);
+                    ifRowDestroied = true;
 
-                    if (StaticOptions.backInTime < CountDown.timeRemaining)
-                    {
-                        CountDown.timeRemaining -= StaticOptions.backInTime;
-                        if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("EndingMusic");
-                    }
-                    else
-                    {
-                        CountDown.timeRemaining = 0f;
-                    }
+                    
+                }
+                if ((StaticOptions.backInTime < CountDown.timeRemaining) && ifRowDestroied)
+                {
+                    ifRowDestroied = false;
+
+                    CountDown.timeRemaining -= StaticOptions.backInTime;
+                    if (FindObjectOfType<AudioManager>() != null) FindObjectOfType<AudioManager>().Play("EndingMusic");
+                }
+                else
+                {
+                    CountDown.timeRemaining = 0f;
                 }
             }
 

@@ -8,6 +8,7 @@ public class LoadGameOnClick : MonoBehaviour
 { 
     public void LoadByIndex(int sceneIndex)
     {
+        InverseControl.isTriggered = false;
         StaticOptions.mode = sceneIndex;
         SceneManager.LoadScene(1);
         P2ItemCountDown.started = false;

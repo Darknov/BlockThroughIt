@@ -4,7 +4,7 @@ public class InverseControl : MonoBehaviour {
 
 	public float timeOfInverseControlOfPlayer2 = 3.0f;
 	private float inverseControlTimeCountDown;
-	private bool isTriggered = false;
+	public static bool isTriggered = false;
 	public GameObject inverseControl;
 	public Sprite inverseControlSprite;
     public Material inversedControlMaterial;
@@ -14,7 +14,7 @@ public class InverseControl : MonoBehaviour {
 		
 		if (isTriggered) {
 			if (Player2Controller.p2GamePad) {
-				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 8")) && !Player1Controller.inverseControlUsed) {
+				if ((Input.GetKeyDown ("joystick 2 button 6") || Input.GetKeyDown("joystick 2 button 4")) && !Player1Controller.inverseControlUsed) {
                     FindObjectOfType<AudioManager>().Play("inverseControl");
 					P2ItemIcon.iconColor = Color.yellow;
 					Player1Controller.inverseControl = true;
@@ -23,9 +23,10 @@ public class InverseControl : MonoBehaviour {
 					P2ItemCountDown.itemText = "Rabbit is cofused";
 				}
 				if (Player1Controller.inverseControl) {
-				    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
-					//P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
-					inverseControlTimeCountDown -= Time.deltaTime;
+                        if (GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material != null)
+                        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = inversedControlMaterial; 
+                        //P2ItemCountDown.itemTimeRemaining = inverseControlTimeCountDown;
+                        inverseControlTimeCountDown -= Time.deltaTime;
                     GameObject.FindGameObjectWithTag("evilTimeBar").GetComponent<TimeBar>().maxhitpoint = timeOfInverseControlOfPlayer2;
                     GameObject.FindGameObjectWithTag("evilTimeBar").SendMessage("SubTime", inverseControlTimeCountDown);
 
@@ -38,8 +39,9 @@ public class InverseControl : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (inverseControl);
-					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
-						Destroy (inverseControl);
+                        if (GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material != null)
+					   GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+	 					Destroy (inverseControl);
                     }
 				}
 			} else if (!Player2Controller.p2GamePad) {

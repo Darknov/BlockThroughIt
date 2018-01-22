@@ -23,8 +23,9 @@ public class Laser : MonoBehaviour {
 
 		if (isTriggered) {
 			if (!Player1Controller.p1KeyBoard) {     
-                if (Input.GetKeyDown ("joystick 1 button 6") || Input.GetKeyDown("joystick 1 button 8")
-                    || Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")) {
+                if (Input.GetKeyDown("joystick 1 button 5") || Input.GetKeyDown("joystick 1 button 7")
+                    || Input.GetKeyDown("joystick 1 button 4") || Input.GetKeyDown("joystick 1 button 6"))
+                {
                     P1ItemIcon.iconColor = Color.green;
 					isActivated = true;
 					P1ItemCountDown.started = true;
