@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player1Controller : MonoBehaviour
 {
 
-    public static bool p1KeyBoard = true;
+    public static bool p1KeyBoard = false;
     //public bool isFlying = false;
 
 	public static bool inverseControl = false;

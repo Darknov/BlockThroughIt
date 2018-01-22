@@ -8,7 +8,7 @@ public class P1Toggle : MonoBehaviour {
     Toggle togglePad;
     private void Start()
     {
-        toggleKey = GameObject.FindGameObjectWithTag("p1togglePM").GetComponent<Toggle>();
+       /* toggleKey = GameObject.FindGameObjectWithTag("p1togglePM").GetComponent<Toggle>();
         togglePad = GameObject.FindGameObjectWithTag("p1togglepad").GetComponent<Toggle>();
         if (StaticOptions.load == 1)
         {
@@ -24,11 +24,11 @@ public class P1Toggle : MonoBehaviour {
                 togglePad.isOn = true;
                 Player1Controller.p1KeyBoard = false;
             }
-        }
+        }*/
     }
     public void ToggleChange(bool newValue) {
 
-        if (newValue)
+     /*   if (newValue)
         {
             PlayerPrefs.SetInt("isKeyboard", 1);
         }      
@@ -37,6 +37,6 @@ public class P1Toggle : MonoBehaviour {
             PlayerPrefs.SetInt("isKeyboard", 0);        
         }
         Player1Controller.p1KeyBoard = newValue;
-        StaticOptions.load = 1;
+        StaticOptions.load = 1;*/
     }
 }

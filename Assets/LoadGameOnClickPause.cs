@@ -20,7 +20,7 @@ public class LoadGameOnClickPause : MonoBehaviour {
         }
         CountDown.started = false;
 
-        if (PlayerPrefs.GetInt("isKeyboard") == 1)
+       /* if (PlayerPrefs.GetInt("isKeyboard") == 1)
         {
             PlayerPrefs.SetInt("Keyboard", 1);
             Player1Controller.p1KeyBoard = true;
@@ -41,7 +41,7 @@ public class LoadGameOnClickPause : MonoBehaviour {
             PlayerPrefs.SetInt("Keyboardpl2", 0);
             Player2Controller.p2GamePad = false;
         }
-
+        */
         if (canvasObject.gameObject.activeInHierarchy == true)
         {
             canvasObject.gameObject.SetActive(false);

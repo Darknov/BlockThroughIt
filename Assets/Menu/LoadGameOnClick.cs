@@ -20,7 +20,7 @@ public class LoadGameOnClick : MonoBehaviour
         }
         CountDown.started = false;
 
-        if (PlayerPrefs.GetInt("isKeyboard") == 1)
+       /* if (PlayerPrefs.GetInt("isKeyboard") == 1)
         {
             PlayerPrefs.SetInt("Keyboard", 1);
             Player1Controller.p1KeyBoard = true; 
@@ -40,6 +40,6 @@ public class LoadGameOnClick : MonoBehaviour
         {
             PlayerPrefs.SetInt("Keyboardpl2", 0);
             Player2Controller.p2GamePad = false;
-        }
+        }*/
     }
 }
