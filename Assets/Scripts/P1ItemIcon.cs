@@ -17,8 +17,8 @@ public class P1ItemIcon : MonoBehaviour {
 
 	void Start () {
 		image = GetComponent<Image>();
-        Instantiate(ring, new Vector3(-8f, 0, -8.6f), new Quaternion(0, 90, 90, 2));
-        Instantiate(ring, new Vector3(8f, 0, -8.6f), new Quaternion(0, 90, 90, 2));
+        Instantiate(ring, new Vector3(-18f, 0, 6f), new Quaternion(0, 90, 90, 2));
+        Instantiate(ring, new Vector3(17.5f, 0, 6.2f), new Quaternion(0, 90, 90, 2));
 
 
     }
@@ -34,7 +34,7 @@ public class P1ItemIcon : MonoBehaviour {
             }
             if (boom )
             {
-                Instantiate(partEffect, new Vector3(-8, -0, -9), new Quaternion());
+                Instantiate(partEffect, new Vector3(-18, 0, 6), new Quaternion());
 
                // Instantiate(partEffect, GameObject.FindGameObjectWithTag("rabbitsRing").transform.position, GameObject.FindGameObjectWithTag("rabbitsRing").transform.rotation);
                 if(FindObjectOfType<AudioManager>()!=null) FindObjectOfType<AudioManager>().Play("GettingItem");
