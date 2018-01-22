@@ -22,7 +22,6 @@ public class GameOver : MonoBehaviour
         if (CountDown.timeRemaining >= 120)
         {
             anim.SetTrigger("GameOver1");
-            StaticOptions.rabbitswin++;
             CountDown.started = false;
             restartTimer += Time.deltaTime;
             if (restartTimer >= restartDelay)
@@ -32,13 +31,15 @@ public class GameOver : MonoBehaviour
                 {
                     CountDown.timeRemaining = 60;
                 }
+                StaticOptions.rabbitswin++;
+
             }
         }
 
         if (!GameObject.FindWithTag("Player"))
         {
             anim.SetTrigger("GameOver2");
-            StaticOptions.godswin++;
+            
 
             CountDown.started = false;
             restartTimer += Time.deltaTime;
@@ -49,6 +50,7 @@ public class GameOver : MonoBehaviour
                 {
                     CountDown.timeRemaining = 60;
                 }
+                StaticOptions.godswin++;
             }
         }
     }
