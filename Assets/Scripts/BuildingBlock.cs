@@ -83,7 +83,7 @@ public class BuildingBlock : MonoBehaviour {
 					P1ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-                    Destroy(GameObject.FindGameObjectWithTag("p1particle"));
+                 //   Destroy(GameObject.FindGameObjectWithTag("p1particle"));
                 }
                 else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;
@@ -158,7 +158,7 @@ public class BuildingBlock : MonoBehaviour {
 					P1ItemCountDown.itemText = "No item";
 					isTriggered = false;
 					StaticOptions.p1SpawnItems.Remove (GameObject.FindGameObjectWithTag ("p1TakenItem"));
-                    Destroy(GameObject.FindGameObjectWithTag("p1particle"));
+                   // Destroy(GameObject.FindGameObjectWithTag("p1particle"));
                 }
                 else if (!wasUsed) {
 					tY = builder.GetComponent<Transform> ().rotation.eulerAngles.y;
