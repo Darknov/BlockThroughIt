@@ -59,6 +59,7 @@ public class Laser : MonoBehaviour {
 						P1ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p1SpawnItems.Remove (laser);
+                        if(GameObject.FindWithTag("p1particle")!=null)
 						GameObject.FindWithTag ("p1particle").transform.parent = null;
 						Destroy (GameObject.FindWithTag ("p1particle"));
                     }
