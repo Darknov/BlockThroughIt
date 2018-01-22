@@ -40,7 +40,7 @@ public class InverseControl : MonoBehaviour {
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (inverseControl);
                         if (GameObject.FindGameObjectWithTag("Player")!=null)
-					   GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
+					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 	 					Destroy (inverseControl);
                     }
 				}
@@ -75,6 +75,7 @@ public class InverseControl : MonoBehaviour {
                         P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (inverseControl);
+						if (GameObject.FindGameObjectWithTag("Player")!=null)
 					    GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
 						Destroy (inverseControl);
                     }

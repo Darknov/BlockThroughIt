@@ -64,6 +64,7 @@ public class Freeze : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (freeze);
+						if (GameObject.FindGameObjectWithTag("p2particle")!=null)
 						GameObject.FindWithTag ("p2particle").transform.parent = null;
 						Destroy (GameObject.FindWithTag ("p2particle"));
 					    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
@@ -108,6 +109,7 @@ public class Freeze : MonoBehaviour {
 						P2ItemCountDown.itemText = "No item";
 						isTriggered = false;
 						StaticOptions.p2SpawnItems.Remove (freeze);
+						if (GameObject.FindGameObjectWithTag("p2particle")!=null)
 						GameObject.FindWithTag ("p2particle").transform.parent = null;
 						Destroy (GameObject.FindWithTag ("p2particle"));
 					    //GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SkinnedMeshRenderer>().material = standardMaterial;
