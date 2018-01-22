@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class LoadGameOnClick : MonoBehaviour
 {
-    public Transform canvasObject;
     public void LoadByIndex(int sceneIndex)
     {
         InverseControl.isTriggered = false;
@@ -41,12 +40,6 @@ public class LoadGameOnClick : MonoBehaviour
         {
             PlayerPrefs.SetInt("Keyboardpl2", 0);
             Player2Controller.p2GamePad = false;
-        }
-
-        if (canvasObject.gameObject.activeInHierarchy == true)
-        {
-            canvasObject.gameObject.SetActive(false);
-            Time.timeScale = 1;
         }
     }
 }
