@@ -187,7 +187,8 @@ public class BuildingBlock : MonoBehaviour {
 
 	void LateUpdate() {
         if (!StaticOptions.p1SpawnItems.Exists (x => x == builder)) {
-			Destroy (builder);
+			gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			//Destroy (builder);
 		}
 	}
 
