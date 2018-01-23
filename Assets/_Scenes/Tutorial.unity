@@ -290,11 +290,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textures:
-  - {fileID: 2800000, guid: 77b1722c07c47614f868bd8ae11f3d55, type: 3}
-  - {fileID: 2800000, guid: 3ae6c03debcd78f4c93014e4bdce3800, type: 3}
-  - {fileID: 2800000, guid: 13e55b646b36af746bf106c4ea45f184, type: 3}
-  - {fileID: 2800000, guid: a5dc72da6decb4a4987c79fb2bbad40b, type: 3}
-  - {fileID: 2800000, guid: 55ad3ed6dbd9a9c4db43161b1996ab38, type: 3}
+  - {fileID: 2800000, guid: 4a5b2dc55185b6d4f8a4a76a299a41b6, type: 3}
+  - {fileID: 2800000, guid: fefb639f663296e4c8717f061fe3f7ab, type: 3}
+  - {fileID: 2800000, guid: 20092971f8b03ea4386f9be557d31be6, type: 3}
+  - {fileID: 2800000, guid: ddeacdeb5eaf4a34ea159c60e18dbb47, type: 3}
+  - {fileID: 2800000, guid: 4fa5d3899edf3644094c9caae4b95bde, type: 3}
 --- !u!222 &1703811426
 CanvasRenderer:
   m_ObjectHideFlags: 0
